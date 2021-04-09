@@ -14,8 +14,7 @@
 /* Deneufgermain */
 
 ul .perso{
-
-    float:left;
+    display: inline-block;
     width:150px;
     background-color:rgb(151,161,137);
     padding:5px;
@@ -39,6 +38,7 @@ ul .perso{
 
 div.avatar .perso{
     float:left;
+    text-align: center;
     width:150px;
     background-color:rgb(110,184,13);
     padding:5px;
@@ -48,18 +48,6 @@ div.avatar .perso{
     -moz-box-shadow:2px 2px 2px rgb(33,122,21);
     -webkit-box-shadow:2px 2px 2px rgb(37,124,41);
 }
-
-.divSac{
-    float:left;
-    background-color:rgba(90,35,2,0.596);
-    padding:5px;
-    margin:3px;
-    border:1px solid rgb(219,184,25);
-    box-shadow:2px 2px 2px rgb(133,228,145);
-    -moz-box-shadow:2px 2px 2px rgb(33,122,21);
-    -webkit-box-shadow:2px 2px 2px rgb(37,124,41);
-}
-
 
 ul.AutrePersos li{
     background-color:rgb(129,129,129);
