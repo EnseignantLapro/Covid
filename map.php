@@ -84,7 +84,7 @@ session_start();
                                                     if($map->isForge()){
                                                         include "ihm/map/afficherForge.php.php";
                                                     }
-                                                    include "ihm/map/affichageAutrePersos.php";
+                                                    
                                                     //affichage des autres joueurs sur la carte
                                                     include "ihm/map/affichageAutrePersos.php";
                                                     //affiche les mob enemie et capturé;
