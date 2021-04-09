@@ -1,4 +1,4 @@
-<?php
+<?php //dev by rapidecho
 class Equipement extends Objet{
 
 
@@ -102,6 +102,19 @@ class Equipement extends Objet{
             return null;
         }
     }
+
+    //retourne le lien image du type d'item
+    public function getLienImage(){
+        $tab = $this->getType();
+        if(!is_null($tab)){
+            return $tab['lienImage'];
+        }else{
+            return "Todo";
+        }
+       
+    }
+
+
     //retour le style de couleur de la rareté d'un equipement
     public function getClassRarete(){
         $req="SELECT rarete FROM TypeEquipement where id = '".$this->_type."'";
