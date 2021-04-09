@@ -6,7 +6,7 @@
 }
 
 .formlogin{
-    margin-top:100px;
+    margin:100px auto;
     padding:20px;
     width:600px;
     background-color: rgba(192, 192, 192, 0.8);
@@ -47,13 +47,7 @@
 }
 
 #logSubsubmit:hover{
-    background-color: rgb(18, 116, 207);
-    background-color: rgba(199,82,154,0.829);
-    border-color: rgb(53, 77,78);
-    border:1px solid rgb(119,150,236);
-    box-shadow:2px 2px 2px rgb(83,95,235);
-    -moz-box-shadow:2px 2px 2px rgb(91,113,236);
-    -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
-    margin-right:auto;
-    margin-left:auto;
+    border: solid black 1px;
+    background-color: rgb(25, 111, 192);
+    color: white;
 }
