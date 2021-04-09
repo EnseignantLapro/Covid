@@ -6,7 +6,11 @@
             if(count($listEquipements) > 0){
                 foreach($listEquipements as $Equipement){
                     ?>
-                        <li id="equipementSac<?= $Equipement->getId()?>"><a onclick="useEquipement(<?= $Equipement->getId()?>)"><?= $Equipement->getNom() ?> lvl <?= $Equipement->getLvl() ?></a></li>
+                        <li id="equipementSac<?= $Equipement->getId() ?>">
+                            <a onclick="useEquipement(<?= $Equipement->getId() ?>)">
+                                <p><?= $Equipement->getNom() ?> lvl <?= $Equipement->getLvl() ?></p>
+                            </a>
+                        </li>
                     <?php
                 }
             }
