@@ -1,4 +1,4 @@
-<?php
+<?php //dev By Rapidecho
 class Item extends Objet{
 
     public function setItemByID($id){
@@ -158,6 +158,17 @@ class Item extends Objet{
             return null;
         }
     }
+
+    public function getLienImage(){
+        $tab = $this->getType();
+        if(!is_null($tab)){
+            return $tab['lienImage'];
+        }else{
+            return "Todo";
+        }
+       
+    }
+
    
 }
 ?>
