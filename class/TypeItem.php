@@ -127,8 +127,6 @@ class TypeItem  extends CRUD {
 
         return $req->fetch();
     }
-    
-}
 
 
 ?>

@@ -156,6 +156,7 @@ class Personnage extends Entite{
     }
 
     //retourne la nouvelle xp 
+
     //
     //public function addXP($value){
      //   $this->_xp += $value ;
@@ -175,7 +176,7 @@ class Personnage extends Entite{
 
     //    return $this->_xp;
   //  }
-  
+
     //met a jour la vie de depart et replace le joueur
     public function resurection(){
         $vieMax = round($this->_vieMax - (($this->_vieMax*10)/100));
