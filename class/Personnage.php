@@ -1,11 +1,9 @@
 <?php
-// TODO MOB ET PERSONNAGE ON TROP DE SIMILITUDE 
-//IL FAUT REFACTORISER AVEC DE LhERITAGE
+// Dev by rapidecho
 
 class Personnage extends Entite{
     
     private $_xp;
-
     private $sacItems=array();
  
 
@@ -14,9 +12,66 @@ class Personnage extends Entite{
         Parent::__construct($bdd);
     }
 
-    public function getXp(){
-        return $this->_xp;
+    /** 
+     * 
+     * Cette fonction nous permet de modifier l'XP du personnage
+     * 
+     * Entries:
+     * $valeurXp = valeur d'xp
+     */
+    public function setXp($valeurXp) {
+
+        $req = $this->_bdd->prepare("UPDATE Personnage SET xp = ? WHERE id = ?");
+        $req->execute(array($valeurXp, $this->_id));
+
+        $this->_xp = $valeurXp;
     }
+
+    /** 
+     * 
+     * Cette fonction nous permet de supprimer l'XP du personnage
+     * 
+     * Entries:
+     * Aucune valeur d'entrée
+     */
+    public function deleteXp() {
+        
+        $req = $this->_bdd->prepare("DELETE FROM Personnage WHERE id = ?");
+        $req->execute(array($this->_id));
+    }
+
+    /** 
+     * 
+     * Cette fonction nous permet d'insérer de l'XP
+     * 
+     * Entries:
+     * $valeurXp = valeur d'xp
+     */
+    public function addXp($valeurXp) {
+
+        $valeurXp = htmlspecialchars($valeurXp);
+
+        if(!empty($valeurXp)) {
+            $req = $this->_bdd->prepare("INSERT INTO Personnage SET id = ?, xp = ?");
+            $req->execute(array($this->_id, $valeurXp));
+        }
+    }
+
+    /** 
+     * 
+     * Cette fonction nous permet d'afficher l'XP
+     * Entries:
+     * Aucune valeur nécessaire
+     */
+    public function getXp() {
+
+        $req = $this->_bdd->prepare("SELECT xp FROM Personnage WHERE id = ?");
+        $req->execute(array($this->_id));
+
+        $xp = $req->fetch();
+        return $xp;
+    }
+
   
 
     public function SubitDegatByPersonnage($Personnage){
@@ -101,18 +156,31 @@ class Personnage extends Entite{
     }
 
     //retourne la nouvelle xp 
-    public function addXP($value){
-        $this->_xp += $value ;
-        $req  = "UPDATE `Personnage` SET `xp`='".$this->_xp ."' WHERE `id` = '".$this->_id ."'";
-        $Result = $this->_bdd->query($req);
-        return $this->_xp;
-    }
+    //
+    //public function addXP($value){
+     //   $this->_xp += $value ;
+     //   
+      //  $req  = "UPDATE `Personnage` SET `xp`='".$this->_xp ."' WHERE `id` = '".$this->_id ."'";
+     //   $Result = $this->_bdd->query($req);
+
+        //passage des Lvl suis une loi de racine carre
+        //* le double etole ** c'est elevé à la puissance */
+     //   $lvl = ceil(($this->_xp/2000)**(0.7));
+
+     //   if($lvl >$this->_lvl ){
+     //       $this->_lvl = $lvl;
+     //       $req  = "UPDATE `Entite` SET `lvl`='".$this->_lvl."' WHERE `id` = '".$this->_id ."'";
+     //       $Result = $this->_bdd->query($req);
+      // }
+
+    //    return $this->_xp;
+  //  }
   
     //met a jour la vie de depart et replace le joueur
     public function resurection(){
-        $vieMax = intdiv ($this->_vieMax,2);
-        $attaque = intdiv ($this->_vieMax,2);
-        if($vieMax<10){$vieMax=10;}
+        $vieMax = round($this->_vieMax - (($this->_vieMax*10)/100));
+        $attaque = round($this->_degat - (($this->_degat*15)/100));
+        if($vieMax<10){$vieMax=100;}
         $req  = "UPDATE `Entite` SET `degat`='".$attaque."',`vieMax`='".$vieMax."',`vie`='".$vieMax."' WHERE `id` = '".$this->_id ."'";
         $Result = $this->_bdd->query($req);
         $this->_vie=$vieMax;
@@ -244,7 +312,10 @@ class Personnage extends Entite{
    
     //ajoute un lien entre item et la personnage en bdd 
     //et accroche l'item dans la collection itemID dans le sac du perso
+    //au moment ou le personnage prend une Epee, cette derniere fusionne en lvl supérieur 
+    //et détruit l'autre . Attention il taut le meme lvl , le meme nom , le meme type
     public function addItem($newItem){
+
         array_push($this->sacItems,$newItem->getId());
         $req="INSERT INTO `PersoSacItems`(`idPersonnage`, `idItem`) VALUES ('".$this->getId()."','".$newItem->getId()."')";
         $this->_bdd->query($req);
