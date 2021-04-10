@@ -201,6 +201,20 @@ class Personnage extends Entite{
         }
     }
 
+    //retour le type de personnage 
+    //retour null si pas de type
+    public function getTyePersonnage(){
+        if(!is_null($_idTypePersonnage)){
+            $TypePersonnage = new TypePersonnage($this->_bdd);
+            $TypePersonnage->setTypePersonnageById($_idTypePersonnage);
+            return $TypePersonnage;
+        }else{
+            //ne devrait jamais etre le cas
+            return null;
+        }
+        
+    }
+
    //Retourne un formulaire HTML pourcreer un personnage
     //et permet d'attribuer automatiquement à user
     // retour un objet personnage
