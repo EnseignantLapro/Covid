@@ -8,7 +8,10 @@
                     ?>
                         <li id="itemSac<?= $Item->getId() ?>">
                             <a onclick="useItem(<?= $Item->getId() ?>)">
-                                <p><?= $Item->getNom() ?> lvl <?= $Item->getLvl() ?></p>
+                            <img class='imgItemSac' src='<?= $Item->getLienImage() ?>'/>
+                                <span class='spanItemSac'>
+                                    <?= $Item->getNom() ?> lvl <?= $Item->getLvl() ?>
+                                </span>
                             </a>
                         </li>
                     <?php
