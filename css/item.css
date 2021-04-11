@@ -1,28 +1,39 @@
 /* Marrocchi */
 
 .divSac{
-    display: inline-block;
-    text-align: center;
-    height: 250px;
-    width: 600px;
-    background-color:rgb(128, 92, 47);
+    display:inline-block;
+    text-align:center;
+    height:250px;
+    width:600px;
+    background-color:rgb(92, 64, 29);
     padding:5px;
     margin:4px auto 4px 18px;
     border:2px solid rgb(0, 0, 0);
-    border-radius: 10px;
+    border-radius:10px;
     box-shadow:2px 2px 2px rgb(0, 0, 0);
     -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
-    overflow-y: scroll;
+    overflow-y:scroll;
 }
 
-.divSac p{
-    padding-bottom: 10px;
-    border-bottom: double black 2px;
+#TitleSacoche{
+    color:white;
+    text-shadow:black 1px 1px;
+    padding-bottom:10px;
+    border-bottom:solid rgb(255, 255, 255) 2px;
+}
+
+#TitleSacocheItems, #TitleSacocheEquipement{
+    color:white;
+    width:60%;
+    margin: 30px auto;
+    text-shadow:black 1px 1px;
+    padding-bottom:10px;
+    border-bottom:dashed rgb(255, 255, 255) 2px;
 }
 
 ul.Item li{
-    display: inline-block;
+    display:inline-block;
     background-color:rgb(207,207,207);
     padding:5px;
     border-radius:10px;
@@ -42,22 +53,30 @@ ul.Item li{
 ul.Sac li{
     float: none;
     display: inline-block;
-    background-color:rgb(138, 83, 21);
-    padding:5px;
+    background-color:rgb(63, 61, 59);
     border-radius:10px;
-    margin:10px 5px;
-    border:1px solid rgb(255, 255, 255);
-    box-shadow:2px 2px 2px rgb(255, 255, 255);
-    -moz-box-shadow:2px 2px 2px rgb(255, 255, 255);
-    -webkit-box-shadow:2px 2px 2px rgb(255, 255, 255);
+    width: 40px;
+    height: 40px;
+    padding:0px;
+    margin:3px;
+    border:2px solid rgb(0, 0, 0);
+    box-shadow:2px 2px 2px rgb(0, 0, 0);
+    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
+    -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
+    overflow: hidden;
 }
 
 ul.Sac li:hover{
     cursor:url('baguette.cur'),pointer;
-    background-color:rgb(197, 125, 43);
+    background-color: rgb(97, 90, 87);
 }
 
 ul.Item li:hover{
     cursor:url('hand-grab.cur'),pointer;
-    background-color:rgb(231,231,231);
+}
+
+.imgItemSac, .imgEquipementSac {
+    width: 34px;
+    height: 34px;
+    margin: 3px;
 }
