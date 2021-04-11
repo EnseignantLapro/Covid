@@ -60,24 +60,19 @@ session_start();
                     <h1>Bienvenue <?= $Joueur1->getPrenom() ?></h1>
                     <p>Tu as décidé de combattre avec <?= $Joueur1->getNomPersonnage() ?>, il a une fortune de <?= $personnage->getValeur() ?> (NFT)</p>
                     <div class="avatar">
-                    <?php
-                        $personnage->renderHTML();
-                        //AFFICHAGE DES ITEMS DU SAC
-                        $listItems = $Joueur1->getPersonnage()->getItems();
-                        ?>
-                            <div class="divSac">
-                                <p>Sacoche</p>
-                                <ul id="Sac" class="Sac">
-                        <?php
-                        if(count($listItems)>0){
-                            foreach ($listItems as $Item){
-                                ?>
-                                    <li id="itemSac<?= $Item->getId() ?>"><a onclick="useItem(<?= $Item->getId() ?>)"><?= $Item->getNom() ?></a></li>
-                                <?php
-                            }
-                        }
-                        ?>
-                                </ul>
+                        <!-- AFFICHAGE EN-TÊTE PERSONNAGE ET SAC -->
+                            <div class='entete'>
+                                <div class="avatar">
+                                    <?php $personnage->renderHTML() ?>
+                                </div>
+                                <div class="divSac">
+                                    <p id='TitleSacoche'>Sacoche</p>
+                                    <!-- Include Items / Equipement -->
+                                        <?php
+                                            include "ihm/map/affichageSacItem.php";
+                                            include "ihm/map/affichageSacEquipement.php";
+                                        ?>
+                                </div>
                             </div>
                             <p>Ton combattant est sur la position : <?= $map->getNom() ?> </p>
                             <p><h4>Tu peux maintenant ramasser des conneries par terre.</h4></p>
