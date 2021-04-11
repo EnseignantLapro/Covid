@@ -58,8 +58,8 @@ session_start();
                                 $tabDirection = $map->getMapAdjacenteLienHTML('nord',$Joueur1); 
                                 ?>
                                     <?= $tabDirection['nord'] ?>
-                                    <h1>Bienvenue <?= $Joueur1->getPrenom() ?></h1>
-                                    <p>Tu as décidé de combattre avec <?= $Joueur1->getNomPersonnage() ?>, il a une fortune de <?= $personnage->getValeur() ?> (NFT)</p>
+                                    <p class="WelcomeCombat">Bienvenue <?= $Joueur1->getPrenom() ?></p>
+                                    <p class="ChoixCombattant">Tu as décidé de combattre avec <?= $Joueur1->getNomPersonnage() ?>, il a une fortune de <?= $personnage->getValeur() ?> (NFT)</p>
                                     <div class="avatar">
                                         <!-- AFFICHAGE EN-TÊTE PERSONNAGE ET SAC -->
                                         <div class='entete'>
@@ -75,13 +75,15 @@ session_start();
                                                 ?>
                                             </div>
                                         </div>
-                                        <p>Ton combattant est sur la position : <?= $map->getNom() ?> </p>
-                                        <p><h4>Tu peux maintenant ramasser des conneries par terre.</h4></p>
-                                        <p><h4>Si tu en trouves qui sont parfaitement identiques, elles prennent de la valeur 😄 !</h4></p>
-                                        <p><h3>But du jeu : Capture le "Super Jedi Légendaire".</h3></p>
+                                        <div class="InformationCombat">
+                                            <p class="PositionCombattant">Ton combattant est sur la position : <?= $map->getNom() ?> </p>
+                                            <p class="InfoCombat1">Tu peux maintenant ramasser des conneries par terre.</p>
+                                            <p class="InfoCombat2">Si tu en trouves qui sont parfaitement identiques, elles prennent de la valeur 😄 !</p>
+                                            <p class="InfoButJeu">But du jeu : Capture le "Super Jedi Légendaire".</p>
+                                        </div>
                                         <div class="tableaChass">
                                             <div class="titreMonster">
-                                                <p>Voici tes monstres capturés :</p>
+                                                <p class="TitreMonstreCapture">Voici tes monstres capturés :</p>
                                             </div>
                                             <?php
                                                 $MysMob = new Mob($mabase);
