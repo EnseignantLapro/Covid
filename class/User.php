@@ -29,8 +29,12 @@ class User{
             $this->setUser($tab["id"],$tab["login"],$tab["mdp"],$tab["prenom"],$tab["admin"]);
             //chercher son personnage
             $personnage = new Personnage($this->_bdd);
-            $personnage->setPersonnageById($tab["idPersonnage"]);
-            $this->_MonPersonnage = $personnage;
+            if($tab["idPersonnage"]>0){
+                $personnage->setPersonnageById($tab["idPersonnage"]);
+                $this->_MonPersonnage = $personnage;
+            }else{
+                $this->_MonPersonnage = null;
+            }
         }
     }
 
@@ -305,6 +309,24 @@ class User{
             echo '</div>';
         }
         echo '</div>';
+    }
+
+    //retourne la faction du Joueur
+    public function getFaction(){
+        $req="SELECT Faction.id,Faction.nom 
+        FROM `Faction` ,`Personnage`, `User` , `TypePersonnage` 
+        WHERE User.idPersonnage = Personnage.id 
+        AND Personnage.idTypePersonnage = TypePersonnage.id 
+        AND TypePersonnage.idFaction = Faction.id 
+        AND User.id = '".$this->_id."'";
+        $Result = $this->_bdd->query($req);
+        if($tab=$Result->fetch()){
+           $Faction = new Faction($this->_bdd);
+           $Faction->setFactionById($tab['id']);
+           return $Faction;
+        }else{
+            return null;
+        }
     }
 }
 ?>
