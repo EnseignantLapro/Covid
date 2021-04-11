@@ -23,6 +23,10 @@
     -webkit-box-shadow:2px 2px 2px rgb(52,53,52);
 }
 
+.nord a,.sud a,.est a,.ouest a{
+    color: white;
+}
+
 .sud{
     width:100%;
     float:left;
