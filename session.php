@@ -1,6 +1,9 @@
 <?php
 include "class/Entite.php";
 include "class/User.php";
+include "class/CRUD.php";
+include "class/Faction.php";
+include "class/TypePersonnage.php";
 include "class/Personnage.php";
 include "class/Map.php";
 include "class/Mob.php";

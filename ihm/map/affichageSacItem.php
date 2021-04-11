@@ -6,7 +6,14 @@
             if(count($listItems) > 0){
                 foreach($listItems as $Item){
                     ?>
-                        <li id="itemSac<?= $Item->getId()?>"><a onclick="useItem(<?= $Item->getId()?>)"><?= $Item->getNom() ?> lvl <?= $Item->getLvl() ?></a></li>
+                        <li id="itemSac<?= $Item->getId() ?>">
+                            <a onclick="useItem(<?= $Item->getId() ?>)">
+                            <img class='imgItemSac' src='<?= $Item->getLienImage() ?>'/>
+                                <span class='spanItemSac'>
+                                    <?= $Item->getNom() ?> lvl <?= $Item->getLvl() ?>
+                                </span>
+                            </a>
+                        </li>
                     <?php
                 }
             }
