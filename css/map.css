@@ -27,12 +27,19 @@
     color: white;
 }
 
+.est a,.ouest a{
+    vertical-align: middle;
+    margin-top: 20px;
+}
+
 .sud{
     width:100%;
     float:left;
     background-color:rgba(0,81,255,0.767);
     height:30px;
     text-align:center;
+    line-height: 30px;
+    margin: 10px 0px;
 }
 
 .nord{
@@ -43,6 +50,8 @@
     background-color:rgba(0,81,255,0.767);
     height:30px;
     text-align:center;
+    line-height: 30px;
+    margin: 10px 0px;
 }
 
 .est{
