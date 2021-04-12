@@ -61,3 +61,8 @@ ul.Item li:hover{
     cursor:url('hand-grab.cur'),pointer;
     background-color:rgb(231,231,231);
 }
+
+.imgItemSac, .imgEquipementSac {
+  width: 25px;
+}
+/* Taille à définir, provisoire */
