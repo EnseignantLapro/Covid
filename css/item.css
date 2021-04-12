@@ -55,7 +55,7 @@ ul.Sac li{
     display: inline-block;
     background-color:rgb(63, 61, 59);
     border-radius:10px;
-    width: 40px;
+    width: max-content;
     height: 40px;
     padding:0px;
     margin:3px;
@@ -79,4 +79,13 @@ ul.Item li:hover{
     width: 34px;
     height: 34px;
     margin: 3px;
+}
+
+.imgItemSac, .spanItemSac, .spanEquipementSac{
+    display: inline;
+}
+
+.spanItemSac, .spanEquipementSac{
+    height: 34px;
+    color: white;
 }
