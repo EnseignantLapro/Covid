@@ -74,18 +74,3 @@ ul.Sac li:hover{
 ul.Item li:hover{
     cursor:url('hand-grab.cur'),pointer;
 }
-
-.imgItemSac, .imgEquipementSac {
-    width: 34px;
-    height: 34px;
-    margin: 3px;
-}
-
-.imgItemSac, .spanItemSac, .spanEquipementSac{
-    display: inline;
-}
-
-.spanItemSac, .spanEquipementSac{
-    height: 34px;
-    color: white;
-}
