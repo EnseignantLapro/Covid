@@ -82,6 +82,14 @@ body{
     background-color: rgb(212, 40, 40);
 }
 
+.WelcomeCombat{
+    display: block;
+    margin: 50px auto 20px auto;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: oblique;
+}
+
 .divRarete{
     height:15px;
     width:105px;
