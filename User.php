@@ -1,4 +1,4 @@
-<?php // Ghyselen Lucas CRUD du compte
+<?php // Caré
 
 class User{
 
@@ -29,12 +29,8 @@ class User{
             $this->setUser($tab["id"],$tab["login"],$tab["mdp"],$tab["prenom"],$tab["admin"]);
             //chercher son personnage
             $personnage = new Personnage($this->_bdd);
-            if($tab["idPersonnage"]>0){
-                $personnage->setPersonnageById($tab["idPersonnage"]);
-                $this->_MonPersonnage = $personnage;
-            }else{
-                $this->_MonPersonnage = null;
-            }
+            $personnage->setPersonnageById($tab["idPersonnage"]);
+            $this->_MonPersonnage = $personnage;
         }
     }
 
@@ -314,22 +310,45 @@ class User{
         }
         echo '</div>';
     }
+    //affiche tout les utilisateurs ainsi que leurs donnée (commande de préférance admin)
+    public function showusers($bdd){
+        $all = $bdd->query("SELECT * FROM user");
+        $show = $all->fetch();
 
-    //retourne la faction du Joueur
-    public function getFaction(){
-        $req="SELECT Faction.id,Faction.nom 
-        FROM `Faction` ,`Personnage`, `User` , `TypePersonnage` 
-        WHERE User.idPersonnage = Personnage.id 
-        AND Personnage.idTypePersonnage = TypePersonnage.id 
-        AND TypePersonnage.idFaction = Faction.id 
-        AND User.id = '".$this->_id."'";
-        $Result = $this->_bdd->query($req);
-        if($tab=$Result->fetch()){
-           $Faction = new Faction($this->_bdd);
-           $Faction->setFactionById($tab['id']);
-           return $Faction;
-        }else{
-            return null;
+        echo $show['id'];
+        echo $show['login'];
+        echo $show['prenom'];
+        echo $show['mdp'];
+        echo $show['idPersonnage'];
+        echo $show['admin'];
+
+    }
+    //fonction pour modifier un prenom en base
+    public function updateuser($bdd){
+        $Up = $bdd->query("UPDATE `user` SET `prenom`='".$POST['newprenom']."' WHERE id=".$this->_id." ");
+            if($Up){
+                echo "Ton prénom a bien été changé.";
+            }else{
+                echo "Une erreur est survenue :/";
+            }
+    }
+    //fonction pour supprimé un utilisateur version admin (pas fini, a voir avec Langlace)
+    public function deleteuseradminversion($bdd){
+        $Del = $MaBase->query("DELETE FROM user WHERE id= ".$_POST['id']."");
+            if($Del){
+                echo "utilisateur supprimé";
+            }else{
+                echo "une erreur est survenue";
+            }
+    }
+    //fonction pour ajouté un utilisateur
+    public function adduser($bdd){
+        //ajoute un commentaire dans la base de la page du jeu selectionné
+        $add = $this->_BDD->query("INSERT INTO `user`(`login`, `prenom`, `mdp`, `idPersonnage`, `admin`) VALUES (\"".$_POST['login']."\",'".$_POST['prenom']."','".$_POST['mdp']."','".$_POST['idPersonnage']."','"0"')");
+        if($add){
+            echo "utilisateur ajouté.";
+        } else {
+            echo "Une erreur est survenue.";
         }
     }
 }
