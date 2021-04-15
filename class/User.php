@@ -81,15 +81,11 @@ class User{
         $errorMessage="";
         //si c'est une inscription on valide l'inscription et on le connect
         if( isset($_POST["sub"])){
-            if($_POST['MDP'] == $_POST['password']) {
-                if(!empty($_POST['prenom'])){
-                    $req ="INSERT INTO `User`( `login`, `prenom`, `mdp`) VALUES ('".$_POST['login']."','".$_POST['prenom']."','".$_POST['password']."')";
-                    $Result = $this->_bdd->query($req);
-                }else{
-                    $errorMessage = "Il faut un prénom à l'inscription.";
-                }
+            if(!empty($_POST['prenom'])){
+                $req ="INSERT INTO `User`( `login`, `prenom`, `mdp`) VALUES ('".$_POST['login']."','".$_POST['prenom']."','".$_POST['password']."')";
+                $Result = $this->_bdd->query($req);
             }else{
-                echo "les mots de passes ne corespondes pas";
+                $errorMessage = "Il faut un prénom à l'inscription.";
             }
             
         }
