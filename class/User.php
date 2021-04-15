@@ -129,21 +129,21 @@ class User{
             ?>
             <form action="" method="post" >
                 <div>
-                    <label for="login">Mail : </label>
+                    <label for="login">Mail :</label>
                     <input type="email" name="login" id="login" required >
                 </div>
-                <div >
-                    <label for="password">Password: </label>
+                <div>
+                    <label for="password">Password :</label>
                     <input type="password" name="password" id="password" required>
+                    <label class="inscriptionHide logSub" for="MDP">Réécrivez votre Password :</label>
+                    <input class="inscriptionHide logSub" type="password" name="MDP" id="MDP">
                 </div>
-
-                <div >
-                    <label class="inscriptionHide logSub" for="prenom">Prénom si tu t'inscris : </label>
+                <div>
+                    <label class="inscriptionHide logSub" for="prenom">Prénom :</label>
                     <input class="inscriptionHide logSub" type="text" name="prenom" id="prenom" >
                 </div>
-
-                <div >
-                    <input type="submit" value="GO !" name="log" id="logSubsubmit"> <a class="inscriptionShow logSub" id="subCreatclick" onclick="inscription()">Inscription au jeu</a>
+                <div>
+                    <input type="submit" value="GO !" name="log" id="logSubsubmit"> <a class="inscriptionShow logSub" id="subCreatclick" onclick="inscription()">Cliquez pour vous inscrire.</a>
                 </div>
             </form>
         </div>
