@@ -61,6 +61,14 @@
                         <div class='Div1 BG_Vert'>
                             <h3 class='TC'>Statistiques d'Objet :</h3>
                             <p class='TC'>Texte.</p>
+                            <div class='Div1 BG_Vert'>
+                                <h4 class='TC'>Statistiques d'Item :</h4>
+                                <p class='TC'>Texte.</p>
+                            </div>
+                            <div class='Div1 BG_Vert'>
+                                <h4 class='TC'>Statistiques d'Équipement :</h4>
+                                <p class='TC'>Texte.</p>
+                            </div>
                         </div>
                     <?php
                 }else{
