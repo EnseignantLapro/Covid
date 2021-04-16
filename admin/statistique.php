@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    // Attention, Function et code temporaire :
+    // Optimisation avec des Boucles For dès que possible.
     Function ReturnTest(){
         return '12345' ;
     }

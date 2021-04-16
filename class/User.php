@@ -267,48 +267,79 @@ class User{
         //On rajoute largeur de x pour laisser de la place à la border
         $ligneTaille = $LargeurX*$LX+$LargeurX*2;
         $styleLigne = 'style="width:'.$ligneTaille.'px;height:'.$HY.'px"';
-
-        echo '<div class="map" '.$style.'>';
-        for($y=$maxY;$y>$minY;$y--){
-
-            echo '<div class="mapLigne" '.$styleLigne.'>';
-            for($x=$minX;$x<$maxX;$x++){
-               
-                 if ($y==$Map->getY() && $x==$Map->getX()) {
-                    echo '<div class="mapPositionUser" '.$styleCellule.'>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Compass_Rose_French_North.svg/800px-Compass_Rose_French_North.svg.png" widht="'.$LX.'px" height="'.$LX.'px">
-                    </div>';
-                }else if($y==0 && $x==0){
-                    echo '<div class="mapOrigine" '.$styleCellule.'></div>';
-                }else{
-                    if(array_key_exists($x,$allMap)){
-                        if(array_key_exists($y,$allMap[$x])){
-                            if(!is_null($allMap[$x][$y])){
-
-                                //map found check it bro 
-                                $MapScan->setMapByID($allMap[$x][$y]);
-
-                                if(count($MapScan->getAllMobContre($this))){
-                                    echo '<div class="mapMob" '.$styleCellule.'></div>';
-                                }else if (count($MapScan->getAllMobCapture($this))){
-                                    echo '<div class="mapClear" '.$styleCellule.'></div>';
-                                }else{
-                                    echo '<div class="mapVerte" '.$styleCellule.'></div>';
-                                }
-                            }else{
-                                echo '<div class="mapRouge" '.$styleCellule.'></div>';
-                            }
-                        }else{
-                            echo '<div class="mapRouge" '.$styleCellule.'></div>';
-                        }
-                    }else{
-                        echo '<div class="mapRouge" '.$styleCellule.'></div>';
+        ?>
+            <div class="map" <?= $style ?>>
+                <?php
+                    for($y=$maxY;$y>$minY;$y--){
+                        ?>
+                            <div class="mapLigne" <?= $styleLigne ?>>
+                                <?php
+                                    for($x=$minX;$x<$maxX;$x++){
+                                      // Si User est positioné à la coordonné.
+                                        if($y==$Map->getY() && $x==$Map->getX()){
+                                            ?>
+                                                <div class="mapPositionUser" <?= $styleCellule ?>>
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Compass_Rose_French_North.svg/800px-Compass_Rose_French_North.svg.png" widht="<?= $LX ?>px" height="<?= $LX ?>px">
+                                                </div>
+                                            <?php
+                                      // Si la coordonné est 0/0.
+                                        }else if($y==0 && $x==0){
+                                            ?>
+                                                <div class="mapOrigine" <?= $styleCellule ?>></div>
+                                            <?php
+                                      // Si autre cas.
+                                        }else{
+                                          // Si Y existe dans la BDD.
+                                            if(array_key_exists($x,$allMap)){
+                                              // Si Y/X existe dans la BDD.
+                                                if(array_key_exists($y,$allMap[$x])){
+                                                  // Si déja visité par User.
+                                                    if(!is_null($allMap[$x][$y])){
+                                                      //map found check it bro
+                                                        $MapScan->setMapByID($allMap[$x][$y]);
+                                                      // Si coordonné ayant un ou des Monstres Non capturés.
+                                                        if(count($MapScan->getAllMobContre($this))){
+                                                            ?>
+                                                                <div class="mapMob" <?= $styleCellule ?>></div>
+                                                            <?php
+                                                      // Si coordonné ayant un ou des Monstres capturés.
+                                                        }else if (count($MapScan->getAllMobCapture($this))){
+                                                            ?>
+                                                                <div class="mapClear" <?= $styleCellule ?>></div>
+                                                            <?php
+                                                      // Si coordonné n'ayant aucun Monstres.
+                                                        }else{
+                                                            ?>
+                                                                <div class="mapVerte" <?= $styleCellule ?>></div>
+                                                            <?php
+                                                        }
+                                                  // Si jamais visité par User.
+                                                    }else{
+                                                        ?>
+                                                            <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                        <?php
+                                                    }
+                                              // Si Y/X n'existe pas dans la BDD.
+                                                }else{
+                                                    ?>
+                                                        <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                    <?php
+                                                }
+                                          // Si Y n'existe pas dans la BDD.
+                                            }else{
+                                                ?>
+                                                    <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+                        <?php
                     }
-                }
-            }
-            echo '</div>';
-        }
-        echo '</div>';
+                ?>
+            </div>
+        <?php
     }
 
     //retourne la faction du Joueur
