@@ -53,37 +53,55 @@
     border:1px solid rgba(254,251,255,0.47);
 }
 
+.map{
+    width: 240px;
+}
+
 .mapLigne{
     width:100%;
+    width: 240px;
+    height: 20px;
     float:left;
 }
 
 .mapVerte{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(4,155,12,0.685);
 }
 .mapMob{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(255,0,0,0.664);
 }
 
 .mapClear{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(255,251,0,0.603);
 }
 
 .mapRouge{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(255,8,0,0.144);
 }
 
 .mapOrigine{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgb(255,0,221);
 }
 
 .mapPositionUser{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(21,255,0,0.801);
 }
 
