@@ -61,10 +61,16 @@ if($access){
 
                 if($DeffensseurMob->getVie()>0){
                     if($vieAttaquant!=0){
-                        $vie=$DeffensseurMob->SubitDegat($Attaquant);
+                        //Utilisation méthode pour attaquer le mob
+                        $SubitDegat = $DeffensseurMob->SubitDegat($Attaquant)
+                        $vie = $SubitDegat[0];
                         $vieMax = $DeffensseurMob->getVieMax();
-                        //retour de batton le deffenseur auusi attaque
+                        //retour de bâton le deffenseur aussi attaque
                         $vieAttaquant=$Attaquant->SubitDegatByMob($DeffensseurMob);
+
+                        //Affichage d'un message avec les dégats ingligé + info de si c'est un cout critique
+                        $message .= $SubitDegat[1];
+
                         if($vieAttaquant==0){
                             $message .= "Ton personnage est mort.";
                         }
