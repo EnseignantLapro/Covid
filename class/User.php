@@ -332,9 +332,9 @@ class User{
                 echo "Une erreur est survenue :/";
             }
     }
-    //fonction pour supprimé un utilisateur version admin (pas fini, a voir avec Langlace)
+    //fonction pour supprimé un utilisateur version admin
     public function deleteuseradminversion($bdd){
-        $Del = $MaBase->query("DELETE FROM user WHERE id= ".$_POST['id']."");
+        $Del = $bdd->query("DELETE FROM user WHERE id= ".$_POST['id']."");
             if($Del){
                 echo "utilisateur supprimé";
             }else{
@@ -344,11 +344,45 @@ class User{
     //fonction pour ajouté un utilisateur
     public function adduser($bdd){
         //ajoute un commentaire dans la base de la page du jeu selectionné
-        $add = $this->_BDD->query("INSERT INTO `user`(`login`, `prenom`, `mdp`, `idPersonnage`, `admin`) VALUES (\"".$_POST['login']."\",'".$_POST['prenom']."','".$_POST['mdp']."','".$_POST['idPersonnage']."','"0"')");
+        $add = $bdd->query("INSERT INTO `user`(`login`, `prenom`, `mdp`, `idPersonnage`, `admin`) VALUES (\"".$_POST['login']."\",'".$_POST['prenom']."','".$_POST['mdp']."','".$_POST['idPersonnage']."','"0"')");
         if($add){
             echo "utilisateur ajouté .";
         } else {
             echo "Une erreur est survenue.";
+        }
+    }
+    //fonction pour modifier un mot de passe
+    public function updatepassword($bdd){
+        if (isset($_POST["updatemdp"])) {
+            //comparaison du mot de passe avec l'ancien
+            if($_POST['NEWMDP'] == $_POST['password']) {
+                //mise a jour dans la base du nouveau mot de passe
+                $rep = $bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE id=".$this->_id." ");
+                if($rep){
+                    //succées 
+                    echo "Mot de passe changé";
+                }else{
+                    //erreur a l'update dans la base
+                    echo "Une erreur est survenue";
+                }
+            } else {
+                //message d'erreur
+                echo "les mots de passe ne correspondent pas...";
+            }
+        }
+    }
+    //fonction pour modifier un mot de passe version admin
+    public function updatepasswordadminversion($bdd){
+        if (isset($_POST["updateusermdp"])) {
+            //mise a jour dans la base du nouveau mot de passe
+            $rep = $bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE `id`='".$_POST['id']."' ");
+            if($rep){
+                //succées 
+                echo "Le mot de passe de l'utilisateur a été changé";
+            }else{
+                //erreur a l'update dans la base
+                echo "Une erreur est survenue";
+            }
         }
     }
 }
