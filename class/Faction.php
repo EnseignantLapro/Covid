@@ -173,4 +173,19 @@ class Faction {
 
         return $req->fetch();
     }
+
+    /**
+     * 
+     * Cette fonction permet d'afficher une faction en fonction de l'id
+     * 
+     * Return :
+     * 
+     * $id = id de la faction
+    */
+    public function getFactionNameById($id) {
+        $req = $this->_bdd->prepare("SELECT * FROM Faction WHERE id = ?");
+        $req->execute($id);
+
+        return $req->fetch();
+    }
 }
