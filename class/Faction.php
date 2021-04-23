@@ -157,19 +157,22 @@ class Faction {
         
         $this->_nom = $nom;
         $this->_couleur = $couleur;
-
     }
 
     /**
      * 
      * Cette fonction permet d'afficher les factions
      * 
-     * Entries :
+     * Return :
      * 
-     * no entreies
+     * $valeur = Fetch des informations du tableau
     */
     public function showFaction() {
-        
+        $req = $this->_bdd->prepare("SELECT * FROM Faction");
+        $req->execute();
 
+        $factionList = $req->fetch();
+
+        return $factionList;
     }
 }
