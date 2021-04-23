@@ -171,8 +171,6 @@ class Faction {
         $req = $this->_bdd->prepare("SELECT * FROM Faction");
         $req->execute();
 
-        $factionList = $req->fetch();
-
-        return $factionList;
+        return $req->fetch();
     }
 }
