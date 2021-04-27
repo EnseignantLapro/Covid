@@ -51,8 +51,23 @@ class Mob extends Entite{
 
     //methode appelé quand un personnage attaque un mob 
     //le perso est passé en param
-    public function SubitDegat($Entite){
-        $this->_vie = $this->_vie - $Entite->getAttaque();
+    public function SubitDegat($Entite)
+    {
+        //Ajout Aléatoire pour coup critique PVE (15% de chance d'acctivation // 50% de dégats en plus): 
+        $CC = random_int(1; 100):
+        if($CC >=1 && $CC <= 15)
+        {
+            $degat = $Entite->getAttaque() * 1.5;
+            $this->_vie = $this->_vie - $degat;
+
+            $CoupCritique = "Cout Critique ! Vous avez infligé ".$degat;
+        } else 
+        {
+            $Degat = $Entite->getAttaque()
+            $this->_vie = $this->_vie - $Degat;
+
+            $CoupCritique = "Vous avez infligé ".$degat;
+        } 
 
         $coupFatal = 0;
         if($this->_vie<0){
@@ -95,7 +110,7 @@ class Mob extends Entite{
         `DegatsReçus`=".$tabAttaque['DegatsReçus']."
          WHERE idMob = '".$this->getId()."' AND idPersonnage ='".$Entite->getId()."' ";
             $Result = $this->_bdd->query($req);
-        return $this->_vie;
+        return array ($this->_vie, $CoupCritique);
     }
 
     public function getHistoriqueAttaque(){
