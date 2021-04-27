@@ -16,7 +16,10 @@
         
         <div class = "">
 
+        <h1> Règlement </h1>
+
         <p>
+            
         </p>
 
         </div>
