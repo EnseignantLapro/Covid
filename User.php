@@ -14,7 +14,6 @@ class User{
     public function __construct($bdd){
         $this->_bdd = $bdd;
     }
-
     public function setUser($id,$login,$mdp,$prenom,$admin){
         $this->_id = $id;
         $this->_login = $login;
@@ -22,7 +21,6 @@ class User{
         $this->_prenom = $prenom;
         $this->_admin = $admin;
     }
-
     public function setUserById($id){
         $Result = $this->_bdd->query("SELECT * FROM `User` WHERE `id`='".$id."' ");
         if($tab = $Result->fetch()){ 
@@ -33,36 +31,28 @@ class User{
             $this->_MonPersonnage = $personnage;
         }
     }
-
     public function setPersonnage($Perso){
         $this->_MonPersonnage = $Perso;
         //je mémorise en base l'association du personnage dans user
         $req ="UPDATE `User` SET `idPersonnage`='".$Perso->getID()."' WHERE  `id` = '".$this->_id."'";
         $Result = $this->_bdd->query($req);
     }
-
-
     //retour true si c'est un admin
     public function isAdmin(){
         return $this->_admin;
     }
-
     public function getPrenom(){
         return $this->_prenom;
     }
-
     public function getId(){
         return $this->_id;
     }
-
     public function getNomPersonnage(){
         return $this->_MonPersonnage->getNom();
     }
-
     public function getPersonnage(){
         return $this->_MonPersonnage;
     }
-
     public function getAllMyMobIds(){
         $listMob=array();
         $req="SELECT `id` FROM `Entite` WHERE `idUser`   in (SELECT `id` FROM `Entite` WHERE `idUser` = '".$this->_id."') AND Type=2";
@@ -72,7 +62,6 @@ class User{
         }
         return $listMob;
     }
-
     public function ConnectToi(){
         $errorMessage="";
         //si c'est une inscription on valide l'inscription et on le connect
@@ -165,7 +154,6 @@ class User{
 
         return $access;
     }
-
     public function DeconnectToi(){
 
         //traitement du formulaire
@@ -194,7 +182,6 @@ class User{
         }
         return $access;
     }
-
     //retourne une carte de Div HTML de tracé de div
     public function getVisitesHTML($taille){
         //etape 1 récupéré toutes les visites du user
@@ -332,9 +319,9 @@ class User{
                 echo "Une erreur est survenue :/";
             }
     }
-    //fonction pour supprimé un utilisateur version admin (pas fini, a voir avec Langlace)
+    //fonction pour supprimé un utilisateur version admin
     public function deleteuseradminversion($bdd){
-        $Del = $MaBase->query("DELETE FROM user WHERE id= ".$_POST['id']."");
+        $Del = $bdd->query("DELETE FROM user WHERE id= ".$_POST['id']."");
             if($Del){
                 echo "utilisateur supprimé";
             }else{
@@ -344,11 +331,62 @@ class User{
     //fonction pour ajouté un utilisateur
     public function adduser($bdd){
         //ajoute un commentaire dans la base de la page du jeu selectionné
-        $add = $this->_BDD->query("INSERT INTO `user`(`login`, `prenom`, `mdp`, `idPersonnage`, `admin`) VALUES (\"".$_POST['login']."\",'".$_POST['prenom']."','".$_POST['mdp']."','".$_POST['idPersonnage']."','"0"')");
+        $add = $bdd->query("INSERT INTO `user`(`login`, `prenom`, `mdp`, `idPersonnage`, `admin`) VALUES (\"".$_POST['login']."\",'".$_POST['prenom']."','".$_POST['mdp']."','".$_POST['idPersonnage']."','"0"')");
         if($add){
-            echo "utilisateur ajouté.";
+            echo "utilisateur ajouté .";
         } else {
             echo "Une erreur est survenue.";
+        }
+    }
+    //fonction pour modifier un mot de passe
+    public function updatepassword($bdd){
+        if (isset($_POST["updatemdp"])) {
+            //comparaison du mot de passe avec l'ancien
+            if($_POST['NEWMDP'] == $_POST['password']) {
+                //mise a jour dans la base du nouveau mot de passe
+                $rep = $bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE id=".$this->_id." ");
+                if($rep){
+                    //succées 
+                    echo "Mot de passe changé";
+                }else{
+                    //erreur a l'update dans la base
+                    echo "Une erreur est survenue";
+                }
+            } else {
+                //message d'erreur
+                echo "les mots de passe ne correspondent pas...";
+            }
+        }
+    }
+    //fonction pour modifier un mot de passe version admin
+    public function updatepasswordadminversion($bdd){
+        if (isset($_POST["updateusermdp"])) {
+            //mise a jour dans la base du nouveau mot de passe
+            $rep = $bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE `id`='".$_POST['id']."' ");
+            if($rep){
+                //succées 
+                echo "Le mot de passe de l'utilisateur a été changé";
+            }else{
+                //erreur a l'update dans la base
+                echo "Une erreur est survenue";
+            }
+        }
+    }
+    //retourne la faction du Joueur
+    public function getFaction($bdd){
+        $req="SELECT faction.id,faction.nom 
+        FROM `faction` ,`personnage`, `user` , `typepersonnage` 
+        WHERE user.idPersonnage = personnage.id 
+        AND personnage.idTypePersonnage = typePersonnage.id 
+        AND typePersonnage.idfaction = faction.id 
+        AND user.id = '".$this->_id."' ";
+        $Result = $this->_bdd->query($req);
+        if($tab=$Result->fetch()){
+           $Faction = new Faction($this->_bdd);
+           $Faction->setFactionById($tab['id']);
+           return $Faction;
+        }else{
+            return null;
         }
     }
 }
