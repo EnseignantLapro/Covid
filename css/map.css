@@ -161,3 +161,39 @@
     background-color:rgba(0,81,255,0.767);
     min-height:100vh;
 }
+
+.effect {
+    position: absolute;
+}
+
+.sword-slash {
+    border-right: 10px solid white;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 5px #87bfff) drop-shadow(0 0 15px #87bfff) drop-shadow(0 0 10px rgba(135, 191, 255, 0.5)) drop-shadow(0 0 20px rgba(135, 191, 255, 0.25));
+    transform-origin: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.sword-slash.play {
+    animation: slash 250ms ease-out;
+}
+
+@keyframes slash {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(-195deg);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1) rotate(75deg);
+    }
+}
