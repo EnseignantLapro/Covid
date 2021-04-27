@@ -54,6 +54,10 @@ session_start();
         echo '<div class="TestIntegration"> TEST MOB';
             include "testUnitaire/testMob.php"; 
         echo "</div>" ;
+        echo '<div class="TestIntegration"> TEST MOB';
+            //test de Boucher
+            include "testUnitaire/testUser.php"; 
+        echo "</div>" ;
 
 
 

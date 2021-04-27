@@ -4,6 +4,7 @@ class map{
     private $_id;
     private $_nom;
     private $_imageLien;
+    protected $_isForge=false;
 
     //coordonne de la map
     private $_x;
@@ -30,6 +31,9 @@ class map{
     private $mapOuest=null;
 
 
+    public function isForge(){
+        return $this->_isForge;
+    }
     //calcule pitagorien pour avoir une distance au point d'origine
     //la distance determine le niveau
     public function getlvl(){
@@ -259,6 +263,7 @@ class map{
     public function getPersonnageDecouvreur(){
         $perso = new User($this->_bdd);
         $perso->setUserById($this->idUserDecouverte);
+
         return $perso;
     }
 
@@ -299,7 +304,8 @@ class map{
         $this->_bdd->query($req);
     }
 
-      //ajoute un lien entre item et la map en bdd 
+    //ajoute un lien entre item et la map en bdd 
+    
     //et accroche l'item dans la collection itemID dans la map
     public function addEquipement($newEquipement){
         array_push($this->listEquipements,$newEquipement->getId());

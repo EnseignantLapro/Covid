@@ -9,9 +9,9 @@ session_start();
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Style CSS / Script -->
-            <link rel="stylesheet" href="css/admin.css">
-            <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/index.css">
+            <link rel="stylesheet" href="../css/admin.css">
+            <link rel="stylesheet" href="../css/style.css">
+            <link rel="stylesheet" href="../css/index.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
             <title>Projet Full Stack - Panel Admins</title>
@@ -29,7 +29,7 @@ session_start();
     </head>
     <body class="admin-panel">
         <?php
-            include "session.php";
+            include "../session.php";
 
             // Vérifie que la Session est Valide avec le bon Mot de Passe.
             if($access === true){
@@ -42,31 +42,29 @@ session_start();
                         <div class='Div1 BG_Blanc'>
                             <h1 class='TITRE'>Panel Administrateur</h2>
                         </div>
+                        <div class='Div1 BG_Cyan'>
+                            <h3 class='TC'>Modification Utilisateurs</h3>
+                            <p class='TC'><a href='admin-user.php'>Accéder au panel de Modification des Utilisateurs.</a></p>
+                        </div>
                         <div class='Div1 BG_Rouge'>
                             <h3 class='TC'>Modification Personnages</h3>
-                            <!-- Truc pour Modifier les Personnages -->
+                            <p class='TC'><a href='admin-perso.php'>Accéder au panel de Modification des Personnages.</a></p>
                         </div>
                         <div class='Div1 BG_Bleu'>
                             <h3 class='TC'>Modification Monstres</h3>
-                            <!-- Truc pour Modifier les Monstres -->
+                            <p class='TC'><a href='admin-mobs.php'>Accéder au panel de Modification des Monstres.</a></p>
                         </div>
                         <div class='Div1 BG_Jaune'>
                             <h3 class='TC'>Modification Map</h3>
-                            <!-- Truc pour Modifier la Map -->
+                            <p class='TC'><a href='admin-map.php'>Accéder au panel de Modification de la Map.</a></p>
                         </div>
                         <div class='Div1 BG_Vert'>
-                            <h3 class='TC'>Modification Items</h3>
-                            <!-- Truc pour Modifier les Items -->
+                            <h3 class='TC'>Modification Objet</h3>
+                            <p class='TC'><a href='admin-objet.php'>Accéder au panel de Modification des Objets.</a></p>
                         </div>
                     <?php
                 }else{
-                    ?>
-                        <div class='Div1'>
-                            <h2 class='TC'>Vous n'êtes pas Administrateur. Cette page ne vous est pas accessible.</h2>
-                            <h3 class='TC'><a href='index.php'>Merci de retourner à la page principal.</a></h3>
-                            <div><iframe width="560" height="315" src="https://www.youtube.com/embed/rTgj1HxmUbg?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-                        </div>
-                    <?php
+                    include "non_acces.php";
                 }
             }else{
                 echo $errorMessage;

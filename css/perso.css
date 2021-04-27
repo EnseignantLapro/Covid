@@ -1,5 +1,20 @@
+.perso{
+    display: block;
+    width:150px;
+    background-color:rgb(195, 206, 207);
+    padding: 5px;
+    margin: 10px auto;
+    border:2px solid rgb(109, 107, 107);
+    border-radius: 10px;
+    box-shadow:2px 2px 2px rgb(0, 0, 0);
+    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
+    -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
+}
+
+/* Deneufgermain */
+
 ul .perso{
-    float:left;
+    display: inline-block;
     width:150px;
     background-color:rgb(151,161,137);
     padding:5px;
@@ -23,19 +38,9 @@ ul .perso{
 
 div.avatar .perso{
     float:left;
+    text-align: center;
     width:150px;
     background-color:rgb(110,184,13);
-    padding:5px;
-    margin:3px;
-    border:1px solid rgb(219,184,25);
-    box-shadow:2px 2px 2px rgb(133,228,145);
-    -moz-box-shadow:2px 2px 2px rgb(33,122,21);
-    -webkit-box-shadow:2px 2px 2px rgb(37,124,41);
-}
-
-.divSac{
-    float:left;
-    background-color:rgba(90,35,2,0.596);
     padding:5px;
     margin:3px;
     border:1px solid rgb(219,184,25);
@@ -60,6 +65,7 @@ ul.Persos li:hover{
     background-color:rgb(163,163,163);
 }
 
+
 ul.Mob li{
     background-color:rgba(201,58,58,0.705);
     padding:5px;
@@ -70,6 +76,7 @@ ul.Mob li{
     -moz-box-shadow:2px 2px 2px gray;
     -webkit-box-shadow:2px 2px 2px gray;
 }
+
 ul.Mob li:hover{
     cursor:url('epee.cur'),pointer;
     background-color:rgb(187,37,37);
@@ -87,6 +94,7 @@ ul.Mob li:hover{
     background-repeat:no-repeat;
 }
 
+
 .Perso img{
     height:100px;
 }
@@ -95,6 +103,7 @@ img.Personnage{
     height:120px;
     width:135px;
 }
+
 
 .persoXP{
     float:left;
