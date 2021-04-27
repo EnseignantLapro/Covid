@@ -16,14 +16,11 @@
         
         <div class = "">
 
-        <p></p>
+        <p>
+        </p>
 
         </div>
 
     </body>
-
-    <footer>
-
-    </footer>
 
 </html>
