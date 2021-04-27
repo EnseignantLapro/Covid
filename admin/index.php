@@ -59,8 +59,8 @@ session_start();
                             <p class='TC'><a href='admin-map.php'>Accéder au panel de Modification de la Map.</a></p>
                         </div>
                         <div class='Div1 BG_Vert'>
-                            <h3 class='TC'>Modification Items</h3>
-                            <p class='TC'><a href='admin--item.php'>Accéder au panel de Modification des Items.</a></p>
+                            <h3 class='TC'>Modification Objet</h3>
+                            <p class='TC'><a href='admin-objet.php'>Accéder au panel de Modification des Objets.</a></p>
                         </div>
                     <?php
                 }else{

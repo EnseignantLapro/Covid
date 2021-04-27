@@ -1,5 +1,7 @@
 <script>
-// Develelopper par Rabaste.
 
+    // Developpé par Rabasté.
+    
+    //modifications effectuées dans jsMap.php
 
 </script>

@@ -10,6 +10,7 @@
         echo "<p>le nom est : ".$newItem->getNom()."</p>";
         echo "<p>le id est : ".$newItem->getId()."</p>";
         echo "<p>la valeur est : ".$newItem->getValeur()."</p>";
+        echo "<p>l'image  est : ".$newItem->getLienImage()."</p>";
 
         $newItem->getClassRarete();
         if($newItem->getId()>0){

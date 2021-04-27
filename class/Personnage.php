@@ -73,7 +73,6 @@ class Personnage extends Entite{
     }
 
   
-
     public function SubitDegatByPersonnage($Personnage){
         $degat = $Personnage->getAttaque();
         //on réduit les déga avec armure si possible
@@ -95,7 +94,6 @@ class Personnage extends Entite{
 
         return $this->_vie;
     }
-
 
     //todo peut etre factoriser dans la class mère Entite
     public function SubitDegatByMob($Mob){
@@ -228,36 +226,160 @@ class Personnage extends Entite{
         return $lists;
     }
 
+    //permet d'attribuer une faction par defaut à un personnage
+    public function ChangeFactionById($id){
+        $Result = $this->_bdd->query("SELECT * FROM `TypePersonnage` WHERE idFaction = '".$id."'");
+        if($tab = $Result->fetch()){
+            $TypePersonnage = new TypePersonnage($this->_bdd);
+            $TypePersonnage->setTypePersonnageById($tab['id']);
+            $this->ChangeTypePersonnage($TypePersonnage);
+        }
+        
+    }
 
-  
+    //permet d'attribuer une faction par defaut à un personnage
+    public function ChangeTypePersonnage($TypePersonnage){
+       $this->_idTypePersonnage = $TypePersonnage->getId();
+       //le changement de Type Personnage ne se fait qu'a la création donc
+       //on ne peut pas le save en base tant que le perso n'a pas été cree
+    }
+
+    //retourne un objet faction
+    public function getFaction(){
+        $req = "SELECT * FROM `TypePersonnage` WHERE id = '".$this->_idTypePersonnage."'";
+        $Result = $this->_bdd->query($req);
+        if($tab = $Result->fetch()){
+            $req = "SELECT * FROM `Faction` WHERE id = '".$tab['idFaction']."'";
+            $Result2 = $this->_bdd->query($req);
+            if($tab2 = $Result2->fetch()){
+                $faction = new Faction($this->_bdd);
+                return $faction->setFactionById($tab2['id']);
+            }
+        }
+    }
+
+    //retour le type de personnage 
+    //retour null si pas de type
+    public function getTyePersonnage(){
+        if(!is_null($_idTypePersonnage)){
+            $TypePersonnage = new TypePersonnage($this->_bdd);
+            $TypePersonnage->setTypePersonnageById($_idTypePersonnage);
+            return $TypePersonnage;
+        }else{
+            //ne devrait jamais etre le cas
+            return null;
+        }
+        
+    }
 
    //Retourne un formulaire HTML pourcreer un personnage
     //et permet d'attribuer automatiquement à user
     // retour un objet personnage
     public function CreatNewPersonnage($idUser){
+       
         ?>
         <div class = "formCreatio">
-        <?php $imageUrl = $this->generateImage(); ?>
+           
+        <?php 
+        //traitement du changement de faction
+        if (isset($_POST["idFaction"])){
+            $this->ChangeFactionById($_POST["idFaction"]);
+            //on mémorise la faction en sessions pour le moment
+            $_SESSION['Faction']=$_POST["idFaction"];
+        }
 
-        <form action="" method="post" onclick="this.submit()">
-            <img src="<?php echo $imageUrl;?>" width="200px" >
-        </form>
+       
+        $User = new User($this->_bdd);
+        $User->setUserById($idUser);
+        $factionDuJoueur = $User->getFaction();
 
-        <form action="" method="post">
-            <div>Créez un personnage ou choisissez-en un :</div>
-            <input type="text" name="NomPersonnage" required>
-            <input type="submit" value="Creer" name="createPerso">
-            <input type="hidden" name="image" value="<?php echo $imageUrl;?>">
-        </form>
-        </div>
+       
+        //on va vérifier la faction du joueur
+        //car un joueur ne peut être que dans une faction.
+        
+
+        
+        if(is_null($factionDuJoueur)){
+            echo "<p> tu Dois choisir  une Faction : </p>";
+            $Result = $this->_bdd->query("SELECT * FROM `Faction`");
+            ?>
+            <form action="" method="post" onchange="this.submit()">
+            <select name="idFaction" id="idFaction">
+            <option value="">Choisir une Faction</option>
+                <?php while($tab=$Result->fetch()){
+                    $idFaction = 0;
+                    if(isset($_SESSION['Faction'])){
+                        $idFaction = $_SESSION['Faction'];
+                    }
+                    ($tab['id']==$idFaction)?$selected='selected':$selected='';
+                    echo '<option value="'.$tab["id"].'" '.$selected.'> '.$tab["nom"].'</option>';
+                  
+                }
+                ?>
+            </select>
+            </form>
         <?php
-        if (isset($_POST["createPerso"])){
+        }
+        if(isset($_SESSION['Faction'])){
+            $faction = new Faction($this->_bdd);
+            $faction->setFactionById($_SESSION['Faction']);
+
+            $factionDuJoueur  = $faction;
+        } 
+
+        if(!is_null($factionDuJoueur)){
+            
+            $TypePersos=  $factionDuJoueur->getAllTypePersonnage();
+            $TypePerso = $TypePersos[rand(0,count($TypePersos)-1)];
+            $imageUrl = $this->generateImage( $factionDuJoueur->getNom().'+'.$TypePerso->getNom()); 
+            
+            ?>
+             <form action="" method="post" onclick="this.submit()">
+                <img class="creationImage" src="<?php echo $imageUrl;?>" width="200px" >
+            </form>
+
+            <p> tu es dans la Faction : <?=$factionDuJoueur->getNom()?></p>
+           
+
+            <form action="" method="post" class="formCreationPersonnage">
+                <div>Créez un personnage ou choisissez-en un :</div>
+                <input type="text" name="NomPersonnage" required>
+                <?php
+                //affichage des type de personnage selon la faction
+                if(!is_null($factionDuJoueur)){
+                    $TypePersos=  $factionDuJoueur->getAllTypePersonnage();
+                    ?>
+                    <select name="idTypePerso" id="idTypePerso">
+                        <?php
+                        foreach ($TypePersos as $TypePerso) {
+                            echo '<option value="'.$TypePerso->getID().'" '.$selected.'> '.$TypePerso->getNom().'</option>';
+                        }
+                        ?>
+                    </select>
+                    <input type="submit" value="Creer" name="createPerso">
+                    <input type="hidden" name="image" value="<?php echo $imageUrl;?>">
+                    <input type="hidden" name="idFaction" value="<?php echo $factionDuJoueur->getId();?>">
+                <?php       
+                }else{
+                    ?>
+                    <div class="ChoixTypePerso">Choisissez une Faction si vous souhaitez creer un perso</div>
+                    <?php
+                }            
+                ?>
+            </form>
+
+            <?php
+        }
+       ?>
+        </div><!--fin div formCreatio -->
+        <?php
+        if (isset($_POST["createPerso"]) && !is_null($factionDuJoueur)){
 
             $newperso = new Personnage($this->_bdd);
             $newperso = $newperso->CreateEntite($_POST['NomPersonnage'], 100, 10, 0,100,$_POST['image'],$idUser,1,1);
-
+            $idTypePersonnage =$_POST['idTypePerso'];
             if($newperso->getId()){ 
-                $req="INSERT INTO `Personnage`(`id`) VALUES ('".$newperso->getId()."')";
+                $req="INSERT INTO `Personnage`(`id`,`xp`,`idTypePersonnage`) VALUES ('".$newperso->getId()."','1','".$idTypePersonnage."')";
                 $Result = $this->_bdd->query($req);
                 $newperso->setEntiteById($newperso->getId());
                 return $newperso;
@@ -272,6 +394,14 @@ class Personnage extends Entite{
 
     public function setPersonnageByIdWithoutMap($id){
         Parent::setEntiteByIdWithoutMap($id);
+        $req  = "SELECT * FROM `Personnage` WHERE id='".$id."'";
+        $Result = $this->_bdd->query($req);
+        if($tab=$Result->fetch()){
+            $this->_xp  = $tab['xp'];
+            $this->_idTypePersonnage  = $tab['idTypePersonnage'];
+        }else{
+            return null;
+        }
     }
 
 
@@ -283,9 +413,9 @@ class Personnage extends Entite{
         $Result = $this->_bdd->query($req);
         if($tab=$Result->fetch()){
             $this->_xp  = $tab['xp'];
+            $this->_idTypePersonnage  = $tab['idTypePersonnage'];
         }else{
-            $req  = "INSERT  INTO `Personnage` (id,xp) VALUE ('".$id."','10')";
-            $Result = $this->_bdd->query($req);
+            return null;
         }
 
         //select les items déjà présent

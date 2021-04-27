@@ -13,6 +13,9 @@ echo "<p>le nom est : ".$newEquipement->getNom()." ";
 echo " le id est : ".$newEquipement->getId()." ";
 echo " la valeur est : ".$newEquipement->getValeur()." ";
 echo " le lvl  est : ".$newEquipement->getLvl()." ";
+echo "<p>l'image  est : ".$newEquipement->getLienImage()."</p>";
+
+        
 echo " l'efficacite est : ".$newEquipement->getEfficacite()." ";
 $type = $newEquipement->getType();
 echo "  <p>le type est : id ".$type['id']." / info :".$type['information']." / nom : ".$type['nom']." </p>" ;

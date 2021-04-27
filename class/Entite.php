@@ -240,8 +240,7 @@ class Entite {
         return round($val,1);//arrondi à 1 chiffre aprés la virgul
     }
 
-    public function getDegat()
-    {
+    public function getDegat(){
         //doit retourner des degat que l'entite donne a l'instant t
         return $this->_degat;
     }
@@ -540,24 +539,13 @@ class Entite {
         return $this;
     }
 
-    public function generateImage(){
-        switch (rand(0,3)) {
-            case 0:
-                $topic='league+of+legend+fan+art';
-                break;
-            case 1:
-                $topic='manga+fan+art';
-                break;
-            case 2:
-                $topic='marvel+fan+art';
-                break;
-            case 3:
-                $topic='comics+fan+art';
-                break;
-            default:
-                $topic='fantasy+fan+art';
-                break;
-        }
+    public function generateImage($Nom){
+
+        $space = array(" ", ".", "_", "-", "%");
+        $onlyconsonants = str_replace($space, "+", $Nom);
+
+        $topic='+personnage+'.$onlyconsonants.'+fan+art';
+     
 
         $ofs=mt_rand(0, 100);
         $geturl='http://www.google.ca/images?q=' . $topic . '&start=' . $ofs . '&gbv=1';
