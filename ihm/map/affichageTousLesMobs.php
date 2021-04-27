@@ -10,6 +10,7 @@
                         $mobContre = $map->getAllMobContre($Joueur1);
                         if(count($mobContre)>0){
                             ?>
+                                <div class='effect'></div>
                                 <p class='pBloqueParMob'>Tu es bloqué, il y a des monstres qui te bloquent le passage...</p>
                             <?php
                         }
@@ -17,7 +18,7 @@
                             $Mob->setMobById($MobID);
                             ?>
                                 <li id="Mob<?= $Mob->getId() ?>" class="adverse">
-                                    <a onclick="AttaquerPerso(<?= $Mob->getId() ?>,1)">
+                                    <a onclick="AttaquerPerso(<?= $Mob->getId() ?>,1, event)">
                                         <?php
                                             $Mob->renderHTML();
                                         ?>
