@@ -8,9 +8,9 @@ class Pouvoir  extends Equipement{
         $req="SELECT * FROM TypeEquipement Where idCategorie = 1 order by rarete ASC";
         $Result = $this->_bdd->query($req);
         
-        $newType=1;//par default une gifle c'est une attaque;
+        $newType=1;//par default une Missile Magique c'est une attaque;
         $rarete=1;
-        $newTypeNom='Gifle ';
+        $newTypeNom='Missile Magique ';
         
         while($tab=$Result->fetch())
         {
