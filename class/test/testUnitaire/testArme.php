@@ -8,10 +8,10 @@
     echo 'Affichae de l arme ';
     $Arme->setEquipementByID($Arme->getId());
     echo "<p>le nom est : ".$Arme->getNom()." ";
-    echo " le id est : ".$Arme->getId()." ";
+    echo " l'id est : ".$Arme->getId()." ";
     echo " la valeur est : ".$Arme->getValeur()." ";
     echo " le lvl  est : ".$Arme->getLvl()." ";
-    echo " l'efficacite est : ".$Arme->getEfficacite()." ";
+    echo " l'efficacite est de : ".$Arme->getEfficacite()." ";
     echo " la categorie est : ".var_dump($Arme->getCategorie())." ";
     $type = $Arme->getType();
     echo "  <p>le type est : id ".$type['id']." / info :".$type['information']." / nom : ".$type['nom']." </p>" ;
