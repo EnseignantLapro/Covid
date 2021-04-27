@@ -62,7 +62,7 @@ if($access){
                 if($DeffensseurMob->getVie()>0){
                     if($vieAttaquant!=0){
                         //Utilisation méthode pour attaquer le mob
-                        $SubitDegat = $DeffensseurMob->SubitDegat($Attaquant)
+                        $SubitDegat = $DeffensseurMob->SubitDegat($Attaquant);
                         $vie = $SubitDegat[0];
                         $vieMax = $DeffensseurMob->getVieMax();
                         //retour de bâton le deffenseur aussi attaque

@@ -54,7 +54,7 @@ class Mob extends Entite{
     public function SubitDegat($Entite)
     {
         //Ajout Aléatoire pour coup critique PVE (15% de chance d'acctivation // 50% de dégats en plus): 
-        $CC = random_int(1; 100):
+        $CC = random_int(1, 100);
         if($CC >=1 && $CC <= 15)
         {
             $degat = $Entite->getAttaque() * 1.5;
@@ -63,7 +63,7 @@ class Mob extends Entite{
             $CoupCritique = "Cout Critique ! Vous avez infligé ".$degat;
         } else 
         {
-            $Degat = $Entite->getAttaque()
+            $Degat = $Entite->getAttaque();
             $this->_vie = $this->_vie - $Degat;
 
             $CoupCritique = "Vous avez infligé ".$degat;
