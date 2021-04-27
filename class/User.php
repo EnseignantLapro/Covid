@@ -14,7 +14,6 @@ class User{
     public function __construct($bdd){
         $this->_bdd = $bdd;
     }
-
     public function setUser($id,$login,$mdp,$prenom,$admin){
         $this->_id = $id;
         $this->_login = $login;
@@ -22,7 +21,6 @@ class User{
         $this->_prenom = $prenom;
         $this->_admin = $admin;
     }
-
     public function setUserById($id){
         $Result = $this->_bdd->query("SELECT * FROM `User` WHERE `id`='".$id."' ");
         if($tab = $Result->fetch()){ 
@@ -33,36 +31,28 @@ class User{
             $this->_MonPersonnage = $personnage;
         }
     }
-
     public function setPersonnage($Perso){
         $this->_MonPersonnage = $Perso;
         //je mémorise en base l'association du personnage dans user
         $req ="UPDATE `User` SET `idPersonnage`='".$Perso->getID()."' WHERE  `id` = '".$this->_id."'";
         $Result = $this->_bdd->query($req);
     }
-
-
     //retour true si c'est un admin
     public function isAdmin(){
         return $this->_admin;
     }
-
     public function getPrenom(){
         return $this->_prenom;
     }
-
     public function getId(){
         return $this->_id;
     }
-
     public function getNomPersonnage(){
         return $this->_MonPersonnage->getNom();
     }
-
     public function getPersonnage(){
         return $this->_MonPersonnage;
     }
-
     public function getAllMyMobIds(){
         $listMob=array();
         $req="SELECT `id` FROM `Entite` WHERE `idUser`   in (SELECT `id` FROM `Entite` WHERE `idUser` = '".$this->_id."') AND Type=2";
@@ -72,7 +62,6 @@ class User{
         }
         return $listMob;
     }
-
     public function ConnectToi(){
         $errorMessage="";
         //si c'est une inscription on valide l'inscription et on le connect
@@ -165,7 +154,6 @@ class User{
 
         return $access;
     }
-
     public function DeconnectToi(){
 
         //traitement du formulaire
@@ -194,7 +182,6 @@ class User{
         }
         return $access;
     }
-
     //retourne une carte de Div HTML de tracé de div
     public function getVisitesHTML($taille){
         //etape 1 récupéré toutes les visites du user
@@ -383,6 +370,23 @@ class User{
                 //erreur a l'update dans la base
                 echo "Une erreur est survenue";
             }
+        }
+    }
+    //retourne la faction du Joueur
+    public function getFaction(){
+        $req="SELECT Faction.id,Faction.nom 
+        FROM `Faction` ,`Personnage`, `User` , `TypePersonnage` 
+        WHERE User.idPersonnage = Personnage.id 
+        AND Personnage.idTypePersonnage = TypePersonnage.id 
+        AND TypePersonnage.idFaction = Faction.id 
+        AND User.id = '".$this->_id."'";
+        $Result = $this->_bdd->query($req);
+        if($tab=$Result->fetch()){
+           $Faction = new Faction($this->_bdd);
+           $Faction->setFactionById($tab['id']);
+           return $Faction;
+        }else{
+            return null;
         }
     }
 }
