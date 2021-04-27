@@ -372,6 +372,7 @@ class User{
             }
         }
     }
+    
     //retourne la faction du Joueur
     public function getFaction($bdd){
         $req="SELECT faction.id,faction.nom 
