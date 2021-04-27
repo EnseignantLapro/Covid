@@ -380,7 +380,7 @@ class User{
     //fonction pour ajouté un utilisateur
     public function adduser($bdd){
         //ajoute un commentaire dans la base de la page du jeu selectionné
-        $add = $bdd->query("INSERT INTO `user`(`login`, `prenom`, `mdp`, `idPersonnage`, `admin`) VALUES (\"".$_POST['login']."\",'".$_POST['prenom']."','".$_POST['mdp']."','".$_POST['idPersonnage']."','"0"')");
+        $add = $bdd->query("INSERT INTO user (login, prenom, mdp, idPersonnage, admin) VALUES (".$_POST['login'].",".$_POST['prenom'].",".$_POST['mdp'].",".$_POST['idPersonnage'].", 0 ) ");
         if($add){
             echo "utilisateur ajouté .";
         } else {
@@ -423,7 +423,7 @@ class User{
     }
     
     //retourne normalement la faction du Joueur
-    public function getFaction($bdd){
+    public function getonefaction($bdd){
         $req="SELECT faction.id, faction.nom 
             FROM `faction` ,`personnage`, `user` , `typepersonnage` 
             WHERE user.idPersonnage = personnage.id 
