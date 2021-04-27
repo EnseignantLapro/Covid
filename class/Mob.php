@@ -1,17 +1,17 @@
 <?php
-//TODO MOB ET PERSONNAGE ON TROP DE SIMILITUDE 
+//TODO MOB ET PERSONNAGE ON TROP DE SIMILITUDE
 //IL FAUT REFACTORISER AVEC DE LhERITAGE
 
 class Mob extends Entite{
 
     private $_coefXP;
     private $_typeMob;
-   
+
     public function __construct($bdd){
         Parent::__construct($bdd);
     }
-    
-   
+
+
     public function getCoefXp(){
         return $this->_coefXP;
     }
@@ -49,11 +49,11 @@ class Mob extends Entite{
     }
 
 
-    //methode appelé quand un personnage attaque un mob 
+    //methode appelé quand un personnage attaque un mob
     //le perso est passé en param
     public function SubitDegat($Entite)
     {
-        //Ajout Aléatoire pour coup critique PVE (15% de chance d'acctivation // 50% de dégats en plus): 
+        //Ajout Aléatoire pour coup critique PVE (15% de chance d'acctivation // 50% de dégats en plus):
         $CC = random_int(1, 100);
         if($CC >=1 && $CC <= 15)
         {
@@ -96,7 +96,7 @@ class Mob extends Entite{
 
         }else{
             //insertion d'une nouvelle attaque
-            $req="INSERT INTO `AttaquePersoMob`(`idMob`, `idPersonnage`, `nbCoup`, `coupFatal`, `DegatsDonnes`, `DegatsReçus`) 
+            $req="INSERT INTO `AttaquePersoMob`(`idMob`, `idPersonnage`, `nbCoup`, `coupFatal`, `DegatsDonnes`, `DegatsReçus`)
             VALUES (
                 '".$this->_id."','".$Entite->getId()."',1,0,0,".$tabAttaque['DegatsReçus']."
             )";
@@ -104,7 +104,7 @@ class Mob extends Entite{
         }
 
         //update AttaquePersoMob
-        $req="UPDATE `AttaquePersoMob` SET 
+        $req="UPDATE `AttaquePersoMob` SET
         `nbCoup`=".$tabAttaque['nbCoup'].",
         `coupFatal`=".$coupFatal.",
         `DegatsReçus`=".$tabAttaque['DegatsReçus']."
@@ -121,10 +121,6 @@ class Mob extends Entite{
         }
         return $this->$HostoriqueAttaque;
     }
-
-   
-
-   
 
     //retourne toute la mécanique d'affichage d'un mob
     public function renderHTML(){
@@ -145,7 +141,7 @@ class Mob extends Entite{
             $coefAbuseArme = rand(2,20);
             $vie = $coefAbuseVie*$type[2]*$lvl*$lvl*$lvl;
             $degat = $coefAbuseArme*$type[2]*$lvl*$lvl;
-            //Menir 
+            //Menir
             if($type[1]==0){
                 $vie = $coefAbuseVie*20*$lvl*$lvl;
                 $degat = 1*$lvl*$lvl;
@@ -154,11 +150,11 @@ class Mob extends Entite{
             $newMob = $newMob->CreateEntite($this->generateNom($type[0]), $vie, $degat, $map->getId(),$vie,$type[3],null,2,$lvl);
 
             if(!is_null($newMob)){
-                $req="INSERT INTO `Mob`(`coefXp`, `id` ,`type` ) 
+                $req="INSERT INTO `Mob`(`coefXp`, `id` ,`type` )
                 VALUES ('".$type[2]."','".$newMob->getId()."','".$type[1]."')";
                 $Result = $this->_bdd->query($req);
-               
-                if( $newMob->getId()){ 
+
+                if( $newMob->getId()){
                     $newMob->setEntiteById( $newMob->getId());
                     return $newMob;
                 }else{
@@ -167,11 +163,11 @@ class Mob extends Entite{
             }else{
                 return null;
             }
-           
+
             $itemEnplus = new Item($this->_bdd);
             $nbItem = rand(2,$coefAbuseArme+round(($coefAbuseVie/10)));
             for($i=0;$i<$nbItem;$i++){
-                    $map->addItem($itemEnplus->createItemAleatoire());   
+                    $map->addItem($itemEnplus->createItemAleatoire());
              }
     }
 
@@ -189,7 +185,7 @@ class Mob extends Entite{
         $newType=0; //Menir par default
         $rarete=1;
         $newTypeNom='Menir';
-        
+
 
         while($tab=$Result->fetch()){
             if(rand(0,$tab['chance'])==1){
@@ -199,7 +195,7 @@ class Mob extends Entite{
              break;
             }
         }
-    
+
 
         //Ancien system random
         /*while($tab=$Result->fetch()){
@@ -216,8 +212,8 @@ class Mob extends Entite{
 
 
         $image = $this->generateImageMob($newTypeNom);
-        
-        
+
+
         $tab[0]=$newTypeNom;
         $tab[1]=$newType;
         $tab[2]=$coef;
@@ -363,7 +359,7 @@ class Mob extends Entite{
 
         return $partialString3;
 
-        
+
     }
 }
 ?>
