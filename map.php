@@ -1,5 +1,5 @@
 <?php //Cette Page HTML est modifié par : M. De Almeida
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -14,7 +14,7 @@ session_start();
             <link rel="stylesheet" href="../css/index.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
-            <title>Panel Admin - Items</title>
+            <title>Panel Admin - Objet</title>
             <meta name='description' content='Panel Admin - Items'>
             <meta name='author' content='La Providence - Amiens'>
             <link rel='shortcut icon' href='favicon.ico'>
@@ -42,25 +42,9 @@ session_start();
                         <div class='Div1 BG_Blanc'>
                             <h1 class='TITRE'>Panel Administrateur</h2>
                         </div>
-                        <div class='Div1 BG_Cyan'>
-                            <h3 class='TC'>Modification Utilisateurs</h3>
-                            <p class='TC'><a href='admin-user.php'>Accéder au panel de Modification des Utilisateurs.</a></p>
-                        </div>
-                        <div class='Div1 BG_Rouge'>
-                            <h3 class='TC'>Modification Personnages</h3>
-                            <p class='TC'><a href='admin-perso.php'>Accéder au panel de Modification des Personnages.</a></p>
-                        </div>
-                        <div class='Div1 BG_Bleu'>
-                            <h3 class='TC'>Modification Monstres</h3>
-                            <p class='TC'><a href='admin-mobs.php'>Accéder au panel de Modification des Monstres.</a></p>
-                        </div>
-                        <div class='Div1 BG_Jaune'>
-                            <h3 class='TC'>Modification Map</h3>
-                            <p class='TC'><a href='admin-map.php'>Accéder au panel de Modification de la Map.</a></p>
-                        </div>
                         <div class='Div1 BG_Vert'>
-                            <h3 class='TC'>Modification Items</h3>
-                            <p class='TC'><a href='admin-item.php'>Accéder au panel de Modification des Items.</a></p>
+                            <h3 class='TC'>Modification Objet</h3>
+                            <p class='TC'>Texte.</p>
                         </div>
                     <?php
                 }else{
