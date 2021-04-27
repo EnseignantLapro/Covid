@@ -4,6 +4,7 @@
     padding:20px;
     width:760px;
     height: 500px;
+    overflow-x: hidden;
     overflow-y: scroll;
     background-color:rgba(179, 155, 19, 0.829);
     border-color:rgb(0, 0, 0);
