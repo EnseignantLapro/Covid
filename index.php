@@ -33,6 +33,7 @@
                 $access = $Joueur1->DeconnectToi();
             }
             if($access){
+                include "ihm/fonction-web/menu.php";
                 ?>
                     <div class="reglement">
                         <div class="bienvenue">

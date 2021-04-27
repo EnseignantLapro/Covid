@@ -40,6 +40,8 @@
             }
             // Vérifie qu'il ne s'est pas déconnecté.
             if($access === true){
+                include "ihm/fonction-web/menu.php";
+
                 $personnage = $Joueur1->getPersonnage();
                 if(is_null($personnage->getId())){
                     ?>
