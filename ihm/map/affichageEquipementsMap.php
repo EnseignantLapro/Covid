@@ -1,16 +1,24 @@
 <?php
-
-$listEquipements = $map->getEquipements();
-if(count($listEquipements)>0){
-    echo '<div class="left">Equipements Présent : <div class="divRarete"> Commun - Rare</div><ul class="Equipement">';
-    foreach ( $listEquipements as  $Equipement) {
+    $listEquipements = $map->getEquipements();
+    if(count($listEquipements)>0){
         ?>
-        <li id="equipement<?php echo $Equipement->getId()?>" style="<?php echo $Equipement->getClassRarete()?>">
-            <a onclick="CallApiAddEquipementInSac(<?php echo $Equipement->getId()?>)">
-                <?php echo $Equipement->getNom() ?></a>
-        </li>
-        <?php 
+            <div class="left">
+                <p class="pEquipement">Équipements Présent :</p>
+                <p class="divRarete">Commun - Rare</p>
+                <ul class="Equipement">
+                    <?php
+                        foreach($listEquipements as $Equipement){
+                            ?>
+                                <li id="equipement<?= $Equipement->getId() ?>" style="<?= $Equipement->getClassRarete() ?>">
+                                    <a onclick="CallApiAddEquipementInSac(<?= $Equipement->getId() ?>)">
+                                        <?= $Equipement->getNom() ?>
+                                    </a>
+                                </li>
+                            <?php
+                        }
+                    ?>
+                </ul>
+            </div>
+        <?php
     }
-    echo '</ul></div>';
-}
 ?>

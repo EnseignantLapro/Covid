@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -48,70 +48,68 @@ session_start();
                             <p><a href="index.php">Retour à l'origine du tout.</a></p>
                         </div>
                     <?php
-                }else{
+                }
+                else{
                     ?>
                         <div class="reglement">
-                    <?php
-                    $personnage->getChoixPersonnage($Joueur1);
-                    $map = $personnage->getMap();
-                    $tabDirection = $map->getMapAdjacenteLienHTML('nord',$Joueur1); 
-                    ?>
-                    <?= $tabDirection['nord'] ?>
-                    <h1>Bienvenue <?= $Joueur1->getPrenom() ?></h1>
-                    <p>Tu as décidé de combattre avec <?= $Joueur1->getNomPersonnage() ?>, il a une fortune de <?= $personnage->getValeur() ?> (NFT)</p>
-                    <div class="avatar">
-                    <?php
-                        $personnage->renderHTML();
-                        //AFFICHAGE DES ITEMS DU SAC
-                        $listItems = $Joueur1->getPersonnage()->getItems();
-                        ?>
-                            <div class="divSac">
-                                <p>Sacoche</p>
-                                <ul id="Sac" class="Sac">
-                        <?php
-                        if(count($listItems)>0){
-                            foreach ($listItems as $Item){
-                                ?>
-                                    <li id="itemSac<?= $Item->getId() ?>"><a onclick="useItem(<?= $Item->getId() ?>)"><?= $Item->getNom() ?></a></li>
-                                <?php
-                            }
-                        }
-                        ?>
-                                </ul>
-                            </div>
-                            <p>Ton combattant est sur la position : <?= $map->getNom() ?> </p>
-                            <p><h4>Tu peux maintenant ramasser des conneries par terre.</h4></p>
-                            <p><h4>Si tu en trouves qui sont parfaitement identiques, elles prennent de la valeur 😄 !</h4></p>
-                            <p><h3>But du jeu : Capture le "Super Jedi Légendaire".</h3></p>
-                        <div class="tableaChass">
-                            <div class="titreMonster">
-                                <p>Voici tes monstres capturés :</p>
-                            </div>
                             <?php
-                                $MysMob = new Mob($mabase);
-                                foreach ($Joueur1->getAllMyMobIds() as $mob) {
-                                    ?>
-                                        <div class="monster">
-                                            <?php
-                                                $MysMob->setMobById($mob);
-                                                $MysMob->renderHTML();
-                                            ?>
+                                $personnage->getChoixPersonnage($Joueur1);
+                                $map = $personnage->getMap();
+                                $tabDirection = $map->getMapAdjacenteLienHTML('nord',$Joueur1); 
+                                ?>
+                                    <?= $tabDirection['nord'] ?>
+                                    <p class="WelcomeCombat">Bienvenue <?= $Joueur1->getPrenom() ?></p>
+                                    <p class="ChoixCombattant">Tu as décidé de combattre avec <?= $Joueur1->getNomPersonnage() ?>, il a une fortune de <?= $personnage->getValeur() ?> (NFT)</p>
+                                    <div class="avatar">
+                                        <!-- AFFICHAGE EN-TÊTE PERSONNAGE ET SAC -->
+                                        <div class='entete'>
+                                            <div class="avatar">
+                                                <?php $personnage->renderHTML() ?>
+                                            </div>
+                                            <div class="divSac">
+                                                <p id='TitleSacoche'>Sacoche</p>
+                                                <?php
+                                                    // Include Items / Equipement
+                                                    include "ihm/map/affichageSacItem.php";
+                                                    include "ihm/map/affichageSacEquipement.php";
+                                                ?>
+                                            </div>
                                         </div>
-                                    <?php
-                                }
-                            ?>
-                                <div class="titreMonster">Seul un certain pouvoir peut protéger tes monstres d'une capture...</div>
-                                    </div>
+                                        <div class="InformationCombat">
+                                            <p class="PositionCombattant">Ton combattant est sur la position : <?= $map->getNom() ?> </p>
+                                            <p class="InfoCombat1">Tu peux maintenant ramasser des conneries par terre.</p>
+                                            <p class="InfoCombat2">Si tu en trouves qui sont parfaitement identiques, elles prennent de la valeur 😄 !</p>
+                                            <p class="InfoButJeu">But du jeu : Capture le "Super Jedi Légendaire".</p>
+                                        </div>
+                                        <div class="tableaChass">
+                                            <div class="titreMonster">
+                                                <p class="TitreMonstreCapture">Voici tes monstres capturés :</p>
+                                            </div>
+                                            <?php
+                                                $MysMob = new Mob($mabase);
+                                                foreach($Joueur1->getAllMyMobIds() as $mob){
+                                                    ?>
+                                                        <div class="monster">
+                                                            <?php
+                                                                $MysMob->setMobById($mob);
+                                                                $MysMob->renderHTML();
+                                                            ?>
+                                                        </div>
+                                                    <?php
+                                                }
+                                            ?>
+                                            <p class="titreMonster">Seul un certain pouvoir peut protéger tes monstres d'une capture...</p>
+                                        </div>
                                         <p><a href="index.php" >Créer un autre personnage.</a></p>
                                     </div>
-                                </div>
-                            <?php
+                                <?php
                                 $tabDirection = $map->getMapAdjacenteLienHTML('nord',$Joueur1);
                             ?>
                         </div>
                     <?php
                 }
-            }else{
+            }
+            else{
                 echo $errorMessage;
             }
         ?>
