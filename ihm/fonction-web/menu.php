@@ -1,4 +1,3 @@
-<!-- debut du menus-->
     <nav class="nav-Menu">
         <ul class="ul-Menu">                
             <li><a href="../../index.php">Accueil</a></li>
@@ -24,4 +23,3 @@
             ?>
         </ul>
     </nav>
-<!--fin du menus-->
