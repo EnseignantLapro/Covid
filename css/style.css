@@ -184,7 +184,7 @@ body{
     background-color: grey;
 }
     
-/* les liens */
+/* • les liens • */
 
 .ul-Menu a{
     text-decoration:none;
@@ -200,4 +200,19 @@ body{
 
 .ul-Menu li:hover a, .ul-Menu li li:hover a{
     color:#fff;
+}
+
+/* • Footer • */
+.footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.footer a{
+    color: white;
 }
