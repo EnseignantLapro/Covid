@@ -27,7 +27,6 @@
             <meta name='twitter:image' content='favicon.ico'>
     </head>
     <body class="bodyAccueil">
-        
         <?php
             include "session.php";
 
@@ -39,45 +38,30 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-
+                    <div class = "classement">
+                        <h1>Classement</h1>
+                        <table>
+                            <tr>
+                                <th>Monstre capturé</th>
+                                <th>NFT</th>
+                                <th>XP</th>
+                                <th>Dégats</th>
+                                <th>Vie</th>
+                            </tr>
+                            <tr>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                            </tr>
+                        </table>
+                    </div>
                 <?php
             }else{
                 echo $errorMessage;
             }
         ?>
-            <div class = "classement">
-
-                <h1>Classement</h1>
-            
-                    <table>
-                    
-                        <tr>
-                            <th>Monstre capturé</th>
-                            <th>NFT</th>
-                            <th>XP</th>
-                            <th>Dégats</th>
-                            <th>Vie</th>
-                        </tr>
-
-                        <?php
-                        
-                        ?>
-
-                                <tr>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                </tr>
-
-                        <?php
-
-                        ?> 
-
-                    </table>
-
-            </div>
     </body>
 </html>
