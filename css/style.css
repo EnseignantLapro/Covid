@@ -2,7 +2,7 @@
 
 .centragePrincipal{
     width:800px;
-    margin:auto;
+    margin: 150px auto;
 }
 .basdepage{
     height:200px;
@@ -46,7 +46,7 @@ body{
 }
 
 .reglement{
-    margin:100px auto;
+    margin:150px auto;
     padding: 40px;
     text-align: center;
     width:800px;
@@ -82,6 +82,14 @@ body{
     background-color: rgb(212, 40, 40);
 }
 
+.WelcomeCombat{
+    display: block;
+    margin: 50px auto 20px auto;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: oblique;
+}
+
 .divRarete{
     height:15px;
     width:105px;
@@ -108,4 +116,88 @@ body{
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
     margin-right:auto;
     margin-left:auto;
+}
+
+
+/* • Menu nav • */
+.nav-Menu{
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 10%;
+    width: 80%;
+    margin: 0px auto 100px auto;
+    min-width: max-content;
+    min-height: max-content;
+    height: 80px;
+    background: rgb(194,194,194);
+    background: linear-gradient(90deg, rgba(194,194,194,0) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 75%, rgba(65,65,65,0) 100%);
+}
+
+.ul-Menu{
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav-Menu, .ul-Menu{
+    list-style: none;
+    text-align: center;
+}
+
+.ul-Menu li{
+    display: inline-block;
+    float: none;
+    margin: 0px 20px;
+    padding: 0px 30px;
+    height: 80px;
+    line-height: 80px;
+}
+
+.ul-Menu li:hover{
+    background-color: grey;
+}
+
+.ul-Menu li:hover ul{
+    height: 50px;
+    line-height: 50px;
+    overflow: visible;
+}
+
+.ul-SousMenu{
+    padding: 0px;
+    position:relative;
+    z-index: 1000;
+    max-height:0;
+    left: 0;
+    right: 0;
+    overflow:hidden;
+}
+
+.ul-SousMenu li{
+    background-color: black;
+    display: block;
+    margin: 0px auto;
+    padding: 0px 30px;
+}
+
+.ul-SousMenu li:hover{
+    background-color: grey;
+}
+    
+/* les liens */
+
+.ul-Menu a{
+    text-decoration:none;
+    display:block;
+    color:#fff;
+    font-size: larger;
+}
+
+.ul-Menu li:hover li a{
+    color:#fff;
+    text-transform:inherit;
+}
+
+.ul-Menu li:hover a, .ul-Menu li li:hover a{
+    color:#fff;
 }

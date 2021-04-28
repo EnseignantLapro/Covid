@@ -23,12 +23,23 @@
     -webkit-box-shadow:2px 2px 2px rgb(52,53,52);
 }
 
+.nord a,.sud a,.est a,.ouest a{
+    color: white;
+}
+
+.est a,.ouest a{
+    vertical-align: middle;
+    margin-top: 20px;
+}
+
 .sud{
     width:100%;
     float:left;
     background-color:rgba(0,81,255,0.767);
     height:30px;
     text-align:center;
+    line-height: 30px;
+    margin: 10px 0px;
 }
 
 .nord{
@@ -39,6 +50,8 @@
     background-color:rgba(0,81,255,0.767);
     height:30px;
     text-align:center;
+    line-height: 30px;
+    margin: 10px 0px;
 }
 
 .est{
@@ -53,37 +66,55 @@
     border:1px solid rgba(254,251,255,0.47);
 }
 
+.map{
+    width: 264px;
+}
+
 .mapLigne{
     width:100%;
+    width: 264px;
+    height: 20px;
     float:left;
 }
 
 .mapVerte{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(4,155,12,0.685);
 }
 .mapMob{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(255,0,0,0.664);
 }
 
 .mapClear{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(255,251,0,0.603);
 }
 
 .mapRouge{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(255,8,0,0.144);
 }
 
 .mapOrigine{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgb(255,0,221);
 }
 
 .mapPositionUser{
     float:left;
+    width: 20px;
+    height: 20px;
     background-color:rgba(21,255,0,0.801);
 }
 

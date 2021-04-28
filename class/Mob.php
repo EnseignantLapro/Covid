@@ -59,13 +59,12 @@ class Mob extends Entite{
         {
             $degat = $Entite->getAttaque() * 1.5;
             $this->_vie = $this->_vie - $degat;
-
+          
             $CoupCritique = "Cout Critique ! Vous avez infligé ".$degat.".";
         } else
         {
-            $degat = $Entite->getAttaque();
-            $this->_vie = $this->_vie - $degat;
-
+            $Degat = $Entite->getAttaque();
+            $this->_vie = $this->_vie - $Degat;
             $CoupCritique = "Vous avez infligé ".$degat.".";
         }
 
