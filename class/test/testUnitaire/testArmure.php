@@ -3,7 +3,7 @@
 
     $Armure = new Armure($mabase);
     $Armure = $Armure->createArmureAleatoire();
-
+ 
 
     echo 'Affichae de l armure ';
     $Armure->setEquipementByID($Armure->getId());
