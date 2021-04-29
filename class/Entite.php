@@ -41,13 +41,9 @@ class Entite {
             $req="DELETE FROM `Equipement` WHERE id='".$EquipementID."'";
             $this->_bdd->query($req);
         }
-
-       
-        
     }
 
-    
-   
+
     //ajoute un lien entre item et la personnage en bdd 
     //et accroche l'item dans la collection itemID dans le sac du perso
     public function addEquipement($newEquipement){
@@ -71,17 +67,48 @@ class Entite {
             array_push($this->sacEquipements,$newEquipement->getId());
             //retourne 0 si ya pas eu de fusion d'équipement
             return 0;
+        } 
+    }
+
+    /* Début Cauet */
+
+    public function getBardeVie(){
+        $pourcentage = round(100*$this->_vie/$this->_vieMax);
+        ?>
+        <div class="EntitePrincipalBarreVie">
+
+            <div class="attaque" id="attaqueEntiteValeur<?php echo $this->_id ;?>"> <?php echo $this->_degat ;?>  </div> 
+            <div class="barreDeVie" id="vieEntite<?php echo $this->_id ;?>">
+
+                <div class="vie" id="vieEntiteValeur<?php echo $this->_id ;?>" style="width: <?php echo $pourcentage?>%;">
+                ♥️<?php echo $this->_vie ;?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    public function getVieMax(){
+        return $this->_vieMax ;
+    }
+
+    public function getVie(){
+        //on enpeche les boost de perdurer
+        if($this->_vie>$this->_vieMax){
+            $this->_vie =$this->_vieMax;
+            $req  = "UPDATE `Entite` SET `vie`='".$this->_vie ."' WHERE `id` = '".$this->_id ."'";
+            $Result = $this->_bdd->query($req);
         }
+        return $this->_vie ;
+    }
 
-
-
-       
-       
+    public function getLvl(){
+        return $this->_lvl ;
     }
 
      //Equipe l'item au personnage
      //cette methode doit etre appelé que par Equipemement
-    public function addEquipeById($EquipementID){
+     public function addEquipeById($EquipementID){
         //la mise a jout en base et fait 
         array_push($this->sacEquipe,$EquipementID);
     }
@@ -115,20 +142,6 @@ class Entite {
           return $lists;
     }
 
-    public function getVie(){
-        //on enpeche les boost de perdurer
-        if($this->_vie>$this->_vieMax){
-            $this->_vie =$this->_vieMax;
-            $req  = "UPDATE `Entite` SET `vie`='".$this->_vie ."' WHERE `id` = '".$this->_id ."'";
-            $Result = $this->_bdd->query($req);
-        }
-        return $this->_vie ;
-    }
-
-    public function getLvl(){
-        return $this->_lvl ;
-    }
-
     public function getEquipements(){
         $lists=array();
         foreach ($this->sacEquipements  as $EquipementId) {
@@ -139,7 +152,7 @@ class Entite {
         return $lists;
     }
 
-    //retour un objet de type armure 
+    //Retour un objet de type arme
     public function getArme(){
         $Arme = null;
         foreach ($this->sacEquipe as $EquipementId) {
@@ -152,10 +165,10 @@ class Entite {
                 return $Arme;
             }
         }
-
         return $Arme;
     }
-    //retour un objet de type Armure 
+
+    //Retour un objet de type armure 
     public function getArmure(){
         $Armure = null;
         foreach ($this->sacEquipe as $EquipementId) {
@@ -168,49 +181,75 @@ class Entite {
                 return $Armure;
             }
         }
-
         return $Armure;
     }
 
+    //Retour un objet de type pouvoir 
+    public function getPouvoir(){
+        $Pouvoir = null;
+        foreach ($this->sacEquipe as $EquipementId) {
+            $EntiteEquipe = new Equipement($this->_bdd);
+            $EntiteEquipe->setEquipementByID($EquipementId);
+            // le chiffre 1 et id de la categorie Pouvoir à vérifier en base
+            if ($EntiteEquipe->getCategorie()['id']==3){
+                $Pouvoir = new Pouvoir($this->_bdd);
+                $Pouvoir->setEquipementByID($EntiteEquipe->getId());
+                return $Pouvoir;
+            }
+        }
+        return $Pouvoir;
+    }
 
+    //Retour un objet de type bouclier 
+    public function getBouclier(){
+        $Pouvoir = null;
+        foreach ($this->sacEquipe as $EquipementId) {
+            $EntiteEquipe = new Equipement($this->_bdd);
+            $EntiteEquipe->setEquipementByID($EquipementId);
+            // le chiffre 1 et id de la categorie Pouvoir à vérifier en base
+            if ($EntiteEquipe->getCategorie()['id']==4){
+                $Bouclier = new Bouclier($this->_bdd);
+                $Bouclier->setEquipementByID($EntiteEquipe->getId());
+                return $Bouclier;
+            }
+        }
+        return $Bouclier;
+    }
+
+
+    //Fonction pour déséquiper une arme
     public function desequipeArme(){
         $arme = $this->getArme();
         if(!is_null($arme)){
             $arme->desequipeEntite($this);
         }
-        
-
     }
+
+    //Fonction pour déséquiper une armure
     public function desequipeArmure(){
         $armure = $this->getArmure();
         if(!is_null($armure)){
             $armure->desequipeEntite($this);
         }
-        
-
     }
 
-
-    public function getBardeVie(){
-        $pourcentage = round(100*$this->_vie/$this->_vieMax);
-        ?>
-        <div class="EntitePrincipalBarreVie">
-
-            <div class="attaque" id="attaqueEntiteValeur<?php echo $this->_id ;?>"> <?php echo $this->_degat ;?>  </div> 
-            <div class="barreDeVie" id="vieEntite<?php echo $this->_id ;?>">
-
-                <div class="vie" id="vieEntiteValeur<?php echo $this->_id ;?>" style="width: <?php echo $pourcentage?>%;">
-                ♥️<?php echo $this->_vie ;?>
-                </div>
-            </div>
-        </div>
-        <?php
+    //Fonction pour déséquiper un pourvoir
+    public function desequipePouvoir(){
+        $pouvoir = $this->getPouvoir();
+        if(!is_null($pourvoir)){
+            $armure->desequipeEntite($this);
+        }
     }
 
-    public function getVieMax(){
-        return $this->_vieMax ;
+    //Fonction pour déséquiper un bouclier
+    public function desequipeBouclier(){
+        $bouclier = $this->getBouclier();
+        if(!is_null($bouclier)){
+            $bouclier->desequipeEntite($this);
+        }
     }
 
+    //Fonction Attaque utilise une Arme
     public function getAttaque(){
         //ici on affiche les dégats Maximun du joueur avec Arme
         $arme = $this->getArme();
@@ -226,6 +265,23 @@ class Entite {
         return $val;
     }
 
+    //Fonction Sort utilise un Pouvoir
+    public function getSort(){
+        //ici on affiche les dégats Maximun du joueur avec Arme
+        $pouvoir = $this->getPouvoir();
+        $coef = 1;
+        $lvl = 1;
+        $forcePouvoir = 0;
+        if(!is_null($pouvoir)){
+            $coef = $pouvoir->getEfficacite();
+            $forcePourvoir  = $pouvoir->getForce();
+            $lvl = $pouvoir->getLvl();
+        }
+        $val = round(($this->_degat+$forcePouvoir)*$coef);
+        return $val;
+    }
+
+    //Fonction Défense utilise une Armure
     public function getDefense(){
         //ici on affiche les dégats Maximun Absorbé avec une armure
         $armure = $this->getArmure();
@@ -239,6 +295,23 @@ class Entite {
         $val = $coef * $forceArmure ;
         return round($val,1);//arrondi à 1 chiffre aprés la virgul
     }
+
+    //Fonction Parer utilise un bouclier
+    public function getParer(){
+        //ici on affiche les dégats Maximun Absorbé avec une armure
+        $bouclier = $this->getBouclier();
+        $coef = 1;
+        $forceBouclier = 0;
+        if(!is_null($bouclier)){
+            $coef = $bouclier->getEfficacite();
+            $forceBouclier  = $bouclier->getForce();
+        }
+        //alors Todo Je sais pas ... evaluer la valeur d'une armure
+        $val = $coef * $forceBouclier ;
+        return round($val,1);//arrondi à 1 chiffre aprés la virgul
+    }
+
+    /* Fin Cauet */
 
     public function getDegat(){
         //doit retourner des degat que l'entite donne a l'instant t
