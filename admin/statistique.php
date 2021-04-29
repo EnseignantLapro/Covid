@@ -34,6 +34,7 @@
             <meta name='twitter:image' content='favicon.ico'>
     </head>
     <body class="admin-panel">
+      <div class="admin-body">
         <?php
             include "../session.php";
 
@@ -267,7 +268,10 @@
             }else{
                 echo $errorMessage;
             }
-            include "../ihm/fonction-web/footer.php";
-        ?>
+          ?>
+      </div>
+      <?php
+        include "../ihm/fonction-web/footer.php" 
+      ?>
     </body>
 </html>
