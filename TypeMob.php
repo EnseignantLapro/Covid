@@ -33,6 +33,10 @@ class TypeMob  extends Mob{
     public function affichemob(){ //a mettre dans une boucle
         $this->_bdd->query("SELECT nom FROM `typemob`");
     }
+
+    public function deletemob($id){ //prend en paramettre l'id du mob a delete.
+        $this->_bdd->query("DELETE FROM `typeMob` WHERE `id` = $id");
+    }
     
 }
 
