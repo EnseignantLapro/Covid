@@ -40,6 +40,7 @@
                 }
                 // Vérifie qu'il ne s'est pas déconnecté.
                 if($access === true){
+                    include "ihm/fonction-web/menu.php";
                     //gestion accès map:
                     $Personnage = $Joueur1->getPersonnage();
                     if(is_null($Personnage->getId())){
@@ -121,6 +122,7 @@
                 }else{
                     echo $errorMessage;
                 }
+                include "ihm/fonction-web/footer.php";
             ?>
         </div>
     </body>

@@ -1,4 +1,4 @@
-<?php // Caré
+<?php // Ghyselen Lucas CRUD du compte
 
 class User{
 
@@ -261,31 +261,31 @@ class User{
         $Map = $this->getPersonnage()->getMap();
         $MapScan = new Map($this->_bdd);
 
-        $style = 'style="width:'.$taille.'px"';
-        $styleCellule = 'style="width:'.$LX.'px;height:'.$HY.'px"';
+        $style = 'style="width:'.$taille.'px"'; // A Dégager
+        $styleCellule = 'style="width:'.$LX.'px;height:'.$HY.'px"'; // A Dégager
 
         //On rajoute largeur de x pour laisser de la place à la border
-        $ligneTaille = $LargeurX*$LX+$LargeurX*2;
-        $styleLigne = 'style="width:'.$ligneTaille.'px;height:'.$HY.'px"';
+        $ligneTaille = $LargeurX*$LX+$LargeurX*2; // A Dégager
+        $styleLigne = 'style="width:'.$ligneTaille.'px;height:'.$HY.'px"'; // A Dégager
         ?>
             <div class="map" <?= $style ?>>
                 <?php
                     for($y=$maxY;$y>$minY;$y--){
                         ?>
-                            <div class="mapLigne" <?= $styleLigne ?>>
+                            <div class="mapLigne">
                                 <?php
                                     for($x=$minX;$x<$maxX;$x++){
                                       // Si User est positioné à la coordonné.
                                         if($y==$Map->getY() && $x==$Map->getX()){
                                             ?>
-                                                <div class="mapPositionUser" <?= $styleCellule ?>>
+                                                <div class="mapPositionUser">
                                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Compass_Rose_French_North.svg/800px-Compass_Rose_French_North.svg.png" widht="<?= $LX ?>px" height="<?= $LX ?>px">
                                                 </div>
                                             <?php
                                       // Si la coordonné est 0/0.
                                         }else if($y==0 && $x==0){
                                             ?>
-                                                <div class="mapOrigine" <?= $styleCellule ?>></div>
+                                                <div class="mapOrigine"></div>
                                             <?php
                                       // Si autre cas.
                                         }else{
@@ -300,35 +300,35 @@ class User{
                                                       // Si coordonné ayant un ou des Monstres Non capturés.
                                                         if(count($MapScan->getAllMobContre($this))){
                                                             ?>
-                                                                <div class="mapMob" <?= $styleCellule ?>></div>
+                                                                <div class="mapMob"></div>
                                                             <?php
                                                       // Si coordonné ayant un ou des Monstres capturés.
                                                         }else if (count($MapScan->getAllMobCapture($this))){
                                                             ?>
-                                                                <div class="mapClear" <?= $styleCellule ?>></div>
+                                                                <div class="mapClear"></div>
                                                             <?php
                                                       // Si coordonné n'ayant aucun Monstres.
                                                         }else{
                                                             ?>
-                                                                <div class="mapVerte" <?= $styleCellule ?>></div>
+                                                                <div class="mapVerte"></div>
                                                             <?php
                                                         }
                                                   // Si jamais visité par User.
                                                     }else{
                                                         ?>
-                                                            <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                            <div class="mapRouge"></div>
                                                         <?php
                                                     }
                                               // Si Y/X n'existe pas dans la BDD.
                                                 }else{
                                                     ?>
-                                                        <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                        <div class="mapRouge"></div>
                                                     <?php
                                                 }
                                           // Si Y n'existe pas dans la BDD.
                                             }else{
                                                 ?>
-                                                    <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                    <div class="mapRouge"></div>
                                                 <?php
                                             }
                                         }
@@ -359,80 +359,4 @@ class User{
             return null;
         }
     }
-    //affiche tout les utilisateurs ainsi que leurs donnée (commande de préférance admin)
-    public function showusers($bdd){
-        $all = $bdd->query("SELECT * FROM user");
-        $show = $all->fetch();
-
-        echo $show['id'];
-        echo $show['login'];
-        echo $show['prenom'];
-        echo $show['mdp'];
-        echo $show['idPersonnage'];
-        echo $show['admin'];
-
-    }
-    //fonction pour modifier un prenom en base
-    public function updateuser($bdd){
-        $Up = $bdd->query("UPDATE `user` SET `prenom`='".$POST['newprenom']."' WHERE id=".$this->_id." ");
-            if($Up){
-                echo "Ton prénom a bien été changé.";
-            }else{
-                echo "Une erreur est survenue :/";
-            }
-    }
-    //fonction pour supprimé un utilisateur version admin
-    public function deleteuseradminversion($bdd){
-        $Del = $bdd->query("DELETE FROM user WHERE id= ".$_POST['id']."");
-            if($Del){
-                echo "utilisateur supprimé";
-            }else{
-                echo "une erreur est survenue";
-            }
-    }
-    //fonction pour ajouté un utilisateur
-    public function adduser($bdd){
-        //ajoute un commentaire dans la base de la page du jeu selectionné
-        $add = $bdd->query("INSERT INTO `user`(`login`, `prenom`, `mdp`, `idPersonnage`, `admin`) VALUES (\"".$_POST['login']."\",'".$_POST['prenom']."','".$_POST['mdp']."','".$_POST['idPersonnage']."','"0"')");
-        if($add){
-            echo "utilisateur ajouté .";
-        } else {
-            echo "Une erreur est survenue.";
-        }
-    }
-    //fonction pour modifier un mot de passe
-    public function updatepassword($bdd){
-        if (isset($_POST["updatemdp"])) {
-            //comparaison du mot de passe avec l'ancien
-            if($_POST['NEWMDP'] == $_POST['password']) {
-                //mise a jour dans la base du nouveau mot de passe
-                $rep = $bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE id=".$this->_id." ");
-                if($rep){
-                    //succées 
-                    echo "Mot de passe changé";
-                }else{
-                    //erreur a l'update dans la base
-                    echo "Une erreur est survenue";
-                }
-            } else {
-                //message d'erreur
-                echo "les mots de passe ne correspondent pas...";
-            }
-        }
-    }
-    //fonction pour modifier un mot de passe version admin
-    public function updatepasswordadminversion($bdd){
-        if (isset($_POST["updateusermdp"])) {
-            //mise a jour dans la base du nouveau mot de passe
-            $rep = $bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE `id`='".$_POST['id']."' ");
-            if($rep){
-                //succées 
-                echo "Le mot de passe de l'utilisateur a été changé";
-            }else{
-                //erreur a l'update dans la base
-                echo "Une erreur est survenue";
-            }
-        }
-    }
 }
-?>

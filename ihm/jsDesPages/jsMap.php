@@ -147,7 +147,7 @@ function UpdateArmure(nomArmure,idAncienneArmure,idNouvelArmure){
 
 function AttaquerPerso(idPerso,type, event){
 
-    // hitAnimation( event );
+    hitAnimation( event );
     attaquer(idPerso,type)
 }
 

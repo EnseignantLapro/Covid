@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,6 +37,7 @@ session_start();
             }
             // Vérifie qu'il ne s'est pas déconnecté.
             if($access === true){
+                include "ihm/fonction-web/menu.php";
                 if($Joueur1->isAdmin() == true){
                     ?>
                         <div class='Div1 BG_Blanc'>
@@ -69,6 +70,7 @@ session_start();
             }else{
                 echo $errorMessage;
             }
+            include "ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>
