@@ -12,7 +12,7 @@
                     <li><a href="index.php">Administration</a>
                         <ul class="ul-SousMenu">
                             <li><a href="admin-map.php">Gestion Map</a></li>
-                            <li><a href="admin-mods.php">Gestion Monstre</a></li>
+                            <li><a href="admin-mobs.php">Gestion Monstre</a></li>
                             <li><a href="admin-map.php">Gestion Objet</a></li>
                             <li><a href="admin-map.php">Gestion Personnage</a></li>
                             <li><a href="admin-map.php">Gestion Utilisateur</a></li>
