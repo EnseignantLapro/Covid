@@ -79,7 +79,7 @@ class Mob extends Entite{
                 $CoupCritique = "Vous avez infligé ".$degat." points de dégâts.";
             } else
             {
-                $CoupCritique = "Vous avez infligé ".$degat." point de dégât.";
+                $CoupCritique = "Vous avez infligé ".$degat." point de dégât."; 
             }
         }
 
