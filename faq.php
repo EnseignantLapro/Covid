@@ -11,7 +11,8 @@
     </head>
     <body>
         <div class = "">
-            <p></p>
+            <h1>FAQ</h1>
+            <h3>Questions Fréquentes</h3>
         </div>
     </body>
 </html>
