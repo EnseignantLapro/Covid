@@ -10,7 +10,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/index.css">
             <script src="main.js"></script>
         <!-- Informations Généraux-->
             <title>Projet Full Stack</title>
