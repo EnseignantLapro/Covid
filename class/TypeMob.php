@@ -1,6 +1,6 @@
 
 <?php
-//cette classe est développé par : CHef Caréé 
+//cette classe est développé par : Lucas ghyselen
 
 class TypeMob  extends Mob{
 
