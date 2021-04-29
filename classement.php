@@ -36,12 +36,33 @@
             }
             // Vérifie qu'il ne s'est pas déconnecté.
             if($access === true){
+                include "ihm/fonction-web/menu.php";
                 ?>
-
+                    <div class = "classement">
+                        <h1>Classement</h1>
+                        <table>
+                            <tr>
+                                <th>Monstre capturé</th>
+                                <th>NFT</th>
+                                <th>XP</th>
+                                <th>Dégats</th>
+                                <th>Vie</th>
+                            </tr>
+                            <tr>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                            </tr>
+                        </table>
+                    </div>
                 <?php
             }else{
                 echo $errorMessage;
             }
+            include "ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>

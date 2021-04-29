@@ -33,6 +33,7 @@
                 $access = $Joueur1->DeconnectToi();
             }
             if($access){
+                include "ihm/fonction-web/menu.php";
                 ?>
                     <div class="reglement">
                         <div class="bienvenue">
@@ -86,6 +87,7 @@
             }else{
                 echo $errorMessage;
             }
+            include "ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>
