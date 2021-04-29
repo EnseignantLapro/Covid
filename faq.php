@@ -13,17 +13,17 @@
             <link rel="stylesheet" href="css/faq.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
-            <title>Projet Full Stack - Crédit</title>
-            <meta name='description' content='Projet Full Stack - Crédit'>
+            <title>Projet Full Stack - FAQ</title>
+            <meta name='description' content='Projet Full Stack - FAQ'>
             <meta name='author' content='La Providence - Amiens'>
             <link rel='shortcut icon' href='favicon.ico'>
         <!-- Intégration Facebook -->
-            <meta property='og:title' content='Projet Full Stack - Crédit'>
-            <meta property='og:description' content='Projet Full Stack - Crédit'>
+            <meta property='og:title' content='Projet Full Stack - FAQ'>
+            <meta property='og:description' content='Projet Full Stack - FAQ'>
             <meta property='og:image' content='favicon.ico'>
         <!-- Intégration Twitter -->
-            <meta name='twitter:title' content='Projet Full Stack - Crédit'>
-            <meta name='twitter:description' content='Projet Full Stack - Crédit'>
+            <meta name='twitter:title' content='Projet Full Stack - FAQ'>
+            <meta name='twitter:description' content='Projet Full Stack - FAQ'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
     <body class="bodyFAQ">
