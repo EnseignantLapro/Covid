@@ -26,7 +26,7 @@
             <meta name='twitter:description' content='Projet Full Stack - Crédit'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
-    <body class="List-SN1">
+    <body class="bodyCredit">
         <?php
             include "session.php";
 
