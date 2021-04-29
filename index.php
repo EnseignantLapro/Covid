@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,47 +28,66 @@ session_start();
     </head>
     <body class="bodyAccueil">
         <?php
-        //c'est dans fonction que l'on gère les formulaires de Co et les sessions
-
-        include "session.php";
-        if($access){
-            $access = $Joueur1->DeconnectToi();
-        }
-        if($access){
-            ?>
-                <div class="reglement">
-                    <p>BIENVENUE <?= $Joueur1->getPrenom() ?> </p>
+            include "session.php";
+            if($access){
+                $access = $Joueur1->DeconnectToi();
+            }
+            if($access){
+                include "ihm/fonction-web/menu.php";
+                ?>
+                    <div class="reglement">
+                        <div class="bienvenue">
+                            <?php
+                                if($Joueur1->isAdmin() == true){
+                                    ?>
+                                        <p>Bienvenue Administrateur <?= $Joueur1->getPrenom() ?>.</p>
+                                        <p><a href='admin/'>Accéder au Panel Administrateur.</a></p>
+                                    <?php
+                                }
+                                else{
+                                    ?>
+                                        <p>Bienvenue Joueur <?= $Joueur1->getPrenom() ?>.</p>
+                                    <?php
+                                }
+                            ?>
+                        </div>
                         <?php
                             $PersoChoisie = new Personnage($mabase);
+                            $PersoChoisie = $Joueur1->getPersonnage();
+                            if(!is_null($PersoChoisie)){
+                                $PersoChoisie->getChoixPersonnage($Joueur1);
+                            }
                             $PersoCree = new Personnage($mabase);
                             $PersoCree = $PersoCree->CreatNewPersonnage($Joueur1->getId());
-                            $PersoChoisie->getChoixPersonnage($Joueur1);
-
                             if(!is_null($PersoCree)){
                                 $PersoChoisie = $PersoCree;
                             }
-                            if(!$PersoChoisie->getId()==0){
+                            if(!is_null($PersoChoisie)){
                                 $Joueur1->setPersonnage($PersoChoisie);
-                            }
-                            ?>
-                                <div class="Action">
-                            <?php
-                            if(!empty($PersoChoisie->getNom())){
-                            ?>
-                                    <p><a href="combat.php">Viens combattre avec <?= $PersoChoisie->getNom() ?></a></p>
-                            <?php
-                            }else{
-                            ?>
-                                    <p><a href="combat.php">Viens combattre avec <?= $Joueur1->getNomPersonnage() ?></a></p>
-                            <?php
+                                ?>
+                                    <div class="Action">
+                                        <?php
+
+                                        if(!empty($PersoChoisie->getNom()) ){
+                                        ?>
+                                            <p><a href="combat.php">Viens combattre avec <?= $PersoChoisie->getNom() ?></a></p>
+                                        <?php
+                                        }else{
+                                        ?>
+                                            <p><a href="combat.php">Viens combattre avec <?= $Joueur1->getNomPersonnage() ?></a></p>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                <?php
                             }
                         ?>
                     </div>
-                </div>
-            <?php
-        }else{
-            echo $errorMessage;
-        }
+                <?php
+            }else{
+                echo $errorMessage;
+            }
+            include "ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>

@@ -37,6 +37,7 @@ class Entite {
             $this->_bdd->query($req);
 
             //todo retirer un equipement ne doit pas etre une suppression
+            //todo la suppression peut etre déjà faite à la fusion
             $req="DELETE FROM `Equipement` WHERE id='".$EquipementID."'";
             $this->_bdd->query($req);
         }
@@ -45,13 +46,37 @@ class Entite {
         
     }
 
+    
    
     //ajoute un lien entre item et la personnage en bdd 
     //et accroche l'item dans la collection itemID dans le sac du perso
     public function addEquipement($newEquipement){
-        array_push($this->sacEquipements,$newEquipement->getId());
-        $req="INSERT INTO `EntiteEquipement`(`idEntite`, `idEquipement`) VALUES ('".$this->getId()."','".$newEquipement->getId()."')";
-        $this->_bdd->query($req);
+
+        //on va vérifier ici que l'équipement n'est pas déjà présent de meme niveau sinon fusion.
+        //exemple 2 epée lvl 2 = epée lvl 3 avec un boost de fusions dans Efficacite
+        //la fusion est récursive un lvl passé lvl 2 peut ausis fusioné avec un lvl3
+        $TabIDRemoved = array(); // tableau des id supprimé aprés fusion pour les envoyer au front 
+        $newEquipement->fusionEquipement($this,$TabIDRemoved);
+        if(count($TabIDRemoved)>0 ){
+            foreach ($TabIDRemoved as $idSup) {
+                $this->removeEquipementByID($idSup);
+            }
+            
+            array_push($this->sacEquipements,$newEquipement->getId());
+            return $TabIDRemoved;
+
+        }else{
+            $req="INSERT INTO `EntiteEquipement`(`idEntite`, `idEquipement`) VALUES ('".$this->getId()."','".$newEquipement->getId()."')";
+            $this->_bdd->query($req);
+            array_push($this->sacEquipements,$newEquipement->getId());
+            //retourne 0 si ya pas eu de fusion d'équipement
+            return 0;
+        }
+
+
+
+       
+       
     }
 
      //Equipe l'item au personnage
@@ -190,12 +215,14 @@ class Entite {
         //ici on affiche les dégats Maximun du joueur avec Arme
         $arme = $this->getArme();
         $coef = 1;
+        $lvl = 1;
         $forceArme = 0;
         if(!is_null($arme)){
             $coef = $arme->getEfficacite();
             $forceArme  = $arme->getForce();
+            $lvl = $arme->getLvl();
         }
-        $val = round(($this->_degat + $forceArme)*$coef);
+        $val = round(($this->_degat+$forceArme)*$coef);
         return $val;
     }
 
@@ -213,8 +240,7 @@ class Entite {
         return round($val,1);//arrondi à 1 chiffre aprés la virgul
     }
 
-    public function getDegat()
-    {
+    public function getDegat(){
         //doit retourner des degat que l'entite donne a l'instant t
         return $this->_degat;
     }
@@ -359,13 +385,13 @@ class Entite {
         <?php 
         $arme  = $this->getArme();
         if(!is_null($arme)){
-            echo '<div id ="Arme'.$arme->getId().'" class="Arme" onclick="CallApiRemoveEquipementEntite('.$arme->getId().')">'.$arme->getNom().'</div>';
+            echo '<div id ="Arme'.$arme->getId().'" class="Arme" onclick="CallApiRemoveEquipementEntite('.$arme->getId().')">'.$arme->getNom().' lvl'.$arme->getLvl().'</div>';
         }else{
             echo '<div id ="ArmePerso'.$this->_id.'" class="Arme"></div>';
         }
         $armure  = $this->getArmure();
         if(!is_null($armure)){
-            echo '<div id ="Armure'.$armure->getId().'" class="ArmureNom" onclick="CallApiRemoveEquipementEntite('.$armure->getId().')">'.$armure->getNom().'</div>';
+            echo '<div id ="Armure'.$armure->getId().'" class="ArmureNom" onclick="CallApiRemoveEquipementEntite('.$armure->getId().')">'.$armure->getNom().' lvl'.$armure->getLvl().'</div>';
         }else{
             echo '<div id ="ArmurePerso'.$this->_id.'" class="ArmureNom"></div>';
         }
@@ -513,24 +539,13 @@ class Entite {
         return $this;
     }
 
-    public function generateImage(){
-        switch (rand(0,3)) {
-            case 0:
-                $topic='league+of+legend+fan+art';
-                break;
-            case 1:
-                $topic='manga+fan+art';
-                break;
-            case 2:
-                $topic='marvel+fan+art';
-                break;
-            case 3:
-                $topic='comics+fan+art';
-                break;
-            default:
-                $topic='fantasy+fan+art';
-                break;
-        }
+    public function generateImage($Nom){
+
+        $space = array(" ", ".", "_", "-", "%");
+        $onlyconsonants = str_replace($space, "+", $Nom);
+
+        $topic='+personnage+'.$onlyconsonants.'+fan+art';
+     
 
         $ofs=mt_rand(0, 100);
         $geturl='http://www.google.ca/images?q=' . $topic . '&start=' . $ofs . '&gbv=1';

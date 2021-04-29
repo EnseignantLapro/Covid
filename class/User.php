@@ -1,4 +1,4 @@
-<?php
+<?php // Ghyselen Lucas CRUD du compte
 
 class User{
 
@@ -7,6 +7,7 @@ class User{
     private $_mdp;
     private $_prenom;
     private $_MonPersonnage;
+    private $_admin;
 
     private $_bdd;
 
@@ -14,21 +15,26 @@ class User{
         $this->_bdd = $bdd;
     }
 
-    public function setUser($id,$login,$mdp,$prenom){
+    public function setUser($id,$login,$mdp,$prenom,$admin){
         $this->_id = $id;
         $this->_login = $login;
         $this->_mdp = $mdp;
         $this->_prenom = $prenom;
+        $this->_admin = $admin;
     }
 
     public function setUserById($id){
         $Result = $this->_bdd->query("SELECT * FROM `User` WHERE `id`='".$id."' ");
         if($tab = $Result->fetch()){ 
-            $this->setUser($tab["id"],$tab["login"],$tab["mdp"],$tab["prenom"]);
+            $this->setUser($tab["id"],$tab["login"],$tab["mdp"],$tab["prenom"],$tab["admin"]);
             //chercher son personnage
             $personnage = new Personnage($this->_bdd);
-            $personnage->setPersonnageById($tab["idPersonnage"]);
-            $this->_MonPersonnage = $personnage;
+            if($tab["idPersonnage"]>0){
+                $personnage->setPersonnageById($tab["idPersonnage"]);
+                $this->_MonPersonnage = $personnage;
+            }else{
+                $this->_MonPersonnage = null;
+            }
         }
     }
 
@@ -37,6 +43,12 @@ class User{
         //je mémorise en base l'association du personnage dans user
         $req ="UPDATE `User` SET `idPersonnage`='".$Perso->getID()."' WHERE  `id` = '".$this->_id."'";
         $Result = $this->_bdd->query($req);
+    }
+
+
+    //retour true si c'est un admin
+    public function isAdmin(){
+        return $this->_admin;
     }
 
     public function getPrenom(){
@@ -117,21 +129,21 @@ class User{
             ?>
             <form action="" method="post" >
                 <div>
-                    <label for="login">Mail : </label>
+                    <label for="login">Mail :</label>
                     <input type="email" name="login" id="login" required >
                 </div>
-                <div >
-                    <label for="password">Password: </label>
+                <div>
+                    <label for="password">Password :</label>
                     <input type="password" name="password" id="password" required>
+                    <label class="inscriptionHide logSub" for="MDP">Réécrivez votre Password :</label>
+                    <input class="inscriptionHide logSub" type="password" name="MDP" id="MDP">
                 </div>
-
-                <div >
-                    <label class="inscriptionHide logSub" for="prenom">Prénom si tu t'inscris : </label>
+                <div>
+                    <label class="inscriptionHide logSub" for="prenom">Prénom :</label>
                     <input class="inscriptionHide logSub" type="text" name="prenom" id="prenom" >
                 </div>
-
-                <div >
-                    <input type="submit" value="GO !" name="log" id="logSubsubmit"> <a class="inscriptionShow logSub" id="subCreatclick" onclick="inscription()">Inscription au jeu</a>
+                <div>
+                    <input type="submit" value="GO !" name="log" id="logSubsubmit"> <a class="inscriptionShow logSub" id="subCreatclick" onclick="inscription()">Cliquez pour vous inscrire.</a>
                 </div>
             </form>
         </div>
@@ -249,54 +261,102 @@ class User{
         $Map = $this->getPersonnage()->getMap();
         $MapScan = new Map($this->_bdd);
 
-        $style = 'style="width:'.$taille.'px"';
-        $styleCellule = 'style="width:'.$LX.'px;height:'.$HY.'px"';
+        $style = 'style="width:'.$taille.'px"'; // A Dégager
+        $styleCellule = 'style="width:'.$LX.'px;height:'.$HY.'px"'; // A Dégager
 
         //On rajoute largeur de x pour laisser de la place à la border
-        $ligneTaille = $LargeurX*$LX+$LargeurX*2;
-        $styleLigne = 'style="width:'.$ligneTaille.'px;height:'.$HY.'px"';
-
-        echo '<div class="map" '.$style.'>';
-        for($y=$maxY;$y>$minY;$y--){
-
-            echo '<div class="mapLigne" '.$styleLigne.'>';
-            for($x=$minX;$x<$maxX;$x++){
-               
-                 if ($y==$Map->getY() && $x==$Map->getX()) {
-                    echo '<div class="mapPositionUser" '.$styleCellule.'>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Compass_Rose_French_North.svg/800px-Compass_Rose_French_North.svg.png" widht="'.$LX.'px" height="'.$LX.'px">
-                    </div>';
-                }else if($y==0 && $x==0){
-                    echo '<div class="mapOrigine" '.$styleCellule.'></div>';
-                }else{
-                    if(array_key_exists($x,$allMap)){
-                        if(array_key_exists($y,$allMap[$x])){
-                            if(!is_null($allMap[$x][$y])){
-
-                                //map found check it bro 
-                                $MapScan->setMapByID($allMap[$x][$y]);
-
-                                if(count($MapScan->getAllMobContre($this))){
-                                    echo '<div class="mapMob" '.$styleCellule.'></div>';
-                                }else if (count($MapScan->getAllMobCapture($this))){
-                                    echo '<div class="mapClear" '.$styleCellule.'></div>';
-                                }else{
-                                    echo '<div class="mapVerte" '.$styleCellule.'></div>';
-                                }
-                            }else{
-                                echo '<div class="mapRouge" '.$styleCellule.'></div>';
-                            }
-                        }else{
-                            echo '<div class="mapRouge" '.$styleCellule.'></div>';
-                        }
-                    }else{
-                        echo '<div class="mapRouge" '.$styleCellule.'></div>';
+        $ligneTaille = $LargeurX*$LX+$LargeurX*2; // A Dégager
+        $styleLigne = 'style="width:'.$ligneTaille.'px;height:'.$HY.'px"'; // A Dégager
+        ?>
+            <div class="map" <?= $style ?>>
+                <?php
+                    for($y=$maxY;$y>$minY;$y--){
+                        ?>
+                            <div class="mapLigne">
+                                <?php
+                                    for($x=$minX;$x<$maxX;$x++){
+                                      // Si User est positioné à la coordonné.
+                                        if($y==$Map->getY() && $x==$Map->getX()){
+                                            ?>
+                                                <div class="mapPositionUser">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Compass_Rose_French_North.svg/800px-Compass_Rose_French_North.svg.png" widht="<?= $LX ?>px" height="<?= $LX ?>px">
+                                                </div>
+                                            <?php
+                                      // Si la coordonné est 0/0.
+                                        }else if($y==0 && $x==0){
+                                            ?>
+                                                <div class="mapOrigine"></div>
+                                            <?php
+                                      // Si autre cas.
+                                        }else{
+                                          // Si Y existe dans la BDD.
+                                            if(array_key_exists($x,$allMap)){
+                                              // Si Y/X existe dans la BDD.
+                                                if(array_key_exists($y,$allMap[$x])){
+                                                  // Si déja visité par User.
+                                                    if(!is_null($allMap[$x][$y])){
+                                                      //map found check it bro
+                                                        $MapScan->setMapByID($allMap[$x][$y]);
+                                                      // Si coordonné ayant un ou des Monstres Non capturés.
+                                                        if(count($MapScan->getAllMobContre($this))){
+                                                            ?>
+                                                                <div class="mapMob"></div>
+                                                            <?php
+                                                      // Si coordonné ayant un ou des Monstres capturés.
+                                                        }else if (count($MapScan->getAllMobCapture($this))){
+                                                            ?>
+                                                                <div class="mapClear"></div>
+                                                            <?php
+                                                      // Si coordonné n'ayant aucun Monstres.
+                                                        }else{
+                                                            ?>
+                                                                <div class="mapVerte"></div>
+                                                            <?php
+                                                        }
+                                                  // Si jamais visité par User.
+                                                    }else{
+                                                        ?>
+                                                            <div class="mapRouge"></div>
+                                                        <?php
+                                                    }
+                                              // Si Y/X n'existe pas dans la BDD.
+                                                }else{
+                                                    ?>
+                                                        <div class="mapRouge"></div>
+                                                    <?php
+                                                }
+                                          // Si Y n'existe pas dans la BDD.
+                                            }else{
+                                                ?>
+                                                    <div class="mapRouge"></div>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+                        <?php
                     }
-                }
-            }
-            echo '</div>';
+                ?>
+            </div>
+        <?php
+    }
+
+    //retourne la faction du Joueur
+    public function getFaction(){
+        $req="SELECT Faction.id,Faction.nom 
+        FROM `Faction` ,`Personnage`, `User` , `TypePersonnage` 
+        WHERE User.idPersonnage = Personnage.id 
+        AND Personnage.idTypePersonnage = TypePersonnage.id 
+        AND TypePersonnage.idFaction = Faction.id 
+        AND User.id = '".$this->_id."'";
+        $Result = $this->_bdd->query($req);
+        if($tab=$Result->fetch()){
+           $Faction = new Faction($this->_bdd);
+           $Faction->setFactionById($tab['id']);
+           return $Faction;
+        }else{
+            return null;
         }
-        echo '</div>';
     }
 }
-?>

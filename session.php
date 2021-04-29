@@ -1,11 +1,15 @@
 <?php
 include "class/Entite.php";
 include "class/User.php";
+include "class/CRUD.php";
+include "class/Faction.php";
+include "class/TypePersonnage.php";
 include "class/Personnage.php";
 include "class/Map.php";
-include "class/Item.php";
 include "class/Mob.php";
 include "class/Tooltip.php";
+include "class/Objet.php";
+include "class/Item.php";
 include "class/Equipement.php";
 include "class/Arme.php";
 include "class/Armure.php";

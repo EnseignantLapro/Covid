@@ -1,5 +1,5 @@
-<?php
-session_start();
+<?php //Cette Page HTML est modifié par : M. De Almeida
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,7 +15,7 @@ session_start();
             <link rel="stylesheet" href="css/item.css">
             <link rel="stylesheet" href="css/entite.css">
             <script src="main.js"></script>
-        <!-- Informations Généraux-->
+        <!-- Informations Générales -->
             <title>Projet Full Stack - Combat</title>
             <meta name='description' content='Projet Full Stack - Combat'>
             <link rel='shortcut icon' href='favicon.ico'>
@@ -32,16 +32,19 @@ session_start();
     <body>
         <div class="centragePrincipal">
             <?php
-                include "session.php"; 
+                include "session.php";
 
-                if($access){
+                // Vérifie que la Session est Valide avec le bon Mot de Passe.
+                if($access === true){
                     $access = $Joueur1->DeconnectToi();
                 }
-                if($access){
+                // Vérifie qu'il ne s'est pas déconnecté.
+                if($access === true){
+                    include "ihm/fonction-web/menu.php";
                     //gestion accès map:
                     $Personnage = $Joueur1->getPersonnage();
                     if(is_null($Personnage->getId())){
-                        ?> 
+                        ?>
                             <p>Il faut créer un personnage d'abord.</p>
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
                         <?php
@@ -59,14 +62,27 @@ session_start();
                                         $Personnage->getChoixPersonnage($Joueur1);
                                         $Joueur1->setPersonnage($Personnage);
                                     }
-                                    
-                                    //AFFICHAGE de l'entete d'un hero
-                                    include "ihm/affichagePersoEtSac.php";
-                                    //AFFICHAGE d'UN TOOLTIP
-                                    include "ihm/affichageTooltip.php";
-                                    //CHARGEMENT  DE LA MAP
-                                    include "ihm/chargementDeLaMap.php";
-                                    //HTML  DE LA MAP
+                                    // AFFICHAGE EN-TÊTE PERSONNAGE ET SAC
+                                    ?>
+                                        <div class='entete'>
+                                            <div class="avatar">
+                                                <?php $Personnage->renderHTML() ?>
+                                            </div>
+                                            <div class="divSac">
+                                                <p id='TitleSacoche'>Sacoche</p>
+                                                <!-- Include Items / Equipement-->
+                                                    <?php
+                                                        include "ihm/map/affichageSacItem.php";
+                                                        include "ihm/map/affichageSacEquipement.php";
+                                                    ?>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    // AFFICHAGE d'UN TOOLTIP
+                                        include "ihm/map/affichageTooltip.php";
+                                    // CHARGEMENT  DE LA MAP
+                                        include "ihm/map/chargementDeLaMap.php";
+                                    // HTML  DE LA MAP
                                 ?>
                                 <div class="lamap">
                                     <?= $BousoleDeplacement['nord'] ?>
@@ -79,14 +95,18 @@ session_start();
                                                     <?= $map->getInfoMap() ?>
                                                 </div>
                                                 <?php
-                                                    //affichage des autres joueurs sur la carte
-                                                    include "ihm/affichageAutrePersos.php";
-                                                    //affiche les mob enemie et capturé;
-                                                    include "ihm/affichageItemsMap.php";
-                                                    //AFFICHAGE DES ITEMS DE LA MAP
-                                                    include "ihm/affichageTousLesMobs.php";
-                                                    //AFFICHAGE DES EQUIPEMENT DE LA MAP
-                                                    include "ihm/affichageEquipementsMap.php";
+                                                    // AFFICHAGE SI FORGE
+                                                        if($map->isForge()){
+                                                            include "ihm/map/afficherForge.php.php";
+                                                        }
+                                                    // AFFICHAGE AUTRES JOUEURS PRESENTS
+                                                        include "ihm/map/affichageAutrePersos.php";
+                                                    // AFFICHAGE DES MONSTRES
+                                                        include "ihm/map/affichageItemsMap.php";
+                                                    // AFFICHAGE DES ITEMS DE LA MAP
+                                                        include "ihm/map/affichageTousLesMobs.php";
+                                                    // AFFICHAGE DES EQUIPEMENT DE LA MAP
+                                                        include "ihm/map/affichageEquipementsMap.php";
                                                 ?>
                                             </div>
                                             <?= $BousoleDeplacement['est'] ?>
@@ -102,8 +122,14 @@ session_start();
                 }else{
                     echo $errorMessage;
                 }
+                include "ihm/fonction-web/footer.php";
             ?>
         </div>
     </body>
-    <?php include "ihm/jsDesPages/jsMap.php" ?>
+    <?php
+        include "ihm/jsDesPages/jsMap.php";
+        include "ihm/jsDesPages/jsSac.php";
+        include "ihm/jsDesPages/jsAnimation.php";
+    ?>
+    <script src="Javascript/map.js"></script>
 </html>
