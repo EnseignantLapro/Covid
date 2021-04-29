@@ -29,7 +29,7 @@
             <meta name='twitter:description' content='Projet Full Stack - Combat'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
-    <body class="bodyMap centragePrincipal">
+    <body class="bodyMap">
         <?php
             include "session.php";
 
