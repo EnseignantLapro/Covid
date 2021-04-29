@@ -225,7 +225,148 @@ class Mob extends Entite{
         return $tab;
     }
 
-    //Permet de générer un nom de map
+    public function GenerateName($type){
+        $nom =$type;
+
+        $Adjectif ="";
+        switch (rand(0,20)){
+            case 0:
+                $Adjectif ="Poisseux";
+            break;
+            case 1:
+                $Adjectif ="Luxuriant";
+            break;
+            case 2:
+                $Adjectif ="Pas belle";
+            break;
+            case 3:
+                $Adjectif ="Enchantée";
+            break;
+            case 4:
+                $Adjectif ="Mortel";
+            break;
+            case 5:
+                $Adjectif ="Abandonné";
+            break;
+            case 6:
+                $Adjectif ="Enflammé";
+            break;
+            case 7:
+                $Adjectif ="Minuscule";
+            break;
+            case 8:
+                $Adjectif ="Lumineux";
+            break;
+            case 9:
+                $Adjectif ="Sombre";
+            break;
+            case 10:
+                $Adjectif ="Bouleversant";
+            break;
+            case 11:
+                $Adjectif ="Captivant";
+            break;
+            case 12:
+                $Adjectif ="Divin";
+            break;
+            case 13:
+                $Adjectif ="Épouvantable";
+            break;
+            case 14:
+                $Adjectif ="Exaltant";
+            break;
+            case 15:
+                $Adjectif ="Remarquable";
+            break;
+            case 16:
+                $Adjectif ="Somptueux";
+            break;
+            case 17:
+                $Adjectif ="Spiritueux";
+            break;
+            case 18:
+                $Adjectif ="Vivable";
+            break;
+            case 19:
+                $Adjectif ="Banal";
+            break;   
+            default:
+                $Adjectif ="Haineu";
+        }
+
+        $Consone ="";
+        for($i=0;$i<=rand(1,3);$i++){
+            switch (rand(0,19)){
+                case 0:
+                    $Consone .="zar";
+                break;
+                case 1:
+                    $Consone .="dra";
+                break;
+                case 2:
+                    $Consone .="bel";
+                break;
+                case 3:
+                    $Consone .="cri";
+                break;
+                case 4:
+                    $Consone .="fa";
+                break;
+                case 5:
+                    $Consone .="zor";
+                break;
+                case 6:
+                    $Consone .="pat";
+                break;
+                case 7:
+                    $Consone .="for";
+                break;
+                case 8:
+                    $Consone .="ga";
+                break;
+                case 9:
+                    $Consone .="lon";
+                break;
+                case 10:
+                    $Consone .="vi";
+                break;
+                case 11:
+                    $Consone .="bu";
+                break;
+                case 12:
+                    $Consone .="al";
+                break;
+                case 13:
+                    $Consone .="sion";
+                break;
+                case 14:
+                    $Consone .="teur";
+                break;
+                case 15:
+                    $Consone .="nar";
+                break;
+                case 16:
+                    $Consone .="pon";
+                break;
+                case 17:
+                    $Consone .="pen";
+                break;
+                case 18:
+                    $Consone .="ri";
+                break;
+                case 19:
+                    $Consone .="or";
+                break;
+                default:
+                $Consone .=" ";
+            }
+        }
+
+        return $nom ." ". $Adjectif." ".$Consone;
+    }
+
+
+    //Permet de générer un nom de mob
     public function generateNom($type){
         $nom =$type;
 

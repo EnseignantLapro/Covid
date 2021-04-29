@@ -849,16 +849,16 @@ class map{
                 $Adjectif ="Enchantée";
             break;
             case 4:
-                $Adjectif ="de la mort";
+                $Adjectif ="Mortel";
             break;
             case 5:
-                $Adjectif ="des nains";
+                $Adjectif ="Minuscule";
             break;
             case 6:
-                $Adjectif ="Du pauvre";
+                $Adjectif ="Abandonné";
             break;
             case 7:
-                $Adjectif ="des loups";
+                $Adjectif ="Hanté";
             break;
             case 8:
                 $Adjectif ="Lumineux";
