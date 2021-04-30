@@ -1,12 +1,6 @@
 /* dechir */
 
 .bodyMap{
-    width: 100%;
-    position: absolute;
-    margin: 150px auto;
-}
-
-.bodyMapContent{
     width:800px;
     margin: 150px auto 500px auto;
 }
