@@ -1,15 +1,5 @@
 /* Dechir */
 
-.bodyMap{
-    width: 100%;
-    position: absolute;
-    margin: 150px auto;
-}
-
-.bodyMapContent{
-    width:800px;
-    margin: 150px auto 500px auto;
-}
 .basdepage{
     height:200px;
 }
@@ -31,11 +21,14 @@ ul{
 
 html,body{
     height:100%;
-    margin:0;padding:0;
+    margin:0;
+    margin-top: 25px;
+    padding:0;
+    flex-direction:column;
 }
 
 body{
-    display:table;
+    display:flex;
     width:100%;
 }
 
@@ -293,17 +286,19 @@ input[value='Deco!']{
 
 .footer{
     background:black;
-    color: white;
-    position:absolute;
-    bottom:0px;
-    left: 0px;
+    display:flex;
     width:100%;
-    text-align: center;
+    text-align:center;
 }
- .div-footer p{
-     color: white;
+.div-footer{
+    color:white;
+    text-align:center;
+}
+
+ .footer p{
+    color:white;
  }
  
 .footer a{
-    color: white;
+    color:white;
 }
