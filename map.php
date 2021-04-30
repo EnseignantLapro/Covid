@@ -16,17 +16,17 @@
             <link rel="stylesheet" href="css/entite.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
-            <title>Projet Full Stack - Combat</title>
-            <meta name='description' content='Projet Full Stack - Combat'>
+            <title>Projet Full Stack - Map</title>
+            <meta name='description' content='Projet Full Stack - Map'>
             <link rel='shortcut icon' href='favicon.ico'>
             <meta name='author' content='La Providence - Amiens'>
         <!-- Intégration Facebook -->
-            <meta property='og:title' content='Projet Full Stack - Combat'>
-            <meta property='og:description' content='Projet Full Stack - Combat'>
+            <meta property='og:title' content='Projet Full Stack - Map'>
+            <meta property='og:description' content='Projet Full Stack - Map'>
             <meta property='og:image' content='favicon.ico'>
         <!-- Intégration Twitter -->
-            <meta name='twitter:title' content='Projet Full Stack - Combat'>
-            <meta name='twitter:description' content='Projet Full Stack - Combat'>
+            <meta name='twitter:title' content='Projet Full Stack - Map'>
+            <meta name='twitter:description' content='Projet Full Stack - Map'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
     <body class="bodyMap">
