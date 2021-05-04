@@ -378,8 +378,8 @@ class User{
         $req="SELECT Faction.id, Faction.nom 
             FROM `Faction` ,`Personnage`, `User` , `TypePersonnage` 
             WHERE User.idPersonnage = Personnage.id 
-            AND Personnage.idTypePersonnage = Typepersonnage.id 
-            AND Typepersonnage.idFaction = Faction.id 
+            AND Personnage.idTypePersonnage = TypePersonnage.id 
+            AND TypePersonnage.idFaction = Faction.id 
             AND User.id = '".$this->_id."' ";
         $Result = $this->_bdd->query($req);
         if($tab=$Result->fetch()){
