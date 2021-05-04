@@ -228,7 +228,7 @@
                 UpdateVie("vieEntiteValeur"+data[0],data[1],data[2],data[3],data[4],"vieEntiteValeur"+data[5],data[6]);
 
                 //data[7]c'est xp
-                if(data[1]<=0){
+                if( data[1] <= 0 ){
                     //si mob mort on doit recharger le server
                     //je retire çà pour toruver une alternative à un refrech de page
                     //location.reload();
@@ -303,7 +303,34 @@
         }
         if( vieEntite2 == 0 || message != '' ){
 
-            this.log(message);
+            log(message);
+
+            if ( vie <= 0 ) {
+
+                const clearID = id.match( /(\d+)/ );
+
+                if ( !clearID )
+                    return;
+
+                var mob = document.getElementById(`Mob${clearID[0]}`);
+
+                mob.classList.add("Captured")
+                mob.classList.remove("adverse")
+
+                mob.querySelector( 'a' ).setAttribute( "onclick", `SoinMob( ${clearID[0]}, 1 )` );
+
+                // fetch( location.href )
+                //     .then( ( req ) => req.text() )
+                //     .then( ( res ) => {
+
+                //         // —— Initialize the DOM parser
+                //         const parser = new DOMParser();
+
+                //         document.body.innerHTML = parser.parseFromString( res, "text/html" );
+
+                //     })
+            }
+
         }
     }
 </script>
