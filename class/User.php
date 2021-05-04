@@ -390,5 +390,10 @@ class User{
             return null;
         }
     }
+
+    public function nbUser($bdd){
+        $user = $bdd->query("SELECT COUNT(*) prenom FROM user");
+        $nbuser = $user->rowCount();
+    }
 }
 ?>
