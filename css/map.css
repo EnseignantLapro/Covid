@@ -203,9 +203,6 @@
 }
 
 .divLog{
-    position: absolute;
-    left: 0px;
-    bottom: 90px;
     background-color: rgb(97, 97, 97);
     border: solid black 3px;
     height: 200px;
