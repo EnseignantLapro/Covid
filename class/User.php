@@ -331,7 +331,7 @@ class User{
     //fonction pour ajouté un utilisateur
     public function adduser($bdd){
         //ajoute un commentaire dans la base de la page du jeu selectionné
-        $add = $bdd->query("INSERT INTO `user`(`login`, `prenom`, `mdp`, `idPersonnage`, `admin`) VALUES (\"".$_POST['login']."\",'".$_POST['prenom']."','".$_POST['mdp']."','".$_POST['idPersonnage']."','"0"')");
+        $add = $bdd->query("INSERT INTO user (login, prenom, mdp, idPersonnage, admin) VALUES (".$_POST['login'].",".$_POST['prenom'].",".$_POST['mdp'].",".$_POST['idPersonnage'].", 0 ) ");
         if($add){
             echo "utilisateur ajouté .";
         } else {
