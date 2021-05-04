@@ -130,6 +130,7 @@ class Mob extends Entite{
         {
             //Si l'adversaire est mort, ajout d'un message + empeche d'attaquer
             $CoupCritique = "L'adversaire est déjà mort, pas la peine de s'acharner.";
+            //Le message afficher n'est pas celui là : affiche "Ce monstre est déjà capturé."
         }
 
         return array ($this->_vie, $CoupCritique);
