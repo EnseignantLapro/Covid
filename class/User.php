@@ -298,8 +298,8 @@ class User{
         echo '</div>';
     }
     //affiche tout les utilisateurs ainsi que leurs donnée (commande de préférance admin)
-    public function showusers($bdd){
-        $all = $bdd->query("SELECT * FROM user");
+    public function showusers(){
+        $all = $this->_bdd->query("SELECT * FROM user");
         $show = $all->fetch();
 
         echo $show['id'];
@@ -311,8 +311,8 @@ class User{
 
     }
     //fonction pour modifier un prenom en base
-    public function updateuser($bdd){
-        $Up = $bdd->query("UPDATE `user` SET `prenom`='".$POST['newprenom']."' WHERE id=".$this->_id." ");
+    public function updateuser(){
+        $Up = $this->_bdd->query("UPDATE `user` SET `prenom`='".$POST['newprenom']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "Ton prénom a bien été changé.";
             }else{
@@ -320,8 +320,8 @@ class User{
             }
     }
     //fonction pour supprimé un utilisateur version admin
-    public function deleteuseradminversion($bdd){
-        $Del = $bdd->query("DELETE FROM user WHERE id= ".$_POST['id']."");
+    public function deleteuseradminversion(){
+        $Del = $this->_bdd->query("DELETE FROM user WHERE id= ".$_POST['id']."");
             if($Del){
                 echo "utilisateur supprimé";
             }else{
@@ -329,9 +329,9 @@ class User{
             }
     }
     //fonction pour ajouté un utilisateur
-    public function adduser($bdd){
+    public function adduser(){
         //ajoute un commentaire dans la base de la page du jeu selectionné
-        $add = $bdd->query("INSERT INTO user (login, prenom, mdp, idPersonnage, admin) VALUES (".$_POST['login'].",".$_POST['prenom'].",".$_POST['mdp'].",".$_POST['idPersonnage'].", 0 ) ");
+        $add = $this->_bdd->query("INSERT INTO user (login, prenom, mdp, idPersonnage, admin) VALUES (".$_POST['login'].",".$_POST['prenom'].",".$_POST['mdp'].",".$_POST['idPersonnage'].", 0 ) ");
         if($add){
             echo "utilisateur ajouté .";
         } else {
@@ -339,12 +339,12 @@ class User{
         }
     }
     //fonction pour modifier un mot de passe
-    public function updatepassword($bdd){
+    public function updatepassword(){
         if (isset($_POST["updatemdp"])) {
             //comparaison du mot de passe avec l'ancien
             if($_POST['NEWMDP'] == $_POST['password']) {
                 //mise a jour dans la base du nouveau mot de passe
-                $rep = $bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE id=".$this->_id." ");
+                $rep = $this->_bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE id=".$this->_id." ");
                 if($rep){
                     //succées 
                     echo "Mot de passe changé";
@@ -359,10 +359,10 @@ class User{
         }
     }
     //fonction pour modifier un mot de passe version admin
-    public function updatepasswordadminversion($bdd){
+    public function updatepasswordadminversion(){
         if (isset($_POST["updateusermdp"])) {
             //mise a jour dans la base du nouveau mot de passe
-            $rep = $bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE `id`='".$_POST['id']."' ");
+            $rep = $this->_bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE `id`='".$_POST['id']."' ");
             if($rep){
                 //succées 
                 echo "Le mot de passe de l'utilisateur a été changé";
@@ -374,7 +374,7 @@ class User{
     }
     
     //retourne normalement la faction du Joueur
-    public function getFaction($bdd){
+    public function getFaction(){
         $req="SELECT faction.id, faction.nom 
             FROM `faction` ,`personnage`, `user` , `typepersonnage` 
             WHERE user.idPersonnage = personnage.id 
