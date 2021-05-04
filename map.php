@@ -47,7 +47,11 @@
                         <div class="bodyPage">
                             <p>Il faut créer un personnage d'abord.</p>
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
+
                 </div>
+
+                        </div>
+
                     <?php
                 }else{
                     ?>
@@ -117,7 +121,9 @@
                             </div>
                             <?php $map->getImageCssBack() ?>
                             <div class="basdepage"></div>
+                            <div class="divLog">
                                 <ul id="log"></ul>
+                            </div>
                         </div>
                     <?php
                 }

@@ -2,7 +2,7 @@
 
 .bodyPage{
     width:800px;
-    margin: 150px auto 500px auto;
+    margin: 150px auto 50px auto;
 }
 
 .Red{
@@ -200,4 +200,16 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(1) rotate(75deg);
     }
+}
+
+.divLog{
+    position: absolute;
+    left: 0px;
+    bottom: 90px;
+    background-color: rgb(97, 97, 97);
+    border: solid black 3px;
+    height: 200px;
+    width: 100%;
+    overflow-y: scroll;
+    color: white;
 }
