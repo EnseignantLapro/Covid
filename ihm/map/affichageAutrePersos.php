@@ -11,7 +11,7 @@
                             if($Perso->getId()!=$PersoJoeuur->getId()){
                                 ?>
                                     <li id="Perso<?= $Perso->getId() ?>">
-                                        <a onclick="AttaquerPerso(<?= $Perso->getId() ?>,0)">
+                                        <a onclick="AttaquerPerso(<?= $Perso->getId() ?>,0, event)">
                                             <?php $Perso->renderHTML() ?>
                                         </a>
                                     </li>
