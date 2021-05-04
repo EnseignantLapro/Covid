@@ -117,7 +117,9 @@
                             </div>
                             <?php $map->getImageCssBack() ?>
                             <div class="basdepage"></div>
+                            <div class="divLog">
                                 <ul id="log"></ul>
+                            </div>
                         </div>
                     <?php
                 }
