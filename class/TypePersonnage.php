@@ -92,7 +92,7 @@ class TypePersonnage  extends CRUD{
     //fonction pour ajouté un typepersonnage
     public function addperso($bdd){
         //ajoute un commentaire dans la base de la page du jeu selectionné
-        $add = $bdd->query($add = $bdd->query("INSERT INTO typepersonnage (nom, coefAttaque, coefDefense, coefPouvoir, coefBouclier, distance, lienImage, idFaction) 
+        $add = $bdd->query("INSERT INTO typepersonnage (nom, coefAttaque, coefDefense, coefPouvoir, coefBouclier, distance, lienImage, idFaction) 
                                                VALUES (".$_POST['nom'].",".$_POST['coefAttaque'].",".$_POST['coefDefense'].",".$_POST['coefBouclier'].",".$_POST['distance'].",".$_POST['lienImage'].",".$_POST['idFaction']." ) ");
         if($add){
             echo "utilisateur ajouté .";
