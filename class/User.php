@@ -375,12 +375,12 @@ class User{
     
     //retourne normalement la faction du Joueur
     public function getFaction(){
-        $req="SELECT faction.id, faction.nom 
-            FROM `faction` ,`personnage`, `user` , `typepersonnage` 
-            WHERE user.idPersonnage = personnage.id 
-            AND personnage.idTypePersonnage = typepersonnage.id 
-            AND typepersonnage.idFaction = faction.id 
-            AND user.id = '".$this->_id."' ";
+        $req="SELECT Faction.id, Faction.nom 
+            FROM `Faction` ,`Personnage`, `User` , `TypePersonnage` 
+            WHERE User.idPersonnage = Personnage.id 
+            AND Personnage.idTypePersonnage = Typepersonnage.id 
+            AND Typepersonnage.idFaction = Faction.id 
+            AND User.id = '".$this->_id."' ";
         $Result = $this->_bdd->query($req);
         if($tab=$Result->fetch()){
            $Faction = new Faction($this->_bdd);
