@@ -51,8 +51,8 @@
                     <?php
                 }else{
                     ?>
-                        <p><a href="index.php">Retour à l'origine du tout</a></p>
                         <div class="bodyPage">
+                            <p><a href="index.php">Retour à l'origine du tout</a></p>
                             <?php
                                 // Quand on ne génère pas de nouvelle position ou que aucune position
                                 // n'est renseignée, on peut appeler un autre personnage.
