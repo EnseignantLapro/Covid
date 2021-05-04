@@ -47,7 +47,7 @@
                         <div class="bodyPage">
                             <p>Il faut créer un personnage d'abord.</p>
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
-                        <div>
+                        </div>
                     <?php
                 }else{
                     ?>
