@@ -44,13 +44,15 @@
                 $Personnage = $Joueur1->getPersonnage();
                 if(is_null($Personnage->getId())){
                     ?>
-                        <p>Il faut créer un personnage d'abord.</p>
-                        <p><a href="index.php">Retour à l'origine du tout</a></p>
+                        <div class="bodyPage">
+                            <p>Il faut créer un personnage d'abord.</p>
+                            <p><a href="index.php">Retour à l'origine du tout</a></p>
+                </div>
                     <?php
                 }else{
                     ?>
                         <p><a href="index.php">Retour à l'origine du tout</a></p>
-                        <div>
+                        <div class="bodyPage">
                             <?php
                                 // Quand on ne génère pas de nouvelle position ou que aucune position
                                 // n'est renseignée, on peut appeler un autre personnage.

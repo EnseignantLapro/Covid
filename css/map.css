@@ -1,6 +1,6 @@
 /* dechir */
 
-.bodyMap{
+.bodyPage{
     width:800px;
     margin: 150px auto 500px auto;
 }
@@ -17,11 +17,10 @@
 }
 
 .lamap{
-    float:left;
     width:100%;
     background-color:rgba(232,240,222,0.37);
     padding:5px;
-    margin:5px 5px 500px 5px;
+    margin:10px;
     border:1px solid rgb(53,52,48);
     box-shadow:2px 2px 2px rgb(31,32,31);
     -moz-box-shadow:2px 2px 2px rgb(51,53,50);
