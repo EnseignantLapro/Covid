@@ -163,7 +163,7 @@
                             <div class='Div1 BG_Vert'>
                                 <h4 class='TC'>Statistiques d'Item :</h4>
                               <!-- Totaux -->
-                                <p class='TC'>Nombre d'item <b>Totaux</b> : <?= ReturnTest() ?>.</p>
+                                <p class='TC'>Nombre d'item <b>Totaux</b> : <?php echo getNombreItem($mabase);  ?>.</p>
                               <!-- LV -->
                                 <?php
                                     for($i = 1 ; $i < 4 ; $i++){
@@ -210,7 +210,7 @@
                             <div class='Div1 BG_Vert'>
                                 <h4 class='TC'>Statistiques d'Équipement :</h4>
                               <!-- Totaux -->
-                                <p class='TC'>Nombre d'équipement <b>Totaux</b> : <?= ReturnTest() ?>.</p>
+                                <p class='TC'>Nombre d'équipement <b>Totaux</b> : <?php echo getNombreEquipement($mabase); ?>.</p>
                               <!-- LV -->
                                 <?php
                                     for($i = 1 ; $i < 4 ; $i++){
@@ -271,3 +271,29 @@
         ?>
     </body>
 </html>
+
+
+<?php
+/*
+    fonction qui retourne le nombre d'équipement total dans la base de donner
+    elle demende en paramètre la connection a la base de donné
+*/
+function getNombreEquipement($bdd){
+  $req = 'SELECT COUNT(*) as "NB" FROM equipement';
+  $excuteReq = $bdd->query($req);
+  $data = $excuteReq->fetch();
+  return $data['NB'];
+}
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*
+    fonction qui retourne le nombre d'item total dans la base de donner
+    elle demende en paramètre la connection a la base de donné
+*/
+function getNombreItem($bdd){
+  $req = 'SELECT COUNT(*) as "NB" FROM item';
+  $excuteReq = $bdd->query($req);
+  $data = $excuteReq->fetch();
+  return $data['NB'];
+}
+
+?>
