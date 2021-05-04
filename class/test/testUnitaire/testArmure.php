@@ -5,21 +5,22 @@
     $Armure = $Armure->createArmureAleatoire();
  
 
-    echo 'Affichae de l armure ';
+    echo 'Affichage de l armure ';
     $Armure->setEquipementByID($Armure->getId());
-    echo "<p>le nom est : ".$Armure->getNom()." ";
-    echo " le id est : ".$Armure->getId()." ";
-    echo " la valeur est : ".$Armure->getValeur()." ";
-    echo " le lvl  est : ".$Armure->getLvl()." ";
-    echo " l'efficacite est : ".$Armure->getEfficacite()." ";
-    echo " la categorie est : ".var_dump($Armure->getCategorie())." ";
+
+    echo "<p>le nom est : ".$Armure->getNom()."</p>";
+    echo "<p> le id est : ".$Armure->getId()." </p>";
+    echo "<p> la valeur est : ".$Armure->getValeur()."</p> ";
+    echo "<p> le lvl  est : ".$Armure->getLvl()."</p> ";
+    echo "<p> l'efficacite est : ".$Armure->getEfficacite()." </p>";
+    echo "<p> la categorie est : ".var_dump($Armure->getCategorie())." </p>";
     $type = $Armure->getType();
     echo "  <p>le type est : id ".$type['id']." / info :".$type['information']." / nom : ".$type['nom']." </p>" ;
     
     
     $perso = new Personnage($mabase);
     $perso->setEntiteById($idEntitePersonnage);
-    echo '<p>Equipe '.$perso->getNom().' de defence  '.$perso->getDefense().'</p>';
+    echo '<p>Equipe '.$perso->getNom().' de defense  '.$perso->getDefense().'</p>';
     echo 'Ajout dans le sac ';
     $perso->addEquipement($Armure);
     echo 'Puis equipement ';
@@ -38,8 +39,17 @@
         echo '<div style="color:red">la suppression a echoué car pas id</div>';
     }
 
-    echo 'Affichage des nouvelle stat de la defence :  ';
-    echo $perso->getDefense();
+    echo "<p>Affichage des nouvelles stats de la defense :";
+    echo "".$perso->getDefense()."</p>";
+
+    echo '<p>Affichage nouvelle force : ';
+    echo ''.$Armure->getForce().'</p>';
+
+    echo "<p>Affichage lvl : ";
+    echo "".$Armure->getlvl()."</p>";
+
+    echo "<p>Affichage valeur : ";
+    echo "".$Armure->getValeur()."</p>";
 
  echo '</div>';
 

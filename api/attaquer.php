@@ -63,12 +63,20 @@ if($access){
                     if($vieAttaquant!=0){
                         //Utilisation méthode pour attaquer le mob
                         $SubitDegat = $DeffensseurMob->SubitDegat($Attaquant);
+                        
+                        //Vie du mob renvoyer après avoir subit l attaque du joueur
                         $vie = $SubitDegat[0];
                         $vieMax = $DeffensseurMob->getVieMax();
-                        //retour de bâton le deffenseur aussi attaque
-                        $vieAttaquant=$Attaquant->SubitDegatByMob($DeffensseurMob);
+                        
+                        //Si le mob as de la vie, il attaque. Sinon, rien ne se passe
+                        if ($vie>0)
+                        {
+                            //Sinon : retour de bâton le deffenseur aussi attaque
+                            $vieAttaquant=$Attaquant->SubitDegatByMob($DeffensseurMob);
+                        }
 
                         //Affichage d'un message avec les dégats ingligé + info de si c'est un cout critique
+                        //Si vous voulez retirer le popup, c'est ici; Gros Chien.
                         $message .= $SubitDegat[1];
 
                         if($vieAttaquant==0){
