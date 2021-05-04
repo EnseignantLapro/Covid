@@ -207,6 +207,15 @@
     border: solid black 3px;
     height: 200px;
     width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: left;
     overflow-y: scroll;
+    overflow-x: clip;
     color: white;
+}
+
+#log li{
+    float: none;
+    margin-top: 10px;
 }
