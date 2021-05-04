@@ -101,7 +101,7 @@ class TypePersonnage  extends CRUD{
         }
     }
     //fonction pour modifier un nom en base
-    public function updateuser($bdd){
+    public function updatenom($bdd){
         $Up = $bdd->query("UPDATE `typepersonnage` SET `nom`='".$POST['newnom']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "Le nom a bien été changé.";
@@ -110,7 +110,7 @@ class TypePersonnage  extends CRUD{
             }
     }
     //fonction pour modifier un coefAttaque en base
-    public function updateuser($bdd){
+    public function updateattaque($bdd){
         $Up = $bdd->query("UPDATE `typepersonnage` SET `coefAttaque`='".$POST['newattaque']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "L'attaque a bien été changé.";
@@ -119,7 +119,7 @@ class TypePersonnage  extends CRUD{
             }
     }
     //fonction pour modifier un coefDeffense en base
-    public function updateuser($bdd){
+    public function updatedeffense($bdd){
         $Up = $bdd->query("UPDATE `typepersonnage` SET `coefDefense`='".$POST['newdefense']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "La défense a bien été changé.";
@@ -128,7 +128,7 @@ class TypePersonnage  extends CRUD{
             }
     }
     //fonction pour modifier un coefPouvoir en base
-    public function updateuser($bdd){
+    public function updatepouvoir($bdd){
         $Up = $bdd->query("UPDATE `typepersonnage` SET `coefPouvoir`='".$POST['newpouvoir']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "Le pouvoir a bien été changé.";
@@ -137,7 +137,7 @@ class TypePersonnage  extends CRUD{
             }
     }
     //fonction pour modifier un coefBouclier en base
-    public function updateuser($bdd){
+    public function updatebouclier($bdd){
         $Up = $bdd->query("UPDATE `typepersonnage` SET `coefBouclier`='".$POST['newbouclier']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "Le bouclier a bien été changé.";
@@ -146,7 +146,7 @@ class TypePersonnage  extends CRUD{
             }
     }
     //fonction pour modifier un distance en base
-    public function updateuser($bdd){
+    public function updatedistance($bdd){
         $Up = $bdd->query("UPDATE `typepersonnage` SET `distance`='".$POST['newdistance']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "La distance a bien été changé.";
@@ -155,7 +155,7 @@ class TypePersonnage  extends CRUD{
             }
     }
     //fonction pour modifier un lienimage en base
-    public function updateuser($bdd){
+    public function updateimage($bdd){
         $Up = $bdd->query("UPDATE `typepersonnage` SET `lienimage`='".$POST['newlienimage']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "Le lienimage a bien été changé.";
@@ -164,7 +164,7 @@ class TypePersonnage  extends CRUD{
             }
     }
     //fonction pour modifier un idFaction en base
-    public function updateuser($bdd){
+    public function updatefaction($bdd){
         $Up = $bdd->query("UPDATE `typepersonnage` SET `idFaction`='".$POST['newidfaction']."' WHERE id=".$this->_id." ");
             if($Up){
                 echo "L'idFaction a bien été changé.";
