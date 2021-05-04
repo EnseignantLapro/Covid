@@ -207,8 +207,8 @@ input[value='Deco!']{
     display: block;
     position: fixed;
     top: 0px;
-    left: 15%;
-    width: 70%;
+    left: 10%;
+    width: 80%;
     margin: 0px auto 100px auto;
     min-height: max-content;
     height: 60px;
@@ -230,12 +230,33 @@ input[value='Deco!']{
     display: inline-block;
     float: none;
     margin: 0px 0.5%;
-    padding: 0px 0.2%;
+    padding: 0px 0.5%;
     height: 60px;
     line-height: 60px;
     width: auto;
     min-width: max-content;
-    font-size: medium;
+    font-size: 1vw;
+}
+
+@media (max-width: 880px) 
+{
+    .ul-Menu li {
+        font-size: 1.5vw;
+    }
+}
+
+@media (max-width: 560px) 
+{
+    .ul-Menu li {
+      font-size: 1.8vw;
+    }
+}
+
+@media (min-width: 1921px) 
+{
+    .ul-Menu li {
+        font-size: 0.7vw;
+    }
 }
 
 .ul-Menu li:hover{
