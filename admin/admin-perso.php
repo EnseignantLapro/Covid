@@ -37,6 +37,7 @@
             }
             // Vérifie qu'il ne s'est pas déconnecté.
             if($access === true){
+                include "ihm/fonction-web/menu.php";
                 if($Joueur1->isAdmin() == true){
                     ?>
                         <div class='Div1 BG_Blanc'>
@@ -53,6 +54,7 @@
             }else{
                 echo $errorMessage;
             }
+            include "ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>
