@@ -42,6 +42,7 @@
                         <h1>Classement</h1>
                         <table>
                             <tr>
+                                <th>Pseudo<th>
                                 <th>Monstre capturé</th>
                                 <th>NFT</th>
                                 <th>XP</th>
