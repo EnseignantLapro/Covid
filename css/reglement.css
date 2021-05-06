@@ -1,0 +1,12 @@
+.bodyReglement{
+    background-image:  url('https://www.wallpaperuse.com/wallp/48-481854_m.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.Règlement{
+    display: block;
+    margin-top: 7%;
+    text-align: center;
+}

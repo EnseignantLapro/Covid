@@ -10,23 +10,23 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/reglement.css">
+            <link rel="stylesheet" href="css/faq.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
-            <title>Projet Full Stack - Réglement</title>
-            <meta name='description' content='Projet Full Stack - Réglement'>
+            <title>Projet Full Stack - FAQ</title>
+            <meta name='description' content='Projet Full Stack - FAQ'>
             <meta name='author' content='La Providence - Amiens'>
             <link rel='shortcut icon' href='favicon.ico'>
         <!-- Intégration Facebook -->
-            <meta property='og:title' content='Projet Full Stack - Réglement'>
-            <meta property='og:description' content='Projet Full Stack - Réglement'>
+            <meta property='og:title' content='Projet Full Stack - FAQ'>
+            <meta property='og:description' content='Projet Full Stack - FAQ'>
             <meta property='og:image' content='favicon.ico'>
         <!-- Intégration Twitter -->
-            <meta name='twitter:title' content='Projet Full Stack - Réglement'>
-            <meta name='twitter:description' content='Projet Full Stack - Réglement'>
+            <meta name='twitter:title' content='Projet Full Stack - FAQ'>
+            <meta name='twitter:description' content='Projet Full Stack - FAQ'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
-    <body class="bodyReglement">
+    <body class="bodyFAQ">
         <?php
             include "session.php";
 
@@ -38,9 +38,15 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="Règlement">
-                        <h1>Règlement</h1>
-                        <p><b>1</b> - Être gentil</p>
+                    <div class="FAQ">
+                        <h1>FAQ</h1>
+                        <h3>Questions Fréquentes</h3>
+                        <h4>Comment se déplacer sur la carte ?</h4>
+                        <p>En cliquant.</p>
+                        <h4>Comment utiliser un items ?</h4>
+                        <p>En cliquant.</p>
+                        <h4>Comment créer un nouveau personnage ?</h4>
+                        <p>En cliquant.</p>
                     </div>
                 <?php
             }else{

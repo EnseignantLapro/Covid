@@ -43,7 +43,7 @@
             }
             // Vérifie qu'il ne s'est pas déconnecté.
             if($access === true){
-                include "ihm/fonction-web/menu.php";
+                include "admin-menu.php";
                 if($Joueur1->isAdmin() == true){
                     ?>
                         <div class='Div1 BG_Blanc'>
@@ -236,7 +236,7 @@
                                 <p class='TC'>Nombre d'équipement <b>en fusion</b> : <?= ReturnTest() ?>.</p>
                                 <p class='TC'>Nombre d'équipement <b>nucléaire</b> : <?= ReturnTest() ?>.</p>
                                 <p class='TC'>Nombre d'équipement <b>infini</b> : <?= ReturnTest() ?>.</p>
-                              <!-- Type Euquipement -->
+                              <!-- Type Equipement -->
                                 <p class='TC'>Nombre d'équipement de type <b>Brigandine</b> : <?= ReturnTest() ?>.</p>
                                 <p class='TC'>Nombre d'équipement de type <b>Glaive</b> : <?= ReturnTest() ?>.</p>
                                 <p class='TC'>Nombre d'équipement de type <b>Baton</b> : <?= ReturnTest() ?>.</p>
@@ -267,7 +267,6 @@
             }else{
                 echo $errorMessage;
             }
-            include "ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>
