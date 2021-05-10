@@ -1,8 +1,8 @@
-<?php
-    $listMob = $map->getAllMobs();
-    if(count($listMob)>0){
-        ?>
-            <div class="left">
+<div class="AllMobs">
+    <?php
+        $listMob = $map->getAllMobs();
+        if(count($listMob)>0){
+            ?>
                 <ul id="ulMob" class="Mob">
                     <?php
                         $Mob = new Mob($mabase);
@@ -41,7 +41,7 @@
                         }
                     ?>
                 </ul>
-            </div>
-        <?php
-    }
-?>
+            <?php
+        }
+    ?>
+</div>

@@ -1,8 +1,8 @@
-<?php
-    $listPersos = $map->getAllPersonnages();
-    if(count($listPersos)>1){
-        ?>
-            <div class="left">
+<div class="OtherPerso">
+    <?php
+        $listPersos = $map->getAllPersonnages();
+        if(count($listPersos)>1){
+            ?>
                 <p class='NoSolo'>Visiblement tu n'es pas seul ici il y a aussi :</p>
                 <ul id="ulPersos" class="Persos">
                     <?php
@@ -20,7 +20,7 @@
                         }
                     ?>
                 </ul>
-            </div>
-        <?php
-    }
-?>
+            <?php
+        }
+    ?>
+</div>

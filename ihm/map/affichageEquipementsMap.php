@@ -1,8 +1,8 @@
-<?php
-    $listEquipements = $map->getEquipements();
-    if(count($listEquipements)>0){
-        ?>
-            <div class="left">
+<div class="MapEquipments">
+    <?php
+        $listEquipements = $map->getEquipements();
+        if(count($listEquipements)>0){
+            ?>
                 <p class="pEquipement">Équipements Présent :</p>
                 <p class="divRarete">Commun - Rare</p>
                 <ul class="Equipement">
@@ -18,7 +18,7 @@
                         }
                     ?>
                 </ul>
-            </div>
-        <?php
-    }
-?>
+            <?php
+        }
+    ?>
+</div>
