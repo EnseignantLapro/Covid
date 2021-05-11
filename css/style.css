@@ -1,9 +1,5 @@
 /* Dechir */
 
-.basdepage{
-    height:200px;
-}
-
 .left{
     float:left
 }
@@ -21,18 +17,18 @@ ul{
 
 html,body{
     margin:0;
-    margin-top: 35px;
+    margin-top:35px;
     padding:0;
     flex-direction:column;
 }
 
 body{
     width:100%;
-    background-image:  url('https://www.wallpaperuse.com/wallp/48-481854_m.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
+    background-image:url('https://www.wallpaperuse.com/wallp/48-481854_m.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    position:relative;
 }
 
 .VerticalText{
