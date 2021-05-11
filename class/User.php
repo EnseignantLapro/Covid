@@ -393,7 +393,10 @@ class User{
 
     public function nbUser(){
         $user = $this->_bdd->query("SELECT COUNT(*) prenom FROM user");
-        $nbuser = $this->_bdd->query($user);
+        $nbuser = $user->fetch();
+                
+        echo $nbuser['prenom'];
+        
     }
 }
 ?>
