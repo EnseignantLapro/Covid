@@ -1215,7 +1215,7 @@ class map{
         return $tab;
     }
     
-
+/*
     //Permet de générer un nom de map
     public function generateMap(){
         $nom ="";
@@ -1334,7 +1334,7 @@ class map{
                 $Consone .=" ";
             }
         }
-
+*/
         //la premiere case et le type en anglais pour une recherche d'image
         $tab[0]=$type['id'];
         $tab[1]=$type['nom'];
