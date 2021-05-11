@@ -20,9 +20,9 @@ class Mob extends Entite{
         return $this->_typeMob;
     }
 
-    public function setMob($id,$type,$nom,$degat,$vie,$coefXP,$vieMax,$idProprio){
+    /*public function setMob($id,$type,$nom,$degat,$vie,$coefXP,$vieMax,$idProprio){
         Parent::setMob($id,$type,$nom,$degat,$vie,$coefXP,$vieMax,$idProprio,2);
-    }
+    }*/
 
     public function setMobById($id){
         Parent::setEntiteByIdWithoutMap($id);
@@ -113,14 +113,14 @@ class Mob extends Entite{
         return array ($this->_vie, $CoupCritique);
     }
 
-    public function getHistoriqueAttaque(){
+    /*public function getHistoriqueAttaque(){
         $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$this->_id."'" ;
         $Result = $this->_bdd->query($req);
         while($tab=$Result->fetch()){
-            array_push($this->$HostoriqueAttaque,$tab);
+            array_push($this->$HistoriqueAttaque,$tab);
         }
-        return $this->$HostoriqueAttaque;
-    }
+        return $this->$HistoriqueAttaque;
+    }*/
 
    
 
@@ -151,7 +151,7 @@ class Mob extends Entite{
                 $degat = 1*$lvl*$lvl;
             }
 
-            $newMob = $newMob->CreateEntite($this->generateNom($type[0]), $vie, $degat, $map->getId(),$vie,$type[3],null,2,$lvl);
+            $newMob = $newMob->CreateEntite($this->generateName($type[0]), $vie, $degat, $map->getId(),$vie,$type[3],null,2,$lvl);
 
             if(!is_null($newMob)){
                 $req="INSERT INTO `Mob`(`coefXp`, `id` ,`type` ) 
@@ -294,75 +294,315 @@ class Mob extends Entite{
                 $Adjectif ="Haineu";
         }
 
-        $Consone ="";
-        for($i=0;$i<=rand(1,3);$i++){
-            switch (rand(0,19)){
-                case 0:
-                    $Consone .="zar";
-                break;
-                case 1:
-                    $Consone .="dra";
-                break;
-                case 2:
-                    $Consone .="bel";
-                break;
-                case 3:
-                    $Consone .="cri";
-                break;
-                case 4:
-                    $Consone .="fa";
-                break;
-                case 5:
-                    $Consone .="zor";
-                break;
-                case 6:
-                    $Consone .="pat";
-                break;
-                case 7:
-                    $Consone .="for";
-                break;
-                case 8:
-                    $Consone .="ga";
-                break;
-                case 9:
-                    $Consone .="lon";
-                break;
-                case 10:
-                    $Consone .="vi";
-                break;
-                case 11:
-                    $Consone .="bu";
-                break;
-                case 12:
-                    $Consone .="al";
-                break;
-                case 13:
-                    $Consone .="sion";
-                break;
-                case 14:
-                    $Consone .="teur";
-                break;
-                case 15:
-                    $Consone .="nar";
-                break;
-                case 16:
-                    $Consone .="pon";
-                break;
-                case 17:
-                    $Consone .="pen";
-                break;
-                case 18:
-                    $Consone .="ri";
-                break;
-                case 19:
-                    $Consone .="or";
-                break;
-                default:
-                $Consone .=" ";
-            }
+        $Nom ="";
+        switch (rand(0,101)){
+            case 0:
+                $Nom .="Bracken";
+            break;
+            case 1:
+                $Nom .="Acorn";
+            break;
+            case 2:
+                $Nom .="Sotreg";
+            break;
+            case 3:
+                $Nom .="Urshug";
+            break;
+            case 4:
+                $Nom .="Moleskrith";
+            break;
+            case 5:
+                $Nom .="Niondikaix";
+            break;
+            case 6:
+                $Nom .="Sradurgrin";
+            break;
+            case 7:
+                $Nom .="Moleskrith";
+            break;
+            case 8:
+                $Nom .="Orshion";
+            break;
+            case 9:
+                $Nom .="Tagasko";
+            break;
+            case 10:
+                $Nom .="Totrei";
+            break;
+            case 11:
+                $Nom .="Trasalmoh";
+            break;
+            case 12:
+                $Nom .="Oronghaiz";
+            break;
+            case 13:
+                $Nom .="Trikto";
+            break;
+            case 14:
+                $Nom .="Panorus";
+            break;
+            case 15:
+                $Nom .="Konstian";
+            break;
+            case 16:
+                $Nom .="Peleon";
+            break;
+            case 17:
+                $Nom .="Melanthus";
+            break;
+            case 18:
+                $Nom .="Eusades";
+            break;
+            case 19:
+                $Nom .="Ajalus";
+            break;
+            case 20:
+                $Nom .="Shellos";
+            break;
+            case 21:
+                $Nom .="Gregzins";
+            break;
+            case 22:
+                $Nom .="Tits";
+            break;
+            case 23:
+                $Nom .="Yelko";
+            break;
+            case 24:
+                $Nom .="Uczaks";
+            break;
+            case 25:
+                $Nom .="Furghaohlach";
+            break;
+            case 26:
+                $Nom .="Tirdad";
+            break;
+            case 27:
+                $Nom .="Rar";
+            break;
+            case 28:
+                $Nom .="Cenghaild";
+            break;
+            case 29:
+                $Nom .="Patriarch";
+            break;
+            case 30:
+                $Nom .="Moraphine";
+            break;
+            case 31:
+                $Nom .="Verelle";
+            break;
+            case 32:
+                $Nom .="Yenyre";
+            break;
+            case 33:
+                $Nom .="Dysys";
+            break;
+            case 34:
+                $Nom .="Hyninis";
+            break;
+            case 35:
+                $Nom .="Cecoya";
+            break;
+            case 36:
+                $Nom .="Fecerna";
+            break;
+            case 37:
+                $Nom .="Hohecne";
+            break;
+            case 38:
+                $Nom .="Ephnide";
+            break;
+            case 39:
+                $Nom .="Ghurheco";
+            break;
+            case 40:
+                $Nom .="Gerirho";
+            break;
+            case 41:
+                $Nom .="Thucnaidh";
+            break;
+            case 42:
+                $Nom .="Brelforth";
+            break;
+            case 43:
+                $Nom .="Dravru";
+            break;
+            case 44:
+                $Nom .="Ceshope";
+            break;
+            case 45:
+                $Nom .="Rherunru";
+            break;
+            case 46:
+                $Nom .="Phunvipi";
+            break;
+            case 47:
+                $Nom .="Cylmik";
+            break;
+            case 48:
+                $Nom .="Melfie";
+            break;
+            case 49:
+                $Nom .="Ony";
+            break;
+            case 50:
+                $Nom .="Oscono";
+            break;
+            case 51:
+                $Nom .="Driolfur";
+            break;
+            case 52:
+                $Nom .="Zimnath";
+            break;
+            case 53:
+                $Nom .="Chocudro";
+            break;
+            case 54:
+                $Nom .="Bobiphe";
+            break;
+            case 55:
+                $Nom .="Eophorbia";
+            break;
+            case 56:
+                $Nom .="Lavendoris";
+            break;
+            case 57:
+                $Nom .="Poppiris";
+            break;
+            case 58:
+                $Nom .="Aconite";
+            break;
+            case 59:
+                $Nom .="Cinnamonia";
+            break;
+            case 60:
+                $Nom .="Viola";
+            break;
+            case 61:
+                $Nom .="Saffronis";
+            break;
+            case 62:
+                $Nom .="Dindellis";
+            break;
+            case 63:
+                $Nom .="Poinsetta";
+            break;
+            case 64:
+                $Nom .="Amaryllis";
+            break;
+            case 65:
+                $Nom .="Ehretia";
+            break;
+            case 66:
+                $Nom .="Pteili";
+            break;
+            case 67:
+                $Nom .="Poppiris";
+            break;
+            case 68:
+                $Nom .="Hellobora";
+            break;
+            case 69:
+                $Nom .="Sabatia";
+            break;
+            case 70:
+                $Nom .="Azolla";
+            break;
+            case 71:
+                $Nom .="Ianisse";
+            break;
+            case 72:
+                $Nom .="Oinone";
+            break;
+            case 73:
+                $Nom .="Hamo";
+            break;
+            case 74:
+                $Nom .="Rand";
+            break;
+            case 75:
+                $Nom .="Raiimond";
+            break;
+            case 76:
+                $Nom .="Eloise";
+            break;
+            case 77:
+                $Nom .="Maneld";
+            break;
+            case 78:
+                $Nom .="Cristina";
+            break;
+            case 79:
+                $Nom .="Elurelia";
+            break;
+            case 80:
+                $Nom .="Dialina";
+            break;
+            case 81:
+                $Nom .="Narilla";
+            break;
+            case 82:
+                $Nom .="Eathemala";
+            break;
+            case 83:
+                $Nom .="Oralina";
+            break;
+            case 84:
+                $Nom .="Kallipheme";
+            break;
+            case 85:
+                $Nom .="Elurelia";
+            break;
+            case 86:
+                $Nom .="Nahfa";
+            break;
+            case 87:
+                $Nom .="Lagurinda";
+            break;
+            case 88:
+                $Nom .="Aethella";
+            break;
+            case 89:
+                $Nom .="Perinos";
+            break;
+            case 90:
+                $Nom .="Thataruh";
+            break;
+            case 91:
+                $Nom .="Abrao";
+            break;
+            case 92:
+                $Nom .="Tallan";
+            break;
+            case 93:
+                $Nom .="Efarol";
+            break;
+            case 94:
+                $Nom .="Yalluh";
+            break;
+            case 95:
+                $Nom .="Idlestriker";
+            break;
+            case 96:
+                $Nom .="Mimnu";
+            break;
+            case 97:
+                $Nom .="Odri";
+            break;
+            case 98:
+                $Nom .="Osruu";
+            break;
+            case 99:
+                $Nom .="Eelliya";
+            break;
+            case 100:
+                $Nom .="Connar";
+            break;
+            default:
+                $Nom .="Asteus";
         }
-
-        return $nom ." ". $Adjectif." ".$Consone;
+        return $nom ." ". $Adjectif." ".$Nom;
     }
 
 
