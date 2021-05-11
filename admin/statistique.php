@@ -272,28 +272,3 @@
     </body>
 </html>
 
-
-<?php
-/*
-    fonction qui retourne le nombre d'équipement total dans la base de donner
-    elle demende en paramètre la connection a la base de donné
-*/
-function getNombreEquipement($bdd){
-  $req = 'SELECT COUNT(*) as "NB" FROM equipement';
-  $excuteReq = $bdd->query($req);
-  $data = $excuteReq->fetch();
-  return $data['NB'];
-}
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------
-/*
-    fonction qui retourne le nombre d'item total dans la base de donner
-    elle demende en paramètre la connection a la base de donné
-*/
-function getNombreItem($bdd){
-  $req = 'SELECT COUNT(*) as "NB" FROM item';
-  $excuteReq = $bdd->query($req);
-  $data = $excuteReq->fetch();
-  return $data['NB'];
-}
-
-?>
