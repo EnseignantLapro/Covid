@@ -1,7 +1,7 @@
 <div class="MapEquipments">
     <?php
         $listEquipements = $map->getEquipements();
-        if(count($listEquipements)>0){
+        if(count($listEquipements) > 0){
             ?>
                 <p class="pEquipement">Équipements Présent :</p>
                 <p class="divRarete">Commun - Rare</p>
