@@ -9,6 +9,7 @@ body{
     background-color: #e8eaf1; 
     font-family: Verdana, sans-serif; 
     font-size: 100%;
+    background-image: none !important;
 }
 
 /*          CSS MARGES et PADDING            */
