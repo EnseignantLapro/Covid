@@ -398,9 +398,9 @@ class User{
     }
 
     public function nbUserFaction(){
-        $userfaction = $this->_bdd->query("");
+        $userfaction = $this->_bdd->query("SELECT COUNT(*) FROM faction, typepersonnage WHERE faction.id = typepersonnage.idFaction");
         $nbuserfaction = $user->fetch();
-        echo $nbuserfaction[''];
+        echo $nbuserfaction[''];        
     }
 }
 ?>
