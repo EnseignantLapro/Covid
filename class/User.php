@@ -440,5 +440,17 @@ class User{
             return null;
         }
     }
+
+    public function nbUser(){
+        $user = $this->_bdd->query("SELECT COUNT(*) prenom FROM user");
+        $nbuser = $user->fetch();     
+        echo $nbuser['prenom'];
+    }
+
+    public function nbUserFaction(){
+        $userfaction = $this->_bdd->query("");
+        $nbuserfaction = $user->fetch();
+        echo $nbuserfaction[''];
+    }
 }
 ?>
