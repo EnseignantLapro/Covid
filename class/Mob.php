@@ -20,9 +20,9 @@ class Mob extends Entite{
         return $this->_typeMob;
     }
 
-    /*public function setMob($id,$type,$nom,$degat,$vie,$coefXP,$vieMax,$idProprio){
+    public function setMob($id,$type,$nom,$degat,$vie,$coefXP,$vieMax,$idProprio){
         Parent::setMob($id,$type,$nom,$degat,$vie,$coefXP,$vieMax,$idProprio,2);
-    }*/
+    }
 
     public function setMobById($id){
         Parent::setEntiteByIdWithoutMap($id);
@@ -127,14 +127,14 @@ class Mob extends Entite{
         return array ($this->_vie, $CoupCritique);
     }
 
-    /*public function getHistoriqueAttaque(){
+    public function getHistoriqueAttaque(){
         $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$this->_id."'" ;
         $Result = $this->_bdd->query($req);
         while($tab=$Result->fetch()){
-            array_push($this->$HistoriqueAttaque,$tab);
+            array_push($this->$HostoriqueAttaque,$tab);
         }
-        return $this->$HistoriqueAttaque;
-    }*/
+        return $this->$HostoriqueAttaque;
+    }
 
     //retourne toute la mécanique d'affichage d'un mob
     public function renderHTML(){
