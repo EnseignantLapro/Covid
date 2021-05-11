@@ -71,14 +71,13 @@ class User{
                     $req ="INSERT INTO `User`( `login`, `prenom`, `mdp`) VALUES ('".$_POST['login']."','".$_POST['prenom']."','".$_POST['password']."')";
                     $Result = $this->_bdd->query($req);
                 }else{
-                    $errorMessage = "Il faut un prénom à l'inscription.";
+                    $errorMessage = "Il faut écrire un prénom à l'inscription.";
                 }
             }else{
-                echo "les mots de passes ne corespondes pas";
+                echo "Les mots de passes ne corespondent pas.";
             }
             
         }
-
 
         //traitement du formulaire
         $access = false;
@@ -99,7 +98,7 @@ class User{
                 $this->DeconnectToi();
             }else{
                 if ($errorMessage==""){
-                    $errorMessage = "Votre login et mdp ne correspondent pas.";
+                    $errorMessage = "Le mots de passe ne correspond pas.";
                 }
                 $afficheForm = true;
             }
@@ -118,21 +117,21 @@ class User{
             ?>
             <form action="" method="post" >
                 <div>
-                    <label for="login">Mail : </label>
+                    <label for="login">Mail :</label>
                     <input type="email" name="login" id="login" required >
                 </div>
-                <div >
-                    <label for="password">Password: </label>
+                <div>
+                    <label for="password">Password :</label>
                     <input type="password" name="password" id="password" required>
+                    <label class="inscriptionHide logSub" for="MDP">Réécrivez votre Password :</label>
+                    <input class="inscriptionHide logSub" type="password" name="MDP" id="MDP">
                 </div>
-
-                <div >
-                    <label class="inscriptionHide logSub" for="prenom">Prénom si tu t'inscris : </label>
+                <div>
+                    <label class="inscriptionHide logSub" for="prenom">Prénom :</label>
                     <input class="inscriptionHide logSub" type="text" name="prenom" id="prenom" >
                 </div>
-
-                <div >
-                    <input type="submit" value="GO !" name="log" id="logSubsubmit"> <a class="inscriptionShow logSub" id="subCreatclick" onclick="inscription()">Inscription au jeu</a>
+                <div>
+                    <input type="submit" value="GO !" name="log" id="logSubsubmit"> <a class="inscriptionShow logSub" id="subCreatclick" onclick="inscription()">Cliquez pour vous inscrire.</a>
                 </div>
             </form>
         </div>
@@ -242,7 +241,6 @@ class User{
         $HY = $LX = round($taille/$LargeurX);
         $taille = $LX*$LargeurX;
 
-
         //permet de réadapter la taille en fonction de l'arondi qui a grossi les div
 
         $Map = $this->getPersonnage()->getMap();
@@ -254,48 +252,79 @@ class User{
         //On rajoute largeur de x pour laisser de la place à la border
         $ligneTaille = $LargeurX*$LX+$LargeurX*2;
         $styleLigne = 'style="width:'.$ligneTaille.'px;height:'.$HY.'px"';
-
-        echo '<div class="map" '.$style.'>';
-        for($y=$maxY;$y>$minY;$y--){
-
-            echo '<div class="mapLigne" '.$styleLigne.'>';
-            for($x=$minX;$x<$maxX;$x++){
-               
-                 if ($y==$Map->getY() && $x==$Map->getX()) {
-                    echo '<div class="mapPositionUser" '.$styleCellule.'>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Compass_Rose_French_North.svg/800px-Compass_Rose_French_North.svg.png" widht="'.$LX.'px" height="'.$LX.'px">
-                    </div>';
-                }else if($y==0 && $x==0){
-                    echo '<div class="mapOrigine" '.$styleCellule.'></div>';
-                }else{
-                    if(array_key_exists($x,$allMap)){
-                        if(array_key_exists($y,$allMap[$x])){
-                            if(!is_null($allMap[$x][$y])){
-
-                                //map found check it bro 
-                                $MapScan->setMapByID($allMap[$x][$y]);
-
-                                if(count($MapScan->getAllMobContre($this))){
-                                    echo '<div class="mapMob" '.$styleCellule.'></div>';
-                                }else if (count($MapScan->getAllMobCapture($this))){
-                                    echo '<div class="mapClear" '.$styleCellule.'></div>';
-                                }else{
-                                    echo '<div class="mapVerte" '.$styleCellule.'></div>';
-                                }
-                            }else{
-                                echo '<div class="mapRouge" '.$styleCellule.'></div>';
-                            }
-                        }else{
-                            echo '<div class="mapRouge" '.$styleCellule.'></div>';
-                        }
-                    }else{
-                        echo '<div class="mapRouge" '.$styleCellule.'></div>';
+        ?>
+            <div class="map" <?= $style ?>>
+                <?php
+                    for($y=$maxY;$y>$minY;$y--){
+                        ?>
+                            <div class="mapLigne" <?= $styleLigne ?>>
+                                <?php
+                                    for($x=$minX;$x<$maxX;$x++){
+                                      // Si User est positioné à la coordonné.
+                                        if($y==$Map->getY() && $x==$Map->getX()){
+                                            ?>
+                                                <div class="mapPositionUser" <?= $styleCellule ?>>
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Compass_Rose_French_North.svg/800px-Compass_Rose_French_North.svg.png" widht="<?= $LX ?>px" height="<?= $LX ?>px">
+                                                </div>
+                                            <?php
+                                      // Si la coordonné est 0/0.
+                                        }else if($y==0 && $x==0){
+                                            ?>
+                                                <div class="mapOrigine" <?= $styleCellule ?>></div>
+                                            <?php
+                                      // Si autre cas.
+                                        }else{
+                                          // Si Y existe dans la BDD.
+                                            if(array_key_exists($x,$allMap)){
+                                              // Si Y/X existe dans la BDD.
+                                                if(array_key_exists($y,$allMap[$x])){
+                                                  // Si déja visité par User.
+                                                    if(!is_null($allMap[$x][$y])){
+                                                      //map found check it bro
+                                                        $MapScan->setMapByID($allMap[$x][$y]);
+                                                      // Si coordonné ayant un ou des Monstres Non capturés.
+                                                        if(count($MapScan->getAllMobContre($this))){
+                                                            ?>
+                                                                <div class="mapMob" <?= $styleCellule ?>></div>
+                                                            <?php
+                                                      // Si coordonné ayant un ou des Monstres capturés.
+                                                        }else if (count($MapScan->getAllMobCapture($this))){
+                                                            ?>
+                                                                <div class="mapClear" <?= $styleCellule ?>></div>
+                                                            <?php
+                                                      // Si coordonné n'ayant aucun Monstres.
+                                                        }else{
+                                                            ?>
+                                                                <div class="mapVerte" <?= $styleCellule ?>></div>
+                                                            <?php
+                                                        }
+                                                  // Si jamais visité par User.
+                                                    }else{
+                                                        ?>
+                                                            <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                        <?php
+                                                    }
+                                              // Si Y/X n'existe pas dans la BDD.
+                                                }else{
+                                                    ?>
+                                                        <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                    <?php
+                                                }
+                                          // Si Y n'existe pas dans la BDD.
+                                            }else{
+                                                ?>
+                                                    <div class="mapRouge" <?= $styleCellule ?>></div>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+                        <?php
                     }
-                }
-            }
-            echo '</div>';
-        }
-        echo '</div>';
+                ?>
+            </div>
+        <?php
     }
     //affiche tout les utilisateurs ainsi que leurs donnée (commande de préférance admin)
     public function showusers(){
@@ -308,24 +337,31 @@ class User{
         echo $show['mdp'];
         echo $show['idPersonnage'];
         echo $show['admin'];
-
     }
     //fonction pour modifier un prenom en base
     public function updateuser(){
         $Up = $this->_bdd->query("UPDATE `user` SET `prenom`='".$POST['newprenom']."' WHERE id=".$this->_id." ");
             if($Up){
-                echo "Ton prénom a bien été changé.";
+                ?>
+                    <p>Ton prénom a bien été changé.</p>
+                <?php
             }else{
-                echo "Une erreur est survenue :/";
+                ?>
+                    <p>Une erreur est survenue.</p>
+                <?php
             }
     }
     //fonction pour supprimé un utilisateur version admin
     public function deleteuseradminversion(){
         $Del = $this->_bdd->query("DELETE FROM user WHERE id= ".$_POST['id']."");
             if($Del){
-                echo "utilisateur supprimé";
+                ?>
+                    <p>Utilisateur supprimé.</p>
+                <?php
             }else{
-                echo "une erreur est survenue";
+                ?>
+                    <p>Une erreur est survenue.</p>
+                <?php
             }
     }
     //fonction pour ajouté un utilisateur
@@ -333,9 +369,13 @@ class User{
         //ajoute un commentaire dans la base de la page du jeu selectionné
         $add = $this->_bdd->query("INSERT INTO user (login, prenom, mdp, idPersonnage, admin) VALUES (".$_POST['login'].",".$_POST['prenom'].",".$_POST['mdp'].",".$_POST['idPersonnage'].", 0 ) ");
         if($add){
-            echo "utilisateur ajouté .";
+            ?>
+                <p>Utilisateur ajouté.</p>
+            <?php
         } else {
-            echo "Une erreur est survenue.";
+            ?>
+                <p>Une erreur est survenue.</p>
+            <?php
         }
     }
     //fonction pour modifier un mot de passe
@@ -346,15 +386,21 @@ class User{
                 //mise a jour dans la base du nouveau mot de passe
                 $rep = $this->_bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE id=".$this->_id." ");
                 if($rep){
-                    //succées 
-                    echo "Mot de passe changé";
+                    //succées
+                    ?>
+                        <p>Mot de passe changé.</p>
+                    <?php
                 }else{
+                    ?>
                     //erreur a l'update dans la base
-                    echo "Une erreur est survenue";
+                        <p>Une erreur est survenue.</p>
+                    <?php
                 }
-            } else {
+            } else{
                 //message d'erreur
-                echo "les mots de passe ne correspondent pas...";
+                ?>
+                    <p>Les mots de passe ne correspondent pas.</p>
+                <?php
             }
         }
     }
@@ -364,11 +410,15 @@ class User{
             //mise a jour dans la base du nouveau mot de passe
             $rep = $this->_bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE `id`='".$_POST['id']."' ");
             if($rep){
-                //succées 
-                echo "Le mot de passe de l'utilisateur a été changé";
+                //succées
+                ?>
+                    <p>Le mot de passe de l'utilisateur a été changé.</p>
+                <?php
             }else{
                 //erreur a l'update dans la base
-                echo "Une erreur est survenue";
+                ?>
+                    <p>Une erreur est survenue.</p>
+                <?php
             }
         }
     }
