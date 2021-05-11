@@ -183,7 +183,7 @@ class Faction {
      * $id = id de la faction
     */
     public function getFactionNameById($id) {
-        $req = $this->_bdd->prepare("SELECT nom FROM Faction WHERE id = ?");
+        $req = $this->_bdd->prepare("SELECT * FROM Faction WHERE id = ?");
         $req->execute($id);
 
         return $req->fetch();
