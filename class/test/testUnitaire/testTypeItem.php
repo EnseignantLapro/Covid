@@ -2,19 +2,15 @@
  echo '<div class="testUnitaire"><p>Test Type Item </p>';
 
     $Item = new Item($mabase);
-    $Item = $Item->createAleatoire();
+    $Item = $Item->createItemAleatoire();
 
-
-    echo 'Affichage de l arme ';
-    $Item->setEquipementByID($Item->getId());
-    echo "<p>le nom est : ".$Item->getNom()." ";
-    echo " l'id est : ".$Item->getId()." ";
-    echo " la valeur est : ".$Item->getValeur()." ";
-    echo " le lvl  est : ".$Item->getLvl()." ";
-    echo " l'efficacite est de : ".$Item->getEfficacite()." ";
-    echo " la categorie est : ".var_dump($Item->getCategorie())." ";
+    echo "<p>Nom Item : ".$Item->getNom()." ";
+    echo "<p>ID : ".$Item->getId()." ";
+    echo "<p>la valeur est : ".$Item->getValeur()." ";
+    echo "<p>le lvl  est : ".$Item->getLvl()." ";
+    echo "<p>l'efficacite est de : ".$Item->getEfficacite()." ";
+    echo "<p>l'image  est : ".$newItem->getLienImage()."</p>";
     $type = $Item->getType();
-    echo "  <p>ID de lArme ".$type['id']." / nom : ".$type['nom']." </p>" ;
 
  echo '</div>';
 
