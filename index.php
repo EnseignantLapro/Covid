@@ -10,7 +10,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/index.css">
             <script src="main.js"></script>
         <!-- Informations Généraux-->
             <title>Projet Full Stack</title>
@@ -29,10 +28,10 @@
     <body class="bodyAccueil">
         <?php
             include "session.php";
-            if($access){
+            if($access === true){
                 $access = $Joueur1->DeconnectToi();
             }
-            if($access){
+            if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
                     <div class="reglement">
