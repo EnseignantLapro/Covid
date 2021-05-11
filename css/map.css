@@ -219,3 +219,16 @@
     float: none;
     margin-top: 10px;
 }
+
+.OtherPerso{
+    float:left;
+}
+.MapEquipments{
+    float:left;
+}
+.MapItem{
+    float:left;
+}
+.AllMobs{
+    float:left;
+}

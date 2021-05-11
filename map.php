@@ -97,7 +97,7 @@
                                             </div>
                                             <?php
                                                 // AFFICHAGE SI FORGE
-                                                    if($map->isForge()){
+                                                    if($map->isForge() === true){
                                                         include "ihm/map/afficherForge.php.php";
                                                     }
                                                 // AFFICHAGE AUTRES JOUEURS PRESENTS

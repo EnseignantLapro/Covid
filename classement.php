@@ -45,17 +45,19 @@
                                 <th>Pseudo<th>
                                 <th>Monstre capturé</th>
                                 <th>NFT</th>
+                                <th>LV</th>
                                 <th>XP</th>
                                 <th>Dégats</th>
                                 <th>Vie</th>
                             </tr>
                             <tr>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
+                                <td><?= 'Exemple' ?></td>
+                                <td><?= 42 ?></td>
+                                <td><?= 5 ?></td>
+                                <td><?= 21 ?></td>
+                                <td><?= 400 ?></td>
+                                <td><?= 500 ?></td>
+                                <td><?= 600 ?></td>
                             </tr>
                         </table>
                     </div>
