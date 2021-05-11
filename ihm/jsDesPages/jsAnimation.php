@@ -59,6 +59,24 @@
 
         }
 
+        if ( [ "Parapluie" ].some( w => weaponType.includes( w ) ) ) {
+
+            eventFrame.style.top  = `${clientY + window.scrollY}px`;
+            eventFrame.style.left = `${clientX}px`;
+            eventFrame.classList.add("sword-slash");
+            new Audio(`${soundPath}/Parapluie/Parapluie.mp3`).play();
+
+        }
+
+        if ( [ "Baton" ].some( w => weaponType.includes( w ) ) ) {
+
+            eventFrame.style.top  = `${clientY + window.scrollY}px`;
+            eventFrame.style.left = `${clientX}px`;
+            eventFrame.classList.add("sword-slash");
+            new Audio(`${soundPath}/Baton/coup_baton${rand(2)}.mp3`).play();
+
+        }    
+
         eventFrame.classList.add("play");
         eventFrame.onanimationend = () => eventFrame.classList.remove("play");
 
