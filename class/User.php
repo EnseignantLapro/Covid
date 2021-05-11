@@ -399,7 +399,7 @@ class User{
             } else{
                 //message d'erreur
                 ?>
-                    <p>Les mots de passe ne correspondent pas.</p>
+                    <p>Les mot de passe ne correspondent pas.</p>
                 <?php
             }
         }
