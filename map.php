@@ -16,17 +16,17 @@
             <link rel="stylesheet" href="css/entite.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
-            <title>Projet Full Stack - Combat</title>
-            <meta name='description' content='Projet Full Stack - Combat'>
+            <title>Projet Full Stack - Map</title>
+            <meta name='description' content='Projet Full Stack - Map'>
             <link rel='shortcut icon' href='favicon.ico'>
             <meta name='author' content='La Providence - Amiens'>
         <!-- Intégration Facebook -->
-            <meta property='og:title' content='Projet Full Stack - Combat'>
-            <meta property='og:description' content='Projet Full Stack - Combat'>
+            <meta property='og:title' content='Projet Full Stack - Map'>
+            <meta property='og:description' content='Projet Full Stack - Map'>
             <meta property='og:image' content='favicon.ico'>
         <!-- Intégration Twitter -->
-            <meta name='twitter:title' content='Projet Full Stack - Combat'>
-            <meta name='twitter:description' content='Projet Full Stack - Combat'>
+            <meta name='twitter:title' content='Projet Full Stack - Map'>
+            <meta name='twitter:description' content='Projet Full Stack - Map'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
     <body class="bodyMap">
@@ -44,13 +44,15 @@
                 $Personnage = $Joueur1->getPersonnage();
                 if(is_null($Personnage->getId())){
                     ?>
-                        <p>Il faut créer un personnage d'abord.</p>
-                        <p><a href="index.php">Retour à l'origine du tout</a></p>
+                        <div class="bodyPage">
+                            <p>Il faut créer un personnage d'abord.</p>
+                            <p><a href="index.php">Retour à l'origine du tout</a></p>
+                        </div>
                     <?php
                 }else{
                     ?>
-                        <p><a href="index.php">Retour à l'origine du tout</a></p>
-                        <div>
+                        <div class="bodyPage">
+                            <p><a href="index.php">Retour à l'origine du tout</a></p>
                             <?php
                                 // Quand on ne génère pas de nouvelle position ou que aucune position
                                 // n'est renseignée, on peut appeler un autre personnage.
@@ -95,7 +97,7 @@
                                             </div>
                                             <?php
                                                 // AFFICHAGE SI FORGE
-                                                    if($map->isForge()){
+                                                    if($map->isForge() === true){
                                                         include "ihm/map/afficherForge.php.php";
                                                     }
                                                 // AFFICHAGE AUTRES JOUEURS PRESENTS
@@ -115,6 +117,9 @@
                             </div>
                             <?php $map->getImageCssBack() ?>
                             <div class="basdepage"></div>
+                            <div class="divLog">
+                                <ul id="log"></ul>
+                            </div>
                         </div>
                     <?php
                 }

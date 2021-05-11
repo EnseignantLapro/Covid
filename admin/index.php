@@ -70,7 +70,6 @@
             }else{
                 echo $errorMessage;
             }
-            include "../ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>
