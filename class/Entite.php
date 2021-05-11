@@ -213,7 +213,6 @@ class Entite {
                 return $Bouclier;
             }
         }
-        return $Bouclier;
     }
 
 
@@ -236,8 +235,8 @@ class Entite {
     //Fonction pour déséquiper un pourvoir
     public function desequipePouvoir(){
         $pouvoir = $this->getPouvoir();
-        if(!is_null($pourvoir)){
-            $armure->desequipeEntite($this);
+        if(!is_null($pouvoir)){
+            $pouvoir->desequipeEntite($this);
         }
     }
 
