@@ -73,7 +73,7 @@
             eventFrame.style.top  = `${clientY + window.scrollY}px`;
             eventFrame.style.left = `${clientX}px`;
             eventFrame.classList.add("sword-slash");
-            new Audio(`${soundPath}/Baton/coup_baton.mp3`).play();
+            new Audio(`${soundPath}/Baton/coup_baton${rand(2)}.mp3`).play();
 
         }    
 
