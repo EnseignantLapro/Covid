@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,6 +37,7 @@ session_start();
             }
             // Vérifie qu'il ne s'est pas déconnecté.
             if($access === true){
+                include "admin-menu.php";
                 if($Joueur1->isAdmin() == true){
                     ?>
                         <div class='Div1 BG_Blanc'>
