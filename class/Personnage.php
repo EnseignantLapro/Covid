@@ -486,6 +486,22 @@ class Personnage extends Entite{
         <?php
         return $this;
     }
+    //affiche le nombre de personnage humain crée
+    public function nbpersonnage(){
+        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `Entite` WHERE type=`1`");
+        $nbperso = $Result->fetch();
+        echo $nbperso;
+    }
+    //affiche le nom du perso et son lvl 
+    public function lvlpersonnage(){
+        $Result = $this->_bdd->query("SELECT * FROM `Entite` WHERE type=`1` ");
+        $infoperso = $Result->fetch();
+        $nom = $infoperso["nom"];
+        $lvl = $infoperso["lvl"];
+        return $lvl;
+        return $nom;
+
+    }
 
 }
 ?>

@@ -6,7 +6,7 @@ class TypeMob  extends Mob{
 
     private $_rare;
     private $_nom;
-    private $_chance
+    private $_chance;
     private $_id;
     private $_bdd;
 
