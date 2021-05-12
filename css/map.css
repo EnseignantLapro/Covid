@@ -245,6 +245,11 @@
     background:linear-gradient(to right,rgb(200,255,34),rgb(255,2,2));
 }
 
+.VerticalText{
+    writing-mode:vertical-rl;
+    rotate: 180deg;
+}
+
 .map{
     float:left;
     right:10px;
