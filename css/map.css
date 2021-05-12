@@ -18,8 +18,15 @@
 
 .divInformation{
     display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.divInformationMap{
+    display: flex;
     flex-direction: row;
-    margin: auto;
+    margin-top: 10px;
 }
 
 .divMap{
@@ -154,7 +161,6 @@
 }
 
 .infoMap{
-    float:left;
     padding:10px;
     width:200px;
     background-color:rgba(97,71,0,0.829);

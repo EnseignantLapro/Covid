@@ -82,23 +82,25 @@
                                 <?php
                             ?>
                             <div class="divInformation">
-                                <div class="divMap">
-                                    <?= $BousoleDeplacement['nord'] ?>
-                                    <div class="mapOuest">
-                                        <?= $BousoleDeplacement['ouest'] ?>
-                                        <div class="mapEst">
-                                            <div class="mapCentre">
-                                                <?php $Joueur1->getVisitesHTML(6) ?>
-                                            </div>
-                                            <?= $BousoleDeplacement['est'] ?>
-                                        </div>
-                                    </div>
-                                    <?= $BousoleDeplacement['sud'] ?>
-                                </div>
-                                <div class="infoMap">
-                                    <?= $map->getInfoMap() ?>
-                                </div>
                                 <?php include "ihm/map/affichageTooltip.php" ?>
+                                <div class="divInformationMap">
+                                    <div class="divMap">
+                                        <?= $BousoleDeplacement['nord'] ?>
+                                        <div class="mapOuest">
+                                            <?= $BousoleDeplacement['ouest'] ?>
+                                            <div class="mapEst">
+                                                <div class="mapCentre">
+                                                    <?php $Joueur1->getVisitesHTML(6) ?>
+                                                </div>
+                                                <?= $BousoleDeplacement['est'] ?>
+                                            </div>
+                                        </div>
+                                        <?= $BousoleDeplacement['sud'] ?>
+                                    </div>
+                                    <div class="infoMap">
+                                        <?= $map->getInfoMap() ?>
+                                    </div>
+                                </div>
                             </div>
                             <div class="divMapContent">
                                 <?php $map->getImageCssBack() ?>
