@@ -1,0 +1,9 @@
+.classement{
+    display: block;
+    margin: 150px auto;
+    text-align: center;
+}
+
+.classement table{
+    margin: 20px auto;
+}

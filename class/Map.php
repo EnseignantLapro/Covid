@@ -644,15 +644,21 @@ class map{
                      || 
                      abs((abs($this->getY()) - (abs($ancienY) )) )> 1 
                   ){
-                    echo '<a href="map.php?position='.$ancienPosition.'">Tu es téléporté, reviens là où tu étais.</a>';
+                    ?>
+                        <a href="map.php?position=<?= $ancienPosition ?>">Tu es téléporté, reviens là où tu étais.</a>
+                    <?php
                   }else{
                     $Joueur1->getPersonnage()->ChangeMap($this);
                   }
             }else{
-                echo '<a href="index.php">Tu es en Terre Incconu, reviens vite là où tu étais </a>';
+                ?>
+                    <a href="index.php">Tu es en Terre Inconnu, reviens vite là où tu étais.</a>
+                <?php
             }
         }else{
-            echo '<a href="index.php">Tu es en Terre Incconu, reviens vite là où tu étais </a>' ;
+            ?>
+                <a href="index.php">Tu es en Terre Inconnu, reviens vite là où tu étais.</a>
+            <?php
         }
         return $this;
     }
@@ -708,9 +714,6 @@ class map{
     //retourne les liens HTML des 4 map adjacente
     //sous forme de tableau ( 4 indice = 4 position)
     public function getMapAdjacenteLienHTML($cardinalite,$User){
-        ?>
-        <!--<div class="MapAdjacente">-->
-        <?php 
 
             $tab['nord']='';
             $tab['sud']='';
@@ -726,7 +729,6 @@ class map{
             $affichSud = false;
             $affichEst= false;
             $affichOuest = false;
-
 
             //si jamais il y a un mob on va quand meme passer à true la ou l'on vient
             switch ($cardinalite) {
@@ -751,16 +753,13 @@ class map{
                 $affichOuest = true;
             }
 
-            
             if($affichSud){
 
                 $tab['sud'] .= '<div class="sud">';
                 if(!is_null($Msud)){
-                    $tab['sud'] .= '<div class="MapAdjacenteSud"><a href="map.php?position='.$Msud->getPosition().'&cardinalite=nord">'.$Msud->getNom().'</a></div>';
-                    
+                    $tab['sud'] .= '<a href="map.php?position='.$Msud->getPosition().'&cardinalite=nord">'.$Msud->getNom().'</a>';
                 }else{
-                    $tab['sud'] .= '<div class="MapAdjacenteSud"><a href="map.php?position=Generate&cardinalite=nord">Decouvre cette Région Inconnue</a></div>';
-                    
+                    $tab['sud'] .= '<a href="map.php?position=Generate&cardinalite=nord">Découvre cette région inconnue</a>';
                 }
                 $tab['sud'] .=  '</div>';
             } 
@@ -769,11 +768,9 @@ class map{
             if($affichNord){
                 $tab['nord'] .= '<div class="nord">';
                 if(!is_null($Mnord)){
-                    $tab['nord'] .= '<div class="MapAdjacenteNord"><a href="map.php?position='.$Mnord->getPosition().'&cardinalite=sud">'.$Mnord->getNom().'</a></div>';
-                    
+                    $tab['nord'] .= '<a href="map.php?position='.$Mnord->getPosition().'&cardinalite=sud">'.$Mnord->getNom().'</a>';
                 }else{
-                    $tab['nord'] .= '<div class="MapAdjacenteNord"><a href="map.php?position=Generate&cardinalite=sud">Decouvre cette Région Inconnue</a></div>';
-                    
+                    $tab['nord'] .= '<a href="map.php?position=Generate&cardinalite=sud">Découvre cette région inconnue</a>';
                 }
                 $tab['nord'] .=  '</div>';
             }
@@ -781,11 +778,9 @@ class map{
             if($affichEst){
                 $tab['est'] .= '<div class="est">';
                 if(!is_null($Mest)){
-                    $tab['est'] .= '<div class="MapAdjacenteest"><div class="VerticalText"><a href="map.php?position='.$Mest->getPosition().'&cardinalite=ouest">'.$Mest->getNom().'</a></div></div>';
-                    
+                    $tab['est'] .= '<a class="VerticalText" href="map.php?position='.$Mest->getPosition().'&cardinalite=ouest">'.$Mest->getNom().'</a>';
                 }else{
-                    $tab['est'] .= '<div class="MapAdjacenteest"><div class="VerticalText"><a href="map.php?position=Generate&cardinalite=ouest">Decouvre cette Région Inconnue</a></div></div>';
-                    
+                    $tab['est'] .= '<a class="VerticalText" href="map.php?position=Generate&cardinalite=ouest">Découvre cette région inconnue</a>';
                 }
                 $tab['est'] .=  '</div>';
             }
@@ -793,18 +788,15 @@ class map{
             if($affichOuest){
                 $tab['ouest'] .= '<div class="ouest">';
                 if(!is_null($Mouest)){
-                    $tab['ouest'] .= '<div class="MapAdjacenteOuest"><div class="VerticalText"><a href="map.php?position='.$Mouest->getPosition().'&cardinalite=est">'.$Mouest->getNom().'</a></div></div>';
-                    
+                    $tab['ouest'] .= '<a class="VerticalText" href="map.php?position='.$Mouest->getPosition().'&cardinalite=est">'.$Mouest->getNom().'</a>';
                 }else{
-                    $tab['ouest'] .= '<div class="MapAdjacenteOuest"><div class="VerticalText"><a href="map.php?position=Generate&cardinalite=est">Decouvre cette Région Inconnue</a></div></div>';
-                    
+                    $tab['ouest'] .= '<a class="VerticalText" href="map.php?position=Generate&cardinalite=est">Découvre cette région inconnue</a>';
                 }
                 $tab['ouest'] .=  '</div>';
             }
             
             return $tab;
-           
-        
+
         ?>
         </div>
         <?php

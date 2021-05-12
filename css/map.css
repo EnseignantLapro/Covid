@@ -16,54 +16,83 @@
     -webkit-box-shadow:2px 2px 2px gray;
 }
 
-.lamap{
-    width:100%;
-    background-color:rgba(232,240,222,0.37);
-    padding:5px;
-    margin:10px;
-    border:1px solid rgb(53,52,48);
-    box-shadow:2px 2px 2px rgb(31,32,31);
-    -moz-box-shadow:2px 2px 2px rgb(51,53,50);
-    -webkit-box-shadow:2px 2px 2px rgb(52,53,52);
+.divInformation{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.nord a,.sud a,.est a,.ouest a{
-    color: white;
+.divInformationMap{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
 }
 
-.est a,.ouest a{
-    vertical-align: middle;
-    margin-top: 20px;
+.divMap{
+    display:flex;
+    flex-direction: column;
+    margin:auto;
+}
+.Map1{
+    flex-direction: column;
+}
+.Map2{
+    align-content:center;
+}
+
+.divMap a{
+    color:white;
+}
+
+.mapOuest{
+    justify-items:flex-start;
+    display:flex;
+}
+
+.mapEst{
+    justify-items:flex-end;
+    display:flex;
+}
+
+.mapCentre{
+    justify-items:center;
+    display:flex;
 }
 
 .sud{
-    width:100%;
-    float:left;
+    width:298px;
     background-color:rgba(0,81,255,0.767);
     height:30px;
     text-align:center;
-    line-height: 30px;
-    margin: 10px 0px;
+    line-height:30px;
 }
 
 .nord{
-    background-image:url("https://publicdomainvectors.org/photos/north-arrow-2.png");
-    background-repeat:no-repeat;
-    width:100%;
-    float:left;
+    width:298px;
     background-color:rgba(0,81,255,0.767);
     height:30px;
     text-align:center;
-    line-height: 30px;
-    margin: 10px 0px;
+    line-height:30px;
 }
 
 .est{
-    float:right;
+    display:flex;
     width:30px;
-    margin:auto;
     background-color:rgba(0,81,255,0.767);
-    min-height:100vh;
+    text-align:center;
+    height:230px;
+    margin-left:26px;
+    padding-left: 4px;
+}
+
+.ouest{
+    display:flex;
+    width:30px;
+    background-color:rgba(0,81,255,0.767);
+    text-align:center;
+    height:230px;
+    padding-left: 4px;
 }
 
 .map DIV{
@@ -71,13 +100,13 @@
 }
 
 .map{
-    width: 264px;
+    width:264px;
 }
 
 .mapLigne{
     width:100%;
-    width: 264px;
-    height: 20px;
+    width:264px;
+    height:20px;
     float:left;
 }
 
@@ -122,21 +151,6 @@
     background-color:rgba(21,255,0,0.801);
 }
 
-.mapOuest{
-    float:left;
-    width:auto;
-}
-
-.mapEst{
-    float:right;
-    width:770px;
-}
-
-.mapCentre{
-    width:740px;
-    float:left;
-}
-
 .cardinalite div{
     background-color:cadetblue;
     border-color:rgb(53,77,78);
@@ -147,7 +161,6 @@
 }
 
 .infoMap{
-    float:left;
     padding:10px;
     width:200px;
     background-color:rgba(97,71,0,0.829);
@@ -156,14 +169,6 @@
     box-shadow:2px 2px 2px rgb(83,95,235);
     -moz-box-shadow:2px 2px 2px rgb(91,113,236);
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
-}
-
-.ouest{
-    float:left;
-    width:30px;
-    margin:auto;
-    background-color:rgba(0,81,255,0.767);
-    min-height:100vh;
 }
 
 .effect {
@@ -231,4 +236,34 @@
 }
 .AllMobs{
     float:left;
+}
+
+.divRarete{
+    height:15px;
+    width:105px;
+    border:1px black;
+    background:linear-gradient(to right,rgb(200,255,34),rgb(255,2,2));
+}
+
+.VerticalText{
+    writing-mode:vertical-rl;
+    rotate: 180deg;
+}
+
+.map{
+    float:left;
+    right:10px;
+    top:10px;
+}
+
+.letooltip{
+    float:left;
+    margin: auto;
+    padding:20px;
+    background-color:rgba(216,186,16,0.829);
+    border-color:rgb(53,77,78);
+    border:1px solid rgb(119,150,236);
+    box-shadow:2px 2px 2px rgb(83,95,235);
+    -moz-box-shadow:2px 2px 2px rgb(91,113,236);
+    -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
 }

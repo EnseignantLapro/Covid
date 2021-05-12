@@ -50,6 +50,7 @@
                         </div>
                     <?php
                 }else{
+                    include "ihm/map/chargementDeLaMap.php";
                     ?>
                         <div class="bodyPage">
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
@@ -79,46 +80,61 @@
                                         </div>
                                     </div>
                                 <?php
-                                // AFFICHAGE d'UN TOOLTIP
-                                    include "ihm/map/affichageTooltip.php";
-                                // CHARGEMENT  DE LA MAP
-                                    include "ihm/map/chargementDeLaMap.php";
-                                // HTML  DE LA MAP
                             ?>
-                            <div class="lamap">
-                                <?= $BousoleDeplacement['nord'] ?>
-                                <div class="mapOuest">
-                                    <?= $BousoleDeplacement['ouest'] ?>
-                                    <div class="mapEst">
-                                        <div class="mapCentre">
-                                            <?php $Joueur1->getVisitesHTML(6) ?>
-                                            <div class="infoMap">
-                                                <?= $map->getInfoMap() ?>
+                            <div class="divInformation">
+                                <?php include "ihm/map/affichageTooltip.php" ?>
+                                <div class="divInformationMap">
+                                    <div class="divMap">
+                                        <?= $BousoleDeplacement['nord'] ?>
+                                        <div class="mapOuest">
+                                            <?= $BousoleDeplacement['ouest'] ?>
+                                            <div class="mapEst">
+                                                <div class="mapCentre">
+                                                    <?php $Joueur1->getVisitesHTML(6) ?>
+                                                </div>
+                                                <?= $BousoleDeplacement['est'] ?>
                                             </div>
-                                            <?php
-                                                // AFFICHAGE SI FORGE
-                                                    if($map->isForge() === true){
-                                                        include "ihm/map/afficherForge.php.php";
-                                                    }
-                                                // AFFICHAGE AUTRES JOUEURS PRESENTS
-                                                    include "ihm/map/affichageAutrePersos.php";
-                                                // AFFICHAGE DES MONSTRES
-                                                    include "ihm/map/affichageItemsMap.php";
-                                                // AFFICHAGE DES ITEMS DE LA MAP
-                                                    include "ihm/map/affichageTousLesMobs.php";
-                                                // AFFICHAGE DES EQUIPEMENT DE LA MAP
-                                                    include "ihm/map/affichageEquipementsMap.php";
-                                            ?>
                                         </div>
-                                        <?= $BousoleDeplacement['est'] ?>
+                                        <?= $BousoleDeplacement['sud'] ?>
+                                    </div>
+                                    <div class="infoMap">
+                                        <?= $map->getInfoMap() ?>
                                     </div>
                                 </div>
-                                <?= $BousoleDeplacement['sud'] ?>
                             </div>
-                            <?php $map->getImageCssBack() ?>
-                            <div class="basdepage"></div>
-                            <div class="divLog">
-                                <ul id="log"></ul>
+                            <div class="divMapContent">
+                                <?php $map->getImageCssBack() ?>
+                                <div class="divBuild">
+                                    <?php
+                                        // AFFICHAGE SI FORGE
+                                        if($map->isForge() === true){
+                                            ?>
+                                                <div class="divForge">
+                                                    <?php include "ihm/map/afficherForge.php.php" ?>
+                                                </div>
+                                            <?php
+                                        }
+                                    ?>
+                                </div>
+                                <div class="divEntity">
+                                    <?php
+                                        // AFFICHAGE AUTRES JOUEURS PRESENTS
+                                            include "ihm/map/affichageAutrePersos.php";
+                                        // AFFICHAGE DES MONSTRES
+                                            include "ihm/map/affichageTousLesMobs.php";
+                                    ?>
+                                </div>
+                                <div class="divObjets">
+                                    <?php
+                                        // AFFICHAGE DES ITEMS DE LA MAP
+                                            include "ihm/map/affichageItemsMap.php";
+                                        // AFFICHAGE DES EQUIPEMENT DE LA MAP
+                                            include "ihm/map/affichageEquipementsMap.php";
+                                    ?>
+                                </div>
+                                <div class="divLog">
+                                    <ul id="log"></ul>
+                                </div>
                             </div>
                         </div>
                     <?php
