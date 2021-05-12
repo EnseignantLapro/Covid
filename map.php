@@ -50,6 +50,7 @@
                         </div>
                     <?php
                 }else{
+                    include "ihm/map/chargementDeLaMap.php";
                     ?>
                         <div class="bodyPage">
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
@@ -79,29 +80,28 @@
                                         </div>
                                     </div>
                                 <?php
-                                // AFFICHAGE d'UN TOOLTIP
-                                    include "ihm/map/affichageTooltip.php";
-                                // CHARGEMENT  DE LA MAP
-                                    include "ihm/map/chargementDeLaMap.php";
-                                // HTML  DE LA MAP
                             ?>
-                            <div class="divMap">
-                                <?= $BousoleDeplacement['nord'] ?>
-                                <div class="mapOuest">
-                                    <?= $BousoleDeplacement['ouest'] ?>
-                                    <div class="mapEst">
-                                        <div class="mapCentre">
-                                            <?php $Joueur1->getVisitesHTML(6) ?>
+                            <div class="divInformation">
+                                <div class="divMap">
+                                    <?= $BousoleDeplacement['nord'] ?>
+                                    <div class="mapOuest">
+                                        <?= $BousoleDeplacement['ouest'] ?>
+                                        <div class="mapEst">
+                                            <div class="mapCentre">
+                                                <?php $Joueur1->getVisitesHTML(6) ?>
+                                            </div>
+                                            <?= $BousoleDeplacement['est'] ?>
                                         </div>
-                                        <?= $BousoleDeplacement['est'] ?>
                                     </div>
+                                    <?= $BousoleDeplacement['sud'] ?>
                                 </div>
-                                <?= $BousoleDeplacement['sud'] ?>
+                                <div class="infoMap">
+                                    <?= $map->getInfoMap() ?>
+                                </div>
+                                <?php include "ihm/map/affichageTooltip.php" ?>
                             </div>
-                            <div class="infoMap">
-                                <?= $map->getInfoMap() ?>
-                            </div>
-                            <?php $map->getImageCssBack() ?>
+                            <div class="divMapContent">
+                                <?php $map->getImageCssBack() ?>
                                 <div class="divBuild">
                                     <?php
                                         // AFFICHAGE SI FORGE
@@ -130,8 +130,9 @@
                                             include "ihm/map/affichageEquipementsMap.php";
                                     ?>
                                 </div>
-                            <div class="divLog">
-                                <ul id="log"></ul>
+                                <div class="divLog">
+                                    <ul id="log"></ul>
+                                </div>
                             </div>
                         </div>
                     <?php
