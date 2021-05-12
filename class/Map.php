@@ -644,15 +644,21 @@ class map{
                      || 
                      abs((abs($this->getY()) - (abs($ancienY) )) )> 1 
                   ){
-                    echo '<a href="map.php?position='.$ancienPosition.'">Tu es téléporté, reviens là où tu étais.</a>';
+                    ?>
+                        <a href="map.php?position=<?= $ancienPosition ?>">Tu es téléporté, reviens là où tu étais.</a>
+                    <?php
                   }else{
                     $Joueur1->getPersonnage()->ChangeMap($this);
                   }
             }else{
-                echo '<a href="index.php">Tu es en Terre Incconu, reviens vite là où tu étais </a>';
+                ?>
+                    <a href="index.php">Tu es en Terre Inconnu, reviens vite là où tu étais.</a>
+                <?php
             }
         }else{
-            echo '<a href="index.php">Tu es en Terre Incconu, reviens vite là où tu étais </a>' ;
+            ?>
+                <a href="index.php">Tu es en Terre Inconnu, reviens vite là où tu étais.</a>
+            <?php
         }
         return $this;
     }
