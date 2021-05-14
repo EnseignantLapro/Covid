@@ -36,7 +36,6 @@ body{
 }
 
 .adverse{
-    background-color:rgba(199,82,154,0.829)!important;
 }
 
 .Captured{
@@ -54,7 +53,6 @@ body{
     border:2px solid rgb(0, 0, 0);
     border-radius: 10px;
     box-shadow:2px 2px 2px rgb(0, 0, 0); 
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
 }
 
