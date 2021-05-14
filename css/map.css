@@ -121,7 +121,7 @@
 .divInformationMap{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 20px;
 }
 
@@ -257,12 +257,12 @@
 .infoMap{
     padding:10px;
     width:200px;
-    background-color:rgba(97,71,0,0.829);
-    border-color:rgb(53,77,78);
-    border:1px solid rgb(119,150,236);
+    background-color:rgba(172, 210, 69, 0.83);
+    border:1px solid rgba(119, 158, 11, 0.829);
     border-radius: 10px;
-    box-shadow:2px 2px 2px rgb(83,95,235);
-    -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
+    box-shadow:2px 2px 2px rgb(134, 170, 37);
+    -webkit-box-shadow:2px 2px 2px rgb(134, 170, 37);
+    margin-left: 10%;
 }
 
 .effect {
@@ -346,11 +346,10 @@
 
 .letooltip{
     float:left;
-    margin: auto;
-    padding:20px;
-    background-color:rgba(216,186,16,0.829);
-    border-color:rgb(53,77,78);
-    border:1px solid rgb(119,150,236);
-    box-shadow:2px 2px 2px rgb(83,95,235);
-    -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
+    margin:auto;
+    padding:10px;
+    background-color:rgba(224, 160, 42, 0.829);
+    border:1px solid rgba(190, 187, 9, 0.829);
+    box-shadow:2px 2px 2px rgb(91, 100, 9);
+    -webkit-box-shadow:2px 2px 2px rgb(91, 100, 9);
 }
