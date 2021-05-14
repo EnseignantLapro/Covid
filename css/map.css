@@ -20,10 +20,13 @@
 
 .divEntity{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     background-color:rgba(65, 75, 218, 0.308);
     border-style: double;
     border-radius: 10px;
+    margin-top: 20px;
+    padding: 20px;
 }
 .divObjets{
     display: flex;
@@ -38,9 +41,11 @@
 
 .divAllPerso{
     display: flex;
+    flex-direction: column;
 }
 .divAllMobs{
     display: flex;
+    flex-direction: column;
 }
 
 .divMapEquipments{
@@ -52,6 +57,16 @@
     flex-direction: column;
 }
 
+.divInfoPlayers{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.divInfoMobs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .divInfoEquipement{
     display: flex;
     flex-direction: row;
@@ -63,11 +78,19 @@
     justify-content: center;
 }
 
-.divObjets p{
+.divObjets p, .divEntity p{
     margin-right: 5px;
     margin: 0px;
 }
 
+.Persos{
+    margin: 5px;
+    padding: 0px;
+}
+.Mob{
+    margin: 5px;
+    padding: 0px;
+}
 
 .Item{
     margin: 5px;
@@ -84,7 +107,6 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 .divInformationMap{
     display: flex;
     flex-direction: row;
