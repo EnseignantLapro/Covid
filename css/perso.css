@@ -58,7 +58,7 @@ ul.AutrePersos li{
 
 ul .perso:hover{
     cursor:url('epee.cur'),pointer;
-    background-color:rgb(163,163,163);
+    background-color:rgb(206, 171, 90);
 }
 
 ul.Mob li{
