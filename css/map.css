@@ -260,6 +260,7 @@
     background-color:rgba(97,71,0,0.829);
     border-color:rgb(53,77,78);
     border:1px solid rgb(119,150,236);
+    border-radius: 10px;
     box-shadow:2px 2px 2px rgb(83,95,235);
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
 }
@@ -301,8 +302,9 @@
 }
 
 .divLog{
-    background-color: rgb(97, 97, 97);
+    background-color:rgba(97, 97, 97, 0.75);
     border: solid black 3px;
+    border-radius: 10px;
     height: 200px;
     margin-top: 20px;
     padding: 10px;
@@ -328,6 +330,7 @@
     width:105px;
     border:1px black;
     background:linear-gradient(to right,rgb(200,255,34),rgb(255,2,2));
+    border-radius: 6px;
 }
 
 .VerticalText{
