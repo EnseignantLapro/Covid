@@ -31,7 +31,7 @@ img.Entite{
 .ArmureNom{
     float:left;
     white-space:nowrap;
-    width:149px;
+    width:100%;
     background:rgba(247,232,25,0.555);
     font-size:smaller;
 }
