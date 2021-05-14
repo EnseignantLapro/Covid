@@ -118,18 +118,40 @@
                                 </div>
                                 <div class="divEntity">
                                     <?php
+                                        $ZoneMobEmpty = 0;
                                         // AFFICHAGE AUTRES JOUEURS PRESENTS
                                             include "ihm/map/affichageAutrePersos.php";
                                         // AFFICHAGE DES MONSTRES
                                             include "ihm/map/affichageTousLesMobs.php";
+                                        // SI JOUEUR OU MONSTRE
+                                        if($ZoneMobEmpty == 2){
+                                            ?>
+                                                <p><i>Personne à l'horizon, peu rassurant...</i></p>
+                                            <?php
+                                            $MobEmpty = 1 ;
+                                        }
                                     ?>
                                 </div>
                                 <div class="divObjets">
                                     <?php
+                                        $ZoneObjectEmpty = 0;
                                         // AFFICHAGE DES ITEMS DE LA MAP
                                             include "ihm/map/affichageItemsMap.php";
                                         // AFFICHAGE DES EQUIPEMENT DE LA MAP
                                             include "ihm/map/affichageEquipementsMap.php";
+                                        // SI AUCUN ITEM ET EQUIPEMENT
+                                        if($ZoneObjectEmpty == 2){
+                                            if(isset($MobEmpty)){
+                                                ?>
+                                                    <p><i>Et l'absence d'objets ne me réconforte pas dans cette solitude...</i></p>
+                                                <?php
+                                            }
+                                            else{
+                                                ?>
+                                                    <p><i>Il n'y a visiblement rien d'intéressant ici...</i></p>
+                                                <?php
+                                            }
+                                        }
                                     ?>
                                 </div>
                                 <div class="divLog">

@@ -43,5 +43,8 @@
                 </ul>
             <?php
         }
+        else{
+            $ZoneMobEmpty++;
+        }
     ?>
 </div>

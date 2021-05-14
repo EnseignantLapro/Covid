@@ -22,5 +22,8 @@
                 </ul>
             <?php
         }
+        else{
+            $ZoneObjectEmpty++;
+        }
     ?>
 </div>
