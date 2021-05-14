@@ -141,10 +141,10 @@ class Mob extends Entite{
         ?>
             <div class="mob">
                 <div class="mobCoef">
-                    Coef <?php echo $this->_coefXP ?>
+                    Coef <?= $this->_coefXP ?>
                 </div>
                 <?php
-                Parent::renderHTML();
+                    Parent::renderHTML();
                 ?>
             </div>
         <?php
