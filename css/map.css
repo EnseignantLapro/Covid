@@ -91,10 +91,14 @@
 }
 
 .Persos{
+    display: flex;
+    justify-content: center;
     margin: 5px;
     padding: 0px;
 }
 .Mob{
+    display: flex;
+    justify-content: center;
     margin: 5px;
     padding: 0px;
 }
