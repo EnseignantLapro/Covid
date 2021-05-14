@@ -447,8 +447,13 @@ class Entite {
         }
         $pourcentage = round(100*$this->_vie/$this->_vieMax);
         ?>
-            <div>
-                <?= $this->getNom() ?>( <?= $this->getValeur() ?> NFT) lvl  <?= $this->_lvl ?>
+            <div class="EntiteInfo">
+                <div class="EntiteName">
+                    <?= $this->getNom() ?>
+                </div>
+                <div class="EntiteValeur">
+                    (<?= $this->getValeur() ?> NFT) LV <?= $this->_lvl ?>
+                </div>
             </div>
             <div>
                 <img class="Entite" src="<?= $this->_imageLien;?>">
