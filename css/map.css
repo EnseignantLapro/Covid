@@ -18,15 +18,29 @@
     display: flex;
 }
 
-.divObjets{
-    display: flex;
-}
-
 .divEntity{
     display: flex;
+    justify-content: space-between;
     background-color:rgba(65, 75, 218, 0.308);
     border-style: double;
     border-radius: 10px;
+}
+
+.OtherPerso{
+    display: flex;
+}
+
+.AllMobs{
+    display: flex;
+}
+
+.divObjets{
+    display: flex;
+    justify-content: space-between;
+    background-color:rgba(79, 112, 83, 0.308);
+    border-style: double;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 .divInformation{
@@ -222,7 +236,6 @@
     background-color: rgb(97, 97, 97);
     border: solid black 3px;
     height: 200px;
-    width: 100%;
     margin-top: 20px;
     padding: 10px;
     text-align: left;
