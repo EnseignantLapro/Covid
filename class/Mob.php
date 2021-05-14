@@ -138,12 +138,15 @@ class Mob extends Entite{
 
     //retourne toute la mécanique d'affichage d'un mob
     public function renderHTML(){
-        ?><div class="mob">
-            <div class="mobCoef">Coef <?php echo $this->_coefXP ?></div>
-           <?php
-            Parent::renderHTML();
-           ?>
-        </div>
+        ?>
+            <div class="mob">
+                <div class="mobCoef">
+                    Coef <?php echo $this->_coefXP ?>
+                </div>
+                <?php
+                Parent::renderHTML();
+                ?>
+            </div>
         <?php
     }
 
