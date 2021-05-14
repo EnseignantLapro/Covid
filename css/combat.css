@@ -11,7 +11,6 @@
     border-radius: 10px;
     border:1px solid rgb(0, 0, 0);
     box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
     margin-right:auto;
     margin-left:auto;
@@ -27,7 +26,6 @@ DIV.monster{
     border-radius: 5px;
     border:1px solid rgb(0, 0, 0);
     box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
 }
 

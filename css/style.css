@@ -7,7 +7,6 @@
 li{
     float:left;
     list-style-type:none;
-    padding-left:10px;
 }
 
 ul{
@@ -17,7 +16,7 @@ ul{
 
 html,body{
     margin:0;
-    margin-top:35px;
+    margin-top:40px;
     padding:0;
     flex-direction:column;
 }
@@ -35,10 +34,6 @@ body{
     writing-mode:vertical-rl;
 }
 
-.adverse{
-    background-color:rgba(199,82,154,0.829)!important;
-}
-
 .Captured{
     background-color:rgba(219,199,12,0.829)!important;
 }
@@ -54,7 +49,6 @@ body{
     border:2px solid rgb(0, 0, 0);
     border-radius: 10px;
     box-shadow:2px 2px 2px rgb(0, 0, 0); 
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
 }
 
@@ -102,7 +96,6 @@ input[value='Deco!']{
     border:2px solid rgb(0, 0, 0);
     border-radius: 10px;
     box-shadow:2px 2px 2px rgb(0, 0, 0); 
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
     text-align: center;
 }

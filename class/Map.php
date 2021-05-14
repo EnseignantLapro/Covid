@@ -664,7 +664,9 @@ class map{
     }
 
     public function getInfoMap(){
-        return "<b>". $this->getNom()."</b>".$this->getCoordonne()."lvl ".$this->getlvl()." découvert par ".$this->getPersonnageDecouvreur()->getPrenom()." et ses Heros.";
+        ?>
+            <b><?= $this->getNom() ?></b>, <?= $this->getCoordonne() ?>, lvl <?= $this->getlvl() ?>, découvert par <?= $this->getPersonnageDecouvreur()->getPrenom() ?> et ses Heros.
+        <?php
     }
 
     //permet d'enregistrer une visite et de vérifier si c'est pas trop rapide

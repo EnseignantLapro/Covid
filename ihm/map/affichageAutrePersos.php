@@ -1,9 +1,11 @@
-<div class="OtherPerso">
+<div class="divAllPerso">
     <?php
         $listPersos = $map->getAllPersonnages();
         if(count($listPersos) > 1){
             ?>
-                <p class='NoSolo'>Visiblement tu n'es pas seul ici il y a aussi :</p>
+                <div class='divInfoPlayers'>
+                    <p class='pInfoPlayers'>Visiblement tu n'es pas seul ici il y a aussi :</p>
+                </div>
                 <ul id="ulPersos" class="Persos">
                     <?php
                         $PersoJoeuur = $Joueur1->getPersonnage();
@@ -21,6 +23,9 @@
                     ?>
                 </ul>
             <?php
+        }
+        else{
+            $ZoneMobEmpty++;
         }
     ?>
 </div>

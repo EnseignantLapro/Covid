@@ -1,19 +1,21 @@
-<div class="AllMobs">
+<div class="divAllMobs">
     <?php
         $listMob = $map->getAllMobs();
         if(count($listMob) > 0){
+            $Mob = new Mob($mabase);
+            // Affichage des Mob Enemis
+            $mobContre = $map->getAllMobContre($Joueur1);
+            if(count($mobContre) > 0){
+                ?>
+                    <div class='effect'></div>
+                    <div class='divInfoMobs'>
+                        <p class='pInfoMobs'>Tu es bloqué, il y a des monstres qui te bloquent le passage...</p>
+                    </div>
+                <?php
+            }
             ?>
                 <ul id="ulMob" class="Mob">
                     <?php
-                        $Mob = new Mob($mabase);
-                        // Affichage des Mob Enemis
-                        $mobContre = $map->getAllMobContre($Joueur1);
-                        if(count($mobContre) > 0){
-                            ?>
-                                <div class='effect'></div>
-                                <p class='pBloqueParMob'>Tu es bloqué, il y a des monstres qui te bloquent le passage...</p>
-                            <?php
-                        }
                         foreach($mobContre as $MobID){
                             $Mob->setMobById($MobID);
                             ?>
@@ -42,6 +44,9 @@
                     ?>
                 </ul>
             <?php
+        }
+        else{
+            $ZoneMobEmpty++;
         }
     ?>
 </div>
