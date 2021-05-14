@@ -66,7 +66,7 @@
                                 }
                                 // AFFICHAGE EN-TÊTE PERSONNAGE ET SAC
                                 ?>
-                                    <div class='entete'>
+                                    <div class='divEntete'>
                                         <div class="avatar">
                                             <?php $Personnage->renderHTML() ?>
                                         </div>
