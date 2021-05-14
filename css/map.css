@@ -25,22 +25,57 @@
     border-style: double;
     border-radius: 10px;
 }
-
-.OtherPerso{
-    display: flex;
-}
-
-.AllMobs{
-    display: flex;
-}
-
 .divObjets{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     background-color:rgba(79, 112, 83, 0.308);
     border-style: double;
     border-radius: 10px;
     margin-top: 20px;
+    padding: 10px;
+}
+
+.OtherPerso{
+    display: flex;
+}
+.AllMobs{
+    display: flex;
+}
+
+.MapEquipments{
+    display: flex;
+    flex-direction: column;
+}
+.MapItem{
+    display: flex;
+    flex-direction: column;
+}
+
+.divInfoEquipement{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.divInfoItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.divObjets p{
+    margin-right: 5px;
+    margin: 0px;
+}
+
+
+.Item{
+    margin: 5px;
+    padding: 0px;
+}
+.Equipement{
+    margin: 5px;
+    padding: 0px;
 }
 
 .divInformation{
@@ -252,18 +287,11 @@
 .OtherPerso{
     float:left;
 }
-.MapEquipments{
-    float:left;
-}
-.MapItem{
-    float:left;
-}
 .AllMobs{
     float:left;
 }
 
 .divRarete{
-    height:15px;
     width:105px;
     border:1px black;
     background:linear-gradient(to right,rgb(200,255,34),rgb(255,2,2));
