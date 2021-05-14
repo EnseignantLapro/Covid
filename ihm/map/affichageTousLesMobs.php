@@ -12,7 +12,7 @@
                             ?>
                                 <div class='effect'></div>
                                 <div class='divInfoMobs'>
-                                    <p class='pBloqueParMob'>Tu es bloqué, il y a des monstres qui te bloquent le passage...</p>
+                                    <p class='pInfoMobs'>Tu es bloqué, il y a des monstres qui te bloquent le passage...</p>
                                 </div>
                             <?php
                         }

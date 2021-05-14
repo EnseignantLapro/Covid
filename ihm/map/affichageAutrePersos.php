@@ -4,7 +4,7 @@
         if(count($listPersos) > 1){
             ?>
                 <div class='divInfoPlayers'>
-                    <p class='NoSolo'>Visiblement tu n'es pas seul ici il y a aussi :</p>
+                    <p class='pInfoPlayers'>Visiblement tu n'es pas seul ici il y a aussi :</p>
                 </div>
                 <ul id="ulPersos" class="Persos">
                     <?php
