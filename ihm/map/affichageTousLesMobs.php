@@ -1,4 +1,4 @@
-<div class="AllMobs">
+<div class="divAllMobs">
     <?php
         $listMob = $map->getAllMobs();
         if(count($listMob) > 0){

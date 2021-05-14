@@ -1,4 +1,4 @@
-<div class="OtherPerso">
+<div class="divAllPerso">
     <?php
         $listPersos = $map->getAllPersonnages();
         if(count($listPersos) > 1){
