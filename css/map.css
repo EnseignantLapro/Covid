@@ -79,8 +79,15 @@
 }
 
 .divObjets p, .divEntity p{
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+.pItem{
     margin-right: 5px;
-    margin: 0px;
+}
+.pEquipement{
+    margin-right: 5px;
 }
 
 .Persos{
