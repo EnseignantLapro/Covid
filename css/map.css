@@ -12,7 +12,6 @@
     margin:3px;
     border:1px solid gray;
     box-shadow:2px 2px 2px gray;
-    -moz-box-shadow:2px 2px 2px gray;
     -webkit-box-shadow:2px 2px 2px gray;
 }
 
@@ -156,7 +155,6 @@
     border-color:rgb(53,77,78);
     border:1px solid rgb(119,150,236);
     box-shadow:2px 2px 2px rgb(83,95,235);
-    -moz-box-shadow:2px 2px 2px rgb(91,113,236);
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
 }
 
@@ -167,7 +165,6 @@
     border-color:rgb(53,77,78);
     border:1px solid rgb(119,150,236);
     box-shadow:2px 2px 2px rgb(83,95,235);
-    -moz-box-shadow:2px 2px 2px rgb(91,113,236);
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
 }
 
@@ -264,6 +261,5 @@
     border-color:rgb(53,77,78);
     border:1px solid rgb(119,150,236);
     box-shadow:2px 2px 2px rgb(83,95,235);
-    -moz-box-shadow:2px 2px 2px rgb(91,113,236);
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
 }

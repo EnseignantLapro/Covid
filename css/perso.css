@@ -7,7 +7,6 @@
     border:2px solid rgb(109, 107, 107);
     border-radius: 10px;
     box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
 }
 
@@ -21,7 +20,6 @@ ul .perso{
     margin:3px;
     border:1px solid rgb(219,184,25);
     box-shadow:2px 2px 2px rgb(133,228,145);
-    -moz-box-shadow:2px 2px 2px rgb(33,122,21);
     -webkit-box-shadow:2px 2px 2px rgb(37,124,41);
 }
 
@@ -45,7 +43,6 @@ div.avatar .perso{
     margin:3px;
     border:1px solid rgb(219,184,25);
     box-shadow:2px 2px 2px rgb(133,228,145);
-    -moz-box-shadow:2px 2px 2px rgb(33,122,21);
     -webkit-box-shadow:2px 2px 2px rgb(37,124,41);
 }
 
@@ -56,7 +53,6 @@ ul.AutrePersos li{
     margin:3px;
     border:1px solid gray;
     box-shadow:2px 2px 2px gray;
-    -moz-box-shadow:2px 2px 2px gray;
     -webkit-box-shadow:2px 2px 2px gray;
 }
 
@@ -73,7 +69,6 @@ ul.Mob li{
     margin:3px;
     border:1px solid gray;
     box-shadow:2px 2px 2px gray;
-    -moz-box-shadow:2px 2px 2px gray;
     -webkit-box-shadow:2px 2px 2px gray;
 }
 

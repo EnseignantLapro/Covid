@@ -11,7 +11,6 @@
     border:2px solid rgb(0, 0, 0);
     border-radius:10px;
     box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
     overflow-y:scroll;
 }
@@ -40,7 +39,6 @@ ul.Item li{
     margin:3px;
     border:1px solid gray;
     box-shadow:2px 2px 2px gray;
-    -moz-box-shadow:2px 2px 2px gray;
     -webkit-box-shadow:2px 2px 2px gray;
 }
 
@@ -61,7 +59,6 @@ ul.Sac li{
     margin:3px;
     border:2px solid rgb(0, 0, 0);
     box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
     overflow: hidden;
 }
