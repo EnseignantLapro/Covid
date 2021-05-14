@@ -457,9 +457,13 @@ class Entite {
         <?php 
         $arme = $this->getArme();
         if(!is_null($arme)){
-            echo '<div id ="Arme'.$arme->getId().'" class="Arme" onclick="CallApiRemoveEquipementEntite('.$arme->getId().')">'.$arme->getNom().' lvl'.$arme->getLvl().'</div>';
+            ?>
+                <div id="Arme<?= $arme->getId() ?>" class="Arme" onclick="CallApiRemoveEquipementEntite(<?= $arme->getId() ?>)"><?= $arme->getNom() ?> lvl <?= $arme->getLvl() ?></div>
+            <?php
         }else{
-            echo '<div id ="ArmePerso'.$this->_id.'" class="Arme"></div>';
+            ?>
+                <div id="ArmePerso<?= $this->_id ?>" class="Arme"></div>
+            <?php
         }
         $armure  = $this->getArmure();
         if(!is_null($armure)){
