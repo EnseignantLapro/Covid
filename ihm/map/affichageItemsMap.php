@@ -3,8 +3,10 @@
         $listItems = $map->getItems();
         if(count($listItems) > 0){
             ?>
-                <p class="pItem">Items Présent :</p>
-                <p class="divRarete">Commun - Rare</p>
+                <div class="divInfoItem">
+                    <p class="pItem">Items Présent :</p>
+                    <p class="divRarete">Commun - Rare</p>
+                </div>
                 <ul class="Item">
                     <?php
                         foreach($listItems as $Item){
