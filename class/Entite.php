@@ -442,21 +442,20 @@ class Entite {
 
     //retourne toute la mécanique d'affichage d'un Entite
     public function renderHTML(){
-        if ($this->_vieMax<0 || $this->_vieMax=="0" ){
+        if($this->_vieMax<0 || $this->_vieMax=="0"){
             $this->_vieMax=10;
         }
         $pourcentage = round(100*$this->_vie/$this->_vieMax);
         ?>
-        
-        <div>
-            <?php echo $this->_nom ?>( <?php echo $this->getValeur() ?> NFT) lvl  <?php echo $this->_lvl ?>
-        </div>
-        <div>
-            <img class="Entite" src="<?php echo $this->_imageLien;?>">
-        </div>
-        <div class="attaque" id="attaqueEntiteValeur<?php echo $this->_id ;?>"> <?php echo $this->getAttaque() ;?>  </div> 
+            <div>
+                <?= $this->getNom() ?>( <?= $this->getValeur() ?> NFT) lvl  <?= $this->_lvl ?>
+            </div>
+            <div>
+                <img class="Entite" src="<?= $this->_imageLien;?>">
+            </div>
+            <div class="attaque" id="attaqueEntiteValeur<?= $this->_id ;?>"> <?= $this->getAttaque() ;?>  </div>
         <?php 
-        $arme  = $this->getArme();
+        $arme = $this->getArme();
         if(!is_null($arme)){
             echo '<div id ="Arme'.$arme->getId().'" class="Arme" onclick="CallApiRemoveEquipementEntite('.$arme->getId().')">'.$arme->getNom().' lvl'.$arme->getLvl().'</div>';
         }else{
@@ -468,23 +467,18 @@ class Entite {
         }else{
             echo '<div id ="ArmurePerso'.$this->_id.'" class="ArmureNom"></div>';
         }
-
         ?>
-        
-        <div class="barreDeVie" id="vieEntite<?php echo $this->_id ;?>">
+            <div class="barreDeVie" id="vieEntite<?php echo $this->_id ;?>">
                 <div class="vie" id="vieEntiteValeur<?php echo $this->_id ;?>" style="width: <?php echo $pourcentage?>%;">♥️<?php echo $this->_vie ;?></div>
-                <?php echo '<div class="armureAll"><div class="armure" id="defenseEntiteValeur'.$this->_id.'"';
+                <?= '<div class="armureAll"><div class="armure" id="defenseEntiteValeur'.$this->_id.'"';
                     if(!is_null($armure)){
                         echo 'style="width:'.$this->getDefense().'%;">'.$this->getDefense();
                     }else{
                         echo '>';
                     }
                     echo '</div></div>';
-                ?>    
-              
-        </div>
-        
-
+                ?>
+            </div>
         <?php
     }
 
