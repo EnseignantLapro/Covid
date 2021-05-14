@@ -476,8 +476,8 @@ class Entite {
             <?php
         }
         ?>
-            <div class="barreDeVie" id="vieEntite<?php echo $this->_id ;?>">
-                <div class="vie" id="vieEntiteValeur<?php echo $this->_id ;?>" style="width: <?php echo $pourcentage?>%;">♥️<?php echo $this->_vie ;?></div>
+            <div class="barreDeVie" id="vieEntite<?= $this->_id ?>">
+                <div class="vie" id="vieEntiteValeur<?= $this->_id ?>" style="width:<?= $pourcentage ?>%;">♥️<?= $this->_vie ?></div>
                 <?= '<div class="armureAll"><div class="armure" id="defenseEntiteValeur'.$this->_id.'"';
                     if(!is_null($armure)){
                         echo 'style="width:'.$this->getDefense().'%;">'.$this->getDefense();
