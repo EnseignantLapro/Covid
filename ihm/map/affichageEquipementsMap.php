@@ -1,4 +1,4 @@
-<div class="MapEquipments">
+<div class="divMapEquipments">
     <?php
         $listEquipements = $map->getEquipements();
         if(count($listEquipements) > 0){

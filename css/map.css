@@ -43,11 +43,11 @@
     display: flex;
 }
 
-.MapEquipments{
+.divMapEquipments{
     display: flex;
     flex-direction: column;
 }
-.MapItem{
+.divMapItem{
     display: flex;
     flex-direction: column;
 }
