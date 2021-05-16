@@ -27,7 +27,7 @@
             <meta name='twitter:description' content='Panel Admin - Items'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
-    <body class="admin-panel">
+    <body class="AdminPanel">
         <?php
             include "../session.php";
 

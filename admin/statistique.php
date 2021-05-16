@@ -33,7 +33,7 @@
             <meta name='twitter:description' content='Projet Full Stack - Panel Admin'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
-    <body class="admin-panel">
+    <body class="AdminPanel">
         <?php
             include "../session.php";
 
