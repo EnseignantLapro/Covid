@@ -38,8 +38,8 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="Règlement">
-                        <h1>Règlement</h1>
+                    <div class="divReglement">
+                        <h1 class="divReglementTitle">Règlement</h1>
                         <p><b>1</b> - Être gentil</p>
                     </div>
                 <?php
