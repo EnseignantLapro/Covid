@@ -35,7 +35,7 @@
                 include "ihm/fonction-web/menu.php";
                 ?>
                     <div class="divReglement">
-                        <div class="bienvenue">
+                        <div class="divWelcome">
                             <?php
                                 if($Joueur1->isAdmin() === true){
                                     ?>
