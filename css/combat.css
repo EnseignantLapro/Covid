@@ -16,7 +16,7 @@
     margin-left:auto;
 }
 
-DIV.monster{
+div .monster{
     background-color:rgba(216,153,16,0.733);
     display: inline-table;
     margin: 10px;
@@ -27,6 +27,14 @@ DIV.monster{
     border:1px solid rgb(0, 0, 0);
     box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
+}
+
+.pWelcome{
+    display: block;
+    margin: 50px auto 20px auto;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: oblique;
 }
 
 .titreMonster{

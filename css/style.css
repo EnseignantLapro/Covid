@@ -77,13 +77,6 @@ input[value='Deco!']{
     background-color: rgb(212, 40, 40);
 }
 
-.WelcomeCombat{
-    display: block;
-    margin: 50px auto 20px auto;
-    font-size: larger;
-    font-weight: bolder;
-    font-style: oblique;
-}
 
 /* • Formulaire Login • */
 
@@ -140,7 +133,9 @@ input[value='Deco!']{
     display:none;
 }
 
+
 /* • Menu nav • */
+
 .navMenu{
     display: block;
     position: fixed;
@@ -227,7 +222,8 @@ input[value='Deco!']{
 .ulSousMenu li:hover{
     background-color: grey;
 }
-    
+
+
 /* • les liens • */
 
 .ulMenu a{
@@ -245,6 +241,7 @@ input[value='Deco!']{
 .ulMenu li:hover a, .ulMenu li li:hover a{
     color: #fff;
 }
+
 
 /* • Footer • */
 
