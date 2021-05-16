@@ -1,5 +1,5 @@
-<nav class="nav-Menu">
-    <ul class="ul-Menu">                
+<nav class="navMenu">
+    <ul class="ulMenu">                
         <li><a href="../index.php">Accueil</a></li>
         <li><a href="../reglement.php">Règlement</a></li>
         <li><a href="../combat.php">Combat</a></li>
@@ -12,7 +12,7 @@
                 ?>
                     <li><a href="statistique.php">Statistique</a></li>
                     <li><a href="index.php">Administration</a>
-                        <ul class="ul-SousMenu">
+                        <ul class="ulSousMenu">
                             <li><a href="admin-map.php">Gestion Map</a></li>
                             <li><a href="admin-mobs.php">Gestion Monstre</a></li>
                             <li><a href="admin-objet.php">Gestion Objet</a></li>
