@@ -1,4 +1,4 @@
-.tableaChass{
+.divAllMonsterCaptured{
     display: flow-root;
     margin-bottom:20px;
     padding:20px;
@@ -16,7 +16,7 @@
     margin-left:auto;
 }
 
-div .monster{
+.divMonsterCaptured{
     background-color:rgba(216,153,16,0.733);
     display: inline-table;
     margin: 10px;
@@ -37,14 +37,14 @@ div .monster{
     font-style: oblique;
 }
 
-.titreMonster{
+.divTitleMonster{
     width:100%;
     margin:10px;
     color: white;
     background-color:rgba(97,75,29,0.733);
 }
 
-DIV.monster img{
+div .divMonsterCaptured img{
     width:140px;
     height:80px;
 }
