@@ -62,46 +62,44 @@
                                     <?= $tabDirection['nord'] ?>
                                     <p class="pWelcome">Bienvenue <?= $Joueur1->getPrenom() ?></p>
                                     <p class="pChoixCombattant">Tu as décidé de combattre avec <?= $Joueur1->getNomPersonnage() ?>, il a une fortune de <?= $personnage->getValeur() ?> (NFT)</p>
-                                    <div class="avatar">
-                                        <!-- AFFICHAGE EN-TÊTE PERSONNAGE ET SAC -->
-                                        <div class="divEntete">
-                                            <div class="divAvatar">
-                                                <?php $personnage->renderHTML() ?>
-                                            </div>
-                                            <div class="divSac">
-                                                <p class="pTitleSac">Sacoche</p>
-                                                <?php
-                                                    // Include Items / Equipement
-                                                    include "ihm/map/affichageSacItem.php";
-                                                    include "ihm/map/affichageSacEquipement.php";
-                                                ?>
-                                            </div>
+                                    <!-- AFFICHAGE EN-TÊTE PERSONNAGE ET SAC -->
+                                    <div class="divEntete">
+                                        <div class="divAvatar">
+                                            <?php $personnage->renderHTML() ?>
                                         </div>
-                                        <div class="divInfoCombat">
-                                            <p class="pPositionCombattant">Ton combattant est sur la position : <?= $map->getNom() ?> </p>
-                                            <p>Tu peux maintenant ramasser des conneries par terre.</p>
-                                            <p>Si tu en trouves qui sont parfaitement identiques, elles prennent de la valeur 😄 !</p>
-                                            <p>But du jeu : Capture le "Super Jedi Légendaire".</p>
-                                        </div>
-                                        <div class="divAllMonsterCaptured">
-                                            <p class="pTitleMonsterCaptured">Voici tes monstres capturés :</p>
+                                        <div class="divSac">
+                                            <p class="pTitleSac">Sacoche</p>
                                             <?php
-                                                $MysMob = new Mob($mabase);
-                                                foreach($Joueur1->getAllMyMobIds() as $mob){
-                                                    ?>
-                                                        <div class="divMonsterCaptured">
-                                                            <?php
-                                                                $MysMob->setMobById($mob);
-                                                                $MysMob->renderHTML();
-                                                            ?>
-                                                        </div>
-                                                    <?php
-                                                }
+                                                // Include Items / Equipement
+                                                include "ihm/map/affichageSacItem.php";
+                                                include "ihm/map/affichageSacEquipement.php";
                                             ?>
-                                            <p class="pMonsterCapturedInfo">Seul un certain pouvoir peut protéger tes monstres d'une capture...</p>
                                         </div>
-                                        <p><a href="index.php" >Créer un autre personnage.</a></p>
                                     </div>
+                                    <div class="divInfoCombat">
+                                        <p class="pPositionCombattant">Ton combattant est sur la position : <?= $map->getNom() ?> </p>
+                                        <p>Tu peux maintenant ramasser des conneries par terre.</p>
+                                        <p>Si tu en trouves qui sont parfaitement identiques, elles prennent de la valeur 😄 !</p>
+                                        <p>But du jeu : Capture le "Super Jedi Légendaire".</p>
+                                    </div>
+                                    <div class="divAllMonsterCaptured">
+                                        <p class="pTitleMonsterCaptured">Voici tes monstres capturés :</p>
+                                        <?php
+                                            $MysMob = new Mob($mabase);
+                                            foreach($Joueur1->getAllMyMobIds() as $mob){
+                                                ?>
+                                                    <div class="divMonsterCaptured">
+                                                        <?php
+                                                            $MysMob->setMobById($mob);
+                                                            $MysMob->renderHTML();
+                                                        ?>
+                                                    </div>
+                                                <?php
+                                            }
+                                        ?>
+                                        <p class="pMonsterCapturedInfo">Seul un certain pouvoir peut protéger tes monstres d'une capture...</p>
+                                    </div>
+                                    <p><a href="index.php" >Créer un autre personnage.</a></p>
                                 <?php
                                 $tabDirection = $map->getMapAdjacenteLienHTML('nord',$Joueur1);
                             ?>
