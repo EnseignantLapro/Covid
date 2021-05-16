@@ -53,16 +53,23 @@
                     include "ihm/map/chargementDeLaMap.php";
                     ?>
                         <div class="divMapPage">
-                            <p><a href="index.php">Retour à l'origine du tout</a></p>
                             <?php
                                 // Quand on ne génère pas de nouvelle position ou que aucune position
                                 // n'est renseignée, on peut appeler un autre personnage.
                                 if(!(isset($_GET["position"]) && $_GET["position"]==='Generate')){
                                     ?>
-                                        <p>Tu peux appeler un autre personnage.</p>
+                                        <div class="divChoixPersonnageap">
+                                            <div class="divAppelPersonnage">
+                                                <p class="pAppelPersonnage">Tu peux appeler un autre personnage :</p>
+                                            </div>
+                                            <div class="divAppelPersonnage">
+                                                <?php
+                                                    $Personnage->getChoixPersonnage($Joueur1);
+                                                    $Joueur1->setPersonnage($Personnage);
+                                                ?>
+                                            </div>
+                                        </div>
                                     <?php
-                                    $Personnage->getChoixPersonnage($Joueur1);
-                                    $Joueur1->setPersonnage($Personnage);
                                 }
                                 // AFFICHAGE EN-TÊTE PERSONNAGE ET SAC
                                 ?>
