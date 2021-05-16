@@ -90,24 +90,24 @@
     margin-right: 5px;
 }
 
-.Persos{
+.ulPersonnages{
     display: flex;
     justify-content: center;
     margin: 5px;
     padding: 0px;
 }
-.Mob{
+.ulMob{
     display: flex;
     justify-content: center;
     margin: 5px;
     padding: 0px;
 }
 
-.Item{
+.ulItem{
     margin: 5px;
     padding: 0px;
 }
-.Equipement{
+.ulEquipement{
     margin: 5px;
     padding: 0px;
 }
@@ -344,7 +344,7 @@
     top:10px;
 }
 
-.letooltip{
+.divTooltip{
     float:left;
     margin:auto;
     padding:10px;

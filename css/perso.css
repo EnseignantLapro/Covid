@@ -9,7 +9,7 @@
     box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
 }
-.Mob li{
+.ulMob li{
     padding:5px;
     margin:10px;
 }
@@ -36,7 +36,7 @@ ul .perso{
     height:26px;
 }
 
-div.avatar .perso{
+div .avatar .perso{
     float:left;
     text-align: center;
     width:170px;
@@ -48,7 +48,7 @@ div.avatar .perso{
     -webkit-box-shadow:2px 2px 2px rgb(37,124,41);
 }
 
-ul.AutrePersos li{
+ul .AutrePersos li{
     background-color:rgb(129,129,129);
     padding:5px;
     border-radius:10px;
@@ -63,7 +63,7 @@ ul .perso:hover{
     background-color:rgb(206, 171, 90);
 }
 
-ul.Mob li{
+.ulMob li{
     background-color:rgba(201,58,58,0.705);
     border-radius:10px;
     border:1px solid gray;
@@ -71,7 +71,7 @@ ul.Mob li{
     -webkit-box-shadow:2px 2px 2px gray;
 }
 
-.Mob .adverse:hover{
+.ulMob .liAdverse:hover{
     cursor:url('epee.cur'),pointer;
     background-color:rgb(187,37,37);
 }
@@ -93,7 +93,7 @@ ul.Mob li{
     height:100px;
 }
 
-img.Personnage{
+img .Personnage{
     height:120px;
     width:135px;
 }
