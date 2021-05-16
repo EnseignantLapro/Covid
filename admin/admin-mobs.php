@@ -11,7 +11,6 @@
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="../css/admin.css">
             <link rel="stylesheet" href="../css/style.css">
-            <link rel="stylesheet" href="../css/index.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
             <title>Panel Admin - Monstres</title>
