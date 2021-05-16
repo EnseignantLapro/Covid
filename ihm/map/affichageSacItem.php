@@ -1,5 +1,5 @@
 <div class="divSacItem">
-    <p id='TitleSacocheItems'>Items</p>
+    <p class="pTitleSacItems">Items</p>
     <ul id="SacItem" class="ulSac">
         <?php
             $listItems = $Joueur1->getPersonnage()->getItems();

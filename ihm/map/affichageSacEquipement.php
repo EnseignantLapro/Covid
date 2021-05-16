@@ -1,5 +1,5 @@
 <div class="divSacEquipement">
-    <p id='TitleSacocheEquipement'>Equipement</p>
+    <p class="pTitleSacEquipement">Equipement</p>
     <ul id="SacEquipement" class="ulSac">
         <?php
             $listEquipements = $Joueur1->getPersonnage()->getEquipementNonPorte();
