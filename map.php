@@ -67,16 +67,16 @@
                                 // AFFICHAGE EN-TÊTE PERSONNAGE ET SAC
                                 ?>
                                     <div class='divEntete'>
-                                        <div class="avatar">
+                                        <div class="divAvatar">
                                             <?php $Personnage->renderHTML() ?>
                                         </div>
                                         <div class="divSac">
-                                            <p id='TitleSacoche'>Sacoche</p>
+                                            <p class="pTitleSac">Sacoche</p>
                                             <!-- Include Items / Equipement-->
-                                                <?php
-                                                    include "ihm/map/affichageSacItem.php";
-                                                    include "ihm/map/affichageSacEquipement.php";
-                                                ?>
+                                            <?php
+                                                include "ihm/map/affichageSacItem.php";
+                                                include "ihm/map/affichageSacEquipement.php";
+                                            ?>
                                         </div>
                                     </div>
                                 <?php
@@ -86,10 +86,10 @@
                                 <div class="divInformationMap">
                                     <div class="divMap">
                                         <?= $BousoleDeplacement['nord'] ?>
-                                        <div class="mapOuest">
+                                        <div class="divMapOuest">
                                             <?= $BousoleDeplacement['ouest'] ?>
-                                            <div class="mapEst">
-                                                <div class="mapCentre">
+                                            <div class="divMapEst">
+                                                <div class="divMapCentre">
                                                     <?php $Joueur1->getVisitesHTML(6) ?>
                                                 </div>
                                                 <?= $BousoleDeplacement['est'] ?>
@@ -97,7 +97,7 @@
                                         </div>
                                         <?= $BousoleDeplacement['sud'] ?>
                                     </div>
-                                    <div class="infoMap">
+                                    <div class="divInfoMap">
                                         <?= $map->getInfoMap() ?>
                                     </div>
                                 </div>

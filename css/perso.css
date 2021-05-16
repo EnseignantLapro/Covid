@@ -36,7 +36,7 @@ ul .perso{
     height:26px;
 }
 
-div .avatar .perso{
+.divAvatar .perso{
     float:left;
     text-align: center;
     width:170px;

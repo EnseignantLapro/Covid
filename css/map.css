@@ -140,17 +140,17 @@
     color:white;
 }
 
-.mapOuest{
+.divMapOuest{
     justify-items:flex-start;
     display:flex;
 }
 
-.mapEst{
+.divMapEst{
     justify-items:flex-end;
     display:flex;
 }
 
-.mapCentre{
+.divMapCentre{
     justify-items:center;
     display:flex;
 }
@@ -254,7 +254,7 @@
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
 }
 
-.infoMap{
+.divInfoMap{
     padding:10px;
     width:200px;
     background-color:rgba(172, 210, 69, 0.83);
