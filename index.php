@@ -37,7 +37,7 @@
                     <div class="divReglement">
                         <div class="bienvenue">
                             <?php
-                                if($Joueur1->isAdmin() == true){
+                                if($Joueur1->isAdmin() === true){
                                     ?>
                                         <p>Bienvenue Administrateur <?= $Joueur1->getPrenom() ?>.</p>
                                         <p><a href='admin/'>Accéder au Panel Administrateur.</a></p>
@@ -64,17 +64,17 @@
                             if(!is_null($PersoChoisie)){
                                 $Joueur1->setPersonnage($PersoChoisie);
                                 ?>
-                                    <div class="Action">
+                                    <div class="divAction">
                                         <?php
 
-                                        if(!empty($PersoChoisie->getNom()) ){
-                                        ?>
-                                            <p><a href="combat.php">Viens combattre avec <?= $PersoChoisie->getNom() ?></a></p>
-                                        <?php
+                                        if(!empty($PersoChoisie->getNom())){
+                                            ?>
+                                                <p><a href="combat.php">Viens combattre avec <?= $PersoChoisie->getNom() ?></a></p>
+                                            <?php
                                         }else{
-                                        ?>
-                                            <p><a href="combat.php">Viens combattre avec <?= $Joueur1->getNomPersonnage() ?></a></p>
-                                        <?php
+                                            ?>
+                                                <p><a href="combat.php">Viens combattre avec <?= $Joueur1->getNomPersonnage() ?></a></p>
+                                            <?php
                                         }
                                         ?>
                                     </div>
