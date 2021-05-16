@@ -45,7 +45,7 @@
                 $personnage = $Joueur1->getPersonnage();
                 if(is_null($personnage->getId())){
                     ?>
-                        <div class="reglement">
+                        <div class="divReglement">
                             <p>Il faut créer un personnage d'abord.</p>
                             <p><a href="index.php">Retour à l'origine du tout.</a></p>
                         </div>
@@ -53,7 +53,7 @@
                 }
                 else{
                     ?>
-                        <div class="reglement">
+                        <div class="divReglement">
                             <?php
                                 $personnage->getChoixPersonnage($Joueur1);
                                 $map = $personnage->getMap();

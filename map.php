@@ -44,7 +44,7 @@
                 $Personnage = $Joueur1->getPersonnage();
                 if(is_null($Personnage->getId())){
                     ?>
-                        <div class="divPage">
+                        <div class="divMapPage">
                             <p>Il faut créer un personnage d'abord.</p>
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
                         </div>
@@ -52,7 +52,7 @@
                 }else{
                     include "ihm/map/chargementDeLaMap.php";
                     ?>
-                        <div class="divPage">
+                        <div class="divMapPage">
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
                             <?php
                                 // Quand on ne génère pas de nouvelle position ou que aucune position
