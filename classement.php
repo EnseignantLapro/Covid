@@ -39,7 +39,7 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class = "classement">
+                    <div class="divClassement">
                         <h1>Classement</h1>
                         <table>
                             <tr>

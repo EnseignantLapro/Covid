@@ -1,9 +1,9 @@
-.classement{
+.divClassement{
     display: block;
     margin: 150px auto;
     text-align: center;
 }
 
-.classement table{
+.divClassement table{
     margin: 20px auto;
 }
