@@ -5,12 +5,12 @@
     position: absolute;
 }
 
-.List-SN1{
+.divSN1{
     width: 40%;
     margin: 0px auto;
 }
 
-.List-SN1 p{
+.divSN1 p{
     display: inline-block;
     color: black;
     font-weight: bolder;

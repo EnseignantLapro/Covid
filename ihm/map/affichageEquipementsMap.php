@@ -7,7 +7,7 @@
                     <p class="pEquipement">Équipements Présent :</p>
                     <p class="divRarete">Commun - Rare</p>
                 </div>
-                <ul class="Equipement">
+                <ul class="ulEquipement">
                     <?php
                         foreach($listEquipements as $Equipement){
                             ?>

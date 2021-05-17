@@ -1,6 +1,17 @@
 /* dechir */
 
-.divPage{
+
+.divChoixPersonnageap{
+    display:flex;
+}
+.pAppelPersonnage{
+    margin-top:0;
+    margin-bottom:10px;
+    margin-right:5px;
+    margin-left:10px;
+}
+
+.divMapPage{
     margin: 0px 20% 50px 20%;
 }
 
@@ -90,24 +101,24 @@
     margin-right: 5px;
 }
 
-.Persos{
+.ulPersonnages{
     display: flex;
     justify-content: center;
     margin: 5px;
     padding: 0px;
 }
-.Mob{
+.ulMob{
     display: flex;
     justify-content: center;
     margin: 5px;
     padding: 0px;
 }
 
-.Item{
+.ulItem{
     margin: 5px;
     padding: 0px;
 }
-.Equipement{
+.ulEquipement{
     margin: 5px;
     padding: 0px;
 }
@@ -140,17 +151,17 @@
     color:white;
 }
 
-.mapOuest{
+.divMapOuest{
     justify-items:flex-start;
     display:flex;
 }
 
-.mapEst{
+.divMapEst{
     justify-items:flex-end;
     display:flex;
 }
 
-.mapCentre{
+.divMapCentre{
     justify-items:center;
     display:flex;
 }
@@ -254,7 +265,7 @@
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
 }
 
-.infoMap{
+.divInfoMap{
     padding:10px;
     width:200px;
     background-color:rgba(172, 210, 69, 0.83);
@@ -344,7 +355,7 @@
     top:10px;
 }
 
-.letooltip{
+.divTooltip{
     float:left;
     margin:auto;
     padding:10px;

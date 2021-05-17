@@ -38,8 +38,8 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <h2 class="h2-SN1">Les Acteur du Projet</h2>
-                    <div class="List-SN1">
+                    <h2 class="h2SN1">Les Acteur du Projet</h2>
+                    <div class="divSN1">
                         <h3>Les BTS SN1</h3>
                         <p>Léa Bernard</p>
                         <p>Thomas Berthier</p>

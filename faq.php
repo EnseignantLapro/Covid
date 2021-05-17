@@ -38,7 +38,7 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="FAQ">
+                    <div class="divFAQ">
                         <h1>FAQ</h1>
                         <h3>Questions Fréquentes</h3>
                         <h4>Comment se déplacer sur la carte ?</h4>

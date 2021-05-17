@@ -44,7 +44,7 @@
                 $Personnage = $Joueur1->getPersonnage();
                 if(is_null($Personnage->getId())){
                     ?>
-                        <div class="divPage">
+                        <div class="divMapPage">
                             <p>Il faut créer un personnage d'abord.</p>
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
                         </div>
@@ -52,31 +52,38 @@
                 }else{
                     include "ihm/map/chargementDeLaMap.php";
                     ?>
-                        <div class="divPage">
-                            <p><a href="index.php">Retour à l'origine du tout</a></p>
+                        <div class="divMapPage">
                             <?php
                                 // Quand on ne génère pas de nouvelle position ou que aucune position
                                 // n'est renseignée, on peut appeler un autre personnage.
                                 if(!(isset($_GET["position"]) && $_GET["position"]==='Generate')){
                                     ?>
-                                        <p>Tu peux appeler un autre personnage.</p>
+                                        <div class="divChoixPersonnageap">
+                                            <div class="divAppelPersonnage">
+                                                <p class="pAppelPersonnage">Tu peux appeler un autre personnage :</p>
+                                            </div>
+                                            <div class="divAppelPersonnage">
+                                                <?php
+                                                    $Personnage->getChoixPersonnage($Joueur1);
+                                                    $Joueur1->setPersonnage($Personnage);
+                                                ?>
+                                            </div>
+                                        </div>
                                     <?php
-                                    $Personnage->getChoixPersonnage($Joueur1);
-                                    $Joueur1->setPersonnage($Personnage);
                                 }
                                 // AFFICHAGE EN-TÊTE PERSONNAGE ET SAC
                                 ?>
                                     <div class='divEntete'>
-                                        <div class="avatar">
+                                        <div class="divAvatar">
                                             <?php $Personnage->renderHTML() ?>
                                         </div>
                                         <div class="divSac">
-                                            <p id='TitleSacoche'>Sacoche</p>
+                                            <p class="pTitleSac">Sacoche</p>
                                             <!-- Include Items / Equipement-->
-                                                <?php
-                                                    include "ihm/map/affichageSacItem.php";
-                                                    include "ihm/map/affichageSacEquipement.php";
-                                                ?>
+                                            <?php
+                                                include "ihm/map/affichageSacItem.php";
+                                                include "ihm/map/affichageSacEquipement.php";
+                                            ?>
                                         </div>
                                     </div>
                                 <?php
@@ -86,10 +93,10 @@
                                 <div class="divInformationMap">
                                     <div class="divMap">
                                         <?= $BousoleDeplacement['nord'] ?>
-                                        <div class="mapOuest">
+                                        <div class="divMapOuest">
                                             <?= $BousoleDeplacement['ouest'] ?>
-                                            <div class="mapEst">
-                                                <div class="mapCentre">
+                                            <div class="divMapEst">
+                                                <div class="divMapCentre">
                                                     <?php $Joueur1->getVisitesHTML(6) ?>
                                                 </div>
                                                 <?= $BousoleDeplacement['est'] ?>
@@ -97,7 +104,7 @@
                                         </div>
                                         <?= $BousoleDeplacement['sud'] ?>
                                     </div>
-                                    <div class="infoMap">
+                                    <div class="divInfoMap">
                                         <?= $map->getInfoMap() ?>
                                     </div>
                                 </div>

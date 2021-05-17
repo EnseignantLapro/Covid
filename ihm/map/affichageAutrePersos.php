@@ -6,7 +6,7 @@
                 <div class='divInfoPlayers'>
                     <p class='pInfoPlayers'>Visiblement tu n'es pas seul ici il y a aussi :</p>
                 </div>
-                <ul id="ulPersos" class="Persos">
+                <ul id="ulPersos" class="ulPersonnages">
                     <?php
                         $PersoJoeuur = $Joueur1->getPersonnage();
                         foreach($listPersos as  $Perso){
