@@ -128,5 +128,85 @@ class TypeItem  extends CRUD {
         return $req->fetch();
     }
 
+    /**
+     * 
+     * Cette fonction retourne l'information en fonction d'id
+     * 
+     * Entries :
+     * 
+     * $id = id du typeitem
+    */
+    public function getInfoById($id) {
+
+        $req = $this->_bdd->prepare("SELECT information FROM TypeItem WHERE id = ?");
+        $req->execute($id);
+
+        return $req->fetch();
+    }
+
+    /**
+     * 
+     * Cette fonction retourne le nom en fonction d'id
+     * 
+     * Entries :
+     * 
+     * $id = id du typeitem
+    */
+    public function getNomById($id) {
+
+        $req = $this->_bdd->prepare("SELECT nom FROM TypeItem WHERE id = ?");
+        $req->execute($id);
+
+        return $req->fetch();
+    }
+
+    /**
+     * 
+     * Cette fonction retourne la rareté en fonction d'id
+     * 
+     * Entries :
+     * 
+     * $id = id du typeitem
+    */
+    public function getRareteById($id) {
+
+        $req = $this->_bdd->prepare("SELECT rarete FROM TypeItem WHERE id = ?");
+        $req->execute($id);
+
+        return $req->fetch();
+    }
+
+    /**
+     * 
+     * Cette fonction retourne le lien de l'image en fonction d'id
+     * 
+     * Entries :
+     * 
+     * $id = id du typeitem
+    */
+    public function getLienImageById($id) {
+
+        $req = $this->_bdd->prepare("SELECT lienImage FROM TypeItem WHERE id = ?");
+        $req->execute($id);
+
+        return $req->fetch();
+    }
+
+    /**
+     * 
+     * Cette fonction retourne la chance en fonction d'id
+     * 
+     * Entries :
+     * 
+     * $id = id du typeitem
+    */
+    public function getChanceById($id) {
+
+        $req = $this->_bdd->prepare("SELECT chance FROM TypeItem WHERE id = ?");
+        $req->execute($id);
+
+        return $req->fetch();
+    }
+
 
 ?>
