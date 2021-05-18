@@ -68,7 +68,7 @@
     background-color: rgb(97, 90, 87);
 }
 
-.ulItem li:hover{
+.ulItem li:hover, .ulEquipement li:hover{
     cursor:url('hand-grab.cur'),pointer;
     background-color:rgb(231,231,231);
 }
