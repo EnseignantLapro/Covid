@@ -6,6 +6,7 @@
     display:block;
     float:left;
     background-color:darkgray;
+    text-align: left;
 }
 
 .vie{
@@ -15,7 +16,7 @@
 }
 
 img.Entite{
-    height:120px;
+    height:150px;
     width:150px;
 }
 
@@ -31,7 +32,7 @@ img.Entite{
 .ArmureNom{
     float:left;
     white-space:nowrap;
-    width:149px;
+    width:100%;
     background:rgba(247,232,25,0.555);
     font-size:smaller;
 }

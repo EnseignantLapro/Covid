@@ -1,4 +1,4 @@
-.tableaChass{
+.divAllMonsterCaptured{
     display: flow-root;
     margin-bottom:20px;
     padding:20px;
@@ -11,13 +11,12 @@
     border-radius: 10px;
     border:1px solid rgb(0, 0, 0);
     box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
     margin-right:auto;
     margin-left:auto;
 }
 
-DIV.monster{
+.divMonsterCaptured{
     background-color:rgba(216,153,16,0.733);
     display: inline-table;
     margin: 10px;
@@ -27,18 +26,25 @@ DIV.monster{
     border-radius: 5px;
     border:1px solid rgb(0, 0, 0);
     box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
 }
 
-.titreMonster{
+.pWelcome{
+    display: block;
+    margin: 50px auto 20px auto;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: oblique;
+}
+
+.divTitleMonster{
     width:100%;
     margin:10px;
     color: white;
     background-color:rgba(97,75,29,0.733);
 }
 
-DIV.monster img{
+div .divMonsterCaptured img{
     width:140px;
     height:80px;
 }
