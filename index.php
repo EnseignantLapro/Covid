@@ -10,7 +10,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/index.css">
             <script src="main.js"></script>
         <!-- Informations Généraux-->
             <title>Projet Full Stack</title>
@@ -29,15 +28,16 @@
     <body class="bodyAccueil">
         <?php
             include "session.php";
-            if($access){
+            if($access === true){
                 $access = $Joueur1->DeconnectToi();
             }
-            if($access){
+            if($access === true){
+                include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="reglement">
-                        <div class="bienvenue">
+                    <div class="divReglement">
+                        <div class="divWelcome">
                             <?php
-                                if($Joueur1->isAdmin() == true){
+                                if($Joueur1->isAdmin() === true){
                                     ?>
                                         <p>Bienvenue Administrateur <?= $Joueur1->getPrenom() ?>.</p>
                                         <p><a href='admin/'>Accéder au Panel Administrateur.</a></p>
@@ -64,17 +64,17 @@
                             if(!is_null($PersoChoisie)){
                                 $Joueur1->setPersonnage($PersoChoisie);
                                 ?>
-                                    <div class="Action">
+                                    <div class="divAction">
                                         <?php
 
-                                        if(!empty($PersoChoisie->getNom()) ){
-                                        ?>
-                                            <p><a href="combat.php">Viens combattre avec <?= $PersoChoisie->getNom() ?></a></p>
-                                        <?php
+                                        if(!empty($PersoChoisie->getNom())){
+                                            ?>
+                                                <p><a href="combat.php">Viens combattre avec <?= $PersoChoisie->getNom() ?></a></p>
+                                            <?php
                                         }else{
-                                        ?>
-                                            <p><a href="combat.php">Viens combattre avec <?= $Joueur1->getNomPersonnage() ?></a></p>
-                                        <?php
+                                            ?>
+                                                <p><a href="combat.php">Viens combattre avec <?= $Joueur1->getNomPersonnage() ?></a></p>
+                                            <?php
                                         }
                                         ?>
                                     </div>
@@ -86,6 +86,7 @@
             }else{
                 echo $errorMessage;
             }
+            include "ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>

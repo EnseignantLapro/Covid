@@ -10,7 +10,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/index.css">
+            <link rel="stylesheet" href="css/classement.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
             <title>Projet Full Stack - Classement</title>
@@ -36,12 +36,36 @@
             }
             // Vérifie qu'il ne s'est pas déconnecté.
             if($access === true){
+                include "ihm/fonction-web/menu.php";
                 ?>
-
+                    <div class="divClassement">
+                        <h1>Classement</h1>
+                        <table>
+                            <tr>
+                                <th>Pseudo<th>
+                                <th>Monstre capturé</th>
+                                <th>NFT</th>
+                                <th>LV</th>
+                                <th>XP</th>
+                                <th>Dégats</th>
+                                <th>Vie</th>
+                            </tr>
+                            <tr>
+                                <td><?= 'Exemple' ?></td>
+                                <td><?= 42 ?></td>
+                                <td><?= 5 ?></td>
+                                <td><?= 21 ?></td>
+                                <td><?= 400 ?></td>
+                                <td><?= 500 ?></td>
+                                <td><?= 600 ?></td>
+                            </tr>
+                        </table>
+                    </div>
                 <?php
             }else{
                 echo $errorMessage;
             }
+            include "ihm/fonction-web/footer.php";
         ?>
     </body>
 </html>
