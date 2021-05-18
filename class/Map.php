@@ -433,7 +433,7 @@ class map{
         }
 
         $position = $this->generatePosition();
-        $Generate = $this->generateMap();
+        $Generate = $this->generateCarte();
         $nom = $Generate[2];
         $typeId=$Generate[0];
         $type=$Generate[1];
@@ -820,6 +820,403 @@ class map{
     }
 
     //Permet de générer un nom de map
+    public function generateCarte(){
+        $nom ="";
+        $req="Select * from TypeMap";
+        $Result = $this->_bdd->query($req);
+        $typemap=array();
+        while($tab=$Result->fetch()){
+            array_push($typemap,$tab);
+        }
+
+        $choixAleatoire= array_rand($typemap, 1);
+        
+        $type =  $typemap[$choixAleatoire];
+        $nom = $type['nomFr'];
+
+        $Adjectif ="";
+        switch (rand(0,20)){
+            case 0:
+                $Adjectif ="Poisseux";
+            break;
+            case 1:
+                $Adjectif ="Luxuriant";
+            break;
+            case 2:
+                $Adjectif ="Pas belle";
+            break;
+            case 3:
+                $Adjectif ="Enchantée";
+            break;
+            case 4:
+                $Adjectif ="Mortel";
+            break;
+            case 5:
+                $Adjectif ="Abandonné";
+            break;
+            case 6:
+                $Adjectif ="Enflammé";
+            break;
+            case 7:
+                $Adjectif ="Minuscule";
+            break;
+            case 8:
+                $Adjectif ="Lumineux";
+            break;
+            case 9:
+                $Adjectif ="Sombre";
+            break;
+            case 10:
+                $Adjectif ="Bouleversant";
+            break;
+            case 11:
+                $Adjectif ="Captivant";
+            break;
+            case 12:
+                $Adjectif ="Divin";
+            break;
+            case 13:
+                $Adjectif ="Épouvantable";
+            break;
+            case 14:
+                $Adjectif ="Exaltant";
+            break;
+            case 15:
+                $Adjectif ="Remarquable";
+            break;
+            case 16:
+                $Adjectif ="Somptueux";
+            break;
+            case 17:
+                $Adjectif ="Spiritueux";
+            break;
+            case 18:
+                $Adjectif ="Vivable";
+            break;
+            case 19:
+                $Adjectif ="Banal";
+            break;   
+            default:
+                $Adjectif ="Haineu";
+        }
+
+        $Nom ="";
+        switch (rand(0,101)){
+            case 0:
+                $Nom .="Jewotia";
+            break;
+            case 1:
+                $Nom .="Flunition";
+            break;
+            case 2:
+                $Nom .="Vesetora";
+            break;
+            case 3:
+                $Nom .="Kriokkiatria";
+            break;
+            case 4:
+                $Nom .="Eafatha";
+            break;
+            case 5:
+                $Nom .="Tinnianet";
+            break;
+            case 6:
+                $Nom .="Riovacion";
+            break;
+            case 7:
+                $Nom .="Plealiorim";
+            break;
+            case 8:
+                $Nom .="Eagliolas";
+            break;
+            case 9:
+                $Nom .="Chiarradore";
+            break;
+            case 10:
+                $Nom .="Riowearion";
+            break;
+            case 11:
+                $Nom .="Brappianica";
+            break;
+            case 12:
+                $Nom .="Eogetall";
+            break;
+            case 13:
+                $Nom .="Ireathaer";
+            break;
+            case 14:
+                $Nom .="Iobeogana";
+            break;
+            case 15:
+                $Nom .="Blotianica";
+            break;
+            case 16:
+                $Nom .="Klecothan";
+            break;
+            case 17:
+                $Nom .="Ucomund";
+            break;
+            case 18:
+                $Nom .="Yaefirial";
+            break;
+            case 19:
+                $Nom .="Heajorus";
+            break;
+            case 20:
+                $Nom .="Utioros";
+            break;
+            case 21:
+                $Nom .="Issurhia";
+            break;
+            case 22:
+                $Nom .="Hirodin";
+            break;
+            case 23:
+                $Nom .="Neogritha";
+            break;
+            case 24:
+                $Nom .="Aeppulion";
+            break;
+            case 25:
+                $Nom .="Cruqorene";
+            break;
+            case 26:
+                $Nom .="Cleobiagarth";
+            break;
+            case 27:
+                $Nom .="Stafeadore";
+            break;
+            case 28:
+                $Nom .="Uthuaruta";
+            break;
+            case 29:
+                $Nom .="Illiliv";
+            break;
+            case 30:
+                $Nom .="Madus";
+            break;
+            case 31:
+                $Nom .="Bagua";
+            break;
+            case 32:
+                $Nom .="Croonia";
+            break;
+            case 33:
+                $Nom .="Lerocarro";
+            break;
+            case 34:
+                $Nom .="Aepra";
+            break;
+            case 35:
+                $Nom .="Xuaruta";
+            break;
+            case 36:
+                $Nom .="Tollypso";
+            break;
+            case 37:
+                $Nom .="Icion";
+            break;
+            case 38:
+                $Nom .="Tigeatune";
+            break;
+            case 39:
+                $Nom .="Uloclite";
+            break;
+            case 40:
+                $Nom .="Zoxawei";
+            break;
+            case 41:
+                $Nom .="Gramuliv";
+            break;
+            case 42:
+                $Nom .="Eivis";
+            break;
+            case 43:
+                $Nom .="Gophus";
+            break;
+            case 44:
+                $Nom .="Ibarvis";
+            break;
+            case 45:
+                $Nom .="Valleuruta";
+            break;
+            case 46:
+                $Nom .="Chubarth";
+            break;
+            case 47:
+                $Nom .="Ulmuetera";
+            break;
+            case 48:
+                $Nom .="Soimiers";
+            break;
+            case 49:
+                $Nom .="Avinesse";
+            break;
+            case 50:
+                $Nom .="Klefminns";
+            break;
+            case 51:
+                $Nom .="Carault";
+            break;
+            case 52:
+                $Nom .="Fexsorth";
+            break;
+            case 53:
+                $Nom .="Bellimar";
+            break;
+            case 54:
+                $Nom .="Roalême";
+            break;
+            case 55:
+                $Nom .="Charyonne";
+            break;
+            case 56:
+                $Nom .="Bormomble";
+            break;
+            case 57:
+                $Nom .="Maulet";
+            break;
+            case 58:
+                $Nom .="Poinoît";
+            break;
+            case 59:
+                $Nom .="Nuxine";
+            break;
+            case 60:
+                $Nom .="Nougarts";
+            break;
+            case 61:
+                $Nom .="Disart";
+            break;
+            case 62:
+                $Nom .="Marilly";
+            break;
+            case 63:
+                $Nom .="Ogluriton";
+            break;
+            case 64:
+                $Nom .="Avirac";
+            break;
+            case 65:
+                $Nom .="Bornorth";
+            break;
+            case 66:
+                $Nom .="Digueux";
+            break;
+            case 67:
+                $Nom .="Maifort";
+            break;
+            case 68:
+                $Nom .="Coltou";
+            break;
+            case 69:
+                $Nom .="Tougneux";
+            break;
+            case 70:
+                $Nom .="Tousart";
+            break;
+            case 71:
+                $Nom .="Toumasse";
+            break;
+            case 72:
+                $Nom .="Alenzon";
+            break;
+            case 73:
+                $Nom .="Narlès";
+            break;
+            case 74:
+                $Nom .="Toussonne";
+            break;
+            case 75:
+                $Nom .="Nanteaux";
+            break;
+            case 76:
+                $Nom .="Vayonne";
+            break;
+            case 77:
+                $Nom .="Vizia";
+            break;
+            case 78:
+                $Nom .="Ceolyra";
+            break;
+            case 79:
+                $Nom .="Kricaea";
+            break;
+            case 80:
+                $Nom .="Aichagary";
+            break;
+            case 81:
+                $Nom .="Gemeopia";
+            break;
+            case 82:
+                $Nom .="Odruicatia";
+            break;
+            case 83:
+                $Nom .="Sluicritia";
+            break;
+            case 84:
+                $Nom .="Slikhothen";
+            break;
+            case 85:
+                $Nom .="Credoria";
+            break;
+            case 86:
+                $Nom .="Veadour";
+            break;
+            case 87:
+                $Nom .="Ikakha";
+            break;
+            case 88:
+                $Nom .="Exuinada";
+            break;
+            case 89:
+                $Nom .="Stoca";
+            break;
+            case 90:
+                $Nom .="Aexotha";
+            break;
+            case 91:
+                $Nom .="Wolecan";
+            break;
+            case 92:
+                $Nom .="Buixiviel";
+            break;
+            case 93:
+                $Nom .="Oukhavaenid";
+            break;
+            case 94:
+                $Nom .="Iphilorian";
+            break;
+            case 95:
+                $Nom .="Hepoukya";
+            break;
+            case 96:
+                $Nom .="Deotor";
+            break;
+            case 97:
+                $Nom .="Lounao";
+            break;
+            case 98:
+                $Nom .="Staelia";
+            break;
+            case 99:
+                $Nom .="Aenidia";
+            break;
+            case 100:
+                $Nom .="Ovora";
+            break;
+            default:
+                $Nom .="Treoweth";
+        }
+        //la premiere case et le type en anglais pour une recherche d'image
+        $tab[0]=$type['id'];
+        $tab[1]=$type['nom'];
+        $tab[2]=$nom ." ". $Adjectif." ".$Nom;
+        return $tab;
+    }
+    
+/*
+    //Permet de générer un nom de map
     public function generateMap(){
         $nom ="";
         $req="Select * from TypeMap";
@@ -937,7 +1334,7 @@ class map{
                 $Consone .=" ";
             }
         }
-
+*/
         //la premiere case et le type en anglais pour une recherche d'image
         $tab[0]=$type['id'];
         $tab[1]=$type['nom'];

@@ -611,7 +611,7 @@ class Mob extends Entite{
         return $nom ." ". $Adjectif." ".$Nom;
     }
 
-
+/*
     //Permet de générer un nom de mob
     public function generateNom($type){
         $nom =$type;
@@ -722,7 +722,7 @@ class Mob extends Entite{
 
         return $nom ." ". $Adjectif." ".$Consone;
     }
-
+*/
     public function generateImageMob($topic){
         //echo '<img src="'.$partialString3.'" widht="200px">';
         if(empty($topic)){
