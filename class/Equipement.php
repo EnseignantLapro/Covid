@@ -234,11 +234,19 @@ class Equipement extends Objet{
 
 
         }
-
-
-
     }
-
-
+    //affiche le nombre d'équipement existant par efficacité'
+    public function nbequipement(){
+        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `equipement`WHERE efficacite=".$value."");
+        $nbequipement = $Result->fetch();
+        echo $nbequipement;
+    }
+    
+    //affiche le nombre d'item existant par type'
+    public function nbitemtype(){
+        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `equipement` WHERE type=".$value."");
+        $nbitemtype = $Result->fetch();
+        echo $nbitemtype;   
+    }
 }
 ?>
