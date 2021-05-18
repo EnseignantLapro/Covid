@@ -761,5 +761,12 @@ class Mob extends Entite{
     {
         $this->_bdd->query("UPDATE `Entite` SET `vie` = '".$this->vieMax."' WHERE `id` = $id");
     }
+
+    //affiche le nombre de mob crée
+    public function nbmob(){
+        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `Entite` WHERE type=`2`");
+        $nbmob = $Result->fetch();
+        echo $nbmob;
+    }
 }
 ?>
