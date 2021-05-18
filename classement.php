@@ -10,7 +10,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/index.css">
+            <link rel="stylesheet" href="css/classement.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
             <title>Projet Full Stack - Classement</title>
@@ -38,7 +38,7 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class = "classement">
+                    <div class="divClassement">
                         <h1>Classement</h1>
                         <table>
                             <tr>

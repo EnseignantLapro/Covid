@@ -11,7 +11,6 @@
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="../css/admin.css">
             <link rel="stylesheet" href="../css/style.css">
-            <link rel="stylesheet" href="../css/index.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
             <title>Panel Admin - Personnages</title>
@@ -27,7 +26,7 @@
             <meta name='twitter:description' content='Panel Admin - Personnages'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
-    <body class="admin-panel">
+    <body class="AdminPanel">
         <?php
             include "../session.php";
 

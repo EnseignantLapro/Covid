@@ -3,18 +3,14 @@
     padding: 8% 0%;
     text-align: center;
     position: absolute;
-    background-image:  url('https://www.wallpaperuse.com/wallp/48-481854_m.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
-.List-SN1{
+.divSN1{
     width: 40%;
     margin: 0px auto;
 }
 
-.List-SN1 p{
+.divSN1 p{
     display: inline-block;
     color: black;
     font-weight: bolder;

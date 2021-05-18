@@ -26,7 +26,7 @@
             <meta name='twitter:description' content='Projet Full Stack - Réglement'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
-    <body class="bodyReglement">
+    <body class="bodyRules">
         <?php
             include "session.php";
 
@@ -38,8 +38,8 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="Règlement">
-                        <h1>Règlement</h1>
+                    <div class="divRules">
+                        <h1 class="divRulesTitle">Règlement</h1>
                         <p><b>1</b> - Être gentil</p>
                     </div>
                 <?php

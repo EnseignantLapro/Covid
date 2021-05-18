@@ -1,6 +1,6 @@
 <div class="divSacEquipement">
-    <p id='TitleSacocheEquipement'>Equipement</p>
-    <ul id="SacEquipement" class="Sac">
+    <p class="pTitleSacEquipement">Equipement</p>
+    <ul id="SacEquipement" class="ulSac">
         <?php
             $listEquipements = $Joueur1->getPersonnage()->getEquipementNonPorte();
             if(count($listEquipements) > 0){
