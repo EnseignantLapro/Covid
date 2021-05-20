@@ -1,3 +1,4 @@
+
 <?php //dev by rapidecho
 class Equipement extends Objet{
 
@@ -247,6 +248,18 @@ class Equipement extends Objet{
         $Result = $this->_bdd->query("SELECT COUNT(*) FROM `equipement` WHERE type=".$value."");
         $nbitemtype = $Result->fetch();
         echo $nbitemtype;   
+    }
+
+    /*
+    fonction qui retourne le nombre d'équipement total dans la base de donner
+    elle demende en paramètre la connection a la base de donné
+    */
+    public function getNombreEquipement($bdd)
+    {
+        $req = 'SELECT COUNT(*) as "NB" FROM equipement';
+        $excuteReq = $this->_bdd->query($req);
+        $data = $excuteReq->fetch();
+        return $data['NB'];
     }
 }
 ?>

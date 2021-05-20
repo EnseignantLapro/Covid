@@ -52,7 +52,7 @@ session_start();
             include "testUnitaire/testPersonnage.php"; 
         echo "</div>" ;
         echo '<div class="TestIntegration"> TEST MOB';
-            include "testUnitaire/testMob.php"; 
+            //include "testUnitaire/testMob.php"; 
         echo "</div>" ;
         echo '<div class="TestIntegration"> TEST MOB';
             //test de Boucher
@@ -60,9 +60,6 @@ session_start();
         echo "</div>" ;
         echo '<div class="TestIntegration"> TEST TypeItem';
         include "testUnitaire/testTypeItem.php"; 
-    echo "</div>" ;
-    echo '<div class="TestIntegration"> TEST TypeItem';
-        include "testUnitaire/testBouclier.php"; 
     echo "</div>" ;
 
 

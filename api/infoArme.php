@@ -8,13 +8,14 @@ if($access){
     $reponse = array();
 
     $Personnage = $Joueur1->getPersonnage();
-    $tab = $Personnage->getArme()->getType();
     //Recupération du type d'arme
-    $reponse["arme"] = $tab[3];
-    //Recupération du cooldown de l'arme
-    /*$reponse["cooldown"] = */
-    //Envoie du tableau de réponse
-    echo json_encode($reponse);
-
+    if($tab = $Personnage->getArme()){
+        $tab = $tab->getType();
+        $reponse["arme"] = $tab["nom"];
+         //Recupération du cooldown de l'arme
+        $reponse["cooldown"] = $tab["Cooldown"];
+        //Envoie du tableau de réponse
+        echo json_encode($reponse);
+    }
 }
 ?>
