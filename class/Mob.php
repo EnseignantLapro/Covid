@@ -1,7 +1,6 @@
 <?php
 //TODO MOB ET PERSONNAGE ON TROP DE SIMILITUDE
 //IL FAUT REFACTORISER AVEC DE LhERITAGE
-
 class Mob extends Entite{
 
     private $_coefXP;
@@ -134,17 +133,12 @@ class Mob extends Entite{
 
     //retourne toute la mécanique d'affichage d'un mob
     public function renderHTML(){
-        ?>
-            <div class="mob">
-                <!-- 
-                    <div class="mobCoef">
-                        Coef <?= $this->_coefXP ?>
-                    </div>
-                -->
-                <?php
-                    Parent::renderHTML();
-                ?>
-            </div>
+        ?><div class="mob">
+            <div class="mobCoef">Coef <?php echo $this->_coefXP ?></div>
+           <?php
+            Parent::renderHTML();
+           ?>
+        </div>
         <?php
     }
 
@@ -248,7 +242,7 @@ class Mob extends Entite{
                 $Adjectif ="Luxuriant";
             break;
             case 2:
-                $Adjectif ="Pas belle";
+                $Adjectif ="Immense";
             break;
             case 3:
                 $Adjectif ="Enchantée";
@@ -306,7 +300,7 @@ class Mob extends Entite{
         }
 
         $Nom ="";
-        switch (rand(0,101)){
+        switch (rand(0,201)){
             case 0:
                 $Nom .="Bracken";
             break;
@@ -610,7 +604,308 @@ class Mob extends Entite{
             case 100:
                 $Nom .="Connar";
             break;
+            case 101:
+                $Nom .="Iwlos";
+            break;
+            case 102:
+                $Nom .="Crixog";
+            break;
+            case 103:
+                $Nom .="Slolos";
+            break;
+            case 104:
+                $Nom .="Ausbos";
+            break;
+            case 105:
+                $Nom .="Vreslith";
+            break;
+            case 106:
+                $Nom .="Hewmalog";
+            break;
+            case 107:
+                $Nom .="Xuog";
+            break;
+            case 108:
+                $Nom .="Heom";
+            break;
+            case 109:
+                $Nom .="Kutheus";
+            break;
+            case 110:
+                $Nom .="Naroch";
+            break;
+            case 111:
+                $Nom .="Tafag";
+            break;
+            case 112:
+                $Nom .="Aodlor";
+            break;
+            case 113:
+                $Nom .="Flukkaros";
+            break;
+            case 114:
+                $Nom .="Kethos";
+            break;
+            case 115:
+                $Nom .="Crowgar";
+            break;
+            case 116:
+                $Nom .="Cunas";
+            break;
+            case 117:
+                $Nom .="Dlasfur";
+            break;
+            case 118:
+                $Nom .="Onus";
+            break;
+            case 119:
+                $Nom .="Nugdhor";
+            break;
+            case 120:
+                $Nom .="Wiwrog";
+            break;
+            case 121:
+                $Nom .="Cabtheus";
+            break;
+            case 122:
+                $Nom .="Judroch";
+            break;
+            case 123:
+                $Nom .="Wruxgrog";
+            break;
+            case 124:
+                $Nom .="Lugfur";
+            break;
+            case 125:
+                $Nom .="Klizbor";
+            break;
+            case 126:
+                $Nom .="Nimlas";
+            break;
+            case 127:
+                $Nom .="Caglith";
+            break;
+            case 128:
+                $Nom .="Fecrus";
+            break;
+            case 129:
+                $Nom .="Fetlog";
+            break;
+            case 130:
+                $Nom .="Joroch";
+            break;
+            case 131:
+                $Nom .="Lilsius";
+            break;
+            case 132:
+                $Nom .="Minfius";
+            break;
+            case 133:
+                $Nom .="Frarmalog";
+            break;
+            case 134:
+                $Nom .="Crubgrog";
+            break;
+            case 135:
+                $Nom .="Dodlor";
+            break;
+            case 136:
+                $Nom .="Nogir";
+            break;
+            case 137:
+                $Nom .="Nufgan";
+            break;
+            case 138:
+                $Nom .="Niom";
+            break;
+            case 139:
+                $Nom .="Kolzus";
+            break;
+            case 140:
+                $Nom .="Aretius";
+            break;
+            case 141:
+                $Nom .="Cretder";
+            break;
+            case 142:
+                $Nom .="Jadnus";
+            break;
+            case 143:
+                $Nom .="Cogfius";
+            break;
+            case 144:
+                $Nom .="Kewnas";
+            break;
+            case 145:
+                $Nom .="Falthos";
+            break;
+            case 146:
+                $Nom .="Werus";
+            break;
+            case 147:
+                $Nom .="Zugan";
+            break;
+            case 148:
+                $Nom .="Habdhor";
+            break;
+            case 149:
+                $Nom .="Jabtheus";
+            break;
+            case 150:
+                $Nom .="Ocmohr";
+            break;
+            case 151:
+                $Nom .="Grinus";
+            break;
+            case 152:
+                $Nom .="Cocvag";
+            break;
+            case 153:
+                $Nom .="Alover";
+            break;
+            case 154:
+                $Nom .="Fremlas";
+            break;
+            case 155:
+                $Nom .="Slumsar";
+            break;
+            case 156:
+                $Nom .="Moxzar";
+            break;
+            case 157:
+                $Nom .="Lonwar";
+            break;
+            case 158:
+                $Nom .="Bokroch";
+            break;
+            case 159:
+                $Nom .="Flaxdor";
+            break;
+            case 160:
+                $Nom .="Famlas";
+            break;
+            case 161:
+                $Nom .="Srunus";
+            break;
+            case 162:
+                $Nom .="Mabar";
+            break;
+            case 163:
+                $Nom .="Doksag";
+            break;
+            case 164:
+                $Nom .="Wilrion";
+            break;
+            case 165:
+                $Nom .="Wesog";
+            break;
+            case 166:
+                $Nom .="Fesius";
+            break;
+            case 167:
+                $Nom .="Rokos";
+            break;
+            case 168:
+                $Nom .="Zloos";
+            break;
+            case 169:
+                $Nom .="Elith";
+            break;
+            case 170:
+                $Nom .="Cemir";
+            break;
+            case 171:
+                $Nom .="Dremdus";
+            break;
+            case 172:
+                $Nom .="Uas";
+            break;
+            case 173:
+                $Nom .="Vokaros";
+            break;
+            case 174:
+                $Nom .="Denus";
+            break;
+            case 175:
+                $Nom .="Glewor";
+            break;
+            case 176:
+                $Nom .="Codius";
+            break;
+            case 177:
+                $Nom .="Nebfur";
+            break;
+            case 178:
+                $Nom .="Wream";
+            break;
+            case 179:
+                $Nom .="Gengar";
+            break;
+            case 180:
+                $Nom .="Aksog";
+            break;
+            case 181:
+                $Nom .="Stykt";
+            break;
+            case 182:
+                $Nom .="Zes";
+            break;
+            case 183:
+                $Nom .="Bix";
+            break;
+            case 184:
+                $Nom .="Wrox";
+            break;
+            case 185:
+                $Nom .="Frots";
+            break;
+            case 186:
+                $Nom .="Bliazgeeg";
+            break;
+            case 187:
+                $Nom .="Zriahzird";
+            break;
+            case 188:
+                $Nom .="Slunis";
+            break;
+            case 189:
+                $Nom .="Sloitvulk";
+            break;
+            case 190:
+                $Nom .="Jersyng";
+            break;
+            case 191:
+                $Nom .="Swiessee";
+            break;
+            case 192:
+                $Nom .="Niegsia";
+            break;
+            case 193:
+                $Nom .="Wurx";
+            break;
+            case 194:
+                $Nom .="Arx";
+            break;
+            case 195:
+                $Nom .="Treesai";
+            break;
+            case 196:
+                $Nom .="Creekith";
+            break;
+            case 197:
+                $Nom .="Duvuifsia";
+            break;
+            case 198:
+                $Nom .="Gleahkiashai";
+            break;
+            case 199:
+                $Nom .="Gionvylma";
+            break;
+            case 200:
+                $Nom .="Doggo";
+            break;
             default:
+            
                 $Nom .="Asteus";
         }
         return $nom ." ". $Adjectif." ".$Nom;
@@ -760,13 +1055,6 @@ class Mob extends Entite{
     public function healmobspawn($id)//prend en paramettre l'id du mob qui faut heal
     {
         $this->_bdd->query("UPDATE `Entite` SET `vie` = '".$this->vieMax."' WHERE `id` = $id");
-    }
-
-    //affiche le nombre de mob crée
-    public function nbmob(){
-        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `Entite` WHERE type=`2`");
-        $nbmob = $Result->fetch();
-        echo $nbmob;
     }
 }
 ?>
