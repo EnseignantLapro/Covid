@@ -843,7 +843,7 @@ class map{
                 $Adjectif ="Luxuriant";
             break;
             case 2:
-                $Adjectif ="Pas belle";
+                $Adjectif ="Immense";
             break;
             case 3:
                 $Adjectif ="Enchantée";
@@ -1334,14 +1334,14 @@ class map{
                 $Consone .=" ";
             }
         }
-*/
+
         //la premiere case et le type en anglais pour une recherche d'image
         $tab[0]=$type['id'];
         $tab[1]=$type['nom'];
         $tab[2]=$nom ." ". $Adjectif." ".$Consone;
         return $tab;
     }
-
+*/
     //fonction de recherche récursive de map adjacent
     //retourne une map si elle se trouve 
     public function trouveMapAdjacente($map,$cardinalite){
