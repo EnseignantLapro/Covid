@@ -213,7 +213,6 @@ class Entite {
                 return $Bouclier;
             }
         }
-        return $Bouclier;
     }
 
 
@@ -236,8 +235,8 @@ class Entite {
     //Fonction pour déséquiper un pourvoir
     public function desequipePouvoir(){
         $pouvoir = $this->getPouvoir();
-        if(!is_null($pourvoir)){
-            $armure->desequipeEntite($this);
+        if(!is_null($pouvoir)){
+            $pouvoir->desequipeEntite($this);
         }
     }
 
@@ -442,49 +441,64 @@ class Entite {
 
     //retourne toute la mécanique d'affichage d'un Entite
     public function renderHTML(){
-        if ($this->_vieMax<0 || $this->_vieMax=="0" ){
+        if($this->_vieMax<0 || $this->_vieMax=="0"){
             $this->_vieMax=10;
         }
         $pourcentage = round(100*$this->_vie/$this->_vieMax);
         ?>
-        
-        <div>
-            <?php echo $this->_nom ?>( <?php echo $this->getValeur() ?> NFT) lvl  <?php echo $this->_lvl ?>
-        </div>
-        <div>
-            <img class="Entite" src="<?php echo $this->_imageLien;?>">
-        </div>
-        <div class="attaque" id="attaqueEntiteValeur<?php echo $this->_id ;?>"> <?php echo $this->getAttaque() ;?>  </div> 
+            <div class="EntiteInfo">
+                <div class="EntiteName">
+                    <?= $this->getNom() ?>
+                </div>
+                <div class="EntiteValeur">
+                    (<?= $this->getValeur() ?> NFT) LV <?= $this->_lvl ?>
+                </div>
+            </div>
+            <div>
+                <img class="Entite" src="<?= $this->_imageLien;?>">
+            </div>
+            <div class="attaque" id="attaqueEntiteValeur<?= $this->_id ;?>"> <?= $this->getAttaque() ;?>  </div>
         <?php 
-        $arme  = $this->getArme();
+        $arme = $this->getArme();
         if(!is_null($arme)){
-            echo '<div id ="Arme'.$arme->getId().'" class="Arme" onclick="CallApiRemoveEquipementEntite('.$arme->getId().')">'.$arme->getNom().' lvl'.$arme->getLvl().'</div>';
+            ?>
+                <div id="Arme<?= $arme->getId() ?>" class="Arme" onclick="CallApiRemoveEquipementEntite(<?= $arme->getId() ?>)"><?= $arme->getNom() ?> lvl <?= $arme->getLvl() ?></div>
+            <?php
         }else{
-            echo '<div id ="ArmePerso'.$this->_id.'" class="Arme"></div>';
+            ?>
+                <div id="ArmePerso<?= $this->_id ?>" class="Arme"></div>
+            <?php
         }
-        $armure  = $this->getArmure();
+        $armure = $this->getArmure();
         if(!is_null($armure)){
-            echo '<div id ="Armure'.$armure->getId().'" class="ArmureNom" onclick="CallApiRemoveEquipementEntite('.$armure->getId().')">'.$armure->getNom().' lvl'.$armure->getLvl().'</div>';
+            ?>
+                <div id ="Armure<?= $armure->getId() ?>" class="ArmureNom" onclick="CallApiRemoveEquipementEntite(<?= $armure->getId() ?>)"><?= $armure->getNom() ?> lvl <?= $armure->getLvl() ?></div>
+            <?php
         }else{
-            echo '<div id ="ArmurePerso'.$this->_id.'" class="ArmureNom"></div>';
+            ?>
+                <div id ="ArmurePerso<?= $this->_id ?>" class="ArmureNom"></div>
+            <?php
         }
-
         ?>
-        
-        <div class="barreDeVie" id="vieEntite<?php echo $this->_id ;?>">
-                <div class="vie" id="vieEntiteValeur<?php echo $this->_id ;?>" style="width: <?php echo $pourcentage?>%;">♥️<?php echo $this->_vie ;?></div>
-                <?php echo '<div class="armureAll"><div class="armure" id="defenseEntiteValeur'.$this->_id.'"';
-                    if(!is_null($armure)){
-                        echo 'style="width:'.$this->getDefense().'%;">'.$this->getDefense();
-                    }else{
-                        echo '>';
-                    }
-                    echo '</div></div>';
-                ?>    
-              
-        </div>
-        
-
+            <div class="barreDeVie" id="vieEntite<?= $this->_id ?>">
+                <div class="vie" id="vieEntiteValeur<?= $this->_id ?>" style="width:<?= $pourcentage ?>%;">♥️<?= $this->_vie ?>
+                </div>
+                <div class="armureAll">
+                    <div class="armure" id="defenseEntiteValeur<?= $this->_id ?>"
+                        <?php
+                            if(!is_null($armure)){
+                                ?>
+                                    style="width:<?= $this->getDefense() ?>%;"><?= $this->getDefense() ?>
+                                <?php
+                            }else{
+                                ?>
+                                    >
+                                <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
         <?php
     }
 

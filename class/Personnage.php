@@ -96,54 +96,59 @@ class Personnage extends Entite{
     }
 
     //todo peut etre factoriser dans la class mère Entite
-    public function SubitDegatByMob($Mob){
+    public function SubitDegatByMob($Mob)
+    {
+        //Attente de pull qui marche
+        //Si le mob attaquant a plus de O PV, il attaque
+        if($Mob->getVie() > 0)
+        {
+            $MobDegatAttaqueEnvoyer=$Mob->getAttaque();
 
-        $MobDegatAttaqueEnvoyer=$Mob->getAttaque();
+            //on réduit les déga avec armure si possible
+            $MobDegatAttaqueEnvoyer-=($MobDegatAttaqueEnvoyer*$this->getDefense())/100;
+            $MobDegatAttaqueEnvoyer = round($MobDegatAttaqueEnvoyer);
+            if($MobDegatAttaqueEnvoyer<0){
+                $MobDegatAttaqueEnvoyer = 0;
+            }
 
-        //on réduit les déga avec armure si possible
-        $MobDegatAttaqueEnvoyer-=($MobDegatAttaqueEnvoyer*$this->getDefense())/100;
-        $MobDegatAttaqueEnvoyer = round($MobDegatAttaqueEnvoyer);
-        if($MobDegatAttaqueEnvoyer<0){
-            $MobDegatAttaqueEnvoyer = 0;
-        }
+            $vieAvantAttaque = $this->_vie;
 
-        $vieAvantAttaque = $this->_vie;
+            //on va rechercher l'historique
+            $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$Mob->getId()."' and idPersonnage = '".$this->_id."'" ;
+            $Result = $this->_bdd->query($req);
+            $tabAttaque['nbCoup']=0;
+            $tabAttaque['DegatsDonnes']=$MobDegatAttaqueEnvoyer;
+            if($tab=$Result->fetch()){
+                $tabAttaque = $tab;
+                $tabAttaque['DegatsDonnes']+=$MobDegatAttaqueEnvoyer;
+                $tabAttaque['nbCoup']++;
 
-        //on va rechercher l'historique
-        $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$Mob->getId()."' and idPersonnage = '".$this->_id."'" ;
-        $Result = $this->_bdd->query($req);
-        $tabAttaque['nbCoup']=0;
-        $tabAttaque['DegatsDonnes']=$MobDegatAttaqueEnvoyer;
-        if($tab=$Result->fetch()){
-            $tabAttaque = $tab;
-            $tabAttaque['DegatsDonnes']+=$MobDegatAttaqueEnvoyer;
-            $tabAttaque['nbCoup']++;
+            }else{
+                //insertion d'une nouvelle attaque
+                $req="INSERT INTO `AttaquePersoMob`(`idMob`, `idPersonnage`, `nbCoup`, `coupFatal`, `DegatsDonnes`, `DegatsReçus`) 
+                VALUES (
+                    '".$Mob->getId()."','".$this->_id."',0,0,".$tabAttaque['DegatsReçus'].",0
+                )";
+                $Result = $this->_bdd->query($req);
+            }
 
-        }else{
-            //insertion d'une nouvelle attaque
-            $req="INSERT INTO `AttaquePersoMob`(`idMob`, `idPersonnage`, `nbCoup`, `coupFatal`, `DegatsDonnes`, `DegatsReçus`) 
-            VALUES (
-                '".$Mob->getId()."','".$this->_id."',0,0,".$tabAttaque['DegatsReçus'].",0
-            )";
+
+            $this->_vie = $this->_vie - $MobDegatAttaqueEnvoyer;
+            if($this->_vie<0){
+                $this->_vie =0;
+                //on ne peut pas donner plus de degat que la vie d'un perso
+                $tabAttaque['DegatsDonnes'] = $vieAvantAttaque;
+                //retour en zone 0,0
+            }
+            $req  = "UPDATE `Entite` SET `vie`='".$this->_vie ."' WHERE `id` = '".$this->_id ."'";
+            $Result = $this->_bdd->query($req);
+
+            //update AttaquePersoMob pour mettre a jour combien le perso a pris de degat 
+            $req="UPDATE `AttaquePersoMob` SET 
+            `DegatsDonnes`=".$tabAttaque['DegatsDonnes']."
+            WHERE idMob = '".$Mob->getId()."' AND idPersonnage ='".$this->_id."' ";
             $Result = $this->_bdd->query($req);
         }
-
-
-        $this->_vie = $this->_vie - $MobDegatAttaqueEnvoyer;
-        if($this->_vie<0){
-            $this->_vie =0;
-            //on ne peut pas donner plus de degat que la vie d'un perso
-            $tabAttaque['DegatsDonnes'] = $vieAvantAttaque;
-            //retour en zone 0,0
-        }
-        $req  = "UPDATE `Entite` SET `vie`='".$this->_vie ."' WHERE `id` = '".$this->_id ."'";
-        $Result = $this->_bdd->query($req);
-
-        //update AttaquePersoMob pour mettre a jour combien le perso a pris de degat 
-        $req="UPDATE `AttaquePersoMob` SET 
-        `DegatsDonnes`=".$tabAttaque['DegatsDonnes']."
-         WHERE idMob = '".$Mob->getId()."' AND idPersonnage ='".$this->_id."' ";
-        $Result = $this->_bdd->query($req);
 
         return $this->_vie;
     }
@@ -480,6 +485,22 @@ class Personnage extends Entite{
         </form>
         <?php
         return $this;
+    }
+    //affiche le nombre de personnage humain crée
+    public function nbpersonnage(){
+        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `Entite` WHERE type=`1`");
+        $nbperso = $Result->fetch();
+        echo $nbperso;
+    }
+    //affiche le nom du perso et son lvl 
+    public function lvlpersonnage(){
+        $Result = $this->_bdd->query("SELECT * FROM `Entite` WHERE type=`1` ");
+        $infoperso = $Result->fetch();
+        $nom = $infoperso["nom"];
+        $lvl = $infoperso["lvl"];
+        return $lvl;
+        return $nom;
+
     }
 
 }
