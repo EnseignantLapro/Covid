@@ -35,15 +35,26 @@
                                 <th>Dégats</th>
                                 <th>Vie</th>
                             </tr>
-                            <tr>
-                                <td><?= 'Exemple' ?></td>
-                                <td><?= 42 ?></td>
-                                <td><?= 5 ?></td>
-                                <td><?= 21 ?></td>
-                                <td><?= 400 ?></td>
-                                <td><?= 500 ?></td>
-                                <td><?= 600 ?></td>
-                            </tr>
+                            <?php
+                                //$Test = new User($mabase);
+                                //$user =  $Test -> showusers($mabase) ;
+
+                                //while ($NB < 30) {
+                                    ?>
+                                        <p> </p>
+                                    <?php
+                                //    $NB++;
+                                //}
+                            ?>
+                                    <tr>
+                                        <td><?= "Test" ?></td>
+                                        <td><?= 42 ?></td>
+                                        <td><?= 5 ?></td>
+                                        <td><?= 21 ?></td>
+                                        <td><?= 400 ?></td>
+                                        <td><?= 500 ?></td>
+                                        <td><?= 600 ?></td>
+                                    </tr>
                         </table>
                     </div>
                 <?php

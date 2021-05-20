@@ -328,19 +328,13 @@ class User{
     }
     //affiche tout les utilisateurs ainsi que leurs donnée (commande de préférance admin)
     public function showusers(){
-        $all = $this->_bdd->query("SELECT * FROM user");
-        $show = $all->fetch();
-
-        echo $show['id'];
-        echo $show['login'];
-        echo $show['prenom'];
-        echo $show['mdp'];
-        echo $show['idPersonnage'];
-        echo $show['admin'];
+        $ReturnAllUser1 = $this->_bdd->query("SELECT * FROM User");
+        $ReturnAllUser = $ReturnAllUser1->fetch();
+        return $ReturnAllUser;
     }
     //fonction pour modifier un prenom en base
     public function updateuser(){
-        $Up = $this->_bdd->query("UPDATE `user` SET `prenom`='".$POST['newprenom']."' WHERE id=".$this->_id." ");
+        $Up = $this->_bdd->query("UPDATE `User` SET `prenom`='".$POST['newprenom']."' WHERE id=".$this->_id." ");
             if($Up){
                 ?>
                     <p>Ton prénom a bien été changé.</p>
@@ -353,7 +347,7 @@ class User{
     }
     //fonction pour supprimé un utilisateur version admin
     public function deleteuseradminversion(){
-        $Del = $this->_bdd->query("DELETE FROM user WHERE id= ".$_POST['id']."");
+        $Del = $this->_bdd->query("DELETE FROM User WHERE id= ".$_POST['id']."");
             if($Del){
                 ?>
                     <p>Utilisateur supprimé.</p>
@@ -367,7 +361,7 @@ class User{
     //fonction pour ajouté un utilisateur
     public function adduser(){
         //ajoute un commentaire dans la base de la page du jeu selectionné
-        $add = $this->_bdd->query("INSERT INTO user (login, prenom, mdp, idPersonnage, admin) VALUES (".$_POST['login'].",".$_POST['prenom'].",".$_POST['mdp'].",".$_POST['idPersonnage'].", 0 ) ");
+        $add = $this->_bdd->query("INSERT INTO User (login, prenom, mdp, idPersonnage, admin) VALUES (".$_POST['login'].",".$_POST['prenom'].",".$_POST['mdp'].",".$_POST['idPersonnage'].", 0 ) ");
         if($add){
             ?>
                 <p>Utilisateur ajouté.</p>
@@ -384,7 +378,7 @@ class User{
             //comparaison du mot de passe avec l'ancien
             if($_POST['NEWMDP'] == $_POST['password']) {
                 //mise a jour dans la base du nouveau mot de passe
-                $rep = $this->_bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE id=".$this->_id." ");
+                $rep = $this->_bdd->query("UPDATE `User` SET `mdp`='".$_POST['NEWMDP']."' WHERE id=".$this->_id." ");
                 if($rep){
                     //succées
                     ?>
@@ -408,7 +402,7 @@ class User{
     public function updatepasswordadminversion(){
         if (isset($_POST["updateusermdp"])) {
             //mise a jour dans la base du nouveau mot de passe
-            $rep = $this->_bdd->query("UPDATE `user` SET `mdp`='".$_POST['NEWMDP']."' WHERE `id`='".$_POST['id']."' ");
+            $rep = $this->_bdd->query("UPDATE `User` SET `mdp`='".$_POST['NEWMDP']."' WHERE `id`='".$_POST['id']."' ");
             if($rep){
                 //succées
                 ?>
@@ -442,7 +436,7 @@ class User{
     }
 
     public function nbUser(){
-        $user = $this->_bdd->query("SELECT COUNT(*) prenom FROM user");
+        $user = $this->_bdd->query("SELECT COUNT(*) prenom FROM User");
         $nbuser = $user->fetch();     
         echo $nbuser['prenom'];
     }
