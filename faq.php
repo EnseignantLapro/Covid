@@ -27,11 +27,11 @@
                         <h1>FAQ</h1>
                         <h3>Questions Fréquentes</h3>
                         <h4>Comment se déplacer sur la carte ?</h4>
-                        <p>En cliquant.</p>
+                        <p>Pour pouvoir vous déplacez, cliquez sur les bords de la map</p>
                         <h4>Comment utiliser un items ?</h4>
-                        <p>En cliquant.</p>
+                        <p>Pour pouvoir utiliser un item, allez dans votre sacoche puis dans items</p>
                         <h4>Comment créer un nouveau personnage ?</h4>
-                        <p>En cliquant.</p>
+                        <p>Pour créer un nouveau personnage allez dans accueil</p>
                     </div>
                 <?php
             }else{
