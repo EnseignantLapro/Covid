@@ -26,8 +26,8 @@ session_start();
     }
     if($access){
 
-        $user = "lapro_site";
-        $pass = "TDataSource1234";
+        $user = "root";
+        $pass = "";
       
         $mabase = new PDO('mysql:host=127.0.0.1;dbname=lapro_virus', $user, $pass);
 
@@ -58,6 +58,12 @@ session_start();
             //test de Boucher
             include "testUnitaire/testUser.php"; 
         echo "</div>" ;
+        echo '<div class="TestIntegration"> TEST TypeItem';
+        include "testUnitaire/testTypeItem.php"; 
+    echo "</div>" ;
+    echo '<div class="TestIntegration"> TEST TypeItem';
+        include "testUnitaire/testBouclier.php"; 
+    echo "</div>" ;
 
 
 

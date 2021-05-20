@@ -1,0 +1,9 @@
+.divClassement{
+    display: block;
+    margin: 150px auto;
+    text-align: center;
+}
+
+.divClassement table{
+    margin: 20px auto;
+}
