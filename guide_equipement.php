@@ -28,6 +28,7 @@
                     <h2>les differents équipement</h2>
                     <p>il y a plusieurs type d'équipement</p>
                     <p>les objet : </p>
+                    <p>en poussiere</p>
                     <p>Tout Moue</p>
                     <p>Cassé</p>
                     <p>Normal</p>

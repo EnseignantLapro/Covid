@@ -31,6 +31,7 @@
                     <p>il y a plusieurs types d'items</p>
                     <p>les objets : </p>
                     <p>Pourris</p>
+                    <p>Bizzarre</p>
                     <p>Cassés</p>
                     <p>Nuls</p>
                     <p>Normaux</p>

@@ -23,7 +23,7 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <h1>Guide de Jeu</h1>
+                    <h1>Guide du Jeux</h1>
                     
                     <h2>But du jeu</h2>
                     <p>Le but du jeu est de capturer le "super Jedi Légendaire"</p>
