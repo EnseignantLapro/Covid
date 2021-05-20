@@ -4,27 +4,12 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <!-- Compatible / UTF / Viewport-->
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Style CSS / Script -->
-            <link rel="stylesheet" href="css/style.css">
+        <?php
+            $NameLocal = "Crédit";
+            include "ihm/fonction-web/header.php";
+        ?>
+        <!-- Style CSS + -->
             <link rel="stylesheet" href="css/credit.css">
-            <script src="main.js"></script>
-        <!-- Informations Générales -->
-            <title>Projet Full Stack - Crédit</title>
-            <meta name='description' content='Projet Full Stack - Crédit'>
-            <meta name='author' content='La Providence - Amiens'>
-            <link rel='shortcut icon' href='favicon.ico'>
-        <!-- Intégration Facebook -->
-            <meta property='og:title' content='Projet Full Stack - Crédit'>
-            <meta property='og:description' content='Projet Full Stack - Crédit'>
-            <meta property='og:image' content='favicon.ico'>
-        <!-- Intégration Twitter -->
-            <meta name='twitter:title' content='Projet Full Stack - Crédit'>
-            <meta name='twitter:description' content='Projet Full Stack - Crédit'>
-            <meta name='twitter:image' content='favicon.ico'>
     </head>
     <body class="bodyCredit">
         <?php
