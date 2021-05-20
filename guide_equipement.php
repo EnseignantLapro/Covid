@@ -25,9 +25,9 @@
                 ?>
                     <h1>Guide d'équipement</h1>
 
-                    <h2>les differents équipement</h2>
+                    <h2>les differents équipements</h2>
                     <p>il y a plusieurs type d'équipement</p>
-                    <p>les objet : </p>
+                    <p>les objets : </p>
                     <p>en poussiere</p>
                     <p>Tout Moue</p>
                     <p>Cassé</p>

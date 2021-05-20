@@ -29,7 +29,7 @@
                     <p>Le but du jeu est de capturer le "super Jedi Légendaire"</p>
 
                     <h2>Comment avancer sur la map ?</h2>
-                    <p>Aller dans l'onglet map et cliquer sur les directions indiquées sur les cotés de la map </p>
+                    <p>Allez dans l'onglet map et cliquez sur les directions indiquées sur les cotés de la map </p>
 
                     <h2>Comment tuer un monstre ?</h2>
                     <p>cliquez sur le monstre que vous souhaitez tuer </p>
