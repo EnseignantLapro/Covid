@@ -14,6 +14,7 @@
             <link rel="stylesheet" href="css/item.css">
             <link rel="stylesheet" href="css/map.css">
             <link rel="stylesheet" href="css/entite.css">
+
     </head>
     <body class="bodyAccueil">
         <?php
@@ -96,6 +97,9 @@
                 echo $errorMessage;
             }
             include "ihm/fonction-web/footer.php";
+            include "ihm/jsDesPages/jsMap.php";
+            include "ihm/jsDesPages/jsSac.php";
+            include "ihm/jsDesPages/jsAnimation.php";
         ?>
     </body>
 </html>
