@@ -6,6 +6,8 @@ include "class/Faction.php";
 include "class/TypePersonnage.php";
 include "class/Personnage.php";
 include "class/Map.php";
+include "class/Forge.php";
+include "class/Map.php";
 include "class/Mob.php";
 include "class/Tooltip.php";
 include "class/Objet.php";
