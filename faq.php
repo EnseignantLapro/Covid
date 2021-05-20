@@ -28,7 +28,7 @@
                         <h3>Questions Fréquentes</h3>
                         <h4>Comment se déplacer sur la carte ?</h4>
                         <p>En cliquant.</p>
-                        <h4>Comment utiliser un items ?</h4>
+                        <h4>Comment utiliser un item ?</h4>
                         <p>En cliquant.</p>
                         <h4>Comment créer un nouveau personnage ?</h4>
                         <p>En cliquant.</p>

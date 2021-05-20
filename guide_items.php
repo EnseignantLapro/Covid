@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-    <?php
-            $NameLocal = "Règlement";
+        <?php
+            $NameLocal = "Guide de items";
             include "ihm/fonction-web/header.php";
         ?>
         <!-- Style CSS + -->
-            <link rel="stylesheet" href="css/reglement.css">
+            <link rel="stylesheet" href="css/credit.css">
     </head>
-    <body class="bodyRules">
+    <body class="bodyguideitems">
         <?php
             include "session.php";
 
@@ -23,11 +23,11 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="divRules">
-                        <h1 class="divRulesTitle">Règlement</h1>
-                        <p><b>1</b> - Être gentil</p>
-                        <p><b>2</b> - Ne pas être méchant</p>
-                    </div>
+                    <h1>Guide d'items</h1>
+
+
+
+                    
                 <?php
             }else{
                 echo $errorMessage;
