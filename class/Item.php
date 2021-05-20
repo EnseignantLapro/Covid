@@ -1,3 +1,4 @@
+
 <?php //dev By Rapidecho
 class Item extends Objet{
 
@@ -188,6 +189,18 @@ class Item extends Objet{
         $Result = $this->_bdd->query("SELECT COUNT(*) FROM `item` WHERE lvl=".$value."");
         $nblvl= $Result->fetch();
         echo $nblvl;
+    }
+
+    /*
+    fonction qui retourne le nombre d'item total dans la base de donner
+    elle demende en paramètre la connection a la base de donné
+    */
+    public function getNombreItem()
+    {
+        $req = 'SELECT COUNT(*) as "NB" FROM item';
+        $excuteReq = $this->_bdd->query($req);
+        $data = $excuteReq->fetch();
+        return $data['NB'];
     }
 }
 ?>

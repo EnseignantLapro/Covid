@@ -837,7 +837,7 @@ class map{
                 $Adjectif ="Luxuriant";
             break;
             case 2:
-                $Adjectif ="Pas belle";
+                $Adjectif ="Immense";
             break;
             case 3:
                 $Adjectif ="Enchantée";
@@ -1385,5 +1385,35 @@ class map{
             $result.="?w=600";
         }
         return  $result;  
+    }
+
+    //retourne le nombre de map possédant un mob au minimum
+    public function getMapWithOneMob(){
+        $numberOfMap = 0;
+        $numberUser = 0;
+        $res = $this->_bdd->query("SELECT * FROM Entite GROUP BY idMap");
+        while($boucle = $res->fetch()){
+            $numberOfMap++;
+        }
+        $res2 = $this->_bdd->query("SELECT * FROM Entite WHERE type = 1");
+        while($boucle2 = $res2->fetch()){
+            $numberUser++;
+        }
+        $numberOfMapWithMob = $numberOfMap - $numberUser;
+
+        return $numberOfMapWithMob;
+    }
+
+    public function getMapWithoutMob(){
+        $numberOfMap = 0;
+        $temp = new map($this->_bdd);
+        $mapWithMob = $temp->getMapWithOneMob();
+        $res = $this->_bdd->query("SELECT * FROM Entite GROUP BY idMap");
+        while($boucle = $res->fetch()){
+            $numberOfMap++;
+        }
+        $numberOfMapWithoutMob = $numberOfMap - $mapWithMob;
+
+        return $numberOfMapWithoutMob;
     }
 }

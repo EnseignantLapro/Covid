@@ -109,6 +109,7 @@
 }
 .ulMob{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin: 5px;
     padding: 0px;
