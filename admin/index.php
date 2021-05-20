@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,7 +11,6 @@ session_start();
         <!-- Style CSS / Script -->
             <link rel="stylesheet" href="../css/admin.css">
             <link rel="stylesheet" href="../css/style.css">
-            <link rel="stylesheet" href="../css/index.css">
             <script src="main.js"></script>
         <!-- Informations Générales -->
             <title>Projet Full Stack - Panel Admins</title>
@@ -27,7 +26,7 @@ session_start();
             <meta name='twitter:description' content='Projet Full Stack - Panel Admin'>
             <meta name='twitter:image' content='favicon.ico'>
     </head>
-    <body class="admin-panel">
+    <body class="AdminPanel">
         <?php
             include "../session.php";
 
@@ -37,6 +36,7 @@ session_start();
             }
             // Vérifie qu'il ne s'est pas déconnecté.
             if($access === true){
+                include "admin-menu.php";
                 if($Joueur1->isAdmin() == true){
                     ?>
                         <div class='Div1 BG_Blanc'>

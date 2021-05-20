@@ -1,11 +1,13 @@
-<?php
-    $listItems = $map->getItems();
-    if(count($listItems)>0){
-        ?>
-            <div class="left">
-                <p class="pItem">Items Présent :</p>
-                <p class="divRarete">Commun - Rare</p>
-                <ul class="Item">
+<div class="divMapItem">
+    <?php
+        $listItems = $map->getItems();
+        if(count($listItems) > 0){
+            ?>
+                <div class="divInfoItem">
+                    <p class="pItem">Items Présent :</p>
+                    <p class="divRarete">Commun - Rare</p>
+                </div>
+                <ul class="ulItem">
                     <?php
                         foreach($listItems as $Item){
                             ?>
@@ -18,7 +20,10 @@
                         }
                     ?>
                 </ul>
-            </div>
-        <?php
-    }
-?>
+            <?php
+        }
+        else{
+            $ZoneObjectEmpty++;
+        }
+    ?>
+</div>

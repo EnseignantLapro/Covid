@@ -1,47 +1,62 @@
-<html lang="en">
+<?php
+    session_start();
+?>
+<!DOCTYPE html>
+<html lang="fr">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>credit</title>
+        <?php
+            $NameLocal = "Crédit";
+            include "ihm/fonction-web/header.php";
+        ?>
+        <!-- Style CSS + -->
+            <link rel="stylesheet" href="css/credit.css">
     </head>
+    <body class="bodyCredit">
+        <?php
+            include "session.php";
 
-    <body>
-
-    <center>
-        <h2>Les Acteur du Projet</h2>
-
-
-        <h1>Les BTS SN1</h1>
-        <p>Léa Bernard</p>
-        <p>Thomas Berthier</p>
-        <p>Louis Boucher</p>
-        <p>Alexandre Caré</p>
-        <p>Jeremy Caruelle</p>
-        <p>Clément Caudron</p>
-        <p>Clément Cauet</p>
-        <p>Baptiste Colson</p>
-        <p>Nicolas De almeida</p>
-        <p>Mathis Dechir</p>
-        <p>Gaëtan Deneufgermain</p>
-        <p>Maël Drelon</p>
-        <p>Kylian Duval</p>
-        <p>Gregory Febvin</p>
-        <p>Lucas Ghyselen</p>
-        <p>Julien Laridant</p>
-        <p>Romain Lienard</p>
-        <p>Julien Lussiez</p>
-        <p>Nicolas Marrocchi</p>
-        <p>Vincent Martel</p>
-        <p>Yann Martin</p>
-        <p>Valentin Pesant</p>
-        <p>Florian Rabasté</p>
-        <p>Evans Varnier</p>
-        <p>Maxence Vollet</p>
-
-
-    </center>
-
-        
+            // Vérifie que la Session est Valide avec le bon Mot de Passe.
+            if($access === true){
+                $access = $Joueur1->DeconnectToi();
+            }
+            // Vérifie qu'il ne s'est pas déconnecté.
+            if($access === true){
+                include "ihm/fonction-web/menu.php";
+                ?>
+                    <h2 class="h2SN1">Les Acteur du Projet</h2>
+                    <div class="divSN1">
+                        <h3>Les BTS SN1</h3>
+                        <p>Léa Bernard</p>
+                        <p>Thomas Berthier</p>
+                        <p>Louis Boucher</p>
+                        <p>Alexandre Caré</p>
+                        <p>Jeremy Caruelle</p>
+                        <p>Clément Caudron</p>
+                        <p>Clément Cauet</p>
+                        <p>Baptiste Colson</p>
+                        <p>Nicolas De almeida</p>
+                        <p>Mathis Dechir</p>
+                        <p>Gaëtan Deneufgermain</p>
+                        <p>Maël Drelon</p>
+                        <p>Kylian Duval</p>
+                        <p>Gregory Febvin</p>
+                        <p>Lucas Ghyselen</p>
+                        <p>Julien Laridant</p>
+                        <p>Romain Lienard</p>
+                        <p>Julien Lussiez</p>
+                        <p>Nicolas Marrocchi</p>
+                        <p>Vincent Martel</p>
+                        <p>Yann Martin</p>
+                        <p>Valentin Pesant</p>
+                        <p>Florian Rabasté</p>
+                        <p>Evans Varnier</p>
+                        <p>Maxence Vollet</p>
+                    </div>
+                <?php
+            }else{
+                echo $errorMessage;
+            }
+            include "ihm/fonction-web/footer.php";
+        ?>
     </body>
 </html>
