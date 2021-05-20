@@ -78,6 +78,7 @@
                                 <div class="divInformationMap">
                                     <div class="divMap">
                                         <?= $BousoleDeplacement['nord'] ?>
+                                        <img src="Assets/Image/Fleche-225px.png" class="NESO">
                                         <div class="divMapOuest">
                                             <?= $BousoleDeplacement['ouest'] ?>
                                             <div class="divMapEst">
