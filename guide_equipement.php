@@ -25,7 +25,13 @@
                 ?>
                     <h1>Guide d'équipement</h1>
 
-
+                    <h2>les differents équipement</h2>
+                    <p>il y a plusieurs type d'équipement</p>
+                    <p>les objet : </p>
+                    <p>Tout Moue</p>
+                    <p>Cassé</p>
+                    <p>Normal</p>
+                    <p>Neuf</p>
 
                     
                 <?php

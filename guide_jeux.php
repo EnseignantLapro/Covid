@@ -39,8 +39,6 @@
                     <p>cliquez sur l'item dans l'onglet équipement pour selectioner une armure ou objet d'attaque </p>
 
                     
-
-
                 <?php
             }else{
                 echo $errorMessage;
