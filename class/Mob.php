@@ -300,7 +300,7 @@ class Mob extends Entite{
         }
 
         $Nom ="";
-        switch (rand(0,200)){
+        switch (rand(0,201)){
             case 0:
                 $Nom .="Bracken";
             break;
@@ -901,7 +901,11 @@ class Mob extends Entite{
             case 199:
                 $Nom .="Gionvylma";
             break;
+            case 200:
+                $Nom .="Doggo";
+            break;
             default:
+            
                 $Nom .="Asteus";
         }
         return $nom ." ". $Adjectif." ".$Nom;
