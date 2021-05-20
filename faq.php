@@ -31,7 +31,7 @@
                         <h4>Comment utiliser un items ?</h4>
                         <p>Pour pouvoir utiliser un item, allez dans votre sacoche puis dans items</p>
                         <h4>Comment créer un nouveau personnage ?</h4>
-                        <p>Pour créer un nouveau personnage allez dans Accueil</p>
+                        <p>Pour créer un nouveau personnage allez dans accueil</p>
                     </div>
                 <?php
             }else{
