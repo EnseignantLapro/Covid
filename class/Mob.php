@@ -1,7 +1,6 @@
 <?php
 //TODO MOB ET PERSONNAGE ON TROP DE SIMILITUDE
 //IL FAUT REFACTORISER AVEC DE LhERITAGE
-
 class Mob extends Entite{
 
     private $_coefXP;

@@ -44,81 +44,126 @@
                 $Personnage = $Joueur1->getPersonnage();
                 if(is_null($Personnage->getId())){
                     ?>
-                        <div class="bodyPage">
+                        <div class="divMapPage">
                             <p>Il faut créer un personnage d'abord.</p>
                             <p><a href="index.php">Retour à l'origine du tout</a></p>
                         </div>
                     <?php
                 }else{
+                    include "ihm/map/chargementDeLaMap.php";
                     ?>
-                        <div class="bodyPage">
-                            <p><a href="index.php">Retour à l'origine du tout</a></p>
+                        <div class="divMapPage">
                             <?php
                                 // Quand on ne génère pas de nouvelle position ou que aucune position
                                 // n'est renseignée, on peut appeler un autre personnage.
                                 if(!(isset($_GET["position"]) && $_GET["position"]==='Generate')){
                                     ?>
-                                        <p>Tu peux appeler un autre personnage.</p>
+                                        <div class="divChoixPersonnageap">
+                                            <div class="divAppelPersonnage">
+                                                <p class="pAppelPersonnage">Tu peux appeler un autre personnage :</p>
+                                            </div>
+                                            <div class="divAppelPersonnage">
+                                                <?php
+                                                    $Personnage->getChoixPersonnage($Joueur1);
+                                                    $Joueur1->setPersonnage($Personnage);
+                                                ?>
+                                            </div>
+                                        </div>
                                     <?php
-                                    $Personnage->getChoixPersonnage($Joueur1);
-                                    $Joueur1->setPersonnage($Personnage);
                                 }
                                 // AFFICHAGE EN-TÊTE PERSONNAGE ET SAC
                                 ?>
-                                    <div class='entete'>
-                                        <div class="avatar">
+                                    <div class='divEntete'>
+                                        <div class="divAvatar">
                                             <?php $Personnage->renderHTML() ?>
                                         </div>
                                         <div class="divSac">
-                                            <p id='TitleSacoche'>Sacoche</p>
+                                            <p class="pTitleSac">Sacoche</p>
                                             <!-- Include Items / Equipement-->
-                                                <?php
-                                                    include "ihm/map/affichageSacItem.php";
-                                                    include "ihm/map/affichageSacEquipement.php";
-                                                ?>
+                                            <?php
+                                                include "ihm/map/affichageSacItem.php";
+                                                include "ihm/map/affichageSacEquipement.php";
+                                            ?>
                                         </div>
                                     </div>
                                 <?php
-                                // AFFICHAGE d'UN TOOLTIP
-                                    include "ihm/map/affichageTooltip.php";
-                                // CHARGEMENT  DE LA MAP
-                                    include "ihm/map/chargementDeLaMap.php";
-                                // HTML  DE LA MAP
                             ?>
-                            <div class="lamap">
-                                <?= $BousoleDeplacement['nord'] ?>
-                                <div class="mapOuest">
-                                    <?= $BousoleDeplacement['ouest'] ?>
-                                    <div class="mapEst">
-                                        <div class="mapCentre">
-                                            <?php $Joueur1->getVisitesHTML(6) ?>
-                                            <div class="infoMap">
-                                                <?= $map->getInfoMap() ?>
+                            <div class="divInformation">
+                                <?php include "ihm/map/affichageTooltip.php" ?>
+                                <div class="divInformationMap">
+                                    <div class="divMap">
+                                        <?= $BousoleDeplacement['nord'] ?>
+                                        <div class="divMapOuest">
+                                            <?= $BousoleDeplacement['ouest'] ?>
+                                            <div class="divMapEst">
+                                                <div class="divMapCentre">
+                                                    <?php $Joueur1->getVisitesHTML(6) ?>
+                                                </div>
+                                                <?= $BousoleDeplacement['est'] ?>
                                             </div>
-                                            <?php
-                                                // AFFICHAGE SI FORGE
-                                                    if($map->isForge() === true){
-                                                        include "ihm/map/afficherForge.php.php";
-                                                    }
-                                                // AFFICHAGE AUTRES JOUEURS PRESENTS
-                                                    include "ihm/map/affichageAutrePersos.php";
-                                                // AFFICHAGE DES MONSTRES
-                                                    include "ihm/map/affichageItemsMap.php";
-                                                // AFFICHAGE DES ITEMS DE LA MAP
-                                                    include "ihm/map/affichageTousLesMobs.php";
-                                                // AFFICHAGE DES EQUIPEMENT DE LA MAP
-                                                    include "ihm/map/affichageEquipementsMap.php";
-                                            ?>
                                         </div>
-                                        <?= $BousoleDeplacement['est'] ?>
+                                        <?= $BousoleDeplacement['sud'] ?>
+                                    </div>
+                                    <div class="divInfoMap">
+                                        <?= $map->getInfoMap() ?>
                                     </div>
                                 </div>
-                                <?= $BousoleDeplacement['sud'] ?>
                             </div>
-                            <?php $map->getImageCssBack() ?>
-                            <div class="basdepage"></div>
-                            <div class="divLog">
-                                <ul id="log"></ul>
+                            <div class="divMapContent">
+                                <?php $map->getImageCssBack() ?>
+                                <div class="divBuild">
+                                    <?php
+                                        // AFFICHAGE SI FORGE
+                                        if($map->isForge() === true){
+                                            ?>
+                                                <div class="divForge">
+                                                    <?php include "ihm/map/afficherForge.php.php" ?>
+                                                </div>
+                                            <?php
+                                        }
+                                    ?>
+                                </div>
+                                <div class="divEntity">
+                                    <?php
+                                        $ZoneMobEmpty = 0;
+                                        // AFFICHAGE AUTRES JOUEURS PRESENTS
+                                            include "ihm/map/affichageAutrePersos.php";
+                                        // AFFICHAGE DES MONSTRES
+                                            include "ihm/map/affichageTousLesMobs.php";
+                                        // SI JOUEUR OU MONSTRE
+                                        if($ZoneMobEmpty == 2){
+                                            ?>
+                                                <p><i>Personne à l'horizon, peu rassurant...</i></p>
+                                            <?php
+                                            $MobEmpty = 1 ;
+                                        }
+                                    ?>
+                                </div>
+                                <div class="divObjets">
+                                    <?php
+                                        $ZoneObjectEmpty = 0;
+                                        // AFFICHAGE DES ITEMS DE LA MAP
+                                            include "ihm/map/affichageItemsMap.php";
+                                        // AFFICHAGE DES EQUIPEMENT DE LA MAP
+                                            include "ihm/map/affichageEquipementsMap.php";
+                                        // SI AUCUN ITEM ET EQUIPEMENT
+                                        if($ZoneObjectEmpty == 2){
+                                            if(isset($MobEmpty)){
+                                                ?>
+                                                    <p><i>Et l'absence d'objets ne me réconforte pas dans cette solitude...</i></p>
+                                                <?php
+                                            }
+                                            else{
+                                                ?>
+                                                    <p><i>Il n'y a visiblement rien d'intéressant ici...</i></p>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+                                </div>
+                                <div class="divLog">
+                                    <ul id="log"></ul>
+                                </div>
                             </div>
                         </div>
                     <?php

@@ -1,9 +1,5 @@
 /* Dechir */
 
-.basdepage{
-    height:200px;
-}
-
 .left{
     float:left
 }
@@ -11,7 +7,6 @@
 li{
     float:left;
     list-style-type:none;
-    padding-left:10px;
 }
 
 ul{
@@ -21,33 +16,29 @@ ul{
 
 html,body{
     margin:0;
-    margin-top: 35px;
+    margin-top:40px;
     padding:0;
     flex-direction:column;
 }
 
 body{
     width:100%;
-    background-image:  url('https://www.wallpaperuse.com/wallp/48-481854_m.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
+    background-image:url('https://www.wallpaperuse.com/wallp/48-481854_m.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    position:relative;
 }
 
 .VerticalText{
     writing-mode:vertical-rl;
 }
 
-.adverse{
-    background-color:rgba(199,82,154,0.829)!important;
-}
-
-.Captured{
+.liCaptured{
     background-color:rgba(219,199,12,0.829)!important;
 }
 
-.reglement{
+.divReglement{
     margin:150px auto 500px auto;
     padding: 40px;
     text-align: center;
@@ -58,7 +49,6 @@ body{
     border:2px solid rgb(0, 0, 0);
     border-radius: 10px;
     box-shadow:2px 2px 2px rgb(0, 0, 0); 
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
 }
 
@@ -87,13 +77,6 @@ input[value='Deco!']{
     background-color: rgb(212, 40, 40);
 }
 
-.WelcomeCombat{
-    display: block;
-    margin: 50px auto 20px auto;
-    font-size: larger;
-    font-weight: bolder;
-    font-style: oblique;
-}
 
 /* • Formulaire Login • */
 
@@ -106,7 +89,6 @@ input[value='Deco!']{
     border:2px solid rgb(0, 0, 0);
     border-radius: 10px;
     box-shadow:2px 2px 2px rgb(0, 0, 0); 
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
     text-align: center;
 }
@@ -150,60 +132,11 @@ input[value='Deco!']{
 .inscriptionHide{
     display:none;
 }
-/* • FAQ • */
-.bodyFAQ{
-    padding: 8% 0%;
-    text-align: center;
-    position: absolute;
-    background-image:  url('https://www.wallpaperuse.com/wallp/48-481854_m.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-/* • Map • */
-
-.divRarete{
-    height:15px;
-    width:105px;
-    border:1px black;
-    background:linear-gradient(to right,rgb(200,255,34),rgb(255,2,2));
-}
-
-.map{
-    float:left;
-    right:10px;
-    top:10px;
-}
-
-.letooltip{
-    float:left;
-    margin-bottom:20px;
-    padding:20px;
-    width:560px;
-    background-color:rgba(216,186,16,0.829);
-    border-color:rgb(53,77,78);
-    border:1px solid rgb(119,150,236);
-    box-shadow:2px 2px 2px rgb(83,95,235);
-    -moz-box-shadow:2px 2px 2px rgb(91,113,236);
-    -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
-    margin-right:auto;
-    margin-left:auto;
-}
-
-.classement{
-    display: block;
-    margin: 150px auto;
-    text-align: center;
-}
-
-.classement table{
-    margin: 20px auto;
-}
 
 
 /* • Menu nav • */
-.nav-Menu{
+
+.navMenu{
     display: block;
     position: fixed;
     top: 0px;
@@ -216,17 +149,17 @@ input[value='Deco!']{
     background: linear-gradient(90deg, rgba(194,194,194,0) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 75%, rgba(65,65,65,0) 100%);
 }
 
-.ul-Menu{
+.ulMenu{
     margin: 0px;
     padding: 0px;
 }
 
-.nav-Menu, .ul-Menu{
+.navMenu, .ulMenu{
     list-style: none;
     text-align: center;
 }
 
-.ul-Menu li{
+.ulMenu li{
     display: inline-block;
     float: none;
     margin: 0px 0.5%;
@@ -240,36 +173,36 @@ input[value='Deco!']{
 
 @media (max-width: 880px) 
 {
-    .ul-Menu li {
+    .ulMenu li {
         font-size: 1.5vw;
     }
 }
 
 @media (max-width: 560px) 
 {
-    .ul-Menu li {
+    .ulMenu li {
       font-size: 1.8vw;
     }
 }
 
 @media (min-width: 1921px) 
 {
-    .ul-Menu li {
+    .ulMenu li {
         font-size: 0.7vw;
     }
 }
 
-.ul-Menu li:hover{
+.ulMenu li:hover{
     background-color: grey;
 }
 
-.ul-Menu li:hover ul{
+.ulMenu li:hover ul{
     height: 50px;
     line-height: 50px;
     overflow: visible;
 }
 
-.ul-SousMenu{
+.ulSousMenu{
     padding: 0px;
     position:relative;
     z-index: 1000;
@@ -279,53 +212,55 @@ input[value='Deco!']{
     overflow:hidden;
 }
 
-.ul-SousMenu li{
+.ulSousMenu li{
     background-color: black;
     display: block;
     margin: 0px auto;
     padding: 0px;
 }
 
-.ul-SousMenu li:hover{
+.ulSousMenu li:hover{
     background-color: grey;
 }
-    
+
+
 /* • les liens • */
 
-.ul-Menu a{
+.ulMenu a{
     text-decoration: none;
     display: block;
     color: #fff;
     font-size: larger;
 }
 
-.ul-Menu li:hover li a{
+.ulMenu li:hover li a{
     color: #fff;
     text-transform: inherit;
 }
 
-.ul-Menu li:hover a, .ul-Menu li li:hover a{
+.ulMenu li:hover a, .ulMenu li li:hover a{
     color: #fff;
 }
 
+
 /* • Footer • */
 
-.footer{
-    height: 90px;
+footer{
+    height:90px;
     background:black;
     width:100%;
     text-align:center;
     position: absolute;
 }
-.div-footer{
+.divFooter{
     color:white;
     text-align:center;
 }
 
- .footer p{
+.Copyright1, .Copyright2{
     color:white;
- }
+}
  
-.footer a{
+footer a{
     color:white;
 }

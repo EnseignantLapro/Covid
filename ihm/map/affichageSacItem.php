@@ -1,6 +1,6 @@
 <div class="divSacItem">
-    <p id='TitleSacocheItems'>Items</p>
-    <ul id="SacItem" class="Sac">
+    <p class="pTitleSacItems">Items</p>
+    <ul id="SacItem" class="ulSac">
         <?php
             $listItems = $Joueur1->getPersonnage()->getItems();
             if(count($listItems) > 0){

@@ -4,26 +4,25 @@
     display:inline-block;
     text-align:center;
     height:250px;
-    width:600px;
-    background-color:rgb(92, 64, 29);
+    width:100%;
+    background-color:rgb(82, 44, 29);
     padding:5px;
     margin:4px auto 4px 18px;
-    border:2px solid rgb(0, 0, 0);
+    border:2px solid rgb(54, 27, 16);
     border-radius:10px;
-    box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
+    box-shadow:3px 3px 3px rgb(59, 26, 13);
+    -webkit-box-shadow:3px 3px 3px rgb(59, 26, 13);
     overflow-y:scroll;
 }
 
-#TitleSacoche{
+.pTitleSac{
     color:white;
     text-shadow:black 1px 1px;
     padding-bottom:10px;
     border-bottom:solid rgb(255, 255, 255) 2px;
 }
 
-#TitleSacocheItems, #TitleSacocheEquipement{
+.pTitleSacItems, .pTitleSacEquipement{
     color:white;
     width:60%;
     margin: 30px auto;
@@ -32,7 +31,7 @@
     border-bottom:dashed rgb(255, 255, 255) 2px;
 }
 
-ul.Item li{
+.ulItem li, .ulEquipement li{
     display:inline-block;
     background-color:rgb(207,207,207);
     padding:5px;
@@ -40,17 +39,16 @@ ul.Item li{
     margin:3px;
     border:1px solid gray;
     box-shadow:2px 2px 2px gray;
-    -moz-box-shadow:2px 2px 2px gray;
     -webkit-box-shadow:2px 2px 2px gray;
 }
 
-.Sac{
+.ulSac{
     padding: 0%;
     width: 100%;
     text-align: center;
 }
 
-ul.Sac li{
+.ulSac li{
     float: none;
     display: inline-block;
     background-color:rgb(63, 61, 59);
@@ -61,17 +59,16 @@ ul.Sac li{
     margin:3px;
     border:2px solid rgb(0, 0, 0);
     box-shadow:2px 2px 2px rgb(0, 0, 0);
-    -moz-box-shadow:2px 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow:2px 2px 2px rgb(0, 0, 0);
     overflow: hidden;
 }
 
-ul.Sac li:hover{
+.ulSac li:hover{
     cursor:url('baguette.cur'),pointer;
     background-color: rgb(97, 90, 87);
 }
 
-ul.Item li:hover{
+.ulItem li:hover{
     cursor:url('hand-grab.cur'),pointer;
     background-color:rgb(231,231,231);
 }

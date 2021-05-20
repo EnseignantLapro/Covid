@@ -24,7 +24,7 @@
     $perso->addEquipement($Arme);
     echo 'Puis equipement ';
     $Arme->equipeEntite($perso);
-    echo 'Affichage des nouvelles stat de l attaque :  ';
+    echo 'Affichage des nouvelle stat de l attaque : ';
     echo $perso->getAttaque();
 
     

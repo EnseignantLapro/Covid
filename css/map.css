@@ -1,8 +1,18 @@
 /* dechir */
 
-.bodyPage{
-    width:800px;
-    margin: 150px auto 50px auto;
+
+.divChoixPersonnageap{
+    display:flex;
+}
+.pAppelPersonnage{
+    margin-top:0;
+    margin-bottom:10px;
+    margin-right:5px;
+    margin-left:10px;
+}
+
+.divMapPage{
+    margin: 0px 20% 50px 20%;
 }
 
 .Red{
@@ -12,58 +22,183 @@
     margin:3px;
     border:1px solid gray;
     box-shadow:2px 2px 2px gray;
-    -moz-box-shadow:2px 2px 2px gray;
     -webkit-box-shadow:2px 2px 2px gray;
 }
 
-.lamap{
-    width:100%;
-    background-color:rgba(232,240,222,0.37);
-    padding:5px;
-    margin:10px;
-    border:1px solid rgb(53,52,48);
-    box-shadow:2px 2px 2px rgb(31,32,31);
-    -moz-box-shadow:2px 2px 2px rgb(51,53,50);
-    -webkit-box-shadow:2px 2px 2px rgb(52,53,52);
+.divEntete{
+    display: flex;
 }
 
-.nord a,.sud a,.est a,.ouest a{
-    color: white;
+.divEntity{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color:rgba(65, 75, 218, 0.308);
+    border-style: double;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 20px;
+}
+.divObjets{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color:rgba(79, 112, 83, 0.308);
+    border-style: double;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
 }
 
-.est a,.ouest a{
-    vertical-align: middle;
+.divAllPerso{
+    display: flex;
+    flex-direction: column;
+}
+.divAllMobs{
+    display: flex;
+    flex-direction: column;
+}
+
+.divMapEquipments{
+    display: flex;
+    flex-direction: column;
+}
+.divMapItem{
+    display: flex;
+    flex-direction: column;
+}
+
+.divInfoPlayers{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.divInfoMobs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.divInfoEquipement{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.divInfoItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.divObjets p, .divEntity p{
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+.pItem{
+    margin-right: 5px;
+}
+.pEquipement{
+    margin-right: 5px;
+}
+
+.ulPersonnages{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    padding: 0px;
+}
+.ulMob{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    padding: 0px;
+}
+
+.ulItem{
+    margin: 5px;
+    padding: 0px;
+}
+.ulEquipement{
+    margin: 5px;
+    padding: 0px;
+}
+
+.divInformation{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.divInformationMap{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     margin-top: 20px;
 }
 
+.divMap{
+    display:flex;
+    flex-direction: column;
+}
+.Map1{
+    flex-direction: column;
+}
+.Map2{
+    align-content:center;
+}
+
+.divMap a{
+    color:white;
+}
+
+.divMapOuest{
+    justify-items:flex-start;
+    display:flex;
+}
+
+.divMapEst{
+    justify-items:flex-end;
+    display:flex;
+}
+
+.divMapCentre{
+    justify-items:center;
+    display:flex;
+}
+
 .sud{
-    width:100%;
-    float:left;
+    width:298px;
     background-color:rgba(0,81,255,0.767);
     height:30px;
     text-align:center;
-    line-height: 30px;
-    margin: 10px 0px;
+    line-height:30px;
 }
 
 .nord{
-    background-image:url("https://publicdomainvectors.org/photos/north-arrow-2.png");
-    background-repeat:no-repeat;
-    width:100%;
-    float:left;
+    width:298px;
     background-color:rgba(0,81,255,0.767);
     height:30px;
     text-align:center;
-    line-height: 30px;
-    margin: 10px 0px;
+    line-height:30px;
 }
 
 .est{
-    float:right;
+    display:flex;
     width:30px;
-    margin:auto;
     background-color:rgba(0,81,255,0.767);
-    min-height:100vh;
+    text-align:center;
+    height:230px;
+    margin-left:26px;
+    padding-left: 4px;
+}
+
+.ouest{
+    display:flex;
+    width:30px;
+    background-color:rgba(0,81,255,0.767);
+    text-align:center;
+    height:230px;
+    padding-left: 4px;
 }
 
 .map DIV{
@@ -71,13 +206,13 @@
 }
 
 .map{
-    width: 264px;
+    width:264px;
 }
 
 .mapLigne{
     width:100%;
-    width: 264px;
-    height: 20px;
+    width:264px;
+    height:20px;
     float:left;
 }
 
@@ -122,48 +257,23 @@
     background-color:rgba(21,255,0,0.801);
 }
 
-.mapOuest{
-    float:left;
-    width:auto;
-}
-
-.mapEst{
-    float:right;
-    width:770px;
-}
-
-.mapCentre{
-    width:740px;
-    float:left;
-}
-
 .cardinalite div{
     background-color:cadetblue;
     border-color:rgb(53,77,78);
     border:1px solid rgb(119,150,236);
     box-shadow:2px 2px 2px rgb(83,95,235);
-    -moz-box-shadow:2px 2px 2px rgb(91,113,236);
     -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
 }
 
-.infoMap{
-    float:left;
+.divInfoMap{
     padding:10px;
     width:200px;
-    background-color:rgba(97,71,0,0.829);
-    border-color:rgb(53,77,78);
-    border:1px solid rgb(119,150,236);
-    box-shadow:2px 2px 2px rgb(83,95,235);
-    -moz-box-shadow:2px 2px 2px rgb(91,113,236);
-    -webkit-box-shadow:2px 2px 2px rgb(66,53,185);
-}
-
-.ouest{
-    float:left;
-    width:30px;
-    margin:auto;
-    background-color:rgba(0,81,255,0.767);
-    min-height:100vh;
+    background-color:rgba(172, 210, 69, 0.83);
+    border:1px solid rgba(119, 158, 11, 0.829);
+    border-radius: 10px;
+    box-shadow:2px 2px 2px rgb(134, 170, 37);
+    -webkit-box-shadow:2px 2px 2px rgb(134, 170, 37);
+    margin-left: 10%;
 }
 
 .effect {
@@ -203,10 +313,10 @@
 }
 
 .divLog{
-    background-color: rgb(97, 97, 97);
+    background-color:rgba(97, 97, 97, 0.75);
     border: solid black 3px;
+    border-radius: 10px;
     height: 200px;
-    width: 100%;
     margin-top: 20px;
     padding: 10px;
     text-align: left;
@@ -223,12 +333,34 @@
 .OtherPerso{
     float:left;
 }
-.MapEquipments{
-    float:left;
-}
-.MapItem{
-    float:left;
-}
 .AllMobs{
     float:left;
+}
+
+.divRarete{
+    width:105px;
+    border:1px black;
+    background:linear-gradient(to right,rgb(200,255,34),rgb(255,2,2));
+    border-radius: 6px;
+}
+
+.VerticalText{
+    writing-mode:vertical-rl;
+    rotate: 180deg;
+}
+
+.map{
+    float:left;
+    right:10px;
+    top:10px;
+}
+
+.divTooltip{
+    float:left;
+    margin:auto;
+    padding:10px;
+    background-color:rgba(224, 160, 42, 0.829);
+    border:1px solid rgba(190, 187, 9, 0.829);
+    box-shadow:2px 2px 2px rgb(91, 100, 9);
+    -webkit-box-shadow:2px 2px 2px rgb(91, 100, 9);
 }
