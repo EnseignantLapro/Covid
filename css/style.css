@@ -139,6 +139,7 @@ input[value='Deco!']{
 .navMenu{
     display: block;
     position: fixed;
+    z-index: 3;
     top: 0px;
     left: 10%;
     width: 80%;
