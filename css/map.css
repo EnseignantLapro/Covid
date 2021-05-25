@@ -173,6 +173,7 @@
     height:30px;
     text-align:center;
     line-height:30px;
+    z-index: 2;
 }
 
 .nord{
@@ -181,6 +182,7 @@
     height:30px;
     text-align:center;
     line-height:30px;
+    z-index: 2;
 }
 
 .est{
@@ -191,6 +193,7 @@
     height:230px;
     margin-left:26px;
     padding-left: 4px;
+    z-index: 2;
 }
 
 .ouest{
@@ -200,6 +203,7 @@
     text-align:center;
     height:230px;
     padding-left: 4px;
+    z-index: 2;
 }
 
 .map DIV{
@@ -372,5 +376,7 @@
     opacity: 0.5;
     position: absolute;
     margin-top: 31px;
+    margin-bottom: 31px;
     margin-left: 36px;
+    z-index: 1;
 }
