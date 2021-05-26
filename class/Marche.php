@@ -1,7 +1,7 @@
 <?php
 //cette classe est développé Cauet :  
 
-class Forge extends Map{
+class Marche extends Map{
     /* PRIVATE */
 
     /* METHOD */
@@ -9,15 +9,15 @@ class Forge extends Map{
         parent::__construct($bdd);
     }            
 
-    public function livraison($nbrEquipement){
-        for($i=0; $i<$nbrEquipement; $i++){
-            $equipement = new Equipement($this->_bdd);
-            $this->addEquipement($equipement->createEquipementAleatoire()); 
+    public function livraison($nbrItem){
+        for($i=0; $i<$nbrItem; $i++){
+            $item = new item($this->_bdd);
+            $this->addItem($item->createItemAleatoire()); 
         }
     }
 
     public function acheter($entite, $idMap, $idEntite){
-        $req = "SELECT mapequipements.idEquipement, equipement.nom, equipement.valeur FROM `mapequipements`, `equipement` WHERE equipement.id = mapequipements.idEquipement AND `idMap` = $idMap";
+        $req = "SELECT mapitems.idMap, item.nom, item.valeur FROM `mapitems`, `item` WHERE item.id = mapitems.idItem AND `idMap` = $idMap";
         $RequetStatement = $this->_bdd->query($req);
         ?><form method="post"><table><?php
         while($Tab=$RequetStatement->fetch()){
@@ -39,15 +39,15 @@ class Forge extends Map{
         }
         if(isset($_POST['radio'])){
             foreach($_POST['radio'] as $checkId){
-                $equipement = new equipement($this->_bdd);
-                $equipement->setEquipementById($checkId);
-                $valeur = $equipement->getValeur($checkId);
+                $item = new Item($this->_bdd);
+                $item->setItemById($checkId);
+                $valeur = $item->getValeur($checkId);
             }
             if($valeur > $money){
                 echo "Vous n'avez pas assez d'argent";
             }else{
-                $entite->addEquipement($equipement);
-                $this->removeEquipementById($checkId);
+                $entite->addItem($equipement);
+                $this->removeItemByID($checkId);
                 $money -= $valeur;
                 $req = "UPDATE `user`, `entite` SET user.money = $money WHERE user.idPersonnage=entite.id AND entite.id = $idEntite";
                 $RequetStatement = $this->_bdd->query($req);
@@ -57,9 +57,8 @@ class Forge extends Map{
     }
 
     public function vendre($entite, $idEntite){
-        $req = "SELECT entiteequipement.idEquipement, equipement.nom, equipement.valeur FROM `entiteequipement`, `equipement` WHERE equipement.id = entiteequipement.idEquipement AND `equipe` != 1 AND `idEntite` = $idEntite";
+        $req = "SELECT persosacitems.idItem, item.nom, item.valeur FROM `persosacitems`, `item`, `user`, `entite` WHERE item.id = persosacitems.idItem AND user.idPersonnage = entite.id AND entite.id = $idEntite";
         $RequetStatement = $this->_bdd->query($req);
-        $equipements = $entite->getEquipementNonPorte();
         ?><form method="post"><table><?php
         while($Tab=$RequetStatement->fetch()){
             ?>
@@ -80,24 +79,23 @@ class Forge extends Map{
         }
         if(isset($_POST['checkbox'])){
             foreach($_POST['checkbox'] as $checkId){
-                $equipement = new equipement($this->_bdd);
-                $equipement->setEquipementById($checkId);
-                $valeur = $equipement->getValeur($checkId);
-                $equipements = $entite->removeEquipementByID($checkId);
+                $item = new item($this->_bdd);
+                $item->setItemById($checkId);
+                $valeur = $item->getValeur($checkId);
+                $items = $entite->removeEquipeBydId($checkId);
                 $money += $valeur;
             }
         }
         $req = "UPDATE `user`, `entite` SET user.money = $money WHERE user.idPersonnage=entite.id AND entite.id = $idEntite";
         $RequetStatement = $this->_bdd->query($req);
 
-        
     }
 
-    public function getNomForge(){
-        return 'Je suis la forge '.$this->_nom;
+    public function getNomMarche(){
+        return 'Je suis le marché '.$this->_nom;
     }
 
-    public function setForgeById($id){
+    public function setMarcheById($id){
         parent::setMapById($id);
     }
 }

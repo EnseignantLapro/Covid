@@ -5,6 +5,7 @@ class map{
     private $_nom;
     private $_imageLien;
     protected $_isForge=false;
+    protected $_isMarche=false;
 
     //coordonne de la map
     private $_x;
@@ -34,6 +35,11 @@ class map{
     public function isForge(){
         return $this->_isForge;
     }
+
+    public function isMarche(){
+        return $this->_isMarche;
+    }
+
     //calcule pitagorien pour avoir une distance au point d'origine
     //la distance determine le niveau
     public function getlvl(){
@@ -837,7 +843,7 @@ class map{
                 $Adjectif ="Luxuriant";
             break;
             case 2:
-                $Adjectif ="Pas belle";
+                $Adjectif ="Immense";
             break;
             case 3:
                 $Adjectif ="Enchantée";
@@ -1209,7 +1215,6 @@ class map{
         return $tab;
     }
     
-/*
     //Permet de générer un nom de map
     public function generateMap(){
         $nom ="";
@@ -1222,6 +1227,14 @@ class map{
 
         $choixAleatoire= array_rand($typemap, 1);
         
+        if($choixAleatoire == 21){
+            $this->_isForge = true;
+        }
+
+        if($choixAleatoire == 22){
+            $this->_isMarche = true;
+        }
+
         $type =  $typemap[$choixAleatoire];
         $nom = $type['nomFr'];
 
@@ -1335,7 +1348,7 @@ class map{
         $tab[2]=$nom ." ". $Adjectif." ".$Consone;
         return $tab;
     }
-*/
+
     //fonction de recherche récursive de map adjacent
     //retourne une map si elle se trouve 
     public function trouveMapAdjacente($map,$cardinalite){
@@ -1385,5 +1398,35 @@ class map{
             $result.="?w=600";
         }
         return  $result;  
+    }
+
+    //retourne le nombre de map possédant un mob au minimum
+    public function getMapWithOneMob(){
+        $numberOfMap = 0;
+        $numberUser = 0;
+        $res = $this->_bdd->query("SELECT * FROM Entite GROUP BY idMap");
+        while($boucle = $res->fetch()){
+            $numberOfMap++;
+        }
+        $res2 = $this->_bdd->query("SELECT * FROM Entite WHERE type = 1");
+        while($boucle2 = $res2->fetch()){
+            $numberUser++;
+        }
+        $numberOfMapWithMob = $numberOfMap - $numberUser;
+
+        return $numberOfMapWithMob;
+    }
+
+    public function getMapWithoutMob(){
+        $numberOfMap = 0;
+        $temp = new map($this->_bdd);
+        $mapWithMob = $temp->getMapWithOneMob();
+        $res = $this->_bdd->query("SELECT * FROM Entite GROUP BY idMap");
+        while($boucle = $res->fetch()){
+            $numberOfMap++;
+        }
+        $numberOfMapWithoutMob = $numberOfMap - $mapWithMob;
+
+        return $numberOfMapWithoutMob;
     }
 }

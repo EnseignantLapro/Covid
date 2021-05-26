@@ -446,5 +446,24 @@ class User{
         $nbuserfaction = $user->fetch();
         echo $nbuserfaction[''];        
     }
+
+        /*
+        fonction qui permet de modidier le status admin d'un user elle attend en paramatre l'id du user.
+        */
+    public function GiveAdmin($id){
+        $req = 'SELECT `admin` FROM `user` WHERE id = '.$id.'';
+        $excuteReq = $this->_bdd->query($req);
+        $dataAdmin = $excuteReq->fetch();
+        $dataAdmin['admin'];
+
+        if($dataAdmin['admin'] == 0){
+            $req = 'UPDATE `user` SET `admin`= "1" WHERE id ='.$id.'';
+            $excuteReq = $this->_bdd->query($req);
+        }else if($dataAdmin['admin'] == 1){
+            $req = 'UPDATE `user` SET `admin`= "0" WHERE id ='.$id.'';
+            $excuteReq = $this->_bdd->query($req);
+        }
+
+    }
 }
 ?>
