@@ -4,27 +4,12 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <!-- Compatible / UTF / Viewport-->
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Style CSS / Script -->
-            <link rel="stylesheet" href="css/style.css">
+        <?php
+            $NameLocal = "Classement";
+            include "ihm/fonction-web/header.php";
+        ?>
+        <!-- Style CSS + -->
             <link rel="stylesheet" href="css/classement.css">
-            <script src="main.js"></script>
-        <!-- Informations Générales -->
-            <title>Projet Full Stack - Classement</title>
-            <meta name='description' content='Projet Full Stack - Classement'>
-            <meta name='author' content='La Providence - Amiens'>
-            <link rel='shortcut icon' href='favicon.ico'>
-        <!-- Intégration Facebook -->
-            <meta property='og:title' content='Projet Full Stack - Classement'>
-            <meta property='og:description' content='Projet Full Stack - Classement'>
-            <meta property='og:image' content='favicon.ico'>
-        <!-- Intégration Twitter -->
-            <meta name='twitter:title' content='Projet Full Stack - Classement'>
-            <meta name='twitter:description' content='Projet Full Stack - Classement'>
-            <meta name='twitter:image' content='favicon.ico'>
     </head>
     <body class="bodyAccueil">
         <?php
@@ -50,15 +35,26 @@
                                 <th>Dégats</th>
                                 <th>Vie</th>
                             </tr>
-                            <tr>
-                                <td><?= 'Exemple' ?></td>
-                                <td><?= 42 ?></td>
-                                <td><?= 5 ?></td>
-                                <td><?= 21 ?></td>
-                                <td><?= 400 ?></td>
-                                <td><?= 500 ?></td>
-                                <td><?= 600 ?></td>
-                            </tr>
+                            <?php
+                                //$Test = new User($mabase);
+                                //$user =  $Test -> showusers($mabase) ;
+
+                                //while ($NB < 30) {
+                                    ?>
+                                        <p> </p>
+                                    <?php
+                                //    $NB++;
+                                //}
+                            ?>
+                                    <tr>
+                                        <td><?= "Test" ?></td>
+                                        <td><?= 42 ?></td>
+                                        <td><?= 5 ?></td>
+                                        <td><?= 21 ?></td>
+                                        <td><?= 400 ?></td>
+                                        <td><?= 500 ?></td>
+                                        <td><?= 600 ?></td>
+                                    </tr>
                         </table>
                     </div>
                 <?php
