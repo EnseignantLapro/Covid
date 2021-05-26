@@ -37,6 +37,33 @@ class TypeMob  extends Mob{
     public function deletemob($id){ //prend en paramettre l'id du mob a delete.
         $this->_bdd->query("DELETE FROM `typeMob` WHERE `id` = $id");
     }
+
+    // Fonction permet de retourner la chance du typemob en fonction de l'id
+    public function getChanceById($id) {
+        $request = $this->_bdd->prepare("SELECT chance FROM TypeMob WHERE id = ?");
+        $request->execute(array($id));
+        $this->_chance = $request->fetch();
+
+        return $this->_chance;
+    }
+
+    // Fonction permet de retourner la rareté de typemob en fonction de l'id
+    public function getRareteById($id) {
+        $request = $this->_bdd->prepare("SELECT rarete FROM TypeMob WHERE id = ?");
+        $request->execute(array($id));
+        $this->_rarete = $request->fetch();
+ 
+        return $this->_rarete = $request->fetch();
+    }
+
+    // Fonction permet de retourner le nom de typemob en fonction de l'id
+    public function getNomById($id) {
+        $request = $this->_bdd->prepare("SELECT nom FROM TypeMob WHERE id = ?");
+        $request->execute(array($id));
+        $this->_nom = $request->fetch();
+
+        return $this->_nom;
+    }
     
 }
 

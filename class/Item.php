@@ -1,3 +1,4 @@
+
 <?php //dev By Rapidecho
 class Item extends Objet{
 
@@ -169,6 +170,37 @@ class Item extends Objet{
        
     }
 
-   
+   //affiche le nombre d'item existant par type
+    public function nbitem(){
+        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `item` WHERE type=".$value."");
+        $nbitem = $Result->fetch();
+        echo $nbitem;   
+    }
+
+    //affiche le nombre d'item existant par efficacité
+    public function nbefficatite(){
+        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `item` WHERE efficacite=".$value."");
+        $nbefficatite= $Result->fetch();
+        echo $nbefficatite;
+    }
+
+    //affiche le nombre d'item existant par lvl
+    public function nblvl(){
+        $Result = $this->_bdd->query("SELECT COUNT(*) FROM `item` WHERE lvl=".$value."");
+        $nblvl= $Result->fetch();
+        echo $nblvl;
+    }
+
+    /*
+    fonction qui retourne le nombre d'item total dans la base de donner
+    elle demende en paramètre la connection a la base de donné
+    */
+    public function getNombreItem()
+    {
+        $req = 'SELECT COUNT(*) as "NB" FROM item';
+        $excuteReq = $this->_bdd->query($req);
+        $data = $excuteReq->fetch();
+        return $data['NB'];
+    }
 }
 ?>
