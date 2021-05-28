@@ -8,8 +8,8 @@
             $NameLocal = "Guide Jeux";
             include "ihm/fonction-web/header.php";
         ?>
-            <!-- Style CSS + -->
-                <link rel="stylesheet" href="css/guide.css">
+        <!-- Style CSS + -->
+            <link rel="stylesheet" href="css/guide.css">
     </head>
     <body class="bodyguidedejeux">
         <?php

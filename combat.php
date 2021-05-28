@@ -14,7 +14,6 @@
             <link rel="stylesheet" href="css/item.css">
             <link rel="stylesheet" href="css/map.css">
             <link rel="stylesheet" href="css/entite.css">
-
     </head>
     <body class="bodyAccueil">
         <?php

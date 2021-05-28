@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-    <?php
+        <?php
             $NameLocal = "Règlement";
             include "ihm/fonction-web/header.php";
         ?>
