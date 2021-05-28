@@ -11,7 +11,7 @@
         <!-- Style CSS + -->
             <link rel="stylesheet" href="css/guide.css">
     </head>
-    <body class="bodyguidedejeux">
+    <body class="bodyGuideJeux">
         <?php
             include "session.php";
 
@@ -23,7 +23,7 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="divGuide">
+                    <div class="divGuideJeux">
                         <h1>Guide du Jeux</h1>
                         <h2>But du jeu :</h2>
                         <p>Le but du jeu est de capturer le "super Jedi Légendaire".</p>

@@ -11,7 +11,7 @@
         <!-- Style CSS + -->
             <link rel="stylesheet" href="css/guide.css">
     </head>
-    <body class="bodyguideequipement">
+    <body class="bodyGuideEquipements">
         <?php
             include "session.php";
 
@@ -23,7 +23,7 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="divGuide">
+                    <div class="divGuideEquipements">
                         <h1>Guide d'équipement</h1>
                         <h2>Les differents équipements :</h2>
                         <p>Il y a plusieurs type d'équipement.</p>
