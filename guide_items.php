@@ -23,15 +23,17 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <h1>Guide d'item</h1>
-                    <h2>Les differents items :</h2>
-                    <p>Il y a plusieurs types d'items.</p>
-                    <p>Les objets :</p>
-                    <p>Pourris,</p>
-                    <p>Bizzarre,</p>
-                    <p>Cassés,</p>
-                    <p>Nuls,</p>
-                    <p>Normaux.</p>
+                    <div class="divGuide">
+                        <h1>Guide d'item</h1>
+                        <h2>Les differents items :</h2>
+                        <p>Il y a plusieurs types d'items.</p>
+                        <p>Les objets :</p>
+                        <p>Pourris,</p>
+                        <p>Bizzarre,</p>
+                        <p>Cassés,</p>
+                        <p>Nuls,</p>
+                        <p>Normaux.</p>
+                    </div>
                 <?php
             }else{
                 echo $errorMessage;

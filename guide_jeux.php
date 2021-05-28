@@ -23,16 +23,18 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <h1>Guide du Jeux</h1>
-                    <h2>But du jeu :</h2>
-                    <p>Le but du jeu est de capturer le "super Jedi Légendaire".</p>
-                    <h2>Comment avancer sur la map ?</h2>
-                    <p>Allez dans l'onglet map et cliquez sur les directions indiquées sur les cotés de la map.</p>
-                    <h2>Comment tuer un monstre ?</h2>
-                    <p>Cliquez sur le monstre que vous souhaitez tuer.</p>
-                    <h2>Comment selectioner un item ?</h2>
-                    <p>Cliquez sur l'item dans l'onglet item pour se soigner.</p>
-                    <p>Cliquez sur l'item dans l'onglet équipement pour selectioner une armure ou objet d'attaque.</p>
+                    <div class="divGuide">
+                        <h1>Guide du Jeux</h1>
+                        <h2>But du jeu :</h2>
+                        <p>Le but du jeu est de capturer le "super Jedi Légendaire".</p>
+                        <h2>Comment avancer sur la map ?</h2>
+                        <p>Allez dans l'onglet map et cliquez sur les directions indiquées sur les cotés de la map.</p>
+                        <h2>Comment tuer un monstre ?</h2>
+                        <p>Cliquez sur le monstre que vous souhaitez tuer.</p>
+                        <h2>Comment selectioner un item ?</h2>
+                        <p>Cliquez sur l'item dans l'onglet item pour se soigner.</p>
+                        <p>Cliquez sur l'item dans l'onglet équipement pour selectioner une armure ou objet d'attaque.</p>
+                    </div>
                 <?php
             }else{
                 echo $errorMessage;
