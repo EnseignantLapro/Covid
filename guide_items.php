@@ -5,11 +5,11 @@
 <html lang="fr">
     <head>
         <?php
-            $NameLocal = "Guide de items";
+            $NameLocal = "Guide Items";
             include "ihm/fonction-web/header.php";
         ?>
-        <!-- Style CSS + -->
-            <link rel="stylesheet" href="css/credit.css">
+            <!-- Style CSS + -->
+                <link rel="stylesheet" href="css/guide.css">
     </head>
     <body class="bodyguideitems">
         <?php
@@ -24,19 +24,14 @@
                 include "ihm/fonction-web/menu.php";
                 ?>
                     <h1>Guide d'item</h1>
-
-                    <h1>Guide d'item</h1>
-
-                    <h2>les differents items</h2>
-                    <p>il y a plusieurs types d'items</p>
-                    <p>les objets : </p>
-                    <p>Pourris</p>
-                    <p>Bizzarre</p>
-                    <p>Cassés</p>
-                    <p>Nuls</p>
-                    <p>Normaux</p>
-
-                    
+                    <h2>Les differents items :</h2>
+                    <p>Il y a plusieurs types d'items.</p>
+                    <p>Les objets :</p>
+                    <p>Pourris,</p>
+                    <p>Bizzarre,</p>
+                    <p>Cassés,</p>
+                    <p>Nuls,</p>
+                    <p>Normaux.</p>
                 <?php
             }else{
                 echo $errorMessage;

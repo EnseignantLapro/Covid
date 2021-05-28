@@ -5,11 +5,11 @@
 <html lang="fr">
     <head>
         <?php
-            $NameLocal = "Guide de equipement";
+            $NameLocal = "Guide Équipement";
             include "ihm/fonction-web/header.php";
         ?>
-        <!-- Style CSS + -->
-            <link rel="stylesheet" href="css/credit.css">
+            <!-- Style CSS + -->
+                <link rel="stylesheet" href="css/guide.css">
     </head>
     <body class="bodyguideequipement">
         <?php
@@ -24,17 +24,14 @@
                 include "ihm/fonction-web/menu.php";
                 ?>
                     <h1>Guide d'équipement</h1>
-
-                    <h2>les differents équipements</h2>
-                    <p>il y a plusieurs type d'équipement</p>
-                    <p>les objets : </p>
-                    <p>en poussiere</p>
-                    <p>Tout Moue</p>
-                    <p>Cassé</p>
-                    <p>Normal</p>
-                    <p>Neuf</p>
-
-                    
+                    <h2>Les differents équipements :</h2>
+                    <p>Il y a plusieurs type d'équipement.</p>
+                    <p>Les objets :</p>
+                    <p>En poussiere,</p>
+                    <p>Tout Moue,</p>
+                    <p>Cassé,</p>
+                    <p>Normal,</p>
+                    <p>Neuf.</p>
                 <?php
             }else{
                 echo $errorMessage;
