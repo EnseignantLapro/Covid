@@ -7,15 +7,15 @@
     class Arme extends Equipement{
 
         public function createArmeAleatoire(){
-        
+
             //attention la catérogie id arme doit etre = 1
             $req="SELECT * FROM TypeEquipement Where idCategorie = 1 order by rarete ASC";
             $Result = $this->_bdd->query($req);
-            
+
             $newType=1;//par default une gifle c'est une attaque;
             $rarete=1;
             $newTypeNom='Gifle ';
-            
+
             while($tab=$Result->fetch()){
                 if(rand(0,$tab['chance'])==1){
                 $newType = $tab['id'];
@@ -29,7 +29,7 @@
 
             $newNom = $newTypeNom." ".$getEfficace['adjectif'];
             $efficacite = $getEfficace['id'];
-            
+
             $newValeur = rand(5,10)*$rarete*$getEfficace['coef'];
 
             $this->_bdd->beginTransaction();
