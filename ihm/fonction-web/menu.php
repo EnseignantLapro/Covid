@@ -5,6 +5,13 @@
         <li><a href="combat.php">Combat</a></li>
         <li><a href="map.php">Map</a></li>
         <li><a href="faq.php">FAQ</a></li>
+        <li><a href="#">Guides</a>
+            <ul class="ulSousMenu">
+                <li><a href="guide_jeux.php">Guide Général</a></li>
+                <li><a href="guide_equipements.php">Guide Équipements</a></li>
+                <li><a href="guide_items.php">Guide Items</a></li>
+            </ul>
+        </li>
         <li><a href="classement.php">Classement</a></li>
         <li><a href="credit.php">Crédit</a></li>
         <?php

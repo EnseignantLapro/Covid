@@ -5,13 +5,13 @@
 <html lang="fr">
     <head>
         <?php
-            $NameLocal = "Règlement";
+            $NameLocal = "Guide Équipement";
             include "ihm/fonction-web/header.php";
         ?>
         <!-- Style CSS + -->
-            <link rel="stylesheet" href="css/reglement.css">
+            <link rel="stylesheet" href="css/guide.css">
     </head>
-    <body class="bodyRules">
+    <body class="bodyGuideEquipements">
         <?php
             include "session.php";
 
@@ -23,10 +23,16 @@
             if($access === true){
                 include "ihm/fonction-web/menu.php";
                 ?>
-                    <div class="divRules">
-                        <h1 class="divRulesTitle">Règlement</h1>
-                        <p><b>1</b> - Être gentil</p>
-                        <p><b>2</b> - Ne pas être méchant</p>
+                    <div class="divGuideEquipements">
+                        <h1>Guide d'équipement</h1>
+                        <h2>Les differents équipements :</h2>
+                        <p>Il y a plusieurs type d'équipement.</p>
+                        <p>Les objets :</p>
+                        <p>En poussiere,</p>
+                        <p>Tout Moue,</p>
+                        <p>Cassé,</p>
+                        <p>Normal,</p>
+                        <p>Neuf.</p>
                     </div>
                 <?php
             }else{

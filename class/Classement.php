@@ -1,15 +1,10 @@
 <?php
-//cette classe est développé par :  ??
+    //cette classe est développé par : ???
 
-class Classement  {
+    class Classement  {
 
-
-    public function getClassement(){
-        return "le classement";
+        public function getClassement(){
+            return "le classement";
+        }
     }
-    
-    
-}
-
-
 ?>

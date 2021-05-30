@@ -897,7 +897,7 @@ class map{
                 $Adjectif ="Banal";
             break;   
             default:
-                $Adjectif ="Haineu";
+                $Adjectif ="Haineux";
         }
 
         $Nom ="";
@@ -1323,7 +1323,7 @@ class map{
                     $Consone .="ni";
                 break;
                 case 15:
-                    $Consone .="nar";
+                    $Consone .="nard";
                 break;
                 case 16:
                     $Consone .="pon";
