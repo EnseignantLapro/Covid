@@ -49,7 +49,7 @@
         }
 
         public function getForce(){
-        return $val = $this->getLvl()*$this->getValeur();
+            return $val = $this->getLvl()*$this->getValeur();
         }
     }
 ?>

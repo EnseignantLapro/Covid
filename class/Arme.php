@@ -7,7 +7,6 @@
     class Arme extends Equipement{
 
         public function createArmeAleatoire(){
-
             //attention la catérogie id arme doit etre = 1
             $req="SELECT * FROM TypeEquipement Where idCategorie = 1 order by rarete ASC";
             $Result = $this->_bdd->query($req);
