@@ -1,4 +1,3 @@
-
 <?php //dev by rapidecho
 class Equipement extends Objet{
 
@@ -41,7 +40,7 @@ class Equipement extends Objet{
     }
 
     public function desequipeEntite($Entite){
-        $sql = "UPDATE `EntiteEquipement` SET `equipe`='0' WHERE `idEntite`='".$Entite->getId()."' AND `idEquipement`='".$this->_id."' ";
+        $sql = "UPDATE `EntiteEquipement` SET `equipe`='0' WHERE `idEntite`='".$Entite->getId()."' AND `idEquipement`='".$this->_id."'";
         $this->_bdd->query($sql);
         $Entite->removeEquipeBydId($this->_id);
     }
@@ -50,12 +49,12 @@ class Equipement extends Objet{
         //TODO il faut vérifier qu'il n'y a pas d'autre équipement en cours sinon il faut les retirer
         $sql = "UPDATE `EntiteEquipement`,`TypeEquipement`,`Equipement` SET `equipe`='0'
         WHERE `idEntite`='1'
-        AND  EntiteEquipement.idEquipement = Equipement.id
-        AND  Equipement.type = TypeEquipement.id
-        AND  TypeEquipement.idCategorie = '".$this->_idCategorie."'";
+        AND EntiteEquipement.idEquipement = Equipement.id
+        AND Equipement.type = TypeEquipement.id
+        AND TypeEquipement.idCategorie = '".$this->_idCategorie."'";
         $this->_bdd->query($sql);
         $Entite->addEquipeById($this->_id);
-        $sql = "UPDATE `EntiteEquipement` SET `equipe`='1' WHERE `idEntite`='".$Entite->getId()."' AND `idEquipement`='".$this->_id."' ";
+        $sql = "UPDATE `EntiteEquipement` SET `equipe`='1' WHERE `idEntite`='".$Entite->getId()."' AND `idEquipement`='".$this->_id."'";
         $this->_bdd->query($sql);
     }
 
@@ -75,7 +74,7 @@ class Equipement extends Objet{
     }
     //retourn un tableau avec id information lienImage nom rarete
     public function getType(){
-        $req="SELECT * FROM TypeEquipement WHERE id='".$this->_type."' ";
+        $req="SELECT * FROM TypeEquipement WHERE id='".$this->_type."'";
         $Result = $this->_bdd->query($req);
         if($tab = $Result->fetch()){
             return $tab;
@@ -117,12 +116,12 @@ class Equipement extends Objet{
             }
         }else{
             //poussiere
-            $colorRarete .=  '255,255,255';
+            $colorRarete .= '255,255,255';
         }
         //max rarete valeur = 1600
         //1600 = 1
-        $Transparence = (($this->_valeur/160)*((1-0.3)))+0.3 ;
-        return $colorRarete.','.$Transparence.') !important' ;
+        $Transparence = (($this->_valeur/160)*((1-0.3)))+0.3;
+        return $colorRarete.','.$Transparence.') !important';
     }
 
     public function __construct($bdd){
@@ -181,15 +180,10 @@ class Equipement extends Objet{
             array_push($TabIDRemoved,$this->getId());
             //maj du lvl
             $this->_lvl ++;
-            $req="UPDATE `Equipement`
-                SET `lvl`='".$this->_lvl."'
-                WHERE `id` = '".$tab['id']."'
-            ";
+            $req="UPDATE `Equipement` SET `lvl`='".$this->_lvl."' WHERE `id` = '".$tab['id']."'";
             $this->_bdd->query($req);
             //et suppresion de l'ancien item
-            $req="DELETE FROM `Equipement`
-                WHERE `id` = '".$this->getId()."'
-             ";
+            $req="DELETE FROM `Equipement` WHERE `id` = '".$this->getId()."'";
             $this->_bdd->query($req);
             //on met ajout son id fusionné
             $this->_id = $tab['id'];
@@ -208,7 +202,7 @@ class Equipement extends Objet{
     public function nbitemtype(){
         $Result = $this->_bdd->query("SELECT COUNT(*) FROM `equipement` WHERE type=".$value."");
         $nbitemtype = $Result->fetch();
-        echo $nbitemtype;   
+        echo $nbitemtype;
     }
 
     /*
