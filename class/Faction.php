@@ -1,5 +1,5 @@
 <?php
-//cette classe est développé par : Yann  Martin
+//cette classe est développé par : Yann Martin
 
 class Faction {
 
@@ -29,11 +29,9 @@ class Faction {
      * $id = contient l'id de la faction
     */
     public function setFactionById($id){
-
         // Sélection des personnages de la faction
-        $req  = "SELECT * FROM `Faction` WHERE id='".$id."'";
+        $req = "SELECT * FROM `Faction` WHERE id='".$id."'";
         $Result = $this->_bdd->query($req);
-
         if($tab=$Result->fetch()){
             $this->_id = $tab['id'];
             $this->_nom= $tab['nom'];
@@ -89,14 +87,12 @@ class Faction {
 
         $TypePersos = array();
         $Result = $this->_bdd->query("SELECT * FROM `TypePersonnage` WHERE idFaction = '".$this->_id."'");
-
         while($tab=$Result->fetch()){
             $TypePerso = new TypePersonnage($this->_bdd);
             $TypePerso->setTypePersonnageById($tab['id']);
             array_push($TypePersos,$TypePerso);
         }
-
-        return $TypePersos ;
+        return $TypePersos;
     }
 
     /**
@@ -110,7 +106,6 @@ class Faction {
     public function setNom($nom) {
         $req = $this->_bdd->prepare("UPDATE Faction SET nom = ? WHERE id = ?");
         $req->execute(array($nom, $this->_id));
-
         $this->_nom = $nom;
     }
 
@@ -125,7 +120,6 @@ class Faction {
     public function setColor($couleur) {
         $req = $this->_bdd->prepare("UPDATE Faction SET couleur = ? WHERE id = ?");
         $req->execute(array($couleur, $this->_id));
-
         $this->_couleur = $couleur;
     }
 
@@ -154,7 +148,6 @@ class Faction {
     public function setFaction($nom, $couleur) {
         $req = $this->_bdd->prepare("INSERT INTO Faction SET nom = ?, couleur = ?");
         $req->execute(array($nom, $couleur));
-        
         $this->_nom = $nom;
         $this->_couleur = $couleur;
     }
@@ -170,7 +163,6 @@ class Faction {
     public function showFaction() {
         $req = $this->_bdd->prepare("SELECT * FROM Faction");
         $req->execute();
-
         return $req->fetch();
     }
 
@@ -185,7 +177,6 @@ class Faction {
     public function getFactionNameById($id) {
         $req = $this->_bdd->prepare("SELECT * FROM Faction WHERE id = ?");
         $req->execute($id);
-
         return $req->fetch();
     }
 }
