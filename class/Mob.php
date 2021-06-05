@@ -2,34 +2,27 @@
     //TODO MOB ET PERSONNAGE ON TROP DE SIMILITUDE
     //IL FAUT REFACTORISER AVEC DE LhERITAGE
     class Mob extends Entite{
-
+        //valeur
         private $_coefXP;
         private $_typeMob;
-
+        //fonction
         public function __construct($bdd){
             Parent::__construct($bdd);
         }
-
-
         public function getCoefXp(){
             return $this->_coefXP;
         }
-
         public function getTypeMob(){
             return $this->_typeMob;
         }
-
         public function setMobById($id){
             Parent::setEntiteByIdWithoutMap($id);
             $this->initInfo($id);
         }
-
         public function setMobByIdWithMap($id){
             Parent::setEntiteById($id);
             $this->initInfo($id);
-
         }
-
         private function initInfo($id){
             //select les info personnage
             $req  = "SELECT * FROM `Mob` WHERE id='".$id."'";
@@ -42,8 +35,6 @@
                 $Result = $this->_bdd->query($req);
             }
         }
-
-
         //methode appelé quand un personnage attaque un mob
         //le perso est passé en param
         public function SubitDegat($Entite)
@@ -55,15 +46,13 @@
                 $degat = $Entite->getAttaque() * 1.5;
                 $degat = round($degat);
                 $this->_vie = $this->_vie - $degat;
-            
                 if($degat > 1)
                 {
-                    $CoupCritique = "Coup Critique ! Vous avez infligé ".$degat." points de dégâts. ";
+                    $CoupCritique = "Coup Critique ! Vous avez infligé ".$degat." points de dégâts.";
                 } else
                 {
-                    $CoupCritique = "Coup Critique ! Vous avez infligé ".$degat." point de dégât. ";
+                    $CoupCritique = "Coup Critique ! Vous avez infligé ".$degat." point de dégât.";
                 }
-
             } else
             {
                 $degat = $Entite->getAttaque();
@@ -74,26 +63,22 @@
                     $CoupCritique = "Vous avez infligé ".$degat." points de dégâts.";
                 } else
                 {
-                    $CoupCritique = "Vous avez infligé ".$degat." point de dégât."; 
+                    $CoupCritique = "Vous avez infligé ".$degat." point de dégât.";
                 }
             }
-
             $coupFatal = 0;
             if($this->_vie<0){
                 $this->_vie=0;
                 $coupFatal=1;
-
                 //on va attribuer le mob au perssonage sa vie revient a fond pour le propriétaire
-                $req  = "UPDATE `Entite` SET `vie`='".$this->_vieMax."',`idUser`='".$Entite->getId()."' WHERE `id` = '".$this->_id ."'";
+                $req  = "UPDATE `Entite` SET `vie`='".$this->_vieMax."',`idUser`='".$Entite->getId()."' WHERE `id` = '".$this->_id."'";
                 $Result = $this->_bdd->query($req);
-
             }else{
                 $req  = "UPDATE `Entite` SET `vie`='".$this->_vie ."' WHERE `id` = '".$this->_id ."'";
                 $Result = $this->_bdd->query($req);
             }
-
             //on va rechercher l'historique
-            $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$this->_id."' and idPersonnage = '".$Entite->getId()."'" ;
+            $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$this->_id."' and idPersonnage = '".$Entite->getId()."'";
             $Result = $this->_bdd->query($req);
             $tabAttaque['nbCoup']=0;
             $tabAttaque['DegatsDonnes']=0;
@@ -102,7 +87,6 @@
                 $tabAttaque = $tab;
                 $tabAttaque['DegatsReçus']+=$Entite->getAttaque();
                 $tabAttaque['nbCoup']++;
-
             }else{
                 //insertion d'une nouvelle attaque
                 $req="INSERT INTO `AttaquePersoMob`(`idMob`, `idPersonnage`, `nbCoup`, `coupFatal`, `DegatsDonnes`, `DegatsReçus`)
@@ -111,7 +95,6 @@
                 )";
                 $Result = $this->_bdd->query($req);
             }
-
             //update AttaquePersoMob
             $req="UPDATE `AttaquePersoMob` SET
             `nbCoup`=".$tabAttaque['nbCoup'].",
@@ -121,16 +104,14 @@
                 $Result = $this->_bdd->query($req);
             return array ($this->_vie, $CoupCritique);
         }
-
         public function getHistoriqueAttaque(){
-            $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$this->_id."'" ;
+            $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$this->_id."'";
             $Result = $this->_bdd->query($req);
             while($tab=$Result->fetch()){
                 array_push($this->HostoriqueAttaque,$tab);
             }
             return $this->HostoriqueAttaque;
         }
-
         //retourne toute la mécanique d'affichage d'un mob
         public function renderHTML(){
             ?><div class="mob">
@@ -141,7 +122,6 @@
             </div>
             <?php
         }
-
         public function CreateMobAleatoire($map){
                 $newMob = new Mob($this->_bdd);
                 $type = $this->getTypeAleatoire();
@@ -155,14 +135,11 @@
                     $vie = $coefAbuseVie*20*$lvl*$lvl;
                     $degat = 1*$lvl*$lvl;
                 }
-
                 $newMob = $newMob->CreateEntite($this->generateName($type[0]), $vie, $degat, $map->getId(),$vie,$type[3],null,2,$lvl);
-
                 if(!is_null($newMob)){
                     $req="INSERT INTO `Mob`(`coefXp`, `id` ,`type` )
                     VALUES ('".$type[2]."','".$newMob->getId()."','".$type[1]."')";
                     $Result = $this->_bdd->query($req);
-
                     if( $newMob->getId()){
                         $newMob->setEntiteById( $newMob->getId());
                         return $newMob;
@@ -172,14 +149,12 @@
                 }else{
                     return null;
                 }
-
                 $itemEnplus = new Item($this->_bdd);
                 $nbItem = rand(2,$coefAbuseArme+round(($coefAbuseVie/10)));
                 for($i=0;$i<$nbItem;$i++){
                         $map->addItem($itemEnplus->createItemAleatoire());
                 }
         }
-
         //retour un tableau vace le nom du type et id dy type
         //$tab[0]=$newTypeNom;
         //$tab[1]=$newType;
@@ -194,8 +169,6 @@
             $newType=0; //Menir par default
             $rarete=1;
             $newTypeNom='Menir';
-
-
             while($tab=$Result->fetch()){
                 if(rand(0,$tab['chance'])==1){
                 $newType = $tab['id'];
@@ -204,8 +177,6 @@
                 break;
                 }
             }
-
-
             //Ancien system random
             /*while($tab=$Result->fetch()){
             if(rand(0,$imax)<$i){
@@ -216,841 +187,711 @@
             }
             $i--;
             }*/
-
-
-
-
             $image = $this->generateImageMob($newTypeNom);
-
-
             $tab[0]=$newTypeNom;
             $tab[1]=$newType;
             $tab[2]=$coef;
             $tab[3]=$image;
             return $tab;
         }
-
         public function GenerateName($type){
-            $nom =$type;
-
-            $Adjectif ="";
+            $nom = $type;
+            $Adjectif = "";
             switch (rand(0,20)){
                 case 0:
-                    $Adjectif ="Poisseux";
+                    $Adjectif = "Poisseux";
                 break;
                 case 1:
-                    $Adjectif ="Luxuriant";
+                    $Adjectif = "Luxuriant";
                 break;
                 case 2:
-                    $Adjectif ="Immense";
+                    $Adjectif = "Immense";
                 break;
                 case 3:
-                    $Adjectif ="Enchantée";
+                    $Adjectif = "Enchantée";
                 break;
                 case 4:
-                    $Adjectif ="Mortel";
+                    $Adjectif = "Mortel";
                 break;
                 case 5:
-                    $Adjectif ="Abandonné";
+                    $Adjectif = "Abandonné";
                 break;
                 case 6:
-                    $Adjectif ="Enflammé";
+                    $Adjectif = "Enflammé";
                 break;
                 case 7:
-                    $Adjectif ="Minuscule";
+                    $Adjectif = "Minuscule";
                 break;
                 case 8:
-                    $Adjectif ="Lumineux";
+                    $Adjectif = "Lumineux";
                 break;
                 case 9:
-                    $Adjectif ="Sombre";
+                    $Adjectif = "Sombre";
                 break;
                 case 10:
-                    $Adjectif ="Bouleversant";
+                    $Adjectif = "Bouleversant";
                 break;
                 case 11:
-                    $Adjectif ="Captivant";
+                    $Adjectif = "Captivant";
                 break;
                 case 12:
-                    $Adjectif ="Divin";
+                    $Adjectif = "Divin";
                 break;
                 case 13:
-                    $Adjectif ="Épouvantable";
+                    $Adjectif = "Épouvantable";
                 break;
                 case 14:
-                    $Adjectif ="Exaltant";
+                    $Adjectif = "Exaltant";
                 break;
                 case 15:
-                    $Adjectif ="Remarquable";
+                    $Adjectif = "Remarquable";
                 break;
                 case 16:
-                    $Adjectif ="Somptueux";
+                    $Adjectif = "Somptueux";
                 break;
                 case 17:
-                    $Adjectif ="Spiritueux";
+                    $Adjectif = "Spiritueux";
                 break;
                 case 18:
-                    $Adjectif ="Vivable";
+                    $Adjectif = "Vivable";
                 break;
                 case 19:
-                    $Adjectif ="Banal";
+                    $Adjectif = "Banal";
                 break;   
                 default:
-                    $Adjectif ="Haineu";
+                    $Adjectif = "Haineu";
             }
-
-            $Nom ="";
+            $Nom = "";
             switch (rand(0,201)){
                 case 0:
-                    $Nom .="Bracken";
+                    $Nom = "Bracken";
                 break;
                 case 1:
-                    $Nom .="Acorn";
+                    $Nom = "Acorn";
                 break;
                 case 2:
-                    $Nom .="Sotreg";
+                    $Nom = "Sotreg";
                 break;
                 case 3:
-                    $Nom .="Urshug";
+                    $Nom = "Urshug";
                 break;
                 case 4:
-                    $Nom .="Moleskrith";
+                    $Nom = "Moleskrith";
                 break;
                 case 5:
-                    $Nom .="Niondikaix";
+                    $Nom = "Niondikaix";
                 break;
                 case 6:
-                    $Nom .="Sradurgrin";
+                    $Nom = "Sradurgrin";
                 break;
                 case 7:
-                    $Nom .="Moleskrith";
+                    $Nom = "Moleskrith";
                 break;
                 case 8:
-                    $Nom .="Orshion";
+                    $Nom = "Orshion";
                 break;
                 case 9:
-                    $Nom .="Tagasko";
+                    $Nom = "Tagasko";
                 break;
                 case 10:
-                    $Nom .="Totrei";
+                    $Nom = "Totrei";
                 break;
                 case 11:
-                    $Nom .="Trasalmoh";
+                    $Nom = "Trasalmoh";
                 break;
                 case 12:
-                    $Nom .="Oronghaiz";
+                    $Nom = "Oronghaiz";
                 break;
                 case 13:
-                    $Nom .="Trikto";
+                    $Nom = "Trikto";
                 break;
                 case 14:
-                    $Nom .="Panorus";
+                    $Nom = "Panorus";
                 break;
                 case 15:
-                    $Nom .="Konstian";
+                    $Nom = "Konstian";
                 break;
                 case 16:
-                    $Nom .="Peleon";
+                    $Nom = "Peleon";
                 break;
                 case 17:
-                    $Nom .="Melanthus";
+                    $Nom = "Melanthus";
                 break;
                 case 18:
-                    $Nom .="Eusades";
+                    $Nom = "Eusades";
                 break;
                 case 19:
-                    $Nom .="Ajalus";
+                    $Nom = "Ajalus";
                 break;
                 case 20:
-                    $Nom .="Shellos";
+                    $Nom = "Shellos";
                 break;
                 case 21:
-                    $Nom .="Gregzins";
+                    $Nom = "Gregzins";
                 break;
                 case 22:
-                    $Nom .="Tits";
+                    $Nom = "Tits";
                 break;
                 case 23:
-                    $Nom .="Yelko";
+                    $Nom = "Yelko";
                 break;
                 case 24:
-                    $Nom .="Uczaks";
+                    $Nom = "Uczaks";
                 break;
                 case 25:
-                    $Nom .="Furghaohlach";
+                    $Nom = "Furghaohlach";
                 break;
                 case 26:
-                    $Nom .="Tirdad";
+                    $Nom = "Tirdad";
                 break;
                 case 27:
-                    $Nom .="Rar";
+                    $Nom = "Rar";
                 break;
                 case 28:
-                    $Nom .="Cenghaild";
+                    $Nom = "Cenghaild";
                 break;
                 case 29:
-                    $Nom .="Patriarch";
+                    $Nom = "Patriarch";
                 break;
                 case 30:
-                    $Nom .="Moraphine";
+                    $Nom = "Moraphine";
                 break;
                 case 31:
-                    $Nom .="Verelle";
+                    $Nom = "Verelle";
                 break;
                 case 32:
-                    $Nom .="Yenyre";
+                    $Nom = "Yenyre";
                 break;
                 case 33:
-                    $Nom .="Dysys";
+                    $Nom = "Dysys";
                 break;
                 case 34:
-                    $Nom .="Hyninis";
+                    $Nom = "Hyninis";
                 break;
                 case 35:
-                    $Nom .="Cecoya";
+                    $Nom = "Cecoya";
                 break;
                 case 36:
-                    $Nom .="Fecerna";
+                    $Nom = "Fecerna";
                 break;
                 case 37:
-                    $Nom .="Hohecne";
+                    $Nom = "Hohecne";
                 break;
                 case 38:
-                    $Nom .="Ephnide";
+                    $Nom = "Ephnide";
                 break;
                 case 39:
-                    $Nom .="Ghurheco";
+                    $Nom = "Ghurheco";
                 break;
                 case 40:
-                    $Nom .="Gerirho";
+                    $Nom = "Gerirho";
                 break;
                 case 41:
-                    $Nom .="Thucnaidh";
+                    $Nom = "Thucnaidh";
                 break;
                 case 42:
-                    $Nom .="Brelforth";
+                    $Nom = "Brelforth";
                 break;
                 case 43:
-                    $Nom .="Dravru";
+                    $Nom = "Dravru";
                 break;
                 case 44:
-                    $Nom .="Ceshope";
+                    $Nom = "Ceshope";
                 break;
                 case 45:
-                    $Nom .="Rherunru";
+                    $Nom = "Rherunru";
                 break;
                 case 46:
-                    $Nom .="Phunvipi";
+                    $Nom = "Phunvipi";
                 break;
                 case 47:
-                    $Nom .="Cylmik";
+                    $Nom = "Cylmik";
                 break;
                 case 48:
-                    $Nom .="Melfie";
+                    $Nom = "Melfie";
                 break;
                 case 49:
-                    $Nom .="Ony";
+                    $Nom = "Ony";
                 break;
                 case 50:
-                    $Nom .="Oscono";
+                    $Nom = "Oscono";
                 break;
                 case 51:
-                    $Nom .="Driolfur";
+                    $Nom = "Driolfur";
                 break;
                 case 52:
-                    $Nom .="Zimnath";
+                    $Nom = "Zimnath";
                 break;
                 case 53:
-                    $Nom .="Chocudro";
+                    $Nom = "Chocudro";
                 break;
                 case 54:
-                    $Nom .="Bobiphe";
+                    $Nom = "Bobiphe";
                 break;
                 case 55:
-                    $Nom .="Eophorbia";
+                    $Nom = "Eophorbia";
                 break;
                 case 56:
-                    $Nom .="Lavendoris";
+                    $Nom = "Lavendoris";
                 break;
                 case 57:
-                    $Nom .="Poppiris";
+                    $Nom = "Poppiris";
                 break;
                 case 58:
-                    $Nom .="Aconite";
+                    $Nom = "Aconite";
                 break;
                 case 59:
-                    $Nom .="Cinnamonia";
+                    $Nom = "Cinnamonia";
                 break;
                 case 60:
-                    $Nom .="Viola";
+                    $Nom = "Viola";
                 break;
                 case 61:
-                    $Nom .="Saffronis";
+                    $Nom = "Saffronis";
                 break;
                 case 62:
-                    $Nom .="Dindellis";
+                    $Nom = "Dindellis";
                 break;
                 case 63:
-                    $Nom .="Poinsetta";
+                    $Nom = "Poinsetta";
                 break;
                 case 64:
-                    $Nom .="Amaryllis";
+                    $Nom = "Amaryllis";
                 break;
                 case 65:
-                    $Nom .="Ehretia";
+                    $Nom = "Ehretia";
                 break;
                 case 66:
-                    $Nom .="Pteili";
+                    $Nom = "Pteili";
                 break;
                 case 67:
-                    $Nom .="Poppiris";
+                    $Nom = "Poppiris";
                 break;
                 case 68:
-                    $Nom .="Hellobora";
+                    $Nom = "Hellobora";
                 break;
                 case 69:
-                    $Nom .="Sabatia";
+                    $Nom = "Sabatia";
                 break;
                 case 70:
-                    $Nom .="Azolla";
+                    $Nom = "Azolla";
                 break;
                 case 71:
-                    $Nom .="Ianisse";
+                    $Nom = "Ianisse";
                 break;
                 case 72:
-                    $Nom .="Oinone";
+                    $Nom = "Oinone";
                 break;
                 case 73:
-                    $Nom .="Hamo";
+                    $Nom = "Hamo";
                 break;
                 case 74:
-                    $Nom .="Rand";
+                    $Nom = "Rand";
                 break;
                 case 75:
-                    $Nom .="Raiimond";
+                    $Nom = "Raiimond";
                 break;
                 case 76:
-                    $Nom .="Eloise";
+                    $Nom = "Eloise";
                 break;
                 case 77:
-                    $Nom .="Maneld";
+                    $Nom = "Maneld";
                 break;
                 case 78:
-                    $Nom .="Cristina";
+                    $Nom = "Cristina";
                 break;
                 case 79:
-                    $Nom .="Elurelia";
+                    $Nom = "Elurelia";
                 break;
                 case 80:
-                    $Nom .="Dialina";
+                    $Nom = "Dialina";
                 break;
                 case 81:
-                    $Nom .="Narilla";
+                    $Nom = "Narilla";
                 break;
                 case 82:
-                    $Nom .="Eathemala";
+                    $Nom = "Eathemala";
                 break;
                 case 83:
-                    $Nom .="Oralina";
+                    $Nom = "Oralina";
                 break;
                 case 84:
-                    $Nom .="Kallipheme";
+                    $Nom = "Kallipheme";
                 break;
                 case 85:
-                    $Nom .="Elurelia";
+                    $Nom = "Elurelia";
                 break;
                 case 86:
-                    $Nom .="Nahfa";
+                    $Nom = "Nahfa";
                 break;
                 case 87:
-                    $Nom .="Lagurinda";
+                    $Nom = "Lagurinda";
                 break;
                 case 88:
-                    $Nom .="Aethella";
+                    $Nom = "Aethella";
                 break;
                 case 89:
-                    $Nom .="Perinos";
+                    $Nom = "Perinos";
                 break;
                 case 90:
-                    $Nom .="Thataruh";
+                    $Nom = "Thataruh";
                 break;
                 case 91:
-                    $Nom .="Abrao";
+                    $Nom = "Abrao";
                 break;
                 case 92:
-                    $Nom .="Tallan";
+                    $Nom = "Tallan";
                 break;
                 case 93:
-                    $Nom .="Efarol";
+                    $Nom = "Efarol";
                 break;
                 case 94:
-                    $Nom .="Yalluh";
+                    $Nom = "Yalluh";
                 break;
                 case 95:
-                    $Nom .="Idlestriker";
+                    $Nom = "Idlestriker";
                 break;
                 case 96:
-                    $Nom .="Mimnu";
+                    $Nom = "Mimnu";
                 break;
                 case 97:
-                    $Nom .="Odri";
+                    $Nom = "Odri";
                 break;
                 case 98:
-                    $Nom .="Osruu";
+                    $Nom = "Osruu";
                 break;
                 case 99:
-                    $Nom .="Eelliya";
+                    $Nom = "Eelliya";
                 break;
                 case 100:
-                    $Nom .="Connar";
+                    $Nom = "Connar";
                 break;
                 case 101:
-                    $Nom .="Iwlos";
+                    $Nom = "Iwlos";
                 break;
                 case 102:
-                    $Nom .="Crixog";
+                    $Nom = "Crixog";
                 break;
                 case 103:
-                    $Nom .="Slolos";
+                    $Nom = "Slolos";
                 break;
                 case 104:
-                    $Nom .="Ausbos";
+                    $Nom = "Ausbos";
                 break;
                 case 105:
-                    $Nom .="Vreslith";
+                    $Nom = "Vreslith";
                 break;
                 case 106:
-                    $Nom .="Hewmalog";
+                    $Nom = "Hewmalog";
                 break;
                 case 107:
-                    $Nom .="Xuog";
+                    $Nom = "Xuog";
                 break;
                 case 108:
-                    $Nom .="Heom";
+                    $Nom = "Heom";
                 break;
                 case 109:
-                    $Nom .="Kutheus";
+                    $Nom = "Kutheus";
                 break;
                 case 110:
-                    $Nom .="Naroch";
+                    $Nom = "Naroch";
                 break;
                 case 111:
-                    $Nom .="Tafag";
+                    $Nom = "Tafag";
                 break;
                 case 112:
-                    $Nom .="Aodlor";
+                    $Nom = "Aodlor";
                 break;
                 case 113:
-                    $Nom .="Flukkaros";
+                    $Nom = "Flukkaros";
                 break;
                 case 114:
-                    $Nom .="Kethos";
+                    $Nom = "Kethos";
                 break;
                 case 115:
-                    $Nom .="Crowgar";
+                    $Nom = "Crowgar";
                 break;
                 case 116:
-                    $Nom .="Cunas";
+                    $Nom = "Cunas";
                 break;
                 case 117:
-                    $Nom .="Dlasfur";
+                    $Nom = "Dlasfur";
                 break;
                 case 118:
-                    $Nom .="Onus";
+                    $Nom = "Onus";
                 break;
                 case 119:
-                    $Nom .="Nugdhor";
+                    $Nom = "Nugdhor";
                 break;
                 case 120:
-                    $Nom .="Wiwrog";
+                    $Nom = "Wiwrog";
                 break;
                 case 121:
-                    $Nom .="Cabtheus";
+                    $Nom = "Cabtheus";
                 break;
                 case 122:
-                    $Nom .="Judroch";
+                    $Nom = "Judroch";
                 break;
                 case 123:
-                    $Nom .="Wruxgrog";
+                    $Nom = "Wruxgrog";
                 break;
                 case 124:
-                    $Nom .="Lugfur";
+                    $Nom = "Lugfur";
                 break;
                 case 125:
-                    $Nom .="Klizbor";
+                    $Nom = "Klizbor";
                 break;
                 case 126:
-                    $Nom .="Nimlas";
+                    $Nom = "Nimlas";
                 break;
                 case 127:
-                    $Nom .="Caglith";
+                    $Nom = "Caglith";
                 break;
                 case 128:
-                    $Nom .="Fecrus";
+                    $Nom = "Fecrus";
                 break;
                 case 129:
-                    $Nom .="Fetlog";
+                    $Nom = "Fetlog";
                 break;
                 case 130:
-                    $Nom .="Joroch";
+                    $Nom = "Joroch";
                 break;
                 case 131:
-                    $Nom .="Lilsius";
+                    $Nom = "Lilsius";
                 break;
                 case 132:
-                    $Nom .="Minfius";
+                    $Nom = "Minfius";
                 break;
                 case 133:
-                    $Nom .="Frarmalog";
+                    $Nom = "Frarmalog";
                 break;
                 case 134:
-                    $Nom .="Crubgrog";
+                    $Nom = "Crubgrog";
                 break;
                 case 135:
-                    $Nom .="Dodlor";
+                    $Nom = "Dodlor";
                 break;
                 case 136:
-                    $Nom .="Nogir";
+                    $Nom = "Nogir";
                 break;
                 case 137:
-                    $Nom .="Nufgan";
+                    $Nom = "Nufgan";
                 break;
                 case 138:
-                    $Nom .="Niom";
+                    $Nom = "Niom";
                 break;
                 case 139:
-                    $Nom .="Kolzus";
+                    $Nom = "Kolzus";
                 break;
                 case 140:
-                    $Nom .="Aretius";
+                    $Nom = "Aretius";
                 break;
                 case 141:
-                    $Nom .="Cretder";
+                    $Nom = "Cretder";
                 break;
                 case 142:
-                    $Nom .="Jadnus";
+                    $Nom = "Jadnus";
                 break;
                 case 143:
-                    $Nom .="Cogfius";
+                    $Nom = "Cogfius";
                 break;
                 case 144:
-                    $Nom .="Kewnas";
+                    $Nom = "Kewnas";
                 break;
                 case 145:
-                    $Nom .="Falthos";
+                    $Nom = "Falthos";
                 break;
                 case 146:
-                    $Nom .="Werus";
+                    $Nom = "Werus";
                 break;
                 case 147:
-                    $Nom .="Zugan";
+                    $Nom = "Zugan";
                 break;
                 case 148:
-                    $Nom .="Habdhor";
+                    $Nom = "Habdhor";
                 break;
                 case 149:
-                    $Nom .="Jabtheus";
+                    $Nom = "Jabtheus";
                 break;
                 case 150:
-                    $Nom .="Ocmohr";
+                    $Nom = "Ocmohr";
                 break;
                 case 151:
-                    $Nom .="Grinus";
+                    $Nom = "Grinus";
                 break;
                 case 152:
-                    $Nom .="Cocvag";
+                    $Nom = "Cocvag";
                 break;
                 case 153:
-                    $Nom .="Alover";
+                    $Nom = "Alover";
                 break;
                 case 154:
-                    $Nom .="Fremlas";
+                    $Nom = "Fremlas";
                 break;
                 case 155:
-                    $Nom .="Slumsar";
+                    $Nom = "Slumsar";
                 break;
                 case 156:
-                    $Nom .="Moxzar";
+                    $Nom = "Moxzar";
                 break;
                 case 157:
-                    $Nom .="Lonwar";
+                    $Nom = "Lonwar";
                 break;
                 case 158:
-                    $Nom .="Bokroch";
+                    $Nom = "Bokroch";
                 break;
                 case 159:
-                    $Nom .="Flaxdor";
+                    $Nom = "Flaxdor";
                 break;
                 case 160:
-                    $Nom .="Famlas";
+                    $Nom = "Famlas";
                 break;
                 case 161:
-                    $Nom .="Srunus";
+                    $Nom = "Srunus";
                 break;
                 case 162:
-                    $Nom .="Mabar";
+                    $Nom = "Mabar";
                 break;
                 case 163:
-                    $Nom .="Doksag";
+                    $Nom = "Doksag";
                 break;
                 case 164:
-                    $Nom .="Wilrion";
+                    $Nom = "Wilrion";
                 break;
                 case 165:
-                    $Nom .="Wesog";
+                    $Nom = "Wesog";
                 break;
                 case 166:
-                    $Nom .="Fesius";
+                    $Nom = "Fesius";
                 break;
                 case 167:
-                    $Nom .="Rokos";
+                    $Nom = "Rokos";
                 break;
                 case 168:
-                    $Nom .="Zloos";
+                    $Nom = "Zloos";
                 break;
                 case 169:
-                    $Nom .="Elith";
+                    $Nom = "Elith";
                 break;
                 case 170:
-                    $Nom .="Cemir";
+                    $Nom = "Cemir";
                 break;
                 case 171:
-                    $Nom .="Dremdus";
+                    $Nom = "Dremdus";
                 break;
                 case 172:
-                    $Nom .="Uas";
+                    $Nom = "Uas";
                 break;
                 case 173:
-                    $Nom .="Vokaros";
+                    $Nom = "Vokaros";
                 break;
                 case 174:
-                    $Nom .="Denus";
+                    $Nom = "Denus";
                 break;
                 case 175:
-                    $Nom .="Glewor";
+                    $Nom = "Glewor";
                 break;
                 case 176:
-                    $Nom .="Codius";
+                    $Nom = "Codius";
                 break;
                 case 177:
-                    $Nom .="Nebfur";
+                    $Nom = "Nebfur";
                 break;
                 case 178:
-                    $Nom .="Wream";
+                    $Nom = "Wream";
                 break;
                 case 179:
-                    $Nom .="Gengar";
+                    $Nom = "Gengar";
                 break;
                 case 180:
-                    $Nom .="Aksog";
+                    $Nom = "Aksog";
                 break;
                 case 181:
-                    $Nom .="Stykt";
+                    $Nom = "Stykt";
                 break;
                 case 182:
-                    $Nom .="Zes";
+                    $Nom = "Zes";
                 break;
                 case 183:
-                    $Nom .="Bix";
+                    $Nom = "Bix";
                 break;
                 case 184:
-                    $Nom .="Wrox";
+                    $Nom = "Wrox";
                 break;
                 case 185:
-                    $Nom .="Frots";
+                    $Nom = "Frots";
                 break;
                 case 186:
-                    $Nom .="Bliazgeeg";
+                    $Nom = "Bliazgeeg";
                 break;
                 case 187:
-                    $Nom .="Zriahzird";
+                    $Nom = "Zriahzird";
                 break;
                 case 188:
-                    $Nom .="Slunis";
+                    $Nom = "Slunis";
                 break;
                 case 189:
-                    $Nom .="Sloitvulk";
+                    $Nom = "Sloitvulk";
                 break;
                 case 190:
-                    $Nom .="Jersyng";
+                    $Nom = "Jersyng";
                 break;
                 case 191:
-                    $Nom .="Swiessee";
+                    $Nom = "Swiessee";
                 break;
                 case 192:
-                    $Nom .="Niegsia";
+                    $Nom = "Niegsia";
                 break;
                 case 193:
-                    $Nom .="Wurx";
+                    $Nom = "Wurx";
                 break;
                 case 194:
-                    $Nom .="Arx";
+                    $Nom = "Arx";
                 break;
                 case 195:
-                    $Nom .="Treesai";
+                    $Nom = "Treesai";
                 break;
                 case 196:
-                    $Nom .="Creekith";
+                    $Nom = "Creekith";
                 break;
                 case 197:
-                    $Nom .="Duvuifsia";
+                    $Nom = "Duvuifsia";
                 break;
                 case 198:
-                    $Nom .="Gleahkiashai";
+                    $Nom = "Gleahkiashai";
                 break;
                 case 199:
-                    $Nom .="Gionvylma";
+                    $Nom = "Gionvylma";
                 break;
                 case 200:
-                    $Nom .="Doggo";
+                    $Nom = "Doggo";
                 break;
                 default:
-                
-                    $Nom .="Asteus";
+                    $Nom = "Asteus";
             }
-            return $nom ." ". $Adjectif." ".$Nom;
+            return $nom." ".$Adjectif." ".$Nom;
         }
-
-    /*
-        //Permet de générer un nom de mob
-        public function generateNom($type){
-            $nom =$type;
-
-            $Adjectif ="";
-            switch (rand(0,10)){
-                case 0:
-                    $Adjectif ="Poisseux";
-                break;
-                case 1:
-                    $Adjectif ="Luxuriant";
-                break;
-                case 2:
-                    $Adjectif ="Pas belle";
-                break;
-                case 3:
-                    $Adjectif ="Enchantée";
-                break;
-                case 4:
-                    $Adjectif ="de la mort";
-                break;
-                case 5:
-                    $Adjectif ="des nains";
-                break;
-                case 6:
-                    $Adjectif ="Du pauvre";
-                break;
-                case 7:
-                    $Adjectif ="des loups";
-                break;
-                case 8:
-                    $Adjectif ="Lumineux";
-                break;
-                case 9:
-                    $Adjectif ="Sombre";
-                break;
-                default:
-                    $Adjectif ="Noir";
-            }
-
-            $Consone ="";
-            for($i=0;$i<=rand(1,3);$i++){
-                switch (rand(0,19)){
-                    case 0:
-                        $Consone .="zar";
-                    break;
-                    case 1:
-                        $Consone .="dra";
-                    break;
-                    case 2:
-                        $Consone .="bel";
-                    break;
-                    case 3:
-                        $Consone .="cri";
-                    break;
-                    case 4:
-                        $Consone .="fa";
-                    break;
-                    case 5:
-                        $Consone .="zor";
-                    break;
-                    case 6:
-                        $Consone .="pat";
-                    break;
-                    case 7:
-                        $Consone .="for";
-                    break;
-                    case 8:
-                        $Consone .="ga";
-                    break;
-                    case 9:
-                        $Consone .="lon";
-                    break;
-                    case 10:
-                        $Consone .="vi";
-                    break;
-                    case 11:
-                        $Consone .="bu";
-                    break;
-                    case 12:
-                        $Consone .="al";
-                    break;
-                    case 13:
-                        $Consone .="sion";
-                    break;
-                    case 14:
-                        $Consone .="teur";
-                    break;
-                    case 15:
-                        $Consone .="nar";
-                    break;
-                    case 16:
-                        $Consone .="pon";
-                    break;
-                    case 17:
-                        $Consone .="pen";
-                    break;
-                    case 18:
-                        $Consone .="ri";
-                    break;
-                    case 19:
-                        $Consone .="or";
-                    break;
-                    default:
-                    $Consone .=" ";
-                }
-            }
-
-            return $nom ." ". $Adjectif." ".$Consone;
-        }
-    */
         public function generateImageMob($topic){
             //echo '<img src="'.$partialString3.'" widht="200px">';
             if(empty($topic)){
                 $topic='creature';
             }
-
             $ofs=mt_rand(0, 100);
-            $geturl='http://www.google.ca/images?q=' . $topic . '&start=' . $ofs . '&gbv=1';
+            $geturl='http://www.google.ca/images?q='.$topic.'&start='.$ofs.'&gbv=1';
             $data=file_get_contents($geturl);
-
             //partialString1 is bigger link.. in it will be a scr for the beginning of the url
             $f1='<div class="lIMUZd"><div><table class="TxbwNb"><tr><td><a href="/url?q=';
             $pos1=strpos($data, $f1)+strlen($f1);
             $partialString1 = substr($data, $pos1);
-
             //partialString 2 starts with the URL
             $f2='src="';
             $pos2=strpos($partialString1, $f2)+strlen($f2);
             $partialString2 = substr($partialString1, $pos2, 400);
-
             //PartialString3 ends the url when it sees the "&amp;"
             $f3='&amp;';
             $urlLength=strpos($partialString2, $f3);
             $partialString3 = substr($partialString2, 0,  $urlLength);
-
             return $partialString3;
-
-
         }
         public function healmobspawn($id)//prend en paramettre l'id du mob qui faut heal
         {
