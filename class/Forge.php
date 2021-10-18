@@ -7,7 +7,7 @@
         /* METHOD */
         public function __construct($bdd){
             parent::__construct($bdd);
-        }            
+        }
 
         public function livraison($nbrEquipement){
             for($i=0; $i<$nbrEquipement; $i++){
