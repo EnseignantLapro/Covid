@@ -2,7 +2,7 @@
     // Définition des variables du site.
         $NameWebsite    = "Conflicts Simulator 2021";
         $NameIcon       = "favicon.ico";
-        $NameAutor      = "La Providence - Amien";
+        $NameAutor      = "La Providence - Amiens";
 ?>
     <!-- Compatible / UTF / Viewport-->
         <meta charset="UTF-8">
