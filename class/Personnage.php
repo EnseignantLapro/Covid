@@ -40,22 +40,7 @@ class Personnage extends Entite{
         $req->execute(array($this->_id));
     }
 
-    /** 
-     * 
-     * Cette fonction nous permet d'insérer de l'XP
-     * 
-     * Entries:
-     * $valeurXp = valeur d'xp
-     */
-    public function addXp($valeurXp) {
 
-        $valeurXp = htmlspecialchars($valeurXp);
-
-        if(!empty($valeurXp)) {
-            $req = $this->_bdd->prepare("INSERT INTO Personnage SET id = ?, xp = ?");
-            $req->execute(array($this->_id, $valeurXp));
-        }
-    }
 
     /** 
      * 
@@ -160,25 +145,25 @@ class Personnage extends Entite{
 
     //retourne la nouvelle xp 
 
-    //
-    //public function addXP($value){
-     //   $this->_xp += $value ;
-     //   
-      //  $req  = "UPDATE `Personnage` SET `xp`='".$this->_xp ."' WHERE `id` = '".$this->_id ."'";
-     //   $Result = $this->_bdd->query($req);
+    
+    public function addXP($value){
+        $this->_xp += $value ;
+        
+        $req  = "UPDATE `Personnage` SET `xp`='".$this->_xp ."' WHERE `id` = '".$this->_id ."'";
+        $Result = $this->_bdd->query($req);
 
         //passage des Lvl suis une loi de racine carre
-        //* le double etole ** c'est elevé à la puissance */
-     //   $lvl = ceil(($this->_xp/2000)**(0.7));
+        /* le double etole ** c'est elevé à la puissance */
+        $lvl = ceil(($this->_xp/2000)**(0.7));
 
-     //   if($lvl >$this->_lvl ){
-     //       $this->_lvl = $lvl;
-     //       $req  = "UPDATE `Entite` SET `lvl`='".$this->_lvl."' WHERE `id` = '".$this->_id ."'";
-     //       $Result = $this->_bdd->query($req);
-      // }
+       if($lvl >$this->_lvl ){
+            $this->_lvl = $lvl;
+            $req  = "UPDATE `Entite` SET `lvl`='".$this->_lvl."' WHERE `id` = '".$this->_id ."'";
+            $Result = $this->_bdd->query($req);
+       }
 
-    //    return $this->_xp;
-  //  }
+       return $this->_xp;
+   }
 
     //met a jour la vie de depart et replace le joueur
     public function resurection(){
