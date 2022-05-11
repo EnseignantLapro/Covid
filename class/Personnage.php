@@ -199,7 +199,7 @@ class Personnage extends Entite{
     public function renderHTML(){
        
         ?>
-        <div class="perso" id="PersoEnCours">
+        <div class="perso"  id="PersoEnCours<?= $this->_id ?>">
             <div class="persoXP"><?php echo $this->_xp?>(xp)</div>
             <?php
                 Parent::renderHTML();

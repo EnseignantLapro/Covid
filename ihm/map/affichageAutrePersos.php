@@ -12,8 +12,8 @@
                         foreach($listPersos as  $Perso){
                             if($Perso->getId()!=$PersoJoeuur->getId()){
                                 ?>
-                                    <li id="Perso<?= $Perso->getId() ?>">
-                                        <a onclick="AttaquerPerso(<?= $Perso->getId() ?>,0, event)">
+                                    <li class="liAdverse" onmouseover="afficheDivPerso(event)" onmouseout="cacheDivPerso(event)">
+                                        <a id="aPerso<?= $Perso->getId() ?>" onclick="AttaquerPerso(<?= $Perso->getId() ?>,0, event)">
                                             <?php $Perso->renderHTML() ?>
                                         </a>
                                     </li>

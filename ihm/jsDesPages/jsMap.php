@@ -246,9 +246,11 @@
     function afficheDivPerso(e){
         var divAvatar = document.getElementById("divAvatar");
         var div = divAvatar.lastElementChild;
+        let letY = e.layerY - 40;
+        let letX = e.layerX + 20;
         div.style.position = "absolute";
-        div.style.top = e.x +"px";
-        div.style.left = e.y +"px" ;
+        div.style.left= letX +"px";
+        div.style.top  = letY +"px" ;
     }
 
     function cacheDivPerso(e){
@@ -276,8 +278,18 @@
     function attaquer(idPerso,type){
         hitAnimation( event );
         //supprimer temporairement l'attaque pour le cooldown
-        var a = document.getElementById("aMob"+idPerso);
-        a.classList.add("busy");
+        if(type==0){
+            var li = document.getElementById("PersoEnCours"+idPerso);
+            var a = document.getElementById("aPerso"+idPerso);
+           
+        }else{
+            var li = document.getElementById("Mob"+idPerso);
+            var a = document.getElementById("aMob"+idPerso);
+        }
+        
+
+       
+        li.classList.add("busy");
         let theclick =a.onclick;
         a.onclick ='';
         
@@ -294,14 +306,14 @@
                     location.reload();
                 }
                 a.onclick =theclick;
-                a.classList.remove("busy");
+                li.classList.remove("busy");
 
         })
         .catch(function(error) {
             // This is where you run code if the server returns any errors
             console.log(error);
             a.onclick =theclick;
-            a.classList.remove("busy");
+            li.classList.remove("busy");
         });
         
     }

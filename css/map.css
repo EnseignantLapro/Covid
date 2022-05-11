@@ -102,13 +102,13 @@
 }
 
 .ulPersonnages{
-    display: flex;
+   
     justify-content: center;
     margin: 5px;
     padding: 0px;
 }
 .ulMob{
-    display: flex;
+    
     flex-wrap: wrap;
     justify-content: center;
     margin: 5px;
@@ -298,47 +298,23 @@
 }
 
 .busy {
-    -moz-animation:busy 3s;
-    -webkit-animation:busy 3s;
-    animation:busy 3s ease infinite;
- }
- 
- @-moz-keyframes busy  {
-    0% {
-       -moz-filter:blur(0px);
-    }
-    
-    100% {
-       -moz-filter:blur(50px);
-    }
- 
- }
- 
- @-webkit-keyframes busy  {
-    0% {
-       -webkit-filter:blur(0px);
-    }
-    
-    100% {
-       -webkit-filter:blur(50px);
-    }
- 
- }
- 
- @keyframes busy  {
-    0% {
-       filter:blur(0px);
-    }
-    
-    100% {
-       filter:blur(50px);
-    }
- 
- }
-
-.busy :hover{
-    cursor:url('Busy.ani'),pointer !important;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    animation: gradient 2s ease infinite;
 }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
 
 .sword-slash.play {
     animation: slash 250ms ease-out;
