@@ -17,6 +17,7 @@
     <body class="bodyMap">
         <?php
             include "session.php";
+
             // Vérifie que la Session est Valide avec le bon Mot de Passe.
             if($access === true){
                 $access = $Joueur1->DeconnectToi();

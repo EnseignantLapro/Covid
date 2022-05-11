@@ -18,7 +18,7 @@
 
 ul .perso{
     display: inline-block;
-    width:170px;
+    width:150px;
     background-color:rgb(151,161,137);
     border:1px solid rgb(219,184,25);
     box-shadow:2px 2px 2px rgb(133,228,145);
@@ -82,18 +82,12 @@ ul .perso:hover{
     background-color:rgb(206, 171, 90);
 }
 
-li.liAdverse{
-    width: 170px;
-    margin-left:30px;
-}
-
 .ulMob li{
     background-color:rgba(201,58,58,0.705);
     border-radius:10px;
     border:1px solid gray;
     box-shadow:2px 2px 2px gray;
     -webkit-box-shadow:2px 2px 2px gray;
-    width:170px;
 }
 
 .ulMob .liAdverse:hover{

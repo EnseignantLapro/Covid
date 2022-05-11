@@ -1,7 +1,7 @@
 /* Deneufgermain */
 
 .barreDeVie{
-    width:170px;
+    width:149px;
     height:26px;
     display:block;
     float:left;
@@ -47,7 +47,7 @@ img.Entite{
 .armure{
     float:right;
     padding-top:5px;
-    padding-right:35px;
+    padding-right:29px;
     height:21px;
     text-align:right;
     background-color:rgba(177,255,0,0.53);

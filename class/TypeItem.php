@@ -4,7 +4,7 @@
 
 class TypeItem  extends CRUD {
 
-     /**
+    /**
      * 
      * Cette fonction permet modifier le nom de l'item en fonction de son id.
      * 
@@ -207,8 +207,6 @@ class TypeItem  extends CRUD {
 
         return $req->fetch();
     }
-   
 
 
-}
 ?>

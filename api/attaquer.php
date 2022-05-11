@@ -6,7 +6,6 @@
 
 session_start();
 include "../session.php"; 
-
 $reponse[0]=0;
 if($access){
     if(isset($_GET["id"]) && isset($_GET["type"])){

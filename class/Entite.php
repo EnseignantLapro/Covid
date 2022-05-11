@@ -13,7 +13,6 @@
         protected $_lvl;
         private $sacEquipements=array();
         private $sacEquipe=array();
-        private $CompetenceActive=array();
 
         protected $_type; //1 = hero 2= mob
 
