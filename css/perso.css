@@ -26,15 +26,34 @@ ul .perso{
 }
 
 .attaque{
+    background-image:url('https://www.pngmart.com/files/16/Power-Hand-Punch-PNG-Clipart.png');
     float:left;
-    background-color:rgb(55,0,255);
     color:rgb(250,212,0);
-    background-image:url('https://findicons.com/files/icons/286/legendora/256/sword.png');
     background-size:22px;
     background-repeat:no-repeat;
     padding-left:20px;
     height:26px;
+    background-color:rgb(240, 129, 246);
 }
+.coef{
+    font-size: 8px;
+    float:left;
+}
+.standard{
+    background-image:url('https://findicons.com/files/icons/286/legendora/256/sword.png');
+    background-color:rgba(136, 104, 0, 0.642);
+}
+.magic{
+    background-color:rgba(0, 114, 214, 0.726);
+    background-image:url('https://www.icone-png.com/png/46/45737.png');
+ 
+}
+.bouclier{
+    background-color:rgba(50, 0, 214, 0.42);
+   
+ 
+}
+
 
 .divAvatar .perso{
     float:left;

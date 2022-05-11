@@ -108,6 +108,10 @@
             //data 7 == 1 c'est une arme pour les autre types d'item il faudra faire un switch case
             //data 6 == 1 c'est l'ancien id de equipement
             if(data[0]!=0 ){
+                
+                var divAtta = document.getElementById("attaqueEntiteValeur"+data[0]);
+                divAtta.classList.remove("standard");
+                divAtta.classList.remove("magic");
                 if(data[7]==1){ //cas de l'arme
                     var e3 = document.getElementById("Arme"+data[6]);
                     e3.setAttribute('id',"ArmePerso"+<?php echo $Personnage->getId()?>);
@@ -125,6 +129,23 @@
                     setEquipementInSac(data[6],data[5]);
                     lvlUp(data[0],data[1],data[2],data[3],data[8]);
                 }
+                if(data[7]==4){
+                    //cas de bouclier
+                    var e3 = document.getElementById("Armure"+data[6]);
+                    e3.setAttribute('id',"ArmurePerso"+<?php echo $Personnage->getId()?>);
+                    e3.innerHTML='';
+                    //data 5 c'est l'ancien nom de equipement
+                    setEquipementInSac(data[6],data[5]);
+                    lvlUp(data[0],data[1],data[2],data[3],data[8]);
+                }
+                if(data[7]==3){ //cas de pouvoir
+                    var e3 = document.getElementById("Arme"+data[6]);
+                    e3.setAttribute('id',"ArmePerso"+<?php echo $Personnage->getId()?>);
+                    e3.innerHTML='';
+                    //data 5 c'est l'ancien nom de equipement
+                    setEquipementInSac(data[6],data[5]);
+                    lvlUp(data[0],data[1],data[2],data[3],data[8]);
+                }
 
             } else{
 
@@ -136,7 +157,7 @@
         console.log(error); });
     }
 
-    function UpdateArme(nomArme,idAncienneArme,idNouvelArme){
+    function UpdateArme(nomArme,idAncienneArme,idNouvelArme,Laclass){
         var e3 = document.getElementById("Arme"+idAncienneArme);
         if(e3 === null){
             e3 = document.getElementById("ArmePerso"+<?php echo $Personnage->getId()?>);
@@ -145,15 +166,21 @@
         setEquipementInSac(idAncienneArme,e3.innerHTML);
         e3.innerHTML = nomArme;
         e3.setAttribute('id',"Arme"+idNouvelArme);
+        e3.className = '';
+        e3.classList.add("Arme");
+        e3.classList.add(Laclass);
         e3.setAttribute('onclick',"CallApiRemoveEquipementEntite("+idNouvelArme+")");
     }
-    function UpdateArmure(nomArmure,idAncienneArmure,idNouvelArmure){
+    function UpdateArmure(nomArmure,idAncienneArmure,idNouvelArmure,Laclass){
         var e3 = document.getElementById("Armure"+idAncienneArmure);
         if(e3 === null){
             e3 = document.getElementById("ArmurePerso"+<?php echo $Personnage->getId()?>);
         }
         //on remet l'ancien equipement dans le sac
         setEquipementInSac(idAncienneArmure,e3.innerHTML);
+        e3.className = '';
+        e3.classList.add("Armure");
+        e3.classList.add(Laclass);
         e3.innerHTML = nomArmure;
         e3.setAttribute('id',"Armure"+idNouvelArmure);
         e3.setAttribute('onclick',"CallApiRemoveEquipementEntite("+idNouvelArmure+")");
@@ -182,13 +209,28 @@
                 //5 c'est le nom de la nouvelle et
                 //6 c'est id de l'ancienne
                 //idEquipement c'est le nouvel id de arme
+                var divAtta = document.getElementById("attaqueEntiteValeur"+data[0]);
+                divAtta.classList.remove("standard");
+                divAtta.classList.remove("magic");
+
                 if(data[7]==1){
-                    UpdateArme(data[5],data[6],idEquipement);
+                    UpdateArme(data[5],data[6],idEquipement,"standard");
+                    divAtta.classList.add("standard");
 
                 }
                 //si c'est une armure
                 if(data[7]==2){
-                    UpdateArmure(data[5],data[6],idEquipement);
+                    UpdateArmure(data[5],data[6],idEquipement,"standard");
+
+                }//si c'est un pouvoir
+                if(data[7]==3){
+                    divAtta.classList.add("magic");
+                    UpdateArme(data[5],data[6],idEquipement,"magic");
+
+                }
+                //si c'est un bouclier
+                if(data[7]==4){
+                    UpdateArmure(data[5],data[6],idEquipement,"bouclier");
 
                 }
 
@@ -201,7 +243,21 @@
         });
     }
 
+    function afficheDivPerso(e){
+        var divAvatar = document.getElementById("divAvatar");
+        var div = divAvatar.lastElementChild;
+        div.style.position = "absolute";
+        div.style.top = e.x +"px";
+        div.style.left = e.y +"px" ;
+    }
 
+    function cacheDivPerso(e){
+        var divAvatar = document.getElementById("divAvatar");
+        var div = divAvatar.lastElementChild;
+        div.style.position = "relative";
+        div.style.top = '';
+        div.style.left = '' ;
+    }
 
     function setEquipementInSac(id,inner){
         var ul = document.getElementById("SacEquipement")

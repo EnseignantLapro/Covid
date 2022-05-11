@@ -19,6 +19,9 @@
         protected $map;
 
         protected $_bdd;
+        //dans le cas d'un perso
+        protected $_idTypePersonnage;
+        protected $typePersonnage;
 
         //private $sacItems=array();
 
@@ -238,8 +241,16 @@
 
         //Fonction Attaque utilise une Arme
         public function getAttaque(){
+
+            //si L'attaquant à une arme cas 1 
+            //si il a de la magie cas 2
+            //si il a rien cas 3
+
+
+
             //ici on affiche les dégats Maximun du joueur avec Arme
             $arme = $this->getArme();
+            $pouvoir = $this->getPouvoir();
             $coef = 1;
             $lvl = 1;
             $forceArme = 0;
@@ -248,6 +259,25 @@
                 $forceArme = $arme->getForce();
                 $lvl = $arme->getLvl();
             }
+            if(!is_null($pouvoir)){
+                $coef = $pouvoir->getEfficacite();
+                $forcePourvoir = $pouvoir->getForce();
+                $lvl = $pouvoir->getLvl();
+            }
+            //application des coef si il y a nu type de personnage
+            //1 c'est des perso , 2 c'est des mob
+            if ($this->_type == 1){
+               $type = $this->getTyePersonnage();
+               if(!is_null($arme)){
+                $coef = $coef*$type->getCoefAttaque();
+               }
+               if(!is_null($pouvoir)){
+                $coef = $coef*$type->getCoefPouvoir();
+                }
+               
+            }
+
+        
             $val = round(($this->_degat+$forceArme)*$coef);
             return $val;
         }
@@ -270,16 +300,36 @@
 
         //Fonction Défense utilise une Armure
         public function getDefense(){
+            //cas 
             //ici on affiche les dégats Maximun Absorbé avec une armure
             $armure = $this->getArmure();
+            $bouclier = $this->getBouclier();
             $coef = 1;
             $forceArmure = 0;
             if(!is_null($armure)){
                 $coef = $armure->getEfficacite();
                 $forceArmure = $armure->getForce();
             }
+            if(!is_null($bouclier)){
+                $coef = $bouclier->getEfficacite();
+                $forceBouclier = $bouclier->getForce();
+            }
             //alors Todo Je sais pas ... evaluer la valeur d'une armure
+            if ($this->_type == 1){
+                $type = $this->getTyePersonnage();
+                if(!is_null($armure)){
+                 $coef = $coef*$type->getCoefDefense();
+                }
+                if(!is_null($bouclier)){
+                 $coef = $coef*$type->getCoefBouclier();
+                }
+                
+            }
+            
             $val = $coef * $forceArmure ;
+
+                  
+
             return round($val,1);//arrondi à 1 chiffre aprés la virgul
         }
 
@@ -317,6 +367,8 @@
         }
 
         public function SubitDegatByEntite($Entite){
+            //nouveauté 2022 JLA on va gerer les dégat selon le type d'équipement
+            //get Attaque sera modifier
             $this->_vie = $this->_vie - $Entite->getAttaque();
             if($this->_vie<0){
                 $this->_vie =0;
@@ -384,6 +436,35 @@
             $this->_imageLien = $image;
             $this->_type = $type;
             $this->_lvl = $lvl;
+
+            if($this->_type == 1){
+                if(is_null($this->typePersonnage)){
+                    $TypePersonnage = new TypePersonnage($this->_bdd);
+                    $TypePersonnage->setTypePersonnageByIdPerso($this->_id);
+                    $this->typePersonnage = $TypePersonnage;
+                    $this->_idTypePersonnage = $TypePersonnage->getId();
+                
+                }
+            }
+        }
+
+        //retour le type de personnage 
+        //retour null si pas de type
+        public function getTyePersonnage(){
+            
+            if(!is_null($this->_idTypePersonnage) ){
+                if(is_null($this->typePersonnage)){
+                    $TypePersonnage = new TypePersonnage($this->_bdd);
+                    $TypePersonnage->setTypePersonnageByIdPerso($this->_id);
+                    $this->typePersonnage = $TypePersonnage;
+                
+                }
+                return $this->typePersonnage;
+            }else{
+                //ne devrait jamais etre le cas
+                return null;
+            }
+            
         }
 
         public function getNom(){
@@ -411,7 +492,7 @@
             foreach($this->getEquipements() as $value){
                 $valeur+=$value->getValeur();
             }
-            $valeur = 100;
+            //$valeur = 100;
             return $valeur;
         }
 
@@ -421,6 +502,12 @@
                 $this->_vieMax=10;
             }
             $pourcentage = round(100*$this->_vie/$this->_vieMax);
+            $arme = $this->getArme();
+            $pouvoir = $this->getPouvoir();
+            if ($this->_type == 1){
+                $type = $this->getTyePersonnage();
+            }
+
             ?>
                 <div class="EntiteInfo">
                     <div class="EntiteName">
@@ -433,22 +520,69 @@
                 <div>
                     <img class="Entite" src="<?= $this->_imageLien;?>">
                 </div>
-                <div class="attaque" id="attaqueEntiteValeur<?= $this->_id ;?>"> <?= $this->getAttaque()?></div>
+                
             <?php 
-            $arme = $this->getArme();
+            
             if(!is_null($arme)){
                 ?>
-                    <div id="Arme<?= $arme->getId() ?>" class="Arme" onclick="CallApiRemoveEquipementEntite(<?= $arme->getId() ?>)"><?= $arme->getNom() ?> lvl <?= $arme->getLvl() ?></div>
+                <div class="attaque standard" id="attaqueEntiteValeur<?= $this->_id ;?>"> <?= $this->getAttaque()?>
+                    <div class="coef">(*<?php 
+                        if(!is_null($type)){
+                            echo $type->getCoefAttaque();
+                        }else{
+                            echo "1";
+                        }
+                    ?>)</div>
+                </div>
+                <div id="Arme<?= $arme->getId() ?>" class="Arme standard" onclick="CallApiRemoveEquipementEntite(<?= $arme->getId() ?>)"><?= $arme->getNom() ?> lvl <?= $arme->getLvl() ?></div>
                 <?php
-            }else{
+            }else if(!is_null($pouvoir)){
                 ?>
-                    <div id="ArmePerso<?= $this->_id ?>" class="Arme"></div>
+                <div class="attaque magic" id="attaqueEntiteValeur<?= $this->_id ;?>"> <?= $this->getAttaque()?>
+                    <div class="coef">(*<?php 
+                        if(!is_null($type)){
+                            echo $type->getCoefPouvoir();
+                        }else{
+                            echo "1";
+                        }
+                    ?>)</div>
+                </div>
+                <div id="Arme<?= $pouvoir->getId() ?>" class="Arme magic" onclick="CallApiRemoveEquipementEntite(<?= $pouvoir->getId() ?>)"><?= $pouvoir->getNom() ?> lvl <?= $pouvoir->getLvl() ?></div>
+                <?php
+            }
+            else{
+                ?>
+                <div class="attaque" id="attaqueEntiteValeur<?= $this->_id ;?>"> <?= $this->getAttaque()?>
+                    </div>
+                </div>
+                <div id="ArmePerso<?= $this->_id ?>" class="Arme"></div>
                 <?php
             }
             $armure = $this->getArmure();
+            $bouclier = $this->getBouclier();
             if(!is_null($armure)){
                 ?>
-                    <div id ="Armure<?= $armure->getId() ?>" class="ArmureNom" onclick="CallApiRemoveEquipementEntite(<?= $armure->getId() ?>)"><?= $armure->getNom() ?> lvl <?= $armure->getLvl() ?></div>
+                    <div id ="Armure<?= $armure->getId() ?>" class="ArmureNom standard" onclick="CallApiRemoveEquipementEntite(<?= $armure->getId() ?>)"><?= $armure->getNom() ?> lvl <?= $armure->getLvl() ?>
+                    <div class="coef">(*<?php 
+                        if(!is_null($type)){
+                            echo $type->getCoefDefense();
+                        }else{
+                            echo "1";
+                        }
+                    ?>)</div>
+                </div>
+                <?php
+            }else if(!is_null($bouclier)){
+                ?>
+                    <div id ="Armure<?= $bouclier->getId() ?>" class="ArmureNom magic" onclick="CallApiRemoveEquipementEntite(<?= $bouclier->getId() ?>)"><?= $bouclier->getNom() ?> lvl <?= $bouclier->getLvl() ?>
+                    <div class="coef">(*<?php 
+                        if(!is_null($type)){
+                            echo $type->getCoefBouclier();
+                        }else{
+                            echo "1";
+                        }
+                    ?>)</div>
+                </div>
                 <?php
             }else{
                 ?>
@@ -475,6 +609,12 @@
                         </div>
                     </div>
                 </div>
+                <div><?php 
+                if ($this->_type == 1){
+                    $type = $this->getTyePersonnage();
+                    echo $type->getNom();
+                }
+                ?></div>
             <?php
         }
 
@@ -603,7 +743,7 @@
         public function generateImage($Nom){
             $space = array(" ", ".", "_", "-", "%");
             $onlyconsonants = str_replace($space, "+", $Nom);
-            $topic='+personnage+'.$onlyconsonants.'+fan+art';
+            $topic='+personage+'.$onlyconsonants.'+fanart';
             $ofs=mt_rand(0, 100);
             $geturl='https://www.bing.com/images/search?q=' . $topic . '&first=' . $ofs . '&tsc=ImageHoverTitle';
             

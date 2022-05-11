@@ -23,11 +23,12 @@ img.Entite{
 .Arme{
     float:left;
     white-space:nowrap;
-    background:rgba(34,159,190,0.555);
+    
     height:20px;
     padding:3px;
     font-size:smaller;
 }
+
 
 .ArmureNom{
     float:left;

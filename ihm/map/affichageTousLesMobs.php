@@ -19,7 +19,7 @@
                         foreach($mobContre as $MobID){
                             $Mob->setMobById($MobID);
                             ?>
-                                <li id="Mob<?= $Mob->getId() ?>" class="liAdverse">
+                                <li id="Mob<?= $Mob->getId() ?>" class="liAdverse" onmouseover="afficheDivPerso(event)" onmouseout="cacheDivPerso(event)">
                                     <a onclick="AttaquerPerso(<?= $Mob->getId() ?>,1, event)">
                                         <?php
                                             $Mob->renderHTML();

@@ -63,6 +63,40 @@ if($access){
                         }
                                             
                     break;
+
+                    case 3: //3 représente les pouvoir dans la table categorie
+                        //il faut changer d'armure
+                        //on retire donc l'armure en cours ( equipe = 0 dans la table entite equipement)
+                        if(!is_null($Perso->getPouvoir())){
+                            $reponse[6]=$_GET["idEquipement"];
+                            $reponse[5] = $equipement->getNom().' lvl '.$equipement->getLvl();
+                            $equipement->desequipeEntite($Perso);
+                            $message.= 'retire de '.$equipement->getNom();
+                            
+                            $reponse[7] =3;//3 est la categorie du pouvoir
+                        }else{
+                            $message.= 'vous n\‘avez pas bien reussi à retirer  '.$equipement->getNom();
+                            $reponse[7] =0;
+                        }
+                                            
+                    break;
+
+                    case 4: //4 représente les Bouclier dans la table categorie
+                        //il faut changer d'armure
+                        //on retire donc l'armure en cours ( equipe = 0 dans la table entite equipement)
+                        if(!is_null($Perso->getBouclier())){
+                            $reponse[6]=$_GET["idEquipement"];
+                            $reponse[5] = $equipement->getNom().' lvl '.$equipement->getLvl();
+                            $equipement->desequipeEntite($Perso);
+                            $message.= 'retire de '.$equipement->getNom();
+                            
+                            $reponse[7] =4;//4 est la categorie du Bouclier
+                        }else{
+                            $message.= 'vous n\‘avez pas bien reussi à retirer  '.$equipement->getNom();
+                            $reponse[7] =0;
+                        }
+                                            
+                    break;
                     
                     default:
                         //on retire l'equipement du perso pour le transformer un statsuplementaire

@@ -38,9 +38,15 @@ if($access){
                         //on retire donc l'arme en cours ( equipe = 0 dans la table entite equipement)
                         if(!is_null($Perso->getArme())){
                             $reponse[6]=$Perso->getArme()->getId();
+                            $Perso->desequipeArme();
+                        }
+                        if(!is_null($Perso->getPouvoir())){
+                            $reponse[6]=$Perso->getPouvoir()->getId();
+                            $Perso->desequipePouvoir();
                         }
                         //$equipement->desequipeEntite($Perso);
-                        $Perso->desequipeArme();
+                        
+                        
                         $equipement->equipeEntite($Perso);
                         $reponse[5] = $equipement->getNom()." lvl".$equipement->getLvl();
                         $message.= 's\'équipe de '.$equipement->getNom();
@@ -51,12 +57,53 @@ if($access){
                         //on retire donc l'armure en cours ( equipe = 0 dans la table entite equipement)
                         if(!is_null($Perso->getArmure())){
                             $reponse[6]=$Perso->getArmure()->getId();
+                            $Perso->desequipeArmure();
                         }
-                        $Perso->desequipeArmure();
+                        if(!is_null($Perso->getBouclier())){
+                            $reponse[6]=$Perso->getBouclier()->getId();
+                            $Perso->desequipeBouclier();
+                        }
+                        
+                       
                         $equipement->equipeEntite($Perso);
                         $reponse[5] = $equipement->getNom()." lvl".$equipement->getLvl();
                         $message.= 's\'équipe de '.$equipement->getNom();
                         $reponse[7] =2;//2 est la categorie l'Armure;
+                        
+                        break;
+                    case 3: //3 représente les AttaqueMagic dans la table categorie
+                        //il faut changer d'ararmureme
+                        //on retire donc l'armure en cours ( equipe = 0 dans la table entite equipement)
+                        if(!is_null($Perso->getArme())){
+                            $reponse[6]=$Perso->getArme()->getId();
+                            $Perso->desequipeArme();
+                        }
+                        if(!is_null($Perso->getPouvoir())){
+                            $reponse[6]=$Perso->getPouvoir()->getId();
+                            $Perso->desequipePouvoir();
+                        }
+                        $equipement->equipeEntite($Perso);
+                        $reponse[5] = $equipement->getNom()." lvl".$equipement->getLvl();
+                        $message.= 's\'équipe de '.$equipement->getNom();
+                        $reponse[7] =3;//3 est la categorie du pouvoir magic;
+                        
+                        break;
+
+                    case 4: //4 représente les bouclierMagic dans la table categorie
+                        //il faut changer d'ararmureme
+                        //on retire donc l'armure en cours ( equipe = 0 dans la table entite equipement)
+                        if(!is_null($Perso->getArmure())){
+                            $reponse[6]=$Perso->getArmure()->getId();
+                            $Perso->desequipeArmure();
+                        }
+                        if(!is_null($Perso->getBouclier())){
+                            $reponse[6]=$Perso->getBouclier()->getId();
+                            $Perso->desequipeBouclier();
+                        }
+                        $equipement->equipeEntite($Perso);
+                        $reponse[5] = $equipement->getNom()." lvl".$equipement->getLvl();
+                        $message.= 's\'équipe de '.$equipement->getNom();
+                        $reponse[7] =4;//4 est la categorie du bouclier magic;
                         
                         break;
                 

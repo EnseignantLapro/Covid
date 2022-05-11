@@ -5,6 +5,8 @@ class Personnage extends Entite{
     
     private $_xp;
     private $sacItems=array();
+   
+   
  
 
     public function __construct($bdd){
@@ -57,6 +59,7 @@ class Personnage extends Entite{
         return $xp;
     }
 
+    
   
     public function SubitDegatByPersonnage($Personnage){
         $degat = $Personnage->getAttaque();
@@ -143,7 +146,7 @@ class Personnage extends Entite{
         $this->_xp = $xp;
     }
 
-    //retourne la nouvelle xp 
+    
 
     
     public function addXP($value){
@@ -196,11 +199,13 @@ class Personnage extends Entite{
     public function renderHTML(){
        
         ?>
-        <div class="perso">
+        <div class="perso" id="PersoEnCours">
             <div class="persoXP"><?php echo $this->_xp?>(xp)</div>
             <?php
                 Parent::renderHTML();
+           
             ?>
+
         </div>
 
         <?php
@@ -221,7 +226,7 @@ class Personnage extends Entite{
         $Result = $this->_bdd->query("SELECT * FROM `TypePersonnage` WHERE idFaction = '".$id."'");
         if($tab = $Result->fetch()){
             $TypePersonnage = new TypePersonnage($this->_bdd);
-            $TypePersonnage->setTypePersonnageById($tab['id']);
+            $TypePersonnage->setTypePersonnageByIdPerso($tab['id']);
             $this->ChangeTypePersonnage($TypePersonnage);
         }
         
@@ -248,19 +253,7 @@ class Personnage extends Entite{
         }
     }
 
-    //retour le type de personnage 
-    //retour null si pas de type
-    public function getTyePersonnage(){
-        if(!is_null($_idTypePersonnage)){
-            $TypePersonnage = new TypePersonnage($this->_bdd);
-            $TypePersonnage->setTypePersonnageById($_idTypePersonnage);
-            return $TypePersonnage;
-        }else{
-            //ne devrait jamais etre le cas
-            return null;
-        }
-        
-    }
+   
 
    //Retourne un formulaire HTML pourcreer un personnage
     //et permet d'attribuer automatiquement à user

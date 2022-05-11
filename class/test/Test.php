@@ -27,7 +27,7 @@ session_start();
     if($access){
 
         $user = "root";
-        $pass = "";
+        $pass = "root";
       
         $mabase = new PDO('mysql:host=127.0.0.1;dbname=lapro_virus', $user, $pass);
 
@@ -41,6 +41,9 @@ session_start();
         echo "</div>" ;
         echo '<div class="TestIntegration"> TEST ARME';
             include "testUnitaire/testArme.php"; 
+        echo "</div>" ;
+        echo '<div class="TestIntegration"> TEST POUVOIR';
+            include "testUnitaire/testPouvoir.php"; 
         echo "</div>" ;
         echo '<div class="TestIntegration"> TEST ARMURE';
             include "testUnitaire/testArmure.php"; 

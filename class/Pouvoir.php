@@ -4,11 +4,11 @@ class Pouvoir  extends Equipement{
 
     public function createPouvoirAleatoire()
     {
-        //attention la catérogie id Pouvoir doit etre = 1
-        $req="SELECT * FROM TypeEquipement Where idCategorie = 1 order by rarete ASC";
+        //attention la catérogie id Pouvoir doit etre = 3
+        $req="SELECT * FROM TypeEquipement Where idCategorie = 3 order by rarete ASC";
         $Result = $this->_bdd->query($req);
         
-        $newType=1;//par default une Missile Magique c'est une attaque;
+        $newType=4;//par default c'un baton  c'est une attaque;
         $rarete=1;
         $newTypeNom='Missile Magique ';
         

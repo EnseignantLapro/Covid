@@ -5,8 +5,8 @@
 
         public function createBouclierAleatoire(){
 
-            //attention la catérogie id bouclier doit etre = 2
-            $req="SELECT * FROM TypeEquipement Where idCategorie = 2 order by rarete ASC"; 
+            //attention la catérogie id bouclier doit etre = 4
+            $req="SELECT * FROM TypeEquipement Where idCategorie = 4 order by rarete ASC"; 
             $Result = $this->_bdd->query($req);
 
             $newType=6;//par default on choisie un typeEquipement de categorie 2 ici le N°6

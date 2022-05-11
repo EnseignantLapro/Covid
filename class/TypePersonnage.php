@@ -6,6 +6,7 @@ class TypePersonnage  extends CRUD{
 
     private $_id;
     private $_coefAttaque;
+    private $_coefPouvoir;
     private $_coefBouclier;
     private $_coefDefense;
     private $_distance;
@@ -18,16 +19,31 @@ class TypePersonnage  extends CRUD{
         $this->_bdd = $bdd;
     }
 
-
-    public function setTypePersonnageById($id){
+    //on fourni l'id du personnage on récupér un type de perso
+    public function setTypePersonnageByIdPerso($id){
 
          //select les info personnage
-         $req  = "SELECT * FROM `TypePersonnage` WHERE id='".$id."'";
+         $req  = "SELECT 
+         
+         `TypePersonnage`.id,
+         `TypePersonnage`.coefAttaque,
+         `TypePersonnage`.coefPouvoir,
+         `TypePersonnage`.coefBouclier,
+         `TypePersonnage`.coefDefense,
+         `TypePersonnage`.distance,
+         `TypePersonnage`.idFaction,
+         `TypePersonnage`.lienImage,
+         `TypePersonnage`.nom
+         
+          FROM `TypePersonnage`,`Personnage`
+          WHERE `Personnage`.idTypePersonnage=  `TypePersonnage`.id
+          AND `Personnage`.id='".$id."'";
          $Result = $this->_bdd->query($req);
 
          if($tab=$Result->fetch()){
             $this->_id = $tab['id'];
             $this->_coefAttaque= $tab['coefAttaque'];
+            $this->_coefPouvoir= $tab['coefPouvoir'];
             $this->_coefBouclier= $tab['coefBouclier'];
             $this->_coefDefense= $tab['coefDefense'];
             $this->_distance= $tab['distance'];
@@ -38,6 +54,27 @@ class TypePersonnage  extends CRUD{
 
     }
     
+    //on fourni l'id du personnage on récupér un type de perso
+    public function setTypePersonnageById($id){
+
+        //select les info personnage
+        $req  = "SELECT * FROM `TypePersonnage`
+         WHERE id='".$id."'";
+        $Result = $this->_bdd->query($req);
+
+        if($tab=$Result->fetch()){
+           $this->_id = $tab['id'];
+           $this->_coefAttaque= $tab['coefAttaque'];
+           $this->_coefPouvoir= $tab['coefPouvoir'];
+           $this->_coefBouclier= $tab['coefBouclier'];
+           $this->_coefDefense= $tab['coefDefense'];
+           $this->_distance= $tab['distance'];
+           $this->_idFaction= $tab['idFaction'];
+           $this->_lienImage= $tab['lienImage'];
+           $this->_nom= $tab['nom'];
+        }
+
+   }
 
     public function getId(){
         return $this->_id;
@@ -53,6 +90,9 @@ class TypePersonnage  extends CRUD{
     }
     public function getCoefAttaque(){
         return $this->_coefAttaque;
+    }
+    public function getCoefPouvoir(){
+        return $this->_coefPouvoir;
     }
     public function getDistance(){
         return $this->_distance;
