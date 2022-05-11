@@ -17,6 +17,7 @@
         include "class/Armure.php";
         include "class/Pouvoir.php";
         include "class/Bouclier.php";
+        include "class/Competence.php";
 
     //  GESTION DE LA BASE
         $mabase = null;
