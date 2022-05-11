@@ -282,6 +282,21 @@
             return $val;
         }
 
+        public function getCoolDownAttaque(){
+
+            $arme = $this->getArme();
+            $pouvoir = $this->getPouvoir();
+            $cooldown = -1;
+            if(!is_null($arme)){
+                $cooldown =$arme->getCoolDown();
+            }else if(!is_null($pouvoir)){
+                $cooldown = $pouvoir->getCoolDown();
+            }else{
+                $cooldown = 500;
+            }
+            return $cooldown;
+        }
+
         //Fonction Sort utilise un Pouvoir
         public function getSort(){
             //ici on affiche les dégats Maximun du joueur avec Arme
@@ -427,6 +442,18 @@
             return $this->_vie;
         }
 
+        public function resetCoolDown(){
+            $arme = $this->getArme();
+            $pouvoir = $this->getPouvoir();
+            
+            if(!is_null($arme)){
+                $cooldown =$arme->resetCoolDown();
+            }else if(!is_null($pouvoir)){
+                $cooldown = $pouvoir->resetCoolDown();
+            }
+            
+        }
+
         public function setEntite($id,$nom,$vie,$degat,$vieMax,$image,$type,$lvl){
             $this->_id = $id;
             $this->_nom = $nom;
@@ -554,7 +581,7 @@
                 ?>
                 <div class="attaque" id="attaqueEntiteValeur<?= $this->_id ;?>"> <?= $this->getAttaque()?>
                     </div>
-                </div>
+                
                 <div id="ArmePerso<?= $this->_id ?>" class="Arme"></div>
                 <?php
             }
@@ -562,19 +589,20 @@
             $bouclier = $this->getBouclier();
             if(!is_null($armure)){
                 ?>
-                    <div id ="Armure<?= $armure->getId() ?>" class="ArmureNom standard" onclick="CallApiRemoveEquipementEntite(<?= $armure->getId() ?>)"><?= $armure->getNom() ?> lvl <?= $armure->getLvl() ?>
+                <div id ="Armure<?= $armure->getId() ?>" class="ArmureNom standard" onclick="CallApiRemoveEquipementEntite(<?= $armure->getId() ?>)"><?= $armure->getNom() ?> lvl <?= $armure->getLvl() ?>
                     <div class="coef">(*<?php 
                         if(!is_null($type)){
                             echo $type->getCoefDefense();
                         }else{
                             echo "1";
                         }
-                    ?>)</div>
+                    ?>)
+                    </div>
                 </div>
                 <?php
             }else if(!is_null($bouclier)){
                 ?>
-                    <div id ="Armure<?= $bouclier->getId() ?>" class="ArmureNom magic" onclick="CallApiRemoveEquipementEntite(<?= $bouclier->getId() ?>)"><?= $bouclier->getNom() ?> lvl <?= $bouclier->getLvl() ?>
+                <div id ="Armure<?= $bouclier->getId() ?>" class="ArmureNom magic" onclick="CallApiRemoveEquipementEntite(<?= $bouclier->getId() ?>)"><?= $bouclier->getNom() ?> lvl <?= $bouclier->getLvl() ?>
                     <div class="coef">(*<?php 
                         if(!is_null($type)){
                             echo $type->getCoefBouclier();

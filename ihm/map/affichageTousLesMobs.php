@@ -20,7 +20,7 @@
                             $Mob->setMobById($MobID);
                             ?>
                                 <li id="Mob<?= $Mob->getId() ?>" class="liAdverse" onmouseover="afficheDivPerso(event)" onmouseout="cacheDivPerso(event)">
-                                    <a onclick="AttaquerPerso(<?= $Mob->getId() ?>,1, event)">
+                                    <a id="aMob<?= $Mob->getId() ?>" onclick="AttaquerPerso(<?= $Mob->getId() ?>,1, event)">
                                         <?php
                                             $Mob->renderHTML();
                                         ?>
@@ -29,11 +29,12 @@
                             <?php
                         }
                         // Affichage des Mob Capturés
-                        foreach($map->getAllMobCapture($Joueur1) as $MobID){
+                        $tabmob = $map->getAllMobCapture($Joueur1);
+                        foreach( $tabmob as $MobID){
                             $Mob->setMobById($MobID);
                             ?>
                                 <li id="Mob<?= $Mob->getId() ?>" class="liCaptured">
-                                    <a onclick="SoinMob(<?= $Mob->getId() ?>,1)">
+                                    <a id="aMob<?= $Mob->getId() ?>" onclick="SoinMob(<?= $Mob->getId() ?>,1)">
                                         <?php
                                             $Mob->renderHTML();
                                         ?>

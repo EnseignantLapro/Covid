@@ -39,69 +39,79 @@
         //le perso est passé en param
         public function SubitDegat($Entite)
         {
-            //Ajout Aléatoire pour coup critique PVE (15% de chance d'acctivation // 50% de dégats en plus):
-            $CC = random_int(1, 100);
-            if($CC >=1 && $CC <= 15)
-            {
-                $degat = $Entite->getAttaque() * 1.5;
-                $degat = round($degat);
-                $this->_vie = $this->_vie - $degat;
-                if($degat > 1)
+            $Attaque = $Entite->getAttaque();
+            $CoolDown = $Entite->getCoolDownAttaque();
+            
+            //is coolDOwn < 0 c'est que l'attaque est tjs en cours
+            if($CoolDown>0){
+                //l'attaque est en cours on met a jout le cooldown pour ne pas spam l'attaque
+                $Entite->resetCoolDown();
+                //Ajout Aléatoire pour coup critique PVE (15% de chance d'acctivation // 50% de dégats en plus):
+                $CC = random_int(1, 100);
+                if($CC >=1 && $CC <= 15)
                 {
-                    $CoupCritique = "Coup Critique ! Vous avez infligé ".$degat." points de dégâts.";
+                    $degat = $Attaque * 1.5;
+                    $degat = round($degat);
+                    $this->_vie = $this->_vie - $degat;
+                    if($degat > 1)
+                    {
+                        $CoupCritique = "Coup Critique ! Vous avez infligé ".$degat." points de dégâts.";
+                    } else
+                    {
+                        $CoupCritique = "Coup Critique ! Vous avez infligé ".$degat." point de dégât.";
+                    }
                 } else
                 {
-                    $CoupCritique = "Coup Critique ! Vous avez infligé ".$degat." point de dégât.";
+                    $degat = $Attaque;
+                    $degat = round($degat);
+                    $this->_vie = $this->_vie - $degat;
+                    if($degat > 1)
+                    {
+                        $CoupCritique = "Vous avez infligé ".$degat." points de dégâts.";
+                    } else
+                    {
+                        $CoupCritique = "Vous avez infligé ".$degat." point de dégât.";
+                    }
                 }
-            } else
-            {
-                $degat = $Entite->getAttaque();
-                $degat = round($degat);
-                $this->_vie = $this->_vie - $degat;
-                if($degat > 1)
-                {
-                    $CoupCritique = "Vous avez infligé ".$degat." points de dégâts.";
-                } else
-                {
-                    $CoupCritique = "Vous avez infligé ".$degat." point de dégât.";
+                $coupFatal = 0;
+                if($this->_vie<=0){
+                    $this->_vie=0;
+                    $coupFatal=1;
+                    //on va attribuer le mob au perssonage sa vie revient a fond pour le propriétaire
+                    $req  = "UPDATE `Entite` SET `vie`='".$this->_vieMax."',`idUser`='".$Entite->getId()."' WHERE `id` = '".$this->_id."'";
+                    $Result = $this->_bdd->query($req);
+                }else{
+                    $req  = "UPDATE `Entite` SET `vie`='".$this->_vie ."' WHERE `id` = '".$this->_id ."'";
+                    $Result = $this->_bdd->query($req);
                 }
+                //on va rechercher l'historique
+                $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$this->_id."' and idPersonnage = '".$Entite->getId()."'";
+                $Result = $this->_bdd->query($req);
+                $tabAttaque['nbCoup']=0;
+                $tabAttaque['DegatsDonnes']=0;
+                $tabAttaque['DegatsReçus']=$Entite->getAttaque();
+                if($tab=$Result->fetch()){
+                    $tabAttaque = $tab;
+                    $tabAttaque['DegatsReçus']+=$Entite->getAttaque();
+                    $tabAttaque['nbCoup']++;
+                }else{
+                    //insertion d'une nouvelle attaque
+                    $req="INSERT INTO `AttaquePersoMob`(`idMob`, `idPersonnage`, `nbCoup`, `coupFatal`, `DegatsDonnes`, `DegatsReçus`)
+                    VALUES (
+                        '".$this->_id."','".$Entite->getId()."',1,0,0,".$tabAttaque['DegatsReçus']."
+                    )";
+                    $Result = $this->_bdd->query($req);
+                }
+                //update AttaquePersoMob
+                $req="UPDATE `AttaquePersoMob` SET
+                `nbCoup`=".$tabAttaque['nbCoup'].",
+                `coupFatal`=".$coupFatal.",
+                `DegatsReçus`=".$tabAttaque['DegatsReçus']."
+                WHERE idMob = '".$this->getId()."' AND idPersonnage ='".$Entite->getId()."' ";
+                    $Result = $this->_bdd->query($req);
+
+                usleep($CoolDown*1000);//microSeconde
             }
-            $coupFatal = 0;
-            if($this->_vie<0){
-                $this->_vie=0;
-                $coupFatal=1;
-                //on va attribuer le mob au perssonage sa vie revient a fond pour le propriétaire
-                $req  = "UPDATE `Entite` SET `vie`='".$this->_vieMax."',`idUser`='".$Entite->getId()."' WHERE `id` = '".$this->_id."'";
-                $Result = $this->_bdd->query($req);
-            }else{
-                $req  = "UPDATE `Entite` SET `vie`='".$this->_vie ."' WHERE `id` = '".$this->_id ."'";
-                $Result = $this->_bdd->query($req);
-            }
-            //on va rechercher l'historique
-            $req  = "SELECT * FROM `AttaquePersoMob` where idMob = '".$this->_id."' and idPersonnage = '".$Entite->getId()."'";
-            $Result = $this->_bdd->query($req);
-            $tabAttaque['nbCoup']=0;
-            $tabAttaque['DegatsDonnes']=0;
-            $tabAttaque['DegatsReçus']=$Entite->getAttaque();
-            if($tab=$Result->fetch()){
-                $tabAttaque = $tab;
-                $tabAttaque['DegatsReçus']+=$Entite->getAttaque();
-                $tabAttaque['nbCoup']++;
-            }else{
-                //insertion d'une nouvelle attaque
-                $req="INSERT INTO `AttaquePersoMob`(`idMob`, `idPersonnage`, `nbCoup`, `coupFatal`, `DegatsDonnes`, `DegatsReçus`)
-                VALUES (
-                    '".$this->_id."','".$Entite->getId()."',1,0,0,".$tabAttaque['DegatsReçus']."
-                )";
-                $Result = $this->_bdd->query($req);
-            }
-            //update AttaquePersoMob
-            $req="UPDATE `AttaquePersoMob` SET
-            `nbCoup`=".$tabAttaque['nbCoup'].",
-            `coupFatal`=".$coupFatal.",
-            `DegatsReçus`=".$tabAttaque['DegatsReçus']."
-            WHERE idMob = '".$this->getId()."' AND idPersonnage ='".$Entite->getId()."' ";
-                $Result = $this->_bdd->query($req);
             return array ($this->_vie, $CoupCritique);
         }
         public function getHistoriqueAttaque(){

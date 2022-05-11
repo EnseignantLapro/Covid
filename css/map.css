@@ -297,6 +297,49 @@
     z-index: 1000;
 }
 
+.busy {
+    -moz-animation:busy 3s;
+    -webkit-animation:busy 3s;
+    animation:busy 3s ease infinite;
+ }
+ 
+ @-moz-keyframes busy  {
+    0% {
+       -moz-filter:blur(0px);
+    }
+    
+    100% {
+       -moz-filter:blur(50px);
+    }
+ 
+ }
+ 
+ @-webkit-keyframes busy  {
+    0% {
+       -webkit-filter:blur(0px);
+    }
+    
+    100% {
+       -webkit-filter:blur(50px);
+    }
+ 
+ }
+ 
+ @keyframes busy  {
+    0% {
+       filter:blur(0px);
+    }
+    
+    100% {
+       filter:blur(50px);
+    }
+ 
+ }
+
+.busy :hover{
+    cursor:url('Busy.ani'),pointer !important;
+}
+
 .sword-slash.play {
     animation: slash 250ms ease-out;
 }

@@ -187,8 +187,8 @@
     }
 
     function AttaquerPerso(idPerso,type, event){
-
-        hitAnimation( event );
+        
+        
         attaquer(idPerso,type)
     }
 
@@ -273,28 +273,37 @@
     }
 
     //le type est 0 = person 1 = mob
-
     function attaquer(idPerso,type){
+        hitAnimation( event );
+        //supprimer temporairement l'attaque pour le cooldown
+        var a = document.getElementById("aMob"+idPerso);
+        a.classList.add("busy");
+        let theclick =a.onclick;
+        a.onclick ='';
+        
         //pour appeler une API on utilise la méthode fetch()
         fetch('api/attaquer.php?id='+idPerso+'&type='+type).then((resp) => resp.json())
         .then(function(data) {
             // code for handling the data you get from the API
             console.log(data);
-
                 UpdateVie("vieEntiteValeur"+data[0],data[1],data[2],data[3],data[4],"vieEntiteValeur"+data[5],data[6]);
-
                 //data[7]c'est xp
                 if( data[1] <= 0 ){
                     //si mob mort on doit recharger le server
-                    //je retire çà pour toruver une alternative à un refrech de page
-                    //location.reload();
+                    //Todo toruver une alternative à un refrech de page
+                    location.reload();
                 }
+                a.onclick =theclick;
+                a.classList.remove("busy");
 
         })
         .catch(function(error) {
             // This is where you run code if the server returns any errors
             console.log(error);
+            a.onclick =theclick;
+            a.classList.remove("busy");
         });
+        
     }
 
     function useItem(idItem){

@@ -9,7 +9,7 @@ include "../session.php";
 $reponse[0]=0;
 if($access){
     if(isset($_GET["id"]) && isset($_GET["type"])){
-
+        
         //on récupere la force du perso en cours
         //un joueur est un USER
         $Attaquant = $Joueur1->getPersonnage();

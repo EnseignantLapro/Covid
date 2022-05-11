@@ -3,6 +3,9 @@
     class Equipement extends Objet{
 
         protected $_idCategorie; //1 = Arme / 2 = Armure / 3 = Sort / 4 = Bouclcier
+        protected $coolDownMS_;
+        protected $LastUse_;
+
         public function setEquipementByID($id){
             $req="SELECT Equipement.id,
                         Equipement.type,
@@ -10,6 +13,8 @@
                         Equipement.valeur,
                         Equipement.efficacite,
                         Equipement.lvl,
+                        Equipement.coolDownMS,
+                        Equipement.LastUse,
                         Categorie.id as idCategorie
                 FROM Equipement,TypeEquipement,Categorie WHERE Equipement.id='".$id."'
                 AND TypeEquipement.id = Equipement.type
@@ -22,7 +27,9 @@
                             $tab["nom"],
                             $tab["valeur"],
                             $tab["efficacite"],
-                            $tab["lvl"]
+                            $tab["lvl"],
+                            $tab["coolDownMS"],
+                            $tab["LastUse"]
                             );
                 $this->_idCategorie = $tab["idCategorie"];
             }
@@ -59,18 +66,20 @@
             $this->_bdd->query($sql);
         }
 
-        public function setEquipement($id,$type,$nom,$valeur,$efficacite,$lvl){
+        public function setEquipement($id,$type,$nom,$valeur,$efficacite,$lvl,$coolDownMS,$LastUse){
             $this->_id = $id;
             $this->_nom = $nom;
             $this->_type = $type;
             $this->_valeur = $valeur;
             $this->_efficacite = $efficacite;
             $this->_lvl = $lvl;
+            $this->coolDownMS_ = $coolDownMS;
+            $this->LastUse_ = $LastUse;
         }
 
         public function deleteEquipement($id){
             //TODO AVEC LES CONTRAINTE RELATIONNEL IL DFAUT VERIDIER QU'ELLE EST PAS UTILISER AILLEUR
-            $req="DELETE FROM Equipement WHERE id='".$id."' ";
+            $req="DELETE FROM Equipement WHERE id='".$this->_id."' ";
             $Result = $this->_bdd->query($req);
         }
         //retourn un tableau avec id information lienImage nom rarete
@@ -137,12 +146,14 @@
             $imax=$i*3;
             $newType=1;
             $rarete=1;
+            $coolDown=500;
             $newTypeNom='cuillère ';
             while($tab=$Result->fetch()){
                 if(rand(0,$tab['chance'])==1){
                 $newType = $tab['id'];
                 $newTypeNom = $tab['nom'];
                 $coef=$tab['rarete'];
+                $coolDown=$tab['coolDown'];
                 break;
                 }
             }
@@ -151,8 +162,10 @@
             $newNom = $newTypeNom." ".$getEfficace['adjectif'];
             $efficacite = $getEfficace['id'];
             $newValeur = rand(5,10)*$rarete*$getEfficace['coef'];
+            $coolDown = $coolDown*$getEfficace['coef'];
             $this->_bdd->beginTransaction();
-            $req="INSERT INTO `Equipement`( `type`, `nom`, `valeur`, `efficacite`,`lvl`) VALUES ('".$newType."','".$newNom."','".$newValeur."','".$efficacite."',1)";
+            $req="INSERT INTO `Equipement`( `type`, `nom`, `valeur`, `efficacite`,`lvl`,`coolDownMS`)
+             VALUES ('".$newType."','".$newNom."','".$newValeur."','".$efficacite."',1,'".$coolDown."')";
             $Result = $this->_bdd->query($req);
             $lastID = $this->_bdd->lastInsertId();
             if($lastID){
@@ -164,6 +177,28 @@
                 echo "erreur anormal createEquipementAleatoire equipement.php ".$req;
                 return null;
             }
+        }
+
+        public function getCoolDown(){
+            //on doit vérifier en base si le cooldwn est terminé
+            //sinon on renvoi -1
+            $timeReel = microtime(true)*100;
+            $timeLastUes= intval($this->LastUse_);
+            $cooldown = intval($this->coolDownMS_);
+        
+            if($timeReel < ($timeLastUes+$cooldown)){
+                return -1;
+            }else
+            {
+                return $this->coolDownMS_;
+            }
+            
+        }
+
+        public function resetCoolDown(){
+            $timems = microtime(true)*100;
+            $req="UPDATE  Equipement set LastUse = '".$timems."' WHERE id='".$this->_id."' ";
+            $Result = $this->_bdd->query($req);
         }
 
         //retourne la fusion si c'est réussi des 2 items
