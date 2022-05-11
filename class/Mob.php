@@ -907,6 +907,8 @@
             $urlLength=strpos($partialString1, $f3);
             $partialString3 = substr($partialString1, 0, $urlLength);
 
+             return $partialString3;
+
         }
         public function healmobspawn($id)//prend en paramettre l'id du mob qui faut heal
         {
