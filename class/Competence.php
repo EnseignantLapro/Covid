@@ -6,13 +6,10 @@
         private  $id_;
         private $nom_;
         private $idCategorie_;
-        Private $Information_;	
+        private $Information_;	
         private $idTyp_;
-
-
-
 
     }
 
 
-        ?>
+?>

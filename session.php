@@ -1,25 +1,27 @@
 <?php
     //  INCLUDES
+        
+        include "class/Objet.php";
+        include "class/CRUD.php";
         include "class/Entite.php";
         include "class/User.php";
-        include "class/CRUD.php";
-        include "class/Faction.php";
         include "class/TypePersonnage.php";
+        include "class/Faction.php";
+        include "class/Item.php";
         include "class/Personnage.php";
         include "class/Map.php";
         include "class/Forge.php";
         include "class/Mob.php";
         include "class/Tooltip.php";
-        include "class/Objet.php";
-        include "class/Item.php";
         include "class/Equipement.php";
         include "class/Arme.php";
         include "class/Armure.php";
         include "class/Pouvoir.php";
         include "class/Bouclier.php";
         include "class/Competence.php";
-
+        
     //  GESTION DE LA BASE
+   
         $mabase = null;
         $access = null;
         $errorMessage="";

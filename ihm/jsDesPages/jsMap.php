@@ -294,7 +294,9 @@
         a.onclick ='';
         
         //pour appeler une API on utilise la méthode fetch()
-        fetch('api/attaquer.php?id='+idPerso+'&type='+type).then((resp) => resp.json())
+        fetch('api/attaquer.php?id='+idPerso+'&type='+type).then(
+            (resp) => resp.json()
+            )
         .then(function(data) {
             // code for handling the data you get from the API
             console.log(data);
