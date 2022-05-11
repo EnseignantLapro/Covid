@@ -1258,7 +1258,7 @@
             if($result=='https://status.unsplash.com/' || $result=='https://images.unsplash.com/source-404'){
                 $result='https://i0.wp.com/supertrampontheroad.com/wp-content/uploads/2017/02/DSC_3793-1-2.jpg?resize=1024%2C678&ssl=1';
             }else{
-                $result = "?w=600";
+                $result .= "?w=600";
             }
             return $result;
         }
