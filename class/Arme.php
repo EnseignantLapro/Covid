@@ -14,12 +14,13 @@
             $newType=1;//par default une gifle c'est une attaque;
             $rarete=1;
             $newTypeNom='Gifle ';
-
+            $coolDown=500;
             while($tab=$Result->fetch()){
                 if(rand(0,$tab['chance'])==1){
                 $newType = $tab['id'];
                 $newTypeNom = $tab['nom'];
                 $coef=$tab['rarete'];
+                $coolDown=$tab['coolDown'];
                 break;
                 }
             }
@@ -36,7 +37,7 @@
             $Result = $this->_bdd->query($req);
             $lastID = $this->_bdd->lastInsertId();
             if($lastID){ 
-                $this->setEquipement($lastID,$newType,$newNom,$newValeur,$efficacite,1);
+                $this->setEquipement($lastID,$newType,$newNom,$newValeur,$efficacite,1,$coolDown,0);
                 $this->_bdd->commit();
                 return $this;
             }else{

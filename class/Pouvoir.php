@@ -11,7 +11,7 @@ class Pouvoir  extends Equipement{
         $newType=4;//par default c'un baton  c'est une attaque;
         $rarete=1;
         $newTypeNom='Missile Magique ';
-        
+        $coolDown = 500;
         while($tab=$Result->fetch())
         {
             if(rand(0,$tab['chance'])==1)
@@ -19,6 +19,7 @@ class Pouvoir  extends Equipement{
                 $newType = $tab['id'];
                 $newTypeNom = $tab['nom'];
                 $coef=$tab['rarete'];
+                $coolDown=$tab['coolDown'];
                 break;
             }
         }
@@ -36,7 +37,7 @@ class Pouvoir  extends Equipement{
         $lastID = $this->_bdd->lastInsertId();
         if($lastID)
         { 
-            $this->setEquipement($lastID,$newType,$newNom,$newValeur,$efficacite,1);
+            $this->setEquipement($lastID,$newType,$newNom,$newValeur,$efficacite,1,$coolDown,0);
             $this->_bdd->commit();
             return $this;
         }

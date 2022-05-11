@@ -15,12 +15,13 @@
             $newType=6;//par default on choisie un typeEquipement de categorie 2 ici le N°6
             $rarete=1;
             $newTypeNom='Pull ';
-
+            $coolDown=500;
             while($tab=$Result->fetch()){
                 if(rand(0,$tab['chance'])==1){
                 $newType = $tab['id'];
                 $newTypeNom = $tab['nom'];
                 $coef=$tab['rarete'];
+                $coolDown=$tab['coolDown'];
                 break;
                 }
             }
@@ -37,7 +38,7 @@
             $Result = $this->_bdd->query($req);
             $lastID = $this->_bdd->lastInsertId();
             if($lastID){ 
-                $this->setEquipement($lastID,$newType,$newNom,$newValeur,$efficacite,1);
+                $this->setEquipement($lastID,$newType,$newNom,$newValeur,$efficacite,1,$coolDown,0);
                 $this->_bdd->commit();
                 return $this;
             }else{
