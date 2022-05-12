@@ -36,12 +36,12 @@
             }
         }
         //methode appelé quand un personnage attaque un mob
-        //le perso est passé en param
+        //le perso est passé en param return 0 si pas possible d'attaquer
         public function SubitDegat($Entite)
         {
             $Attaque = $Entite->getAttaque();
             $CoolDown = $Entite->getCoolDownAttaque();
-            
+            $CoupCritique='coolDown';
             //is coolDOwn < 0 c'est que l'attaque est tjs en cours
             if($CoolDown>0){
                 //l'attaque est en cours on met a jout le cooldown pour ne pas spam l'attaque

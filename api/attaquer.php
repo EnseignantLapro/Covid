@@ -34,7 +34,10 @@ if($access){
                         $Deffensseur->addXP(1);
                         //on va retirer le coup d'attaque de base du deffensseur
                         //car une attaque n'est pas gratuite
+                        $vieAvant = $Attaquant->getVie();
                         $vieAttaquant=$Attaquant->SubitDegatByPersonnage($Deffensseur);
+                        $perte = $vieAvant-$vieAttaquant;
+                            $message .= "vous avez subit ".$perte." pts de degat ";
                         
                         if($vieAttaquant==0){
                             $message .= " Ton personnage est mort.";
@@ -43,6 +46,7 @@ if($access){
                             $lvl = $Deffensseur->getLvl();
                             $Attaquant->addXP($lvl*rand(8,10));
                             $message .= " Tu as tué ".$Deffensseur->getNom();
+                            
                         }
                     }else{
                         $message .= " Tu es déjà mort, tu ne peux plus attaquer.";
@@ -69,10 +73,14 @@ if($access){
                         $vieMax = $DeffensseurMob->getVieMax();
                         
                         //Si le mob as de la vie, il attaque. Sinon, rien ne se passe
-                        if ($vie>0)
+                        if ($vie>0 && $SubitDegat[1]!='coolDown')
                         {
+                            $vieAvant = $Attaquant->getVie();
                             //Sinon : retour de bâton le deffenseur aussi attaque
                             $vieAttaquant=$Attaquant->SubitDegatByMob($DeffensseurMob);
+
+                            $perte = $vieAvant-$vieAttaquant;
+                            $message .= "vous avez subit ".$perte." pts de degat ";
                         }
 
                         //Affichage d'un message avec les dégats ingligé + info de si c'est un cout critique

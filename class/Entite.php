@@ -384,7 +384,11 @@
         public function SubitDegatByEntite($Entite){
             //nouveauté 2022 JLA on va gerer les dégat selon le type d'équipement
             //get Attaque sera modifier
-            $this->_vie = $this->_vie - $Entite->getAttaque();
+            $MobDegatAttaqueEnvoyer=$Entite->getAttaque();
+            //Mise en place de la defence.
+            $MobDegatAttaqueEnvoyer -= round(($MobDegatAttaqueEnvoyer * $this->getDefense())/100,1);
+    
+            $this->_vie = $this->_vie - $MobDegatAttaqueEnvoyer;
             if($this->_vie<0){
                 $this->_vie =0;
                 //retour en zone 0,0
@@ -406,6 +410,9 @@
 
         public function SubitDegatByMob($Mob){
             $MobDegatAttaqueEnvoyer=$Mob->getAttaque();
+            //Mise en place de la defence.
+            $MobDegatAttaqueEnvoyer -= round(($MobDegatAttaqueEnvoyer * $this->getDefense())/100,1);
+
             $vieAvantAttaque = $this->_vie;
             //on va rechercher l'historique
             $req = "SELECT * FROM `AttaqueEntiteMob` where idMob = '".$Mob->getId()."' and idEntite = '".$this->_id."'";

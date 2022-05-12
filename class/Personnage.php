@@ -93,7 +93,8 @@ class Personnage extends Entite{
             $MobDegatAttaqueEnvoyer=$Mob->getAttaque();
 
             //on réduit les déga avec armure si possible
-            $MobDegatAttaqueEnvoyer-=($MobDegatAttaqueEnvoyer*$this->getDefense())/100;
+            $enMoins = ($MobDegatAttaqueEnvoyer*$this->getDefense())/100;
+            $MobDegatAttaqueEnvoyer-=$enMoins;
             $MobDegatAttaqueEnvoyer = round($MobDegatAttaqueEnvoyer);
             if($MobDegatAttaqueEnvoyer<0){
                 $MobDegatAttaqueEnvoyer = 0;
